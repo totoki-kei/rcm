@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="manageddx">
+</Property><Property Name="ソリューション ファイル" Value="H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\manageddx.sln">
+</Property><Property Name="ユーザー オプション ファイル" Value="H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\manageddx.suo">
+</Property><Property Name="Date" Value="2011年8月18日">
+</Property><Property Name="Time" Value="16:59">
+</Property><Property Name="ログ番号" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="manageddx.sln" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\manageddx.sln としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="" Source="manageddx.suo" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\manageddx.suo としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="manageddx.csproj" Description="プロジェクト ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\manageddx.csproj としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="manageddx.csproj.user" Description="プロジェクト ユーザー ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\manageddx.csproj.user としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="AssemblyInfo.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\AssemblyInfo.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="dlgTextInput.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\dlgTextInput.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="dlgView.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\dlgView.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmConfig.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmConfig.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmKeys.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmKeys.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmMain.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmMain.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmScript.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmScript.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmTree.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmTree.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmVals.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmVals.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="Properties\Resources.Designer.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\Properties\Resources.Designer.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="RcChips.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\RcChips.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="RcData.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\RcData.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="RcParser.cs" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\RcParser.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="app.config" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\app.config としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="App.ico" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\App.ico としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="file.ico" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\file.ico としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="Todo.txt" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\Todo.txt としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="dlgTextInput.resx" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\dlgTextInput.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="dlgView.resx" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\dlgView.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmConfig.resx" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmConfig.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmKeys.resx" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmKeys.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmMain.resx" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmMain.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmScript.resx" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmScript.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmTree.resx" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmTree.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmVals.resx" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\frmVals.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="Properties\Resources.resx" Description="ファイルは正常に H:\Users\Totoki\Documents\Visual Studio 2010\Projects\manageddx\Backup1\Properties\Resources.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="manageddx.csproj" Description="プロジェクトは正常に変換されました。">
+</Event><Event ErrorLevel="3" Project="manageddx" Source="manageddx.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="manageddx.sln" Description="ソリューションは正常に変換されました">
+</Event><Event ErrorLevel="3" Project="" Source="manageddx.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="app.config" Description="ファイルは正常に変換されました。All &lt;supportedRuntime&gt;と &lt;requiredRuntime&gt; は、プロジェクトをビルドして Visual Studio 2005 で実行できるように削除されました。">
+</Event><Event ErrorLevel="3" Project="manageddx" Source="app.config" Description="Converted">
+</Event></UpgradeLog>

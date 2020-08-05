@@ -1,0 +1,48 @@
+Val{
+	boost()
+	nflap(min=-10,max=10,step=1)
+	sflap(min=-10,max=10,step=1)
+	eflap(min=-10,max=10,step=1)
+	wflap(min=-10,max=10,step=1)
+}
+Key{
+	4:boost(step=200)
+	5:boost(step=-200)
+}
+Body{
+	Core(){
+		S:Trim(Angle=-60){
+			N:Chip(){}
+			W:Chip(){
+				N:Chip(){}
+			}
+			E:Chip(){
+				N:Chip(){}
+			}
+			N:Jet(Angle=-90,Power=boost){}
+			N:Jet(Angle=90,Power=-boost){}
+		}
+		S:Trim(Angle=60){
+			N:Chip(){}
+			W:Chip(){
+				N:Chip(){}
+			}
+			E:Chip(){
+				N:Chip(){}
+			}
+			N:Jet(Angle=-90,Power=boost){}
+			N:Jet(Angle=90,Power=-boost){}
+		}
+		S:Trim(){
+			N:Chip(){}
+			W:Chip(){
+				N:Chip(){}
+			}
+			E:Chip(){
+				N:Chip(){}
+			}
+			N:Jet(Angle=-90,Power=boost){}
+			N:Jet(Angle=90,Power=-boost){}
+		}
+	}
+}

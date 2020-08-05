@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="manageddx">
+</Property><Property Name="ソリューション ファイル" Value="C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\manageddx.sln">
+</Property><Property Name="ユーザー オプション ファイル" Value="C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\manageddx.suo">
+</Property><Property Name="Date" Value="2009年6月19日">
+</Property><Property Name="Time" Value="0:13">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="manageddx.sln" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\manageddx.sln としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="" Source="manageddx.suo" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\manageddx.suo としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="manageddx.csproj" Description="プロジェクト ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\manageddx.csproj としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="manageddx.csproj.user" Description="プロジェクト ユーザー ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\manageddx.csproj.user としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="AssemblyInfo.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\AssemblyInfo.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="dlgTextInput.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\dlgTextInput.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="dlgView.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\dlgView.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmConfig.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmConfig.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmKeys.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmKeys.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmMain.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmMain.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmScript.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmScript.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmTree.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmTree.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmVals.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmVals.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="RcChips.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\RcChips.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="RcData.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\RcData.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="RcParser.cs" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\RcParser.cs としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="App.ico" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\App.ico としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="file.ico" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\file.ico としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="Todo.txt" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\Todo.txt としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="dlgTextInput.resx" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\dlgTextInput.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="dlgView.resx" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\dlgView.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmConfig.resx" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmConfig.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmKeys.resx" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmKeys.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmMain.resx" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmMain.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmScript.resx" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmScript.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmTree.resx" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmTree.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="frmVals.resx" Description="ファイルは正常に C:\Documents and Settings\Totoki\My Documents\Visual Studio 2008\Projects\manageddx\Backup\frmVals.resx としてバックアップされました。">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="manageddx.csproj" Description="プロジェクトは正常に変換されました。">
+</Event><Event ErrorLevel="3" Project="manageddx" Source="manageddx.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="manageddx.sln" Description="ソリューションは正常に変換されました">
+</Event><Event ErrorLevel="3" Project="" Source="manageddx.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="manageddx" Source="manageddx.csproj" Description="スキャンが完了しました: プロジェクト ファイルにアップグレードは必要ありません。">
+</Event></UpgradeLog>

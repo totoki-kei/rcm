@@ -1,18 +1,12 @@
+using RigidChips;
 using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
 
-using RigidChips;
-
-namespace rcm
-{
+namespace rcm {
 	/// <summary>
 	/// 設定ダイアログ。
 	/// </summary>
-	public class frmConfig : System.Windows.Forms.Form
-	{
+	public class frmConfig : System.Windows.Forms.Form {
 		RcDrawOptions optDraw;
 		RcOutputOptions optOutput;
 		RcEditOptions optEdit;
@@ -96,8 +90,7 @@ namespace rcm
 		private System.Windows.Forms.Label label13;
 		private System.ComponentModel.IContainer components;
 
-		public frmConfig(frmMain mainform)
-		{
+		public frmConfig(frmMain mainform) {
 			//
 			// Windows フォーム デザイナ サポートに必要です。
 			//
@@ -114,25 +107,25 @@ namespace rcm
 			RcChipBase buff;
 			RcAttrValue attr = new RcAttrValue();
 			attr.Const = 120f;
-			chipSample = new RcChipChip(mainform.rcdata,null,RcJointPosition.NULL);
-			buff = new RcChipChip(mainform.rcdata,chipSample,RcJointPosition.North);
+			chipSample = new RcChipChip(mainform.rcdata, null, RcJointPosition.NULL);
+			buff = new RcChipChip(mainform.rcdata, chipSample, RcJointPosition.North);
 			buff["Angle"] = attr;
 			attr.Const = 4000f;
 			buff["User1"] = attr;
-			new RcChipFrame(mainform.rcdata,buff,RcJointPosition.East);
+			new RcChipFrame(mainform.rcdata, buff, RcJointPosition.East);
 			attr.Const = 0.2f;
-			new RcChipFrame(mainform.rcdata,buff,RcJointPosition.West)["Damper"] = attr;
-			new RcChipTrim(mainform.rcdata,chipSample,RcJointPosition.North).Comment = "これはコメントです。";
+			new RcChipFrame(mainform.rcdata, buff, RcJointPosition.West)["Damper"] = attr;
+			new RcChipTrim(mainform.rcdata, chipSample, RcJointPosition.North).Comment = "これはコメントです。";
 			chipSample.Name = "Root";
 
 			mainform.rcdata.CheckBackTrack();
 		}
 
-		public int NowTabPage{
-			get{
+		public int NowTabPage {
+			get {
 				return tabControl1.SelectedIndex;
 			}
-			set{
+			set {
 				tabControl1.SelectedIndex = value;
 			}
 		}
@@ -140,16 +133,13 @@ namespace rcm
 		/// <summary>
 		/// 使用されているリソースに後処理を実行します。
 		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
+		protected override void Dispose(bool disposing) {
+			if (disposing) {
+				if (components != null) {
 					components.Dispose();
 				}
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows フォーム デザイナで生成されたコード 
@@ -157,8 +147,7 @@ namespace rcm
 		/// デザイナ サポートに必要なメソッドです。このメソッドの内容を
 		/// コード エディタで変更しないでください。
 		/// </summary>
-		private void InitializeComponent()
-		{
+		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -1065,7 +1054,7 @@ namespace rcm
 			chkXNegAxis.Checked = optDraw.XNegAxisEnable;
 			chkYNegAxis.Checked = optDraw.YNegAxisEnable;
 			chkZNegAxis.Checked = optDraw.ZNegAxisEnable;
-			switch(optDraw.FrameGhostView){
+			switch (optDraw.FrameGhostView) {
 				case 0:
 					rbAlpha.Checked = true;
 					break;
@@ -1076,7 +1065,7 @@ namespace rcm
 					rbGChip.Checked = true;
 					break;
 			}
-			chkShowAlways.Checked  = optDraw.ShowGuideAlways;
+			chkShowAlways.Checked = optDraw.ShowGuideAlways;
 
 			txtSwellRate.Text = optDraw.BaloonSwellingRatio.ToString();
 			txtWeightAlpha.Text = optDraw.WeightBallAlpha.ToString();
@@ -1116,7 +1105,7 @@ namespace rcm
 
 		}
 
-		private void Apply(){
+		private void Apply() {
 			buildDrawOption(null);
 
 			buildOutputOption(null);
@@ -1196,13 +1185,13 @@ namespace rcm
 			PictureBox box = (PictureBox)sender;
 
 			dlgColor.Color = box.BackColor;
-			if(dlgColor.ShowDialog() == DialogResult.OK)
+			if (dlgColor.ShowDialog() == DialogResult.OK)
 				box.BackColor = dlgColor.Color;
 
 		}
 
 		private void txtValueInput_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e) {
-			if(!char.IsNumber(e.KeyChar) && !(e.KeyChar == '.') && !char.IsControl(e.KeyChar))
+			if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == '.') && !char.IsControl(e.KeyChar))
 				e.Handled = true;
 		}
 

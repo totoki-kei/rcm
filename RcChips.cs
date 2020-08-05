@@ -1,21 +1,18 @@
-using System;
-using System.IO;
-using System.Drawing;
-using System.Windows.Forms;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
-using DX = Microsoft.DirectX;
-using D3D = Microsoft.DirectX.Direct3D;
+using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace RigidChips {
 	///<summery>
 	///コア チップ クラス。
 	///</summery>
-	public class RcChipCore		: RcChipBase{
+	public class RcChipCore : RcChipBase {
 		RcXFile mesh;
-		public RcChipCore(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,null,pos){
+		public RcChipCore(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, null, pos) {
 			this.JointPosition = RcJointPosition.NULL;
 			this.matTranslation = Matrix.Identity;
 			this.matRotation = Matrix.RotationY((float)Math.PI);
@@ -23,7 +20,7 @@ namespace RigidChips {
 		}
 
 		public override float Fuel {
-			get{	return 2000000;			}
+			get { return 2000000; }
 		}
 
 
@@ -35,12 +32,12 @@ namespace RigidChips {
 		}
 
 		public override void Attach(RcChipBase to, RcJointPosition pos) {
-			if(to == null)return;
+			if (to == null) return;
 			throw new Exception("Coreは他のチップの派生チップには出来ません。");
 		}
 
 		public override string AttrTip(string AttrName) {
-			switch(AttrName){
+			switch (AttrName) {
 				case "User1":
 					return "シナリオ用";
 				case "User2":
@@ -55,10 +52,10 @@ namespace RigidChips {
 		}
 
 		public override void DrawChip() {
-			if(mesh == null)
+			if (mesh == null)
 				mesh = Generics.GetMesh("Core.x");
-			if(mesh != null)
-				mesh.Draw(Generics.d3ddevice,this.ChipColor.ToColor(),matRotation * Matrix);
+			if (mesh != null)
+				mesh.Draw(Generics.d3ddevice, this.ChipColor.ToColor(), matRotation * Matrix);
 		}
 
 		public ThreadStart ReservedDrawFunc;
@@ -67,21 +64,21 @@ namespace RigidChips {
 		}
 
 		public override string[] AttrNameList {
-			get{
-				string[] s = {"Color","User1","User2"};
+			get {
+				string[] s = { "Color", "User1", "User2" };
 				return s;
 			}
 		}
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0f };
 			}
 		}
 
 		public override RcAttrValue[] AttrValList {
 			get {
-				return new RcAttrValue[]{ChipColor,user1,user2};
+				return new RcAttrValue[] { ChipColor, user1, user2 };
 			}
 		}
 
@@ -100,17 +97,17 @@ namespace RigidChips {
 
 		public override RcAttrValue this[string AttrName] {
 			get {
-				if(AttrName == "User1")
+				if (AttrName == "User1")
 					return user1;
-				else if(AttrName == "User2")
+				else if (AttrName == "User2")
 					return user2;
 				else return base[AttrName];
 			}
 			set {
-				if(AttrName == "User1"){
+				if (AttrName == "User1") {
 					user1 = value;
 				}
-				else if(AttrName == "User2"){
+				else if (AttrName == "User2") {
 					user2 = value;
 				}
 				else
@@ -142,12 +139,12 @@ namespace RigidChips {
 		*/
 		public override void UpdateMatrix() {
 			this.matTranslation = Matrix.Identity;
-			foreach(RcChipBase cb in this.Child)
-				if(cb != null)cb.UpdateMatrix();
+			foreach (RcChipBase cb in this.Child)
+				if (cb != null) cb.UpdateMatrix();
 		}
 
 
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			return null;
 		}
 
@@ -165,30 +162,30 @@ namespace RigidChips {
 			}
 		}
 
-		public void Read(string data){
-			string[] param = data.Split(',',':','(',')','=');
+		public void Read(string data) {
+			string[] param = data.Split(',', ':', '(', ')', '=');
 			int index = 1;
-			
+
 			RcAttrValue attr = new RcAttrValue();
-			try{
-				for( ; param[index] != "" ; index += 2){
+			try {
+				for (; param[index] != ""; index += 2) {
 					param[index] = param[index].ToLower();
-					if(param[index] == "name")
-						this.Name = param[index+1];
-					else if(param[index] == "color")
-						this["Color"] = new RcAttrValue(param[index+1],Generics.vals);
-					else{
+					if (param[index] == "name")
+						this.Name = param[index + 1];
+					else if (param[index] == "color")
+						this["Color"] = new RcAttrValue(param[index + 1], Generics.vals);
+					else {
 						param[index] = char.ToUpper(param[index][0]).ToString() + param[index].Substring(1);
-						attr.SetValue(param[index+1],Generics.vals);
+						attr.SetValue(param[index + 1], Generics.vals);
 						this[param[index]] = attr;
 					}
 
 				}
 			}
-			catch(IndexOutOfRangeException){
+			catch (IndexOutOfRangeException) {
 				throw new Exception("不正な属性値指定が存在します。");
 			}
-			catch(Exception e){
+			catch (Exception e) {
 				MessageBox.Show(e.Message);
 			}
 		}
@@ -198,13 +195,13 @@ namespace RigidChips {
 	///<summery>
 	///チップ チップ クラス
 	///</summery>
-	public class RcChipChip		: RcChipBase{
-		protected RcAttrValue damper,spring;
+	public class RcChipChip : RcChipBase {
+		protected RcAttrValue damper, spring;
 		protected RcXFile mesh;
-		public RcChipChip(){}
-		public RcChipChip(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+		public RcChipChip() { }
+		public RcChipChip(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			mesh = Generics.GetMesh("Chip.x");
-			if(!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()){
+			if (!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()) {
 				damper.Val = null;
 				damper.Const = 0.5f;
 				spring.Val = null;
@@ -220,7 +217,7 @@ namespace RigidChips {
 			}
 		}
 		public override string AttrTip(string AttrName) {
-			switch(AttrName){
+			switch (AttrName) {
 				case "Angle":
 					return "折り曲げ角度";
 				case "Damper":
@@ -239,28 +236,28 @@ namespace RigidChips {
 		}
 
 		public override void DrawChip() {
-			if(mesh == null)
+			if (mesh == null)
 				mesh = Generics.GetMesh("Chip.x");
-			if(mesh != null)
-				mesh.Draw(Generics.d3ddevice,ChipColor.ToColor(),this.matRotation * this.Matrix);
+			if (mesh != null)
+				mesh.Draw(Generics.d3ddevice, ChipColor.ToColor(), this.matRotation * this.Matrix);
 		}
 
 		public override string[] AttrNameList {
-			get{
-				string[] s = {"Color","Angle","Damper","Spring","User1","User2"};
+			get {
+				string[] s = { "Color", "Angle", "Damper", "Spring", "User1", "User2" };
 				return s;
 			}
 		}
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0.5f,0.5f,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0.5f, 0.5f, 0f, 0f };
 			}
 		}
 
 		public override RcAttrValue[] AttrValList {
 			get {
-				return new RcAttrValue[]{ChipColor,angle,damper,spring,user1,user2};
+				return new RcAttrValue[] { ChipColor, angle, damper, spring, user1, user2 };
 			}
 		}
 
@@ -292,7 +289,7 @@ namespace RigidChips {
 		*/
 		public override RcAttrValue this[string AttrName] {
 			get {
-				switch(AttrName){
+				switch (AttrName) {
 					case "Angle":
 						return this.angle;
 					case "Damper":
@@ -311,7 +308,7 @@ namespace RigidChips {
 				}
 			}
 			set {
-				switch(AttrName){
+				switch (AttrName) {
 					case "Angle":
 						this.angle = value;
 						return;
@@ -338,7 +335,7 @@ namespace RigidChips {
 		}
 
 
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipChip copy = new RcChipChip();
 			copy.angle = this.angle;
 			copy.ChipColor = this.ChipColor;
@@ -354,18 +351,18 @@ namespace RigidChips {
 			copy.user2 = this.user2;
 			copy.Comment = this.Comment;
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
 		public override void ReverseY() {
 			base.ReverseY();
-			if(this.angle.Val != null)
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
@@ -384,18 +381,18 @@ namespace RigidChips {
 	///<summery>
 	///フレーム チップ クラス
 	///</summery>
-	public class RcChipFrame	: RcChipChip{
+	public class RcChipFrame : RcChipChip {
 		bool option;
 		RcXFile mesh2;
-		public RcChipFrame(){}
-		public RcChipFrame(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
-			if(!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()){
+		public RcChipFrame() { }
+		public RcChipFrame(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
+			if (!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()) {
 				option = false;
 			}
 		}
 
 		public override float Fuel {
-			get{return base.Fuel/2;}
+			get { return base.Fuel / 2; }
 		}
 
 
@@ -413,47 +410,47 @@ namespace RigidChips {
 			 * 	t	t	|	alpha
 			 * 
 			 */
-			if(mesh2 == null)
+			if (mesh2 == null)
 				mesh2 = Generics.GetMesh("Chip2.x");
 
-			if(option){
-				if(Generics.DrawOption.FrameGhostShow){
-					switch(Generics.DrawOption.FrameGhostView){
+			if (option) {
+				if (Generics.DrawOption.FrameGhostShow) {
+					switch (Generics.DrawOption.FrameGhostView) {
 						case 0:
-						if(mesh != null)
-							mesh.Draw(Generics.d3ddevice,ChipColor.ToColor(),0xA022,matRotation * matTranslation);
+							if (mesh != null)
+								mesh.Draw(Generics.d3ddevice, ChipColor.ToColor(), 0xA022, matRotation * matTranslation);
 							break;
 						case 1:
-						if(mesh2 != null)
-							mesh2.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+							if (mesh2 != null)
+								mesh2.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 							break;
 						case 2:
-							RcXFile x = Generics.GetMesh(Application.StartupPath + "\\Resources\\ChipG.x",true);
-							if(x != null)x.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+							RcXFile x = Generics.GetMesh(Application.StartupPath + "\\Resources\\ChipG.x", true);
+							if (x != null) x.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 							break;
 					}
 				}
 			}
-			else{
-				if(mesh2 != null)
-					mesh2.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+			else {
+				if (mesh2 != null)
+					mesh2.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 			}
 
 		}
 
 		public override string AttrTip(string AttrName) {
-			if(AttrName == "Option")
+			if (AttrName == "Option")
 				return "0以外でゴースト化";
-			return base.AttrTip (AttrName);
+			return base.AttrTip(AttrName);
 		}
 
 		public override string[] AttrNameList {
-			get{
+			get {
 				string[] s = base.AttrNameList;
-				s.CopyTo(s = new string[s.Length + 1],0);
-				s[s.Length -1] = s[s.Length - 2];
-				s[s.Length -2] = s[s.Length - 3];
-				s[s.Length -3] = "Option";
+				s.CopyTo(s = new string[s.Length + 1], 0);
+				s[s.Length - 1] = s[s.Length - 2];
+				s[s.Length - 2] = s[s.Length - 3];
+				s[s.Length - 3] = "Option";
 				return s;
 			}
 		}
@@ -461,7 +458,7 @@ namespace RigidChips {
 		public override RcAttrValue this[string AttrName] {
 			get {
 				RcAttrValue v;
-				if(AttrName == "Option"){
+				if (AttrName == "Option") {
 					v.Const = new RcConst(option ? 1.0f : 0.0f, false);
 					v.Val = null;
 					v.isNegative = false;
@@ -470,7 +467,7 @@ namespace RigidChips {
 				return base[AttrName];
 			}
 			set {
-				if(AttrName == "Option")
+				if (AttrName == "Option")
 					option = (value.Value != 0f);
 				else base[AttrName] = value;
 			}
@@ -478,7 +475,7 @@ namespace RigidChips {
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0.5f,0.5f,0f,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0.5f, 0.5f, 0f, 0f, 0f };
 			}
 		}
 
@@ -486,7 +483,7 @@ namespace RigidChips {
 			get {
 				RcAttrValue attropt = new RcAttrValue();
 				attropt.Const = (option ? 1 : 0);
-				return new RcAttrValue[]{ChipColor,angle,damper,spring,attropt,user1,user2};
+				return new RcAttrValue[] { ChipColor, angle, damper, spring, attropt, user1, user2 };
 			}
 		}
 
@@ -521,7 +518,7 @@ namespace RigidChips {
 				}
 		*/
 
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipFrame copy = new RcChipFrame();
 			copy.Name = this.Name;
 			copy.angle = this.angle;
@@ -540,12 +537,12 @@ namespace RigidChips {
 			copy.Comment = this.Comment;
 
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
@@ -557,22 +554,22 @@ namespace RigidChips {
 		}
 
 		public override RcHitStatus IsHit(int X, int Y, int ScrWidth, int ScrHeight) {
-			if(Generics.EditOption.UnvisibleNotSelected && option && !Generics.DrawOption.FrameGhostShow){
-				RcHitStatus dist ,buff;
+			if (Generics.EditOption.UnvisibleNotSelected && option && !Generics.DrawOption.FrameGhostShow) {
+				RcHitStatus dist, buff;
 				dist.distance = float.MaxValue;
 				dist.HitChip = null;
-				foreach(RcChipBase c in Child){
-					if(c != null){
-						buff = c.IsHit(X,Y,ScrWidth,ScrHeight);
-						if(dist.distance > buff.distance){
+				foreach (RcChipBase c in Child) {
+					if (c != null) {
+						buff = c.IsHit(X, Y, ScrWidth, ScrHeight);
+						if (dist.distance > buff.distance) {
 							dist = buff;
 						}
 					}
 				}
 				return dist;
 			}
-			else 
-				return base.IsHit (X, Y, ScrWidth, ScrHeight);
+			else
+				return base.IsHit(X, Y, ScrWidth, ScrHeight);
 
 		}
 
@@ -582,9 +579,9 @@ namespace RigidChips {
 	///<summery>
 	///ラダー チップ クラス
 	///</summery>
-	public class RcChipRudder	: RcChipChip{
-		public RcChipRudder(){}
-		public RcChipRudder(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+	public class RcChipRudder : RcChipChip {
+		public RcChipRudder() { }
+		public RcChipRudder(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			mesh = Generics.GetMesh("Rudder.x");
 		}
 
@@ -595,10 +592,10 @@ namespace RigidChips {
 		}
 
 		public override void DrawChip() {
-			if(mesh == null)
+			if (mesh == null)
 				mesh = Generics.GetMesh("Rudder.x");
-			if(mesh != null)
-				mesh.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * this.Matrix);
+			if (mesh != null)
+				mesh.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * this.Matrix);
 		}
 
 		/*		public override string ToString() {
@@ -644,10 +641,10 @@ namespace RigidChips {
 		//    foreach(RcChipBase c in Child)if(c != null){
 		//                                      c.UpdateMatrix();
 		//                                  }
-			
+
 		//}
 
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipRudder copy = new RcChipRudder();
 			copy.angle = this.angle;
 			copy.ChipColor = this.ChipColor;
@@ -663,18 +660,18 @@ namespace RigidChips {
 			copy.user2 = this.user2;
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
 			copy.Comment = this.Comment;
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
 		public override void ReverseX() {
-			base.ReverseX ();
-			if(this.angle.Val != null)
+			base.ReverseX();
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
@@ -682,17 +679,17 @@ namespace RigidChips {
 		public override void ReverseY() {
 			RcChipBase[] cld = new RcChipBase[RcData.ChildCapasity];
 			RcJointPosition jp;
-			this.Child.CopyTo(cld,0);
+			this.Child.CopyTo(cld, 0);
 
-			foreach(RcChipBase cb in cld){
-				if(cb == null)continue;
+			foreach (RcChipBase cb in cld) {
+				if (cb == null) continue;
 				jp = cb.JointPosition;
 				cb.ReverseY();
 			}
 		}
 		public override void ReverseZ() {
 			base.ReverseZ();
-			if(this.angle.Val != null)
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
@@ -711,19 +708,19 @@ namespace RigidChips {
 	///<summery>
 	///ラダーフレーム チップ クラス
 	///</summery>
-	public class RcChipRudderF	: RcChipRudder{
+	public class RcChipRudderF : RcChipRudder {
 		bool option;
 		RcXFile mesh2;
-		public RcChipRudderF(){}
-		public RcChipRudderF(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+		public RcChipRudderF() { }
+		public RcChipRudderF(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			mesh2 = Generics.GetMesh("RudderF.x");
-			if(!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()){
+			if (!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()) {
 				option = false;
 			}
 		}
 
 		public override float Fuel {
-get{			return base.Fuel / 2;}
+			get { return base.Fuel / 2; }
 		}
 
 
@@ -733,52 +730,52 @@ get{			return base.Fuel / 2;}
 			}
 		}
 		public override void DrawChip() {
-			if(mesh2 == null)
+			if (mesh2 == null)
 				mesh2 = Generics.GetMesh("RudderF.x");
-			if(option){
-				if(Generics.DrawOption.FrameGhostShow){
-					switch(Generics.DrawOption.FrameGhostView){
+			if (option) {
+				if (Generics.DrawOption.FrameGhostShow) {
+					switch (Generics.DrawOption.FrameGhostView) {
 						case 0:
-							if(mesh != null)
-								mesh.Draw(Generics.d3ddevice,ChipColor.ToColor(),0xA022,matRotation * matTranslation);
+							if (mesh != null)
+								mesh.Draw(Generics.d3ddevice, ChipColor.ToColor(), 0xA022, matRotation * matTranslation);
 							break;
 						case 1:
-							if(mesh2 != null)
-								mesh2.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+							if (mesh2 != null)
+								mesh2.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 							break;
 						case 2:
-							RcXFile x = Generics.GetMesh(Application.StartupPath + "\\Resources\\RudderG.x",true);
-							if(x != null)x.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+							RcXFile x = Generics.GetMesh(Application.StartupPath + "\\Resources\\RudderG.x", true);
+							if (x != null) x.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 							break;
 					}
 				}
 			}
-			else{
-				if(mesh2 != null)
-					mesh2.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+			else {
+				if (mesh2 != null)
+					mesh2.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 			}
 		}
 
 		public override string AttrTip(string AttrName) {
-			if(AttrName == "Option")
+			if (AttrName == "Option")
 				return "0以外でゴースト化";
-			return base.AttrTip (AttrName);
+			return base.AttrTip(AttrName);
 		}
 
 		public override string[] AttrNameList {
-			get{
+			get {
 				string[] s = base.AttrNameList;
-				s.CopyTo(s = new string[s.Length + 1],0);
-				s[s.Length -1] = s[s.Length - 2];
-				s[s.Length -2] = s[s.Length - 3];
-				s[s.Length -3] = "Option";
+				s.CopyTo(s = new string[s.Length + 1], 0);
+				s[s.Length - 1] = s[s.Length - 2];
+				s[s.Length - 2] = s[s.Length - 3];
+				s[s.Length - 3] = "Option";
 				return s;
 			}
 		}
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0.5f,0.5f,0f,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0.5f, 0.5f, 0f, 0f, 0f };
 			}
 		}
 
@@ -786,14 +783,14 @@ get{			return base.Fuel / 2;}
 			get {
 				RcAttrValue attropt = new RcAttrValue();
 				attropt.Const = (option ? 1 : 0);
-				return new RcAttrValue[]{ChipColor,angle,damper,spring,attropt,user1,user2};
+				return new RcAttrValue[] { ChipColor, angle, damper, spring, attropt, user1, user2 };
 			}
 		}
 
 		public override RcAttrValue this[string AttrName] {
 			get {
 				RcAttrValue v;
-				if(AttrName == "Option"){
+				if (AttrName == "Option") {
 					v.Const = new RcConst(option ? 1f : 0f, false);
 					v.isNegative = false;
 					v.Val = null;
@@ -802,7 +799,7 @@ get{			return base.Fuel / 2;}
 				return base[AttrName];
 			}
 			set {
-				if(AttrName == "Option")
+				if (AttrName == "Option")
 					option = (value.Value != 0f);
 				else base[AttrName] = value;
 			}
@@ -836,7 +833,7 @@ get{			return base.Fuel / 2;}
 
 				}
 		*/
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipRudderF copy = new RcChipRudderF();
 			copy.Name = this.Name;
 			copy.angle = this.angle;
@@ -854,12 +851,12 @@ get{			return base.Fuel / 2;}
 			copy.user2 = this.user2;
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
 			copy.Comment = this.Comment;
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
@@ -871,34 +868,34 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override RcHitStatus IsHit(int X, int Y, int ScrWidth, int ScrHeight) {
-			if(option && !Generics.DrawOption.FrameGhostShow){
-				RcHitStatus dist ,buff;
+			if (option && !Generics.DrawOption.FrameGhostShow) {
+				RcHitStatus dist, buff;
 				dist.distance = float.MaxValue;
 				dist.HitChip = null;
-				foreach(RcChipBase c in Child){
-					if(c != null){
-						buff = c.IsHit(X,Y,ScrWidth,ScrHeight);
-						if(dist.distance > buff.distance){
+				foreach (RcChipBase c in Child) {
+					if (c != null) {
+						buff = c.IsHit(X, Y, ScrWidth, ScrHeight);
+						if (dist.distance > buff.distance) {
 							dist = buff;
 						}
 					}
 				}
 				return dist;
 			}
-			else 
-				return base.IsHit (X, Y, ScrWidth, ScrHeight);
+			else
+				return base.IsHit(X, Y, ScrWidth, ScrHeight);
 
 		}
 
 
 	}
-	
+
 	///<summery>
 	///トリム チップ クラス
 	///</summery>
-	public class RcChipTrim		: RcChipChip{
-		public RcChipTrim(){}
-		public RcChipTrim(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+	public class RcChipTrim : RcChipChip {
+		public RcChipTrim() { }
+		public RcChipTrim(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			mesh = Generics.GetMesh("Trim.x");
 		}
 
@@ -908,10 +905,10 @@ get{			return base.Fuel / 2;}
 			}
 		}
 		public override void DrawChip() {
-			if(mesh == null)
+			if (mesh == null)
 				mesh = Generics.GetMesh("Trim.x");
-			if(mesh != null)
-				mesh.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * this.Matrix);
+			if (mesh != null)
+				mesh.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * this.Matrix);
 		}
 
 		/*		public override string ToString() {
@@ -956,10 +953,10 @@ get{			return base.Fuel / 2;}
 		//    foreach(RcChipBase c in Child)if(c != null){
 		//                                      c.UpdateMatrix();
 		//                                  }
-			
+
 		//}
 
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipTrim copy = new RcChipTrim();
 			copy.Name = this.Name;
 			copy.angle = this.angle;
@@ -976,18 +973,18 @@ get{			return base.Fuel / 2;}
 			copy.user2 = this.user2;
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
 			copy.Comment = this.Comment;
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
 		public override void ReverseX() {
-			base.ReverseX ();
-			if(this.angle.Val != null)
+			base.ReverseX();
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
@@ -995,7 +992,7 @@ get{			return base.Fuel / 2;}
 
 		public override void ReverseZ() {
 			base.ReverseZ();
-			if(this.angle.Val != null)
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
@@ -1012,19 +1009,19 @@ get{			return base.Fuel / 2;}
 	///<summery>
 	///トリムフレーム チップ クラス
 	///</summery>
-	public class RcChipTrimF	: RcChipTrim{
+	public class RcChipTrimF : RcChipTrim {
 		bool option;
 		RcXFile mesh2;
-		public RcChipTrimF(){}
-		public RcChipTrimF(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+		public RcChipTrimF() { }
+		public RcChipTrimF(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			mesh2 = Generics.GetMesh("TrimF.x");
-			if(!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()){
+			if (!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()) {
 				option = false;
 			}
 		}
 
 		public override float Fuel {
-			get{return base.Fuel / 2;}
+			get { return base.Fuel / 2; }
 		}
 
 
@@ -1034,52 +1031,52 @@ get{			return base.Fuel / 2;}
 			}
 		}
 		public override void DrawChip() {
-			if(mesh2 == null)
+			if (mesh2 == null)
 				mesh2 = Generics.GetMesh("TrimF.x");
-			if(option){
-				if(Generics.DrawOption.FrameGhostShow){
-					switch(Generics.DrawOption.FrameGhostView){
+			if (option) {
+				if (Generics.DrawOption.FrameGhostShow) {
+					switch (Generics.DrawOption.FrameGhostView) {
 						case 0:
-							if(mesh != null)
-								mesh.Draw(Generics.d3ddevice,ChipColor.ToColor(),0xA022,matRotation * matTranslation);
+							if (mesh != null)
+								mesh.Draw(Generics.d3ddevice, ChipColor.ToColor(), 0xA022, matRotation * matTranslation);
 							break;
 						case 1:
-							if(mesh2 != null)
-								mesh2.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+							if (mesh2 != null)
+								mesh2.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 							break;
 						case 2:
-							RcXFile x = Generics.GetMesh(Application.StartupPath + "\\Resources\\TrimG.x",true);
-							if(x != null)x.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+							RcXFile x = Generics.GetMesh(Application.StartupPath + "\\Resources\\TrimG.x", true);
+							if (x != null) x.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 							break;
 					}
 				}
 			}
-			else{
-				if(mesh2 != null)
-					mesh2.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+			else {
+				if (mesh2 != null)
+					mesh2.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 			}
 		}
 
 		public override string AttrTip(string AttrName) {
-			if(AttrName == "Option")
+			if (AttrName == "Option")
 				return "0以外でゴースト化";
-			return base.AttrTip (AttrName);
+			return base.AttrTip(AttrName);
 		}
 
 		public override string[] AttrNameList {
-			get{
+			get {
 				string[] s = base.AttrNameList;
-				s.CopyTo(s = new string[s.Length + 1],0);
-				s[s.Length-1] = s[s.Length-2];
-				s[s.Length-2] = s[s.Length-3];
-				s[s.Length-3] = "Option";
+				s.CopyTo(s = new string[s.Length + 1], 0);
+				s[s.Length - 1] = s[s.Length - 2];
+				s[s.Length - 2] = s[s.Length - 3];
+				s[s.Length - 3] = "Option";
 				return s;
 			}
 		}
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0.5f,0.5f,0f,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0.5f, 0.5f, 0f, 0f, 0f };
 			}
 		}
 
@@ -1087,14 +1084,14 @@ get{			return base.Fuel / 2;}
 			get {
 				RcAttrValue attropt = new RcAttrValue();
 				attropt.Const = (option ? 1 : 0);
-				return new RcAttrValue[]{ChipColor,angle,damper,spring,attropt,user1,user2};
+				return new RcAttrValue[] { ChipColor, angle, damper, spring, attropt, user1, user2 };
 			}
 		}
 
 		public override RcAttrValue this[string AttrName] {
 			get {
 				RcAttrValue v;
-				if(AttrName == "Option"){
+				if (AttrName == "Option") {
 					v.Const = new RcConst(option ? 1f : 0f, false);
 					v.isNegative = false;
 					v.Val = null;
@@ -1103,7 +1100,7 @@ get{			return base.Fuel / 2;}
 				return base[AttrName];
 			}
 			set {
-				if(AttrName == "Option")
+				if (AttrName == "Option")
 					option = (value.Value != 0f);
 				else base[AttrName] = value;
 			}
@@ -1135,7 +1132,7 @@ get{			return base.Fuel / 2;}
 					return str;
 
 				}*/
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipTrimF copy = new RcChipTrimF();
 			copy.Name = this.Name;
 			copy.angle = this.angle;
@@ -1154,12 +1151,12 @@ get{			return base.Fuel / 2;}
 			copy.Comment = this.Comment;
 
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
@@ -1171,22 +1168,22 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override RcHitStatus IsHit(int X, int Y, int ScrWidth, int ScrHeight) {
-			if(option && !Generics.DrawOption.FrameGhostShow){
-				RcHitStatus dist ,buff;
+			if (option && !Generics.DrawOption.FrameGhostShow) {
+				RcHitStatus dist, buff;
 				dist.distance = float.MaxValue;
 				dist.HitChip = null;
-				foreach(RcChipBase c in Child){
-					if(c != null){
-						buff = c.IsHit(X,Y,ScrWidth,ScrHeight);
-						if(dist.distance > buff.distance){
+				foreach (RcChipBase c in Child) {
+					if (c != null) {
+						buff = c.IsHit(X, Y, ScrWidth, ScrHeight);
+						if (dist.distance > buff.distance) {
 							dist = buff;
 						}
 					}
 				}
 				return dist;
 			}
-			else 
-				return base.IsHit (X, Y, ScrWidth, ScrHeight);
+			else
+				return base.IsHit(X, Y, ScrWidth, ScrHeight);
 
 		}
 
@@ -1196,15 +1193,15 @@ get{			return base.Fuel / 2;}
 	///<summery>
 	///ジェット/バルーン チップ クラス
 	///</summery>
-	public class RcChipJet		: RcChipBase{
-		RcXFile jet,baloon,fire;
-		RcAttrValue power,damper,spring,effect,option;
-		public RcChipJet(){}
-		public RcChipJet(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+	public class RcChipJet : RcChipBase {
+		RcXFile jet, baloon, fire;
+		RcAttrValue power, damper, spring, effect, option;
+		public RcChipJet() { }
+		public RcChipJet(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			jet = Generics.GetMesh("Jet.x");
 			baloon = Generics.GetMesh("Jet2.x");
 			fire = Generics.GetMesh("Fire.x");
-			if(!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()){
+			if (!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()) {
 				damper.Val = null;
 				damper.Const = 0.5f;
 				spring.Val = null;
@@ -1214,7 +1211,7 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override float Fuel {
-			get{return 0;}
+			get { return 0; }
 		}
 
 
@@ -1224,7 +1221,7 @@ get{			return base.Fuel / 2;}
 			}
 		}
 		public override string AttrTip(string AttrName) {
-			switch(AttrName){
+			switch (AttrName) {
 				case "Angle":
 					return "折り曲げ角度";
 				case "Damper":
@@ -1250,14 +1247,14 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override void DrawChip() {
-			if(jet == null)
+			if (jet == null)
 				jet = Generics.GetMesh("Jet.x");
-			if(baloon == null)
+			if (baloon == null)
 				baloon = Generics.GetMesh("Jet2.x");
-			float size = (float)Math.Pow(power.Value,0.3);
-			if(option.Const == 0f){
-				if(jet != null)
-					jet.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * Matrix);
+			float size = (float)Math.Pow(power.Value, 0.3);
+			if (option.Const == 0f) {
+				if (jet != null)
+					jet.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * Matrix);
 				if (Generics.Preview) {
 					// 2000で1チップの長さ
 					// 最大で2.5チップ分(5000)
@@ -1271,7 +1268,7 @@ get{			return base.Fuel / 2;}
 					Matrix m =
 						  Matrix.Translation(0f, -0.3f, 0f)
 						* Matrix.Scaling(1f, scale, 1f)
-						* matRotation 
+						* matRotation
 						* Matrix;
 					ReserveDraw(() => {
 						//bool lighting = Generics.d3ddevice.RenderState.Lighting;
@@ -1281,9 +1278,9 @@ get{			return base.Fuel / 2;}
 					});
 				}
 			}
-			
-			else if(Generics.DrawOption.BaloonSwelling){
-				float rate = 0.5f + Generics.DrawOption.BaloonSwellingRatio * (float)Math.Pow(power.Value * 3 / (4f * Math.PI),1.0/3.0);
+
+			else if (Generics.DrawOption.BaloonSwelling) {
+				float rate = 0.5f + Generics.DrawOption.BaloonSwellingRatio * (float)Math.Pow(power.Value * 3 / (4f * Math.PI), 1.0 / 3.0);
 				/*
 					 * V = 4/3 * Pi *r^3 
 					 * r^3 = V*3/4 / PI
@@ -1294,37 +1291,37 @@ get{			return base.Fuel / 2;}
 					 * 3340	:2
 					 */
 				rate = Math.Abs(rate);
-				if(baloon != null)
-					baloon.Draw(Generics.d3ddevice,ChipColor.ToColor(),Matrix.Scaling(rate,rate,rate) * matRotation * Matrix);
+				if (baloon != null)
+					baloon.Draw(Generics.d3ddevice, ChipColor.ToColor(), Matrix.Scaling(rate, rate, rate) * matRotation * Matrix);
 			}
 			else
-				if(baloon != null)
-				baloon.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * Matrix);
+				if (baloon != null)
+				baloon.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * Matrix);
 		}
 
 		public override string[] AttrNameList {
-			get{
-				string[] s = {"Color","Angle","Damper","Spring","Power","Option","Effect","User1","User2"};
+			get {
+				string[] s = { "Color", "Angle", "Damper", "Spring", "Power", "Option", "Effect", "User1", "User2" };
 				return s;
 			}
 		}
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0.5f,0.5f,0f,0f,0f,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0.5f, 0.5f, 0f, 0f, 0f, 0f, 0f };
 			}
 		}
 
 		public override RcAttrValue[] AttrValList {
 			get {
-				return new RcAttrValue[]{ChipColor,angle,damper,spring,power,option,effect,user1,user2};
+				return new RcAttrValue[] { ChipColor, angle, damper, spring, power, option, effect, user1, user2 };
 			}
 		}
 
 
 		public override RcAttrValue this[string AttrName] {
 			get {
-				switch(AttrName){
+				switch (AttrName) {
 					case "Angle":
 						return this.angle;
 					case "Damper":
@@ -1349,7 +1346,7 @@ get{			return base.Fuel / 2;}
 				}
 			}
 			set {
-				switch(AttrName){
+				switch (AttrName) {
 					case "Angle":
 						this.angle = value;
 						return;
@@ -1418,13 +1415,13 @@ get{			return base.Fuel / 2;}
 				}
 		*/
 		public override RcHitStatus IsHit(int X, int Y, int ScrWidth, int ScrHeight) {
-			RcHitStatus dist ,buff;
+			RcHitStatus dist, buff;
 			dist.distance = float.MaxValue;
 			dist.HitChip = null;
-			foreach(RcChipBase c in Child){
-				if(c != null){
-					buff = c.IsHit(X,Y,ScrWidth,ScrHeight);
-					if(dist.distance > buff.distance){
+			foreach (RcChipBase c in Child) {
+				if (c != null) {
+					buff = c.IsHit(X, Y, ScrWidth, ScrHeight);
+					if (dist.distance > buff.distance) {
 						dist = buff;
 					}
 				}
@@ -1438,25 +1435,25 @@ get{			return base.Fuel / 2;}
 
 			IntersectInformation sectinfo = new IntersectInformation();
 
-			viewport.Width = ScrWidth; 
-			viewport.Height = ScrHeight; 
+			viewport.Width = ScrWidth;
+			viewport.Height = ScrHeight;
 			viewport.X = viewport.Y = 0;
-			viewport.MaxZ = 1.0f; 
+			viewport.MaxZ = 1.0f;
 			viewport.MinZ = 0.0f;
 
 			// クリックしたスクリーン座標からレイを計算し、対象メッシュとの交差をチェック 
-			Vector3 vNear = Vector3.Unproject(new Vector3(X, Y, viewport.MinZ), 
+			Vector3 vNear = Vector3.Unproject(new Vector3(X, Y, viewport.MinZ),
 				viewport, projMat, viewMat, this.Matrix /* ここがWorld行列 */);
-			Vector3 vFar = Vector3.Unproject(new Vector3(X, Y, viewport.MaxZ), 
+			Vector3 vFar = Vector3.Unproject(new Vector3(X, Y, viewport.MaxZ),
 				viewport, projMat, viewMat, this.Matrix /* ここがWorld行列 */);
 			Vector3 vDir = Vector3.Normalize(vFar - vNear);
-			
-			if(option.Value != 0f)
-				buff.distance = (baloon.mesh.Intersect(vNear, vDir, out sectinfo)) ? sectinfo.Dist : float.MaxValue; 
-			else
-				buff.distance = (Generics.imesh.Intersect(vNear, vDir, out sectinfo)) ? sectinfo.Dist : float.MaxValue; 
 
-			if(dist.distance > buff.distance){
+			if (option.Value != 0f)
+				buff.distance = (baloon.mesh.Intersect(vNear, vDir, out sectinfo)) ? sectinfo.Dist : float.MaxValue;
+			else
+				buff.distance = (Generics.imesh.Intersect(vNear, vDir, out sectinfo)) ? sectinfo.Dist : float.MaxValue;
+
+			if (dist.distance > buff.distance) {
 				dist.distance = buff.distance;
 				dist.HitChip = this;
 			}
@@ -1464,7 +1461,7 @@ get{			return base.Fuel / 2;}
 			return dist;
 		}
 
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipJet copy = new RcChipJet();
 			copy.Name = this.Name;
 			copy.angle = this.angle;
@@ -1487,23 +1484,23 @@ get{			return base.Fuel / 2;}
 			copy.Comment = this.Comment;
 
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
 		public override void ReverseY() {
 			base.ReverseY();
-			if(this.angle.Val != null)
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
 
-			if(this.power.Val != null)
+			if (this.power.Val != null)
 				this.power.isNegative ^= true;
 			else
 				this.power.Const = -this.power.Const;
@@ -1521,22 +1518,22 @@ get{			return base.Fuel / 2;}
 	///<summery>
 	///ホイール チップ クラス
 	///</summery>
-	public class RcChipWheel	: RcChipBase{
+	public class RcChipWheel : RcChipBase {
 		protected RcXFile mesh;
 		protected RcXFile tire;
-		protected RcAttrValue damper,spring,power,brake,effect;
+		protected RcAttrValue damper, spring, power, brake, effect;
 		protected int option;
-		public RcChipWheel(){}
-		public RcChipWheel(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+		public RcChipWheel() { }
+		public RcChipWheel(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			mesh = Generics.GetMesh("Wheel.x");
 			tire = Generics.GetMesh("WheelT.x");
-			if(!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()){
+			if (!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()) {
 				damper.Const = spring.Const = 0.5f;
 			}
 		}
 
 		public override float Fuel {
-			get{return 0;}
+			get { return 0; }
 		}
 
 
@@ -1551,7 +1548,7 @@ get{			return base.Fuel / 2;}
 			set;
 		}
 		public override void DrawChip() {
-			if(mesh == null)
+			if (mesh == null)
 				mesh = Generics.GetMesh("Wheel.x");
 
 			// 角度反映
@@ -1566,12 +1563,12 @@ get{			return base.Fuel / 2;}
 				rot = Matrix.Identity; ;
 			}
 
-			if(mesh != null)
-				mesh.Draw(Generics.d3ddevice,ChipColor.ToColor(),rot * matRotation * Matrix);
+			if (mesh != null)
+				mesh.Draw(Generics.d3ddevice, ChipColor.ToColor(), rot * matRotation * Matrix);
 
-			if((1 <= option && option <= 2) || effect.Value >= 1f){
-				float r,w = 1f;
-				switch(option){
+			if ((1 <= option && option <= 2) || effect.Value >= 1f) {
+				float r, w = 1f;
+				switch (option) {
 					case 1:
 						r = 0.75f;
 						break;
@@ -1582,17 +1579,17 @@ get{			return base.Fuel / 2;}
 						r = 0.5f;
 						break;
 				}
-				w = Math.Max(effect.Value,option >0 ? 1f : 0f);
-				if(w > 10f)w = 10f;
-				if(tire == null)
+				w = Math.Max(effect.Value, option > 0 ? 1f : 0f);
+				if (w > 10f) w = 10f;
+				if (tire == null)
 					tire = Generics.GetMesh("WheelT.x");
-				if(tire != null)
-					tire.Draw(Generics.d3ddevice,ChipColor.ToColor(),rot * Matrix.Scaling(r,w,r) * matRotation * Matrix);
+				if (tire != null)
+					tire.Draw(Generics.d3ddevice, ChipColor.ToColor(), rot * Matrix.Scaling(r, w, r) * matRotation * Matrix);
 			}
 		}
 
 		public override string AttrTip(string AttrName) {
-			switch(AttrName){
+			switch (AttrName) {
 				case "Angle":
 					return "折り曲げ角度";
 				case "Damper":
@@ -1620,15 +1617,15 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override string[] AttrNameList {
-			get{
-				string[] s = {"Color","Angle","Damper","Spring","Power","Brake","Option","Effect","User1","User2"};
+			get {
+				string[] s = { "Color", "Angle", "Damper", "Spring", "Power", "Brake", "Option", "Effect", "User1", "User2" };
 				return s;
 			}
 		}
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0.5f,0.5f,0f,0f,0f,0f,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0.5f, 0.5f, 0f, 0f, 0f, 0f, 0f, 0f };
 			}
 		}
 
@@ -1636,13 +1633,13 @@ get{			return base.Fuel / 2;}
 			get {
 				RcAttrValue attropt = new RcAttrValue();
 				attropt.Const = option;
-				return new RcAttrValue[]{ChipColor,angle,damper,spring,power,brake,attropt,effect,user1,user2};
+				return new RcAttrValue[] { ChipColor, angle, damper, spring, power, brake, attropt, effect, user1, user2 };
 			}
 		}
 
 		public override RcAttrValue this[string AttrName] {
 			get {
-				switch(AttrName){
+				switch (AttrName) {
 					case "Angle":
 						return angle;
 					case "Damper":
@@ -1672,7 +1669,7 @@ get{			return base.Fuel / 2;}
 				}
 			}
 			set {
-				switch(AttrName){
+				switch (AttrName) {
 					case "Angle":
 						angle = value;
 						return;
@@ -1755,7 +1752,7 @@ get{			return base.Fuel / 2;}
 				}
 		*/
 
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipWheel copy = new RcChipWheel();
 			copy.Name = this.Name;
 			copy.angle = this.angle;
@@ -1779,17 +1776,17 @@ get{			return base.Fuel / 2;}
 			copy.Comment = this.Comment;
 
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 		public override void ReverseX() {
-			base.ReverseX ();
-			if(this.power.Val != null)
+			base.ReverseX();
+			if (this.power.Val != null)
 				this.power.isNegative ^= true;
 			else
 				this.power.Const = -this.power.Const;
@@ -1798,7 +1795,7 @@ get{			return base.Fuel / 2;}
 
 		public override void ReverseY() {
 			base.ReverseY();
-			if(this.angle.Val != null)
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
@@ -1830,9 +1827,9 @@ get{			return base.Fuel / 2;}
 	///<summery>
 	///RLW チップ クラス
 	///</summery>
-	public class RcChipRLW		: RcChipWheel{
-		public RcChipRLW(){}
-		public RcChipRLW(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+	public class RcChipRLW : RcChipWheel {
+		public RcChipRLW() { }
+		public RcChipRLW(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			mesh = Generics.GetMesh("NWheel.x");
 		}
 
@@ -1856,7 +1853,7 @@ get{			return base.Fuel / 2;}
 		}
 
 
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipRLW copy = new RcChipRLW();
 			copy.Name = this.Name;
 			copy.angle = this.angle;
@@ -1880,26 +1877,26 @@ get{			return base.Fuel / 2;}
 			copy.Comment = this.Comment;
 
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
 
 		public override void ReverseY() {
 			base.ReverseY();
-			if(this.angle.Val != null)
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
 		}
 		public override void ReverseZ() {
 			base.ReverseY();
-			if(this.angle.Val != null)
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
@@ -1910,11 +1907,11 @@ get{			return base.Fuel / 2;}
 	///<summery>
 	///ウェイト チップ クラス
 	///</summery>
-	public class RcChipWeight	: RcChipChip{
+	public class RcChipWeight : RcChipChip {
 		RcAttrValue option;
 
-		public RcChipWeight(){}
-		public RcChipWeight(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+		public RcChipWeight() { }
+		public RcChipWeight(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			option.Const = 1f;
 			mesh = Generics.GetMesh("ChipH.x");
 		}
@@ -1951,7 +1948,7 @@ get{			return base.Fuel / 2;}
 
 				}
 		*/
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipWeight copy = new RcChipWeight();
 			copy.angle = this.angle;
 			copy.ChipColor = this.ChipColor;
@@ -1968,12 +1965,12 @@ get{			return base.Fuel / 2;}
 			copy.user2 = this.user2;
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
 			copy.Comment = this.Comment;
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
@@ -1986,19 +1983,19 @@ get{			return base.Fuel / 2;}
 
 		public override RcAttrValue[] AttrValList {
 			get {
-				return new RcAttrValue[]{ChipColor,angle,damper,spring,option,user1,user2};
+				return new RcAttrValue[] { ChipColor, angle, damper, spring, option, user1, user2 };
 			}
 		}
 
 		public override RcAttrValue this[string AttrName] {
 			get {
-				if(AttrName == "Option")
+				if (AttrName == "Option")
 					return option;
 				else
 					return base[AttrName];
 			}
 			set {
-				if(AttrName == "Option")
+				if (AttrName == "Option")
 					option = value;
 				else
 					base[AttrName] = value;
@@ -2007,26 +2004,26 @@ get{			return base.Fuel / 2;}
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0.5f,0.5f,1f,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0.5f, 0.5f, 1f, 0f, 0f };
 			}
 		}
 
 		public override string[] AttrNameList {
 			get {
 				string[] s = base.AttrNameList;
-				s.CopyTo(s = new string[s.Length + 1],0);
-				s[s.Length -1] = s[s.Length - 2];
-				s[s.Length -2] = s[s.Length - 3];
-				s[s.Length -3] = "Option";
+				s.CopyTo(s = new string[s.Length + 1], 0);
+				s[s.Length - 1] = s[s.Length - 2];
+				s[s.Length - 2] = s[s.Length - 3];
+				s[s.Length - 3] = "Option";
 				return s;
 			}
 		}
 
 		public override string AttrTip(string AttrName) {
-			if(AttrName == "Option")
+			if (AttrName == "Option")
 				return "重量倍率(1-8)";
 			else
-				return base.AttrTip (AttrName);
+				return base.AttrTip(AttrName);
 		}
 
 	}
@@ -2034,12 +2031,12 @@ get{			return base.Fuel / 2;}
 	///<summery>
 	///カウル チップ クラス
 	///</summery>
-	public class RcChipCowl		: RcChipBase{
+	public class RcChipCowl : RcChipBase {
 		RcXFile[] meshes;
 		int option;
 		RcAttrValue effect;
-		public RcChipCowl(){}
-		public RcChipCowl(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+		public RcChipCowl() { }
+		public RcChipCowl(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			meshes = new RcXFile[6];
 			meshes[0] = Generics.GetMesh("Type0.x");
 			meshes[1] = Generics.GetMesh("Type1.x");
@@ -2047,11 +2044,11 @@ get{			return base.Fuel / 2;}
 			meshes[3] = Generics.GetMesh("Type3.x");
 			meshes[4] = Generics.GetMesh("Type4.x");
 			meshes[5] = Generics.GetMesh("Type5.x");
-			if(!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()){
+			if (!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()) {
 				option = 0;
 				effect = new RcAttrValue(0x00fb);
 			}
-			else{
+			else {
 				this.option = ((RcChipCowl)parent).option;
 				effect = ((RcChipCowl)parent).effect;
 			}
@@ -2063,15 +2060,15 @@ get{			return base.Fuel / 2;}
 			}
 		}
 
-		public override void Add(RcJointPosition joint, RcChipBase chip,bool Registeration) {
-			if(!(chip is RcChipCowl)){
+		public override void Add(RcJointPosition joint, RcChipBase chip, bool Registeration) {
+			if (!(chip is RcChipCowl)) {
 				throw new Exception("カウルにはカウルしか接続できません。");
 			}
-			base.Add(joint,chip,Registeration);
+			base.Add(joint, chip, Registeration);
 		}
 
 		public override string AttrTip(string AttrName) {
-			switch(AttrName){
+			switch (AttrName) {
 				case "Angle":
 					return "折り曲げ角度";
 				case "Option":
@@ -2101,15 +2098,15 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override string[] AttrNameList {
-			get{
-				string[] s = {"Color","Angle","Option","Effect","User1","User2"};
+			get {
+				string[] s = { "Color", "Angle", "Option", "Effect", "User1", "User2" };
 				return s;
 			}
 		}
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0f,0x00fb,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0f, 0x00fb, 0f, 0f };
 			}
 		}
 
@@ -2117,7 +2114,7 @@ get{			return base.Fuel / 2;}
 			get {
 				RcAttrValue attropt = new RcAttrValue();
 				attropt.Const = option;
-				return new RcAttrValue[]{ChipColor,angle,attropt,effect,user1,user2};
+				return new RcAttrValue[] { ChipColor, angle, attropt, effect, user1, user2 };
 			}
 		}
 
@@ -2125,8 +2122,8 @@ get{			return base.Fuel / 2;}
 		public override RcAttrValue this[string AttrName] {
 			get {
 				RcAttrValue temp = new RcAttrValue();
-				switch(AttrName){
-					case  "Angle":
+				switch (AttrName) {
+					case "Angle":
 						return angle;
 					case "Option":
 						temp.Const = (float)option;
@@ -2142,8 +2139,8 @@ get{			return base.Fuel / 2;}
 				}
 			}
 			set {
-				switch(AttrName){
-					case  "Angle":
+				switch (AttrName) {
+					case "Angle":
 						angle = value;
 						return;
 					case "Option":
@@ -2191,7 +2188,7 @@ get{			return base.Fuel / 2;}
 				}
 		*/
 
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipCowl copy = new RcChipCowl();
 			copy.Name = this.Name;
 			copy.angle = this.angle;
@@ -2202,7 +2199,7 @@ get{			return base.Fuel / 2;}
 			copy.Parent = parent;
 
 			copy.meshes = new RcXFile[this.meshes.Length];
-			this.meshes.CopyTo(copy.meshes,0);
+			this.meshes.CopyTo(copy.meshes, 0);
 
 			copy.option = this.option;
 			copy.effect = this.effect;
@@ -2211,26 +2208,26 @@ get{			return base.Fuel / 2;}
 			copy.Comment = this.Comment;
 
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
 		public override void ReverseX() {
-			base.ReverseX ();
-			if(option == 3)
+			base.ReverseX();
+			if (option == 3)
 				option = 4;
-			else if(option == 4)
+			else if (option == 4)
 				option = 3;
 		}
 
 		public override void ReverseY() {
 			base.ReverseY();
-			if(this.angle.Val != null)
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
@@ -2238,10 +2235,10 @@ get{			return base.Fuel / 2;}
 
 
 		public override void ReverseZ() {
-			base.ReverseZ ();
-			if(option == 3)
+			base.ReverseZ();
+			if (option == 3)
 				option = 4;
-			else if(option == 4)
+			else if (option == 4)
 				option = 3;
 		}
 
@@ -2252,22 +2249,22 @@ get{			return base.Fuel / 2;}
 			}
 		}
 		public override RcHitStatus IsHit(int X, int Y, int ScrWidth, int ScrHeight) {
-			if(Generics.EditOption.UnvisibleNotSelected && !Generics.DrawOption.ShowCowl || ((int)this.effect.Value & 0xF000) == 0xF000){
-				RcHitStatus dist ,buff;
+			if (Generics.EditOption.UnvisibleNotSelected && !Generics.DrawOption.ShowCowl || ((int)this.effect.Value & 0xF000) == 0xF000) {
+				RcHitStatus dist, buff;
 				dist.distance = float.MaxValue;
 				dist.HitChip = null;
-				foreach(RcChipBase c in Child){
-					if(c != null){
-						buff = c.IsHit(X,Y,ScrWidth,ScrHeight);
-						if(dist.distance > buff.distance){
+				foreach (RcChipBase c in Child) {
+					if (c != null) {
+						buff = c.IsHit(X, Y, ScrWidth, ScrHeight);
+						if (dist.distance > buff.distance) {
 							dist = buff;
 						}
 					}
 				}
 				return dist;
 			}
-			else 
-				return base.IsHit (X, Y, ScrWidth, ScrHeight);
+			else
+				return base.IsHit(X, Y, ScrWidth, ScrHeight);
 
 		}
 
@@ -2277,13 +2274,13 @@ get{			return base.Fuel / 2;}
 	///<summery>
 	///アーム チップ クラス
 	///</summery>
-	public class RcChipArm		: RcChipBase{
+	public class RcChipArm : RcChipBase {
 		RcXFile mesh;
-		RcAttrValue power,damper,spring,option;
-		public RcChipArm(){}
-		public RcChipArm(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
+		RcAttrValue power, damper, spring, option;
+		public RcChipArm() { }
+		public RcChipArm(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
 			mesh = Generics.GetMesh("Arm.x");
-			if(!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()){
+			if (!Generics.EditOption.ConvertParentAttributes || parent == null || parent.GetType() != this.GetType()) {
 				damper.Val = null;
 				damper.Const = 0.5f;
 				spring.Val = null;
@@ -2297,7 +2294,7 @@ get{			return base.Fuel / 2;}
 			}
 		}
 		public override string AttrTip(string AttrName) {
-			switch(AttrName){
+			switch (AttrName) {
 				case "Angle":
 					return "折り曲げ角度";
 				case "Damper":
@@ -2320,22 +2317,22 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override void DrawChip() {
-			if(mesh == null)
+			if (mesh == null)
 				mesh = Generics.GetMesh("Arm.x");
-			if(mesh != null)
-				mesh.Draw(Generics.d3ddevice,ChipColor.ToColor(),matRotation * matTranslation);
+			if (mesh != null)
+				mesh.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * matTranslation);
 		}
 
 		public override string[] AttrNameList {
-			get{
-				string[] s = {"Color","Angle","Damper","Spring","Power","Option","User1","User2"};
+			get {
+				string[] s = { "Color", "Angle", "Damper", "Spring", "Power", "Option", "User1", "User2" };
 				return s;
 			}
 		}
 
 		public override RcAttrValue this[string AttrName] {
 			get {
-				switch(AttrName){
+				switch (AttrName) {
 					case "Angle":
 						return this.angle;
 					case "Damper":
@@ -2358,7 +2355,7 @@ get{			return base.Fuel / 2;}
 				}
 			}
 			set {
-				switch(AttrName){
+				switch (AttrName) {
 					case "Angle":
 						this.angle = value;
 						return;
@@ -2392,13 +2389,13 @@ get{			return base.Fuel / 2;}
 
 		public override float[] AttrDefaultValueList {
 			get {
-				return new float[]{(float)0xFFFFFF,0f,0.5f,0.5f,0f,0f,0f,0f};
+				return new float[] { (float)0xFFFFFF, 0f, 0.5f, 0.5f, 0f, 0f, 0f, 0f };
 			}
 		}
 
 		public override RcAttrValue[] AttrValList {
 			get {
-				return new RcAttrValue[]{ChipColor,angle,damper,spring,power,option,user1,user2};
+				return new RcAttrValue[] { ChipColor, angle, damper, spring, power, option, user1, user2 };
 			}
 		}
 
@@ -2435,7 +2432,7 @@ get{			return base.Fuel / 2;}
 					return s;
 				}
 		*/
-		public override RcChipBase Clone(bool WithChild,RcChipBase parent) {
+		public override RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			RcChipArm copy = new RcChipArm();
 			copy.Name = this.Name;
 			copy.angle = this.angle;
@@ -2456,18 +2453,18 @@ get{			return base.Fuel / 2;}
 			copy.Comment = this.Comment;
 
 			copy.Child = new RcChipBase[RcData.ChildCapasity];
-			if(WithChild){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(this.Child[i] != null)copy.Add(this.Child[i].JointPosition ,this.Child[i].Clone(WithChild,copy),false);
+			if (WithChild) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (this.Child[i] != null) copy.Add(this.Child[i].JointPosition, this.Child[i].Clone(WithChild, copy), false);
 				}
 			}
-			
+
 			return copy;
 		}
 
 		public override void ReverseY() {
 			base.ReverseY();
-			if(this.angle.Val != null)
+			if (this.angle.Val != null)
 				this.angle.isNegative ^= true;
 			else
 				this.angle.Const = -this.angle.Const;
@@ -2487,13 +2484,13 @@ get{			return base.Fuel / 2;}
 	///<summery>
 	///カーソル クラス
 	///</summery>
-	public class RcChipCursor : RcChipBase{
+	public class RcChipCursor : RcChipBase {
 		RcXFile mesh;
 		RcAttrValue backColor;
 
-		public RcChipCursor(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
-			this.Attach(parent,RcJointPosition.NULL);
-			mesh = Generics.GetMesh(Application.StartupPath + "\\Resources\\Cursor.x",true);
+		public RcChipCursor(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
+			this.Attach(parent, RcJointPosition.NULL);
+			mesh = Generics.GetMesh(Application.StartupPath + "\\Resources\\Cursor.x", true);
 			matRotation = Matrix.Identity;
 			backColor = new RcAttrValue(0);
 			ChipColor.SetValue(Generics.DrawOption.CursorFrontColor.ToArgb());
@@ -2501,15 +2498,15 @@ get{			return base.Fuel / 2;}
 			GuideEnabled = true;
 		}
 
-		public void SetCursorColor(Color front,Color back){
+		public void SetCursorColor(Color front, Color back) {
 			ChipColor.SetValue(front.ToArgb());
 			backColor.SetValue(back.ToArgb());
 		}
 
-		public override void Add(RcJointPosition joint, RcChipBase chip,bool Registeration) {
-			if(chip is RcChipGuide){
-				for(int i = 0;i < RcData.ChildCapasity;i++){
-					if(Child[i] == null){
+		public override void Add(RcJointPosition joint, RcChipBase chip, bool Registeration) {
+			if (chip is RcChipGuide) {
+				for (int i = 0; i < RcData.ChildCapasity; i++) {
+					if (Child[i] == null) {
 						Child[i] = chip;
 						Child[i].JointPosition = joint;
 						Child[i].Parent = this;
@@ -2523,7 +2520,7 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override void Attach(RcChipBase to, RcJointPosition pos) {
-			this.Parent = to;	// 一方的な参照であり、Attach先のチップには影響を及ぼさない。
+			this.Parent = to;   // 一方的な参照であり、Attach先のチップには影響を及ぼさない。
 								// これにより、cursor.Parentで選択されたチップを取得できる。
 			UpdateMatrix();
 		}
@@ -2534,31 +2531,31 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override void DrawChip() {
-			if(Parent == null)return;
+			if (Parent == null) return;
 			Color c = ChipColor.ToColor();
 			//			if(c.A > 127)
 			//				c = Color.FromArgb(127,c);
-			if(mesh == null)return;
-			mesh.Draw(Generics.d3ddevice,c,0x7000,matRotation * Matrix);
+			if (mesh == null) return;
+			mesh.Draw(Generics.d3ddevice, c, 0x7000, matRotation * Matrix);
 			c = backColor.ToColor();
-			mesh.Draw(Generics.d3ddevice,c,0x2000,Matrix.RotationZ((float)Math.PI) * matRotation * Matrix);
-			
+			mesh.Draw(Generics.d3ddevice, c, 0x2000, Matrix.RotationZ((float)Math.PI) * matRotation * Matrix);
+
 		}
 
 		public override string[] AttrNameList {
-			get{
+			get {
 				return null;
 			}
 		}
 
 		public override void UpdateMatrix() {
-			if(Parent == null)return;
+			if (Parent == null) return;
 			this.matTranslation = Parent.Matrix;
 			this.matVersion = System.DateTime.Now.Ticks;
 
-			foreach(RcChipBase c in Child)if(c != null){
-											  c.UpdateMatrix();
-										  }
+			foreach (RcChipBase c in Child) if (c != null) {
+					c.UpdateMatrix();
+				}
 
 		}
 
@@ -2632,13 +2629,13 @@ get{			return base.Fuel / 2;}
 	///<summery>
 	///チップ追加用 ガイド クラス
 	///</summery>
-	public class RcChipGuide : RcChipBase{
+	public class RcChipGuide : RcChipBase {
 		RcXFile mesh;
-		public RcChipGuide(RcData gen,RcChipBase parent,RcJointPosition pos) : base(gen,parent,pos){
-			mesh = Generics.GetMesh(Application.StartupPath + "\\Resources\\guide.x",true);
+		public RcChipGuide(RcData gen, RcChipBase parent, RcJointPosition pos) : base(gen, parent, pos) {
+			mesh = Generics.GetMesh(Application.StartupPath + "\\Resources\\guide.x", true);
 		}
 
-		public override void Add(RcJointPosition joint, RcChipBase chip,bool Registeration) {
+		public override void Add(RcJointPosition joint, RcChipBase chip, bool Registeration) {
 			throw new Exception("RcChipGuideに、Add()は無効です。");
 		}
 
@@ -2647,8 +2644,8 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override void DrawChip() {
-			if(Parent.Parent == null)return;
-			switch(this.JointPosition){
+			if (Parent.Parent == null) return;
+			switch (this.JointPosition) {
 				case RcJointPosition.North:
 					ChipColor.SetValue(Generics.DrawOption.NGuideColor.ToArgb());
 					break;
@@ -2669,8 +2666,8 @@ get{			return base.Fuel / 2;}
 			Generics.d3ddevice.Lights[1].Enabled = true;
 			Generics.d3ddevice.Lights[0].Update();
 			Generics.d3ddevice.Lights[1].Update();
-			if(mesh != null)
-				mesh.Draw(Generics.d3ddevice,ChipColor.ToColor(),0x7000,matRotation * Matrix);
+			if (mesh != null)
+				mesh.Draw(Generics.d3ddevice, ChipColor.ToColor(), 0x7000, matRotation * Matrix);
 			Generics.d3ddevice.Lights[0].Enabled = true;
 			Generics.d3ddevice.Lights[1].Enabled = false;
 			Generics.d3ddevice.Lights[0].Update();
@@ -2678,7 +2675,7 @@ get{			return base.Fuel / 2;}
 		}
 
 		public override string[] AttrNameList {
-			get{
+			get {
 				return null;
 			}
 		}
@@ -2711,26 +2708,26 @@ get{			return base.Fuel / 2;}
 
 			IntersectInformation sectinfo = new IntersectInformation();
 
-			viewport.Width = ScrWidth; 
-			viewport.Height = ScrHeight; 
+			viewport.Width = ScrWidth;
+			viewport.Height = ScrHeight;
 			viewport.X = viewport.Y = 0;
-			viewport.MaxZ = 1.0f; 
+			viewport.MaxZ = 1.0f;
 			viewport.MinZ = 0.0f;
 
 			// クリックしたスクリーン座標からレイを計算し、対象メッシュとの交差をチェック 
-			Vector3 vNear = Vector3.Unproject(new Vector3(X, Y, viewport.MinZ), 
+			Vector3 vNear = Vector3.Unproject(new Vector3(X, Y, viewport.MinZ),
 				viewport, projMat, viewMat, matRotation * this.Matrix);
-			Vector3 vFar = Vector3.Unproject(new Vector3(X, Y, viewport.MaxZ), 
+			Vector3 vFar = Vector3.Unproject(new Vector3(X, Y, viewport.MaxZ),
 				viewport, projMat, viewMat, matRotation * this.Matrix);
 			Vector3 vDir = Vector3.Normalize(vFar - vNear);
-			
-			dist.distance = (mesh.mesh.Intersect(vNear, vDir, out sectinfo)) ? sectinfo.Dist : float.MaxValue; 
 
-			if(dist.distance < float.MaxValue)dist.HitChip = this;
+			dist.distance = (mesh.mesh.Intersect(vNear, vDir, out sectinfo)) ? sectinfo.Dist : float.MaxValue;
+
+			if (dist.distance < float.MaxValue) dist.HitChip = this;
 
 
 			return dist;
-		
+
 
 		}
 

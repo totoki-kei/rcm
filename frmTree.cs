@@ -1,12 +1,9 @@
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-
 using RigidChips;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace rcm {
 	/// <summary>
@@ -23,7 +20,7 @@ namespace rcm {
 		private System.Windows.Forms.MenuItem menuItem1;
 		private System.ComponentModel.IContainer components;
 
-		public frmTree(RcData rcdata,ContextMenu chipmenu) {
+		public frmTree(RcData rcdata, ContextMenu chipmenu) {
 			initializing = true;
 			//
 			// Windows フォーム デザイナ サポートに必要です。
@@ -37,7 +34,7 @@ namespace rcm {
 
 		}
 
-		public void GenerateTree(){
+		public void GenerateTree() {
 			Debug.WriteLine("GenerateTree");
 			initializing = true;
 			tvModel.SuspendLayout();
@@ -86,7 +83,7 @@ namespace rcm {
 			initializing = false;
 		}
 
-	//	[Obsolete("未完成です。ずっと日の目を見ないかも。")]
+		//	[Obsolete("未完成です。ずっと日の目を見ないかも。")]
 		public void UpdateTree(RcChipBase updateRoot) {
 			RcTreeNode root = ((RcTreeNode)tvModel.Nodes[0]).Find(updateRoot);
 
@@ -104,7 +101,7 @@ namespace rcm {
 
 			int childCount = 0;
 			for (int i = 0; i < RcData.ChildCapasity; i++) {
-				if (updateRoot.Child[i] == null)continue;
+				if (updateRoot.Child[i] == null) continue;
 				childCount++;
 				var childChip = updateRoot.Child[i];
 				var childNode = root.Find(childChip);
@@ -116,7 +113,7 @@ namespace rcm {
 					root.Nodes.Insert(i, n = new RcTreeNode(childChip));
 					Debug.WriteLine(n, "New node");
 				}
-				else if (nodeIndex  != i) {
+				else if (nodeIndex != i) {
 					// 間にあるノードを削除
 					List<TreeNode> nodesToDelete = new List<TreeNode>();
 					for (int j = i; j < nodeIndex; j++) {
@@ -141,12 +138,12 @@ namespace rcm {
 		/// 使用されているリソースに後処理を実行します。
 		/// </summary>
 		protected override void Dispose(bool disposing) {
-			if( disposing ) {
-				if(components != null) {
+			if (disposing) {
+				if (components != null) {
 					components.Dispose();
 				}
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows フォーム デザイナで生成されたコード 
@@ -202,7 +199,7 @@ namespace rcm {
 			// contextMenu1
 			// 
 			this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem1});
+			this.menuItem1});
 			// 
 			// menuItem1
 			// 
@@ -230,12 +227,12 @@ namespace rcm {
 		#endregion
 
 		private void frmTree_Load(object sender, System.EventArgs e) {
-		
+
 		}
 
 		private void tvModel_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e) {
-			if(e.Button == MouseButtons.Right){
-				tvModel_BeforeSelect(sender,new TreeViewCancelEventArgs(tvModel.GetNodeAt(e.X,e.Y),false,TreeViewAction.ByMouse));
+			if (e.Button == MouseButtons.Right) {
+				tvModel_BeforeSelect(sender, new TreeViewCancelEventArgs(tvModel.GetNodeAt(e.X, e.Y), false, TreeViewAction.ByMouse));
 			}
 		}
 
@@ -254,13 +251,13 @@ namespace rcm {
 		}
 
 		private void tvModel_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e) {
-			if(e.Button == MouseButtons.Right){
-				ctmChip.Show(tvModel,new Point(e.X,e.Y));
+			if (e.Button == MouseButtons.Right) {
+				ctmChip.Show(tvModel, new Point(e.X, e.Y));
 			}
 		}
 
 		private void tvModel_BeforeExpand(object sender, System.Windows.Forms.TreeViewCancelEventArgs e) {
-			if(((RcTreeNode)e.Node).ChipType == RcChipType.Cowl && initializing)
+			if (((RcTreeNode)e.Node).ChipType == RcChipType.Cowl && initializing)
 				e.Cancel = true;
 		}
 
@@ -309,29 +306,29 @@ namespace rcm {
 #endif
 		}
 
-		
+
 
 	}
 
-	public class RcTreeNode : TreeNode{
+	public class RcTreeNode : TreeNode {
 		RcChipBase c;
-		public RcTreeNode(RcChipBase chip) : base(){
+		public RcTreeNode(RcChipBase chip) : base() {
 			this.Chip = chip;
 			this.ImageIndex = this.SelectedImageIndex = (int)RcChipBase.CheckType(chip);
 			if (Array.Exists(chip.Child, x => x != null))
 				foreach (var c in chip.Child)
 					if (c != null) this.Nodes.Add(new RcTreeNode(c));
 
-			
+
 		}
 
-		
 
-		public RcChipBase Chip{
-			get{
+
+		public RcChipBase Chip {
+			get {
 				return c;
 			}
-			set{
+			set {
 				c = value;
 				UpdateText();
 			}
@@ -360,8 +357,8 @@ namespace rcm {
 			this.ImageIndex = (int)RcChipBase.CheckType(c);
 		}
 
-		public RcChipType ChipType{
-			get{
+		public RcChipType ChipType {
+			get {
 				return (RcChipType)ImageIndex;
 			}
 		}
@@ -381,5 +378,5 @@ namespace rcm {
 		}
 
 	}
-	
+
 }

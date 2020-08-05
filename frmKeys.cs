@@ -1,10 +1,8 @@
+using RigidChips;
 using System;
 using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using RigidChips;
 using System.Text;
+using System.Windows.Forms;
 
 namespace rcm {
 	/// <summary>
@@ -101,13 +99,13 @@ namespace rcm {
 		/// <summary>
 		/// 使用されているリソースに後処理を実行します。
 		/// </summary>
-		protected override void Dispose( bool disposing ) {
-			if( disposing ) {
-				if(components != null) {
+		protected override void Dispose(bool disposing) {
+			if (disposing) {
+				if (components != null) {
 					components.Dispose();
 				}
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows フォーム デザイナで生成されたコード 
@@ -354,32 +352,32 @@ namespace rcm {
 
 		private void lstKeyList_SelectedIndexChanged(object sender, System.EventArgs e) {
 			cmbVals.SelectedIndex = -1;
-			if(lstKeyList.SelectedIndex < 0){
+			if (lstKeyList.SelectedIndex < 0) {
 				lstValList.Enabled = false;
 				return;
 			}
 			lstValList.Enabled = true;
 			lstValList.Items.Clear();
-			foreach(RcKey.RcKeyWork w in keylist[lstKeyList.SelectedIndex].Works){
-				if(w.Target.RefCount < 0){
+			foreach (RcKey.RcKeyWork w in keylist[lstKeyList.SelectedIndex].Works) {
+				if (w.Target.RefCount < 0) {
 					keylist[lstKeyList.SelectedIndex].DeleteWork(w.Target);
 				}
 				else
 					lstValList.Items.Add(w.ToString());
 			}
 			lstValList.Items.Add("(新規)");
-			lstValList_SelectedIndexChanged(sender,e);
+			lstValList_SelectedIndexChanged(sender, e);
 			txtStep.Text = "0";
 		}
 
 		private void btnAdd_Click(object sender, System.EventArgs e) {
-			if(cmbVals.SelectedIndex < 0)return;
+			if (cmbVals.SelectedIndex < 0) return;
 			if (cmbVals.SelectedItem.ToString() == "(Val編集...)") return;
-			try{
-				keylist[lstKeyList.SelectedIndex].AssignWork((RcVal)cmbVals.SelectedItem,float.Parse(txtStep.Text));
+			try {
+				keylist[lstKeyList.SelectedIndex].AssignWork((RcVal)cmbVals.SelectedItem, float.Parse(txtStep.Text));
 			}
-			catch(FormatException fe){
-				if(txtStep.Text != "")
+			catch (FormatException fe) {
+				if (txtStep.Text != "")
 					MessageBox.Show(fe.Message);
 				return;
 			}
@@ -388,19 +386,19 @@ namespace rcm {
 		}
 
 		private void lstValList_SelectedIndexChanged(object sender, System.EventArgs e) {
-			if(lstValList.SelectedIndex < 0 || lstValList.SelectedItem as string == "(新規)"){
+			if (lstValList.SelectedIndex < 0 || lstValList.SelectedItem as string == "(新規)") {
 				btnDelete.Enabled = false;
 				return;
 			}
 			btnDelete.Enabled = true;
-			foreach(object i in cmbVals.Items){
-				if(((RcVal)i).ValName == lstValList.SelectedItem.ToString().Split('(')[0]){
+			foreach (object i in cmbVals.Items) {
+				if (((RcVal)i).ValName == lstValList.SelectedItem.ToString().Split('(')[0]) {
 					cmbVals.SelectedItem = i;
 					break;
 				}
 			}
 
-			txtStep.Text = lstValList.SelectedItem.ToString().Split(')','=')[1];
+			txtStep.Text = lstValList.SelectedItem.ToString().Split(')', '=')[1];
 		}
 
 		private void lstValList_EnabledChanged(object sender, System.EventArgs e) {
@@ -409,12 +407,12 @@ namespace rcm {
 		}
 
 		private void cmbVals_SelectedIndexChanged(object sender, System.EventArgs e) {
-			if(cmbVals.SelectedIndex < 0){
+			if (cmbVals.SelectedIndex < 0) {
 				labelValDefault.Text = labelValMin.Text = labelValMax.Text = labelValStep.Text = "(情報なし)";
 				btnAdd.Enabled = false;
 			}
-			else if(cmbVals.SelectedItem as string == "(Val編集...)"){
-				frmVals valform = new frmVals( data.vals);
+			else if (cmbVals.SelectedItem as string == "(Val編集...)") {
+				frmVals valform = new frmVals(data.vals);
 				bool val = (valform.ShowDialog() == DialogResult.Yes);
 				if (val) {
 					result = DialogResult.Yes;
@@ -422,7 +420,7 @@ namespace rcm {
 				UpdateCmbVals();
 				cmbVals.SelectedIndex = -1;
 			}
-			else{
+			else {
 				labelValDefault.Text = vallist[cmbVals.SelectedIndex].Default.ToString();
 				labelValMin.Text = vallist[cmbVals.SelectedIndex].Min.ToString();
 				labelValMax.Text = vallist[cmbVals.SelectedIndex].Max.ToString();
@@ -432,10 +430,10 @@ namespace rcm {
 		}
 
 		private void btnDelete_Click(object sender, System.EventArgs e) {
-			if(lstValList.SelectedIndex < 0)return;
+			if (lstValList.SelectedIndex < 0) return;
 			keylist[lstKeyList.SelectedIndex].DeleteWork(keylist[lstKeyList.SelectedIndex].Works[lstValList.SelectedIndex].Target);
 			UpdateKeyDescriptions(true);
-			lstKeyList_SelectedIndexChanged(sender,e);
+			lstKeyList_SelectedIndexChanged(sender, e);
 			result = DialogResult.Yes;
 		}
 

@@ -1,19 +1,16 @@
+using Microsoft.DirectX;
+using Microsoft.DirectX.Direct3D;
+using RigidChips;
 using System;
-using System.Drawing;
-using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
-//using System.ComponentModel;
-using System.Windows.Forms;
+using System.Diagnostics;
+using System.Drawing;
 //using System.Data;
 using System.IO;
 using System.Runtime.InteropServices;
-
-using Microsoft.DirectX;
-using Microsoft.DirectX.Direct3D;
-
-using RigidChips;
-using System.Collections.Generic;
-using System.Diagnostics;
+//using System.ComponentModel;
+using System.Windows.Forms;
 
 
 namespace rcm {
@@ -635,25 +632,25 @@ namespace rcm {
 			// mnuMain
 			// 
 			this.mnuMain.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miFile,
-            this.miEdit,
-            this.miTool,
-            this.miConfig,
-            this.miHelp});
+			this.miFile,
+			this.miEdit,
+			this.miTool,
+			this.miConfig,
+			this.miHelp});
 			// 
 			// miFile
 			// 
 			this.miFile.Index = 0;
 			this.miFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miFileNew,
-            this.miFileOpen,
-            this.miFileSave,
-            this.miFileSaveAs,
-            this.menuItem19,
-            this.miFileImport,
-            this.miFileExport,
-            this.menuItem1,
-            this.miFileQuit});
+			this.miFileNew,
+			this.miFileOpen,
+			this.miFileSave,
+			this.miFileSaveAs,
+			this.menuItem19,
+			this.miFileImport,
+			this.miFileExport,
+			this.menuItem1,
+			this.miFileQuit});
 			this.miFile.Text = "ファイル(&F)";
 			this.miFile.Click += new System.EventHandler(this.miFile_Click);
 			// 
@@ -722,13 +719,13 @@ namespace rcm {
 			// 
 			this.miEdit.Index = 1;
 			this.miEdit.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miEditCut,
-            this.miEditCopy,
-            this.miEditDelete,
-            this.menuItem6,
-            this.miEditView,
-            this.miEditSelect,
-            this.miEditInfo});
+			this.miEditCut,
+			this.miEditCopy,
+			this.miEditDelete,
+			this.menuItem6,
+			this.miEditView,
+			this.miEditSelect,
+			this.miEditInfo});
 			this.miEdit.Text = "編集(&E)";
 			// 
 			// miEditCut
@@ -761,14 +758,14 @@ namespace rcm {
 			// 
 			this.miEditView.Index = 4;
 			this.miEditView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miEditViewRight,
-            this.miEditViewLeft,
-            this.miEditViewTop,
-            this.miEditViewBottom,
-            this.miEditVierFront,
-            this.miEditViewRear,
-            this.menuItem14,
-            this.miEditViewUser});
+			this.miEditViewRight,
+			this.miEditViewLeft,
+			this.miEditViewTop,
+			this.miEditViewBottom,
+			this.miEditVierFront,
+			this.miEditViewRear,
+			this.menuItem14,
+			this.miEditViewUser});
 			this.miEditView.Text = "視点変更(&V)";
 			this.miEditView.Visible = false;
 			// 
@@ -816,10 +813,10 @@ namespace rcm {
 			// 
 			this.miEditSelect.Index = 5;
 			this.miEditSelect.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miEditSelectParent,
-            this.miEditSelectCore,
-            this.miEditSelectChild,
-            this.miEditSelectAll});
+			this.miEditSelectParent,
+			this.miEditSelectCore,
+			this.miEditSelectChild,
+			this.miEditSelectAll});
 			this.miEditSelect.Text = "選択(&S)";
 			// 
 			// miEditSelectParent
@@ -860,14 +857,14 @@ namespace rcm {
 			// 
 			this.miTool.Index = 2;
 			this.miTool.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miToolVal,
-            this.miToolKey,
-            this.miToolScript,
-            this.miToolComment,
-            this.menuItem3,
-            this.miToolTree,
-            this.miToolPrev,
-            this.miToolSend});
+			this.miToolVal,
+			this.miToolKey,
+			this.miToolScript,
+			this.miToolComment,
+			this.menuItem3,
+			this.miToolTree,
+			this.miToolPrev,
+			this.miToolSend});
 			this.miTool.Text = "ツール(&T)";
 			this.miTool.Click += new System.EventHandler(this.menuItem2_Click);
 			// 
@@ -929,9 +926,9 @@ namespace rcm {
 			// 
 			this.miConfig.Index = 3;
 			this.miConfig.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miConfigDraw,
-            this.miConfigOutput,
-            this.miConfigEdit});
+			this.miConfigDraw,
+			this.miConfigOutput,
+			this.miConfigEdit});
 			this.miConfig.Text = "設定(&C)";
 			// 
 			// miConfigDraw
@@ -956,10 +953,10 @@ namespace rcm {
 			// 
 			this.miHelp.Index = 4;
 			this.miHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miHelpOpen,
-            this.miHelpReadme,
-            this.menuItem13,
-            this.miHelpVersion});
+			this.miHelpOpen,
+			this.miHelpReadme,
+			this.menuItem13,
+			this.miHelpVersion});
 			this.miHelp.Text = "ヘルプ(&H)";
 			// 
 			// miHelpOpen
@@ -1152,7 +1149,7 @@ namespace rcm {
 			this.cmbAttrItem9.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem9.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem9.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem9.Location = new System.Drawing.Point(0, 196);
 			this.cmbAttrItem9.Name = "cmbAttrItem9";
 			this.cmbAttrItem9.Size = new System.Drawing.Size(156, 20);
@@ -1168,7 +1165,7 @@ namespace rcm {
 			this.cmbAttrItem8.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem8.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem8.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem8.Location = new System.Drawing.Point(0, 176);
 			this.cmbAttrItem8.Name = "cmbAttrItem8";
 			this.cmbAttrItem8.Size = new System.Drawing.Size(156, 20);
@@ -1184,7 +1181,7 @@ namespace rcm {
 			this.cmbAttrItem7.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem7.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem7.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem7.Location = new System.Drawing.Point(0, 156);
 			this.cmbAttrItem7.Name = "cmbAttrItem7";
 			this.cmbAttrItem7.Size = new System.Drawing.Size(156, 20);
@@ -1200,7 +1197,7 @@ namespace rcm {
 			this.cmbAttrItem6.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem6.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem6.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem6.Location = new System.Drawing.Point(0, 136);
 			this.cmbAttrItem6.Name = "cmbAttrItem6";
 			this.cmbAttrItem6.Size = new System.Drawing.Size(156, 20);
@@ -1216,7 +1213,7 @@ namespace rcm {
 			this.cmbAttrItem5.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem5.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem5.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem5.Location = new System.Drawing.Point(0, 116);
 			this.cmbAttrItem5.Name = "cmbAttrItem5";
 			this.cmbAttrItem5.Size = new System.Drawing.Size(156, 20);
@@ -1232,7 +1229,7 @@ namespace rcm {
 			this.cmbAttrItem4.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem4.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem4.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem4.Location = new System.Drawing.Point(0, 96);
 			this.cmbAttrItem4.Name = "cmbAttrItem4";
 			this.cmbAttrItem4.Size = new System.Drawing.Size(156, 20);
@@ -1248,7 +1245,7 @@ namespace rcm {
 			this.cmbAttrItem3.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem3.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem3.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem3.Location = new System.Drawing.Point(0, 76);
 			this.cmbAttrItem3.Name = "cmbAttrItem3";
 			this.cmbAttrItem3.Size = new System.Drawing.Size(156, 20);
@@ -1264,7 +1261,7 @@ namespace rcm {
 			this.cmbAttrItem2.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem2.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem2.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem2.Location = new System.Drawing.Point(0, 56);
 			this.cmbAttrItem2.Name = "cmbAttrItem2";
 			this.cmbAttrItem2.Size = new System.Drawing.Size(156, 20);
@@ -1280,7 +1277,7 @@ namespace rcm {
 			this.cmbAttrItem1.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem1.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem1.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem1.Location = new System.Drawing.Point(0, 36);
 			this.cmbAttrItem1.Name = "cmbAttrItem1";
 			this.cmbAttrItem1.Size = new System.Drawing.Size(156, 20);
@@ -1296,7 +1293,7 @@ namespace rcm {
 			this.cmbAttrItem0.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem0.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem0.Items.AddRange(new object[] {
-            "(使用可能な変数はありません)"});
+			"(使用可能な変数はありません)"});
 			this.cmbAttrItem0.Location = new System.Drawing.Point(0, 16);
 			this.cmbAttrItem0.Name = "cmbAttrItem0";
 			this.cmbAttrItem0.Size = new System.Drawing.Size(156, 20);
@@ -1524,12 +1521,12 @@ namespace rcm {
 			// ctmChildList
 			// 
 			this.ctmChildList.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miListAdd,
-            this.miListSelect,
-            this.menuItem10,
-            this.miListCut,
-            this.miListCopy,
-            this.miListDelete});
+			this.miListAdd,
+			this.miListSelect,
+			this.menuItem10,
+			this.miListCut,
+			this.miListCopy,
+			this.miListDelete});
 			this.ctmChildList.Popup += new System.EventHandler(this.ctmChildList_Popup);
 			// 
 			// miListAdd
@@ -1686,12 +1683,12 @@ namespace rcm {
 			// ctmAngles
 			// 
 			this.ctmAngles.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miAngleGrid0,
-            this.miAngleGrid1,
-            this.miAngleGrid5,
-            this.miAngleGrid15,
-            this.miAngleGrid30,
-            this.miAngleGrid90});
+			this.miAngleGrid0,
+			this.miAngleGrid1,
+			this.miAngleGrid5,
+			this.miAngleGrid15,
+			this.miAngleGrid30,
+			this.miAngleGrid90});
 			this.ctmAngles.Popup += new System.EventHandler(this.ctmAngles_Popup);
 			// 
 			// miAngleGrid0
@@ -1759,10 +1756,10 @@ namespace rcm {
 			// ctmPalette
 			// 
 			this.ctmPalette.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miPaletteShowDlg,
-            this.menuItem2,
-            this.miPaletteChildPaint,
-            this.miPaletteAllPaint});
+			this.miPaletteShowDlg,
+			this.menuItem2,
+			this.miPaletteChildPaint,
+			this.miPaletteAllPaint});
 			this.ctmPalette.Popup += new System.EventHandler(this.ctmPalette_Popup);
 			// 
 			// miPaletteShowDlg
@@ -1811,20 +1808,20 @@ namespace rcm {
 			// ctmChipType
 			// 
 			this.ctmChipType.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miCut,
-            this.miCopy,
-            this.miDelete,
-            this.menuItem8,
-            this.miChange,
-            this.miChipComment,
-            this.miColor,
-            this.menuItem7,
-            this.miRotateRight,
-            this.miRotateLeft,
-            this.menuItem5,
-            this.miReverseX,
-            this.miReverseY,
-            this.miReverseZ});
+			this.miCut,
+			this.miCopy,
+			this.miDelete,
+			this.menuItem8,
+			this.miChange,
+			this.miChipComment,
+			this.miColor,
+			this.menuItem7,
+			this.miRotateRight,
+			this.miRotateLeft,
+			this.menuItem5,
+			this.miReverseX,
+			this.miReverseY,
+			this.miReverseZ});
 			this.ctmChipType.Popup += new System.EventHandler(this.ctmChipType_Popup);
 			// 
 			// miCut
@@ -1854,19 +1851,19 @@ namespace rcm {
 			// 
 			this.miChange.Index = 4;
 			this.miChange.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miChangeChip,
-            this.miChangeFrame,
-            this.miChangeRudder,
-            this.miChangeRudderF,
-            this.miChangeTrim,
-            this.miChangeTrimF,
-            this.ctmSeparator,
-            this.miChangeWheel,
-            this.miChangeRLW,
-            this.miChangeJet,
-            this.miChangeWeight,
-            this.miChangeCowl,
-            this.miChangeArm});
+			this.miChangeChip,
+			this.miChangeFrame,
+			this.miChangeRudder,
+			this.miChangeRudderF,
+			this.miChangeTrim,
+			this.miChangeTrimF,
+			this.ctmSeparator,
+			this.miChangeWheel,
+			this.miChangeRLW,
+			this.miChangeJet,
+			this.miChangeWeight,
+			this.miChangeCowl,
+			this.miChangeArm});
 			this.miChange.Text = "チップ種類変更(&H)";
 			// 
 			// miChangeChip
@@ -1950,8 +1947,8 @@ namespace rcm {
 			// 
 			this.miChipComment.Index = 5;
 			this.miChipComment.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miCommentEdit,
-            this.miCommentDelete});
+			this.miCommentEdit,
+			this.miCommentDelete});
 			this.miChipComment.Text = "コメント(&O)";
 			this.miChipComment.Popup += new System.EventHandler(this.miChipComment_Popup);
 			this.miChipComment.Select += new System.EventHandler(this.miChipComment_Popup);
@@ -1972,8 +1969,8 @@ namespace rcm {
 			// 
 			this.miColor.Index = 6;
 			this.miColor.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miColorToAll,
-            this.miColorToChild});
+			this.miColorToAll,
+			this.miColorToChild});
 			this.miColor.Text = "色(&I)";
 			// 
 			// miColorToAll
@@ -2054,11 +2051,11 @@ namespace rcm {
 			// 
 			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ファイルFToolStripMenuItem,
-            this.編集EToolStripMenuItem,
-            this.ツールTToolStripMenuItem,
-            this.設定CToolStripMenuItem,
-            this.ヘルプHToolStripMenuItem});
+			this.ファイルFToolStripMenuItem,
+			this.編集EToolStripMenuItem,
+			this.ツールTToolStripMenuItem,
+			this.設定CToolStripMenuItem,
+			this.ヘルプHToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -2070,15 +2067,15 @@ namespace rcm {
 			// ファイルFToolStripMenuItem
 			// 
 			this.ファイルFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新規作成ToolStripMenuItem,
-            this.開くToolStripMenuItem,
-            this.上書き保存ToolStripMenuItem,
-            this.名前をつけて保存ToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.rCDTXTを開くToolStripMenuItem,
-            this.rCDで保存ToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.終了ToolStripMenuItem});
+			this.新規作成ToolStripMenuItem,
+			this.開くToolStripMenuItem,
+			this.上書き保存ToolStripMenuItem,
+			this.名前をつけて保存ToolStripMenuItem,
+			this.toolStripSeparator1,
+			this.rCDTXTを開くToolStripMenuItem,
+			this.rCDで保存ToolStripMenuItem,
+			this.toolStripSeparator2,
+			this.終了ToolStripMenuItem});
 			this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
 			this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(85, 22);
 			this.ファイルFToolStripMenuItem.Text = "ファイル(&F)";
@@ -2145,13 +2142,13 @@ namespace rcm {
 			// 編集EToolStripMenuItem
 			// 
 			this.編集EToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.切り取りTToolStripMenuItem,
-            this.コピーCToolStripMenuItem,
-            this.貼り付けPToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.視点変更VToolStripMenuItem,
-            this.選択SToolStripMenuItem,
-            this.モデル情報SToolStripMenuItem});
+			this.切り取りTToolStripMenuItem,
+			this.コピーCToolStripMenuItem,
+			this.貼り付けPToolStripMenuItem,
+			this.toolStripMenuItem1,
+			this.視点変更VToolStripMenuItem,
+			this.選択SToolStripMenuItem,
+			this.モデル情報SToolStripMenuItem});
 			this.編集EToolStripMenuItem.Name = "編集EToolStripMenuItem";
 			this.編集EToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
 			this.編集EToolStripMenuItem.Text = "編集(&E)";
@@ -2220,32 +2217,32 @@ namespace rcm {
 			this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbSelectMode,
-            this.tsbCut,
-            this.tsbCopy,
-            this.tsbPasteMode,
-            this.toolStripSeparator3,
-            this.tsbInsert,
-            this.tsbRemove,
-            this.toolStripSeparator4,
-            this.tsbZoom,
-            this.tsbMooz,
-            this.tsbCameraMode,
-            this.tsbAutoCamera,
-            this.toolStripSeparator5,
-            this.tsbChipMode,
-            this.tsbFrameMode,
-            this.tsbRudderMode,
-            this.tsbRudderFMode,
-            this.tsbTrimMode,
-            this.tsbTrimFMode,
-            this.toolStripSeparator6,
-            this.tsbWheelMode,
-            this.tsbRLWMode,
-            this.tsbJetMode,
-            this.tsbWeightMode,
-            this.tsbCowlMode,
-            this.tsbArmMode});
+			this.tsbSelectMode,
+			this.tsbCut,
+			this.tsbCopy,
+			this.tsbPasteMode,
+			this.toolStripSeparator3,
+			this.tsbInsert,
+			this.tsbRemove,
+			this.toolStripSeparator4,
+			this.tsbZoom,
+			this.tsbMooz,
+			this.tsbCameraMode,
+			this.tsbAutoCamera,
+			this.toolStripSeparator5,
+			this.tsbChipMode,
+			this.tsbFrameMode,
+			this.tsbRudderMode,
+			this.tsbRudderFMode,
+			this.tsbTrimMode,
+			this.tsbTrimFMode,
+			this.toolStripSeparator6,
+			this.tsbWheelMode,
+			this.tsbRLWMode,
+			this.tsbJetMode,
+			this.tsbWeightMode,
+			this.tsbCowlMode,
+			this.tsbArmMode});
 			this.toolStrip1.Location = new System.Drawing.Point(3, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -2762,7 +2759,7 @@ namespace rcm {
 
 		private bool GuideEnabled {
 			get {
-				return rcdata.DrawOption.ShowGuideAlways ||  (!tsbSelectMode.Checked && !tsbCameraMode.Checked && panelCtrl.Visible);
+				return rcdata.DrawOption.ShowGuideAlways || (!tsbSelectMode.Checked && !tsbCameraMode.Checked && panelCtrl.Visible);
 			}
 		}
 
@@ -2780,7 +2777,7 @@ namespace rcm {
 				}
 			}
 
-			if (   !Initialized 
+			if (!Initialized
 				|| Pause
 				|| device == null
 				|| this.WindowState == FormWindowState.Minimized
@@ -2989,8 +2986,8 @@ namespace rcm {
 						Debug.WriteLine(i, "Preview");
 					}
 				}
-				foreach(var v in rcdata.vals.List)
-					if(v != null)
+				foreach (var v in rcdata.vals.List)
+					if (v != null)
 						v.ApplyDefault();
 				rcdata.model.root.UpdateMatrix();
 				rcdata.CalcWeightCenter();
@@ -3651,7 +3648,7 @@ namespace rcm {
 				return;
 			}
 			clipboard = targetChip;
-			if(rcdata.SelectedChip == targetChip)
+			if (rcdata.SelectedChip == targetChip)
 				rcdata.SelectedChip = clipboard.Parent;
 			targetChip.Detach();
 			Modified = true;
@@ -3709,7 +3706,7 @@ namespace rcm {
 			if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
 			labelTip.Text = "削除しました。";
 		}
-		private void actionDelete(RcChipBase targetChip){
+		private void actionDelete(RcChipBase targetChip) {
 			if (targetChip is RcChipCore) {
 				labelTip.Text = "コアは削除できません。";
 				return;
@@ -4027,7 +4024,7 @@ namespace rcm {
 
 			GraphicsStream gs;
 			gs = vbGuide.Lock(0, 0, 0);
-			lineCV = new Microsoft.DirectX.Direct3D.CustomVertex.PositionOnly[9];	//	PositionColored
+			lineCV = new Microsoft.DirectX.Direct3D.CustomVertex.PositionOnly[9];   //	PositionColored
 
 			lineCV[0].Position = new Vector3(100f, 0f, 0f);
 			lineCV[1].Position = new Vector3(0f, 0f, 0f);
@@ -4240,7 +4237,7 @@ namespace rcm {
 							else {
 								opp = target[s[i]];
 								//if(opp.Const != values[i].Const || (opp.Val != values[i].Val && opp.isNegative == values[i].isNegative))
-								if (opp != values[i])		// この判定がうまくいっていないから直す
+								if (opp != values[i])       // この判定がうまくいっていないから直す
 									enables[i, 1] = false;
 							}
 						}
@@ -4282,7 +4279,7 @@ namespace rcm {
 				lstEast.Items.Clear(); lstEast.Enabled = false;
 
 				buttonSelChip.ImageIndex = -1;
-//				cmbColor.Text = "";
+				//				cmbColor.Text = "";
 
 				txtName.Text = "";
 				txtName.Enabled = false;
@@ -4626,7 +4623,7 @@ namespace rcm {
 				Pool.Default);
 			GraphicsStream gs;
 			gs = vbGuide.Lock(0, 0, 0);
-			lineCV = new Microsoft.DirectX.Direct3D.CustomVertex.PositionOnly[9];	//	PositionColored
+			lineCV = new Microsoft.DirectX.Direct3D.CustomVertex.PositionOnly[9];   //	PositionColored
 
 			lineCV[0].Position = new Vector3(100f, 0f, 0f);
 			lineCV[1].Position = new Vector3(0f, 0f, 0f);
@@ -4938,40 +4935,40 @@ namespace rcm {
 					miCopy.Enabled = false;
 					miDelete.Enabled = false;
 					break;
-				case 1:	//	チップ
+				case 1: //	チップ
 					miChangeChip.Enabled = false;
 					goto default;
-				case 2:	//	フレーム
+				case 2: //	フレーム
 					miChangeFrame.Enabled = false;
 					goto default;
-				case 3:	//	ラダー
+				case 3: //	ラダー
 					miChangeRudder.Enabled = false;
 					goto default;
-				case 4:	//	ラダーフレーム
+				case 4: //	ラダーフレーム
 					miChangeRudderF.Enabled = false;
 					goto default;
-				case 5:	//	トリム
+				case 5: //	トリム
 					miChangeTrim.Enabled = false;
 					goto default;
-				case 6:	//	トリムフレーム
+				case 6: //	トリムフレーム
 					miChangeTrimF.Enabled = false;
 					goto default;
 				case 7: //	ホイール
 					miChangeWheel.Enabled = false;
 					goto default;
-				case 8:	//	無反動ホイール
+				case 8: //	無反動ホイール
 					miChangeRLW.Enabled = false;
 					goto default;
-				case 9:	//	ジェット
+				case 9: //	ジェット
 					miChangeJet.Enabled = false;
 					goto default;
-				case 10:	//	ウェイト
+				case 10:    //	ウェイト
 					miChangeWeight.Enabled = false;
 					goto default;
-				case 11:	//	カウル
+				case 11:    //	カウル
 					miChangeCowl.Enabled = false;
 					goto default;
-				case 12:	//	アーム
+				case 12:    //	アーム
 					miChangeArm.Enabled = false;
 					goto default;
 				default:
@@ -5298,7 +5295,7 @@ namespace rcm {
 			}
 		}
 
-#if false 
+#if false
 		private void ctmChildList_Popup(object sender, System.EventArgs e) {
 			ListBox list = (ListBox)((ContextMenu)sender).SourceControl;
 
@@ -5894,7 +5891,7 @@ namespace rcm {
 			//    miToolTree_Click(sender, e);
 			//    return;
 			//}
-			else if(!treeview.Created) {	// 2010/03/16 変更：余計なtreeviewの再生成を抑制
+			else if (!treeview.Created) {   // 2010/03/16 変更：余計なtreeviewの再生成を抑制
 				treeview.Dispose();
 				treeview = null;
 				miToolTree_Click(sender, e);
@@ -5902,7 +5899,7 @@ namespace rcm {
 			}
 
 			treeview.Show();
-			treeview.Focus();	// 2010/03/16 追加：treeviewを前面に出す
+			treeview.Focus();   // 2010/03/16 追加：treeviewを前面に出す
 		}
 
 		private void RcData_SelectedChipChanged(object param) {
@@ -6136,10 +6133,10 @@ namespace rcm {
 		}
 
 		private void frmMain_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e) {
-			if (!PreviewMode 
+			if (!PreviewMode
 				&& Control.ModifierKeys == Keys.None
 				&& !txtName.Focused
-//				&& !cmbColor.Focused
+				//				&& !cmbColor.Focused
 				&& !char.IsNumber(e.KeyChar)
 				&& e.KeyChar != '-'
 				&& rcdata.SelectedChipCount == 0
@@ -6212,16 +6209,16 @@ namespace rcm {
 						tsbModeChange_Click(tsbPasteMode, new EventArgs());
 						break;
 
-					/*					case 'b':
-											tbMain_ButtonClick(this,new ToolBarButtonClickEventArgs(tbbChip));
-											break;
-										case 'n':
-											tbMain_ButtonClick(this,new ToolBarButtonClickEventArgs(tbbChip));
-											break;
-										default:
-											labelTip.Text = ((int)e.KeyChar).ToString();
-											break;
-					*/
+						/*					case 'b':
+												tbMain_ButtonClick(this,new ToolBarButtonClickEventArgs(tbbChip));
+												break;
+											case 'n':
+												tbMain_ButtonClick(this,new ToolBarButtonClickEventArgs(tbbChip));
+												break;
+											default:
+												labelTip.Text = ((int)e.KeyChar).ToString();
+												break;
+						*/
 				}
 			}
 		}

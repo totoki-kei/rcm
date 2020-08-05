@@ -1,17 +1,11 @@
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
 using RigidChips;
-namespace rcm
-{
+using System;
+using System.Windows.Forms;
+namespace rcm {
 	/// <summary>
 	/// 変数(Vals)設定ダイアログ。
 	/// </summary>
-	public class frmVals : System.Windows.Forms.Form
-	{
+	public class frmVals : System.Windows.Forms.Form {
 		RcValList vallist;
 		int idx;
 		bool Modified = false;
@@ -46,8 +40,7 @@ namespace rcm
 		private Button btnDelete;
 		private System.ComponentModel.IContainer components;
 
-		public frmVals(RcValList list)
-		{
+		public frmVals(RcValList list) {
 			//
 			// Windows フォーム デザイナ サポートに必要です。
 			//
@@ -71,16 +64,13 @@ namespace rcm
 		/// <summary>
 		/// 使用されているリソースに後処理を実行します。
 		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
+		protected override void Dispose(bool disposing) {
+			if (disposing) {
+				if (components != null) {
 					components.Dispose();
 				}
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows フォーム デザイナで生成されたコード 
@@ -88,8 +78,7 @@ namespace rcm
 		/// デザイナ サポートに必要なメソッドです。このメソッドの内容を
 		/// コード エディタで変更しないでください。
 		/// </summary>
-		private void InitializeComponent()
-		{
+		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
 			this.lstVals = new System.Windows.Forms.ListBox();
 			this.txtDefault = new System.Windows.Forms.TextBox();
@@ -391,26 +380,26 @@ namespace rcm
 		}
 		#endregion
 
-		void RefreshValList(){
+		void RefreshValList() {
 			lstVals.BeginUpdate();
 			lstVals.Items.Clear();
-			foreach(RcVal v in vallist.List){
+			foreach (RcVal v in vallist.List) {
 				lstVals.Items.Add(v.ToString());
 			}
 			lstVals.Items.Add("(新規)");
-			if(0 <= idx && idx < lstVals.Items.Count)
+			if (0 <= idx && idx < lstVals.Items.Count)
 				lstVals.SelectedIndex = idx;
 			lstVals.EndUpdate();
 		}
 
 
-		void AdoptValData(){
+		void AdoptValData() {
 			result = DialogResult.Yes;
 			Modified = false;
 			RcVal target = vallist[idx];
-			if(txtName.Text == ""){
-				if(target.RefCount > 0){
-					if(MessageBox.Show("この変数は他の部分で使用されています。\nそのため削除するとモデル動作が意図しない物になる可能性があります。","RefCount = " + target.RefCount,MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+			if (txtName.Text == "") {
+				if (target.RefCount > 0) {
+					if (MessageBox.Show("この変数は他の部分で使用されています。\nそのため削除するとモデル動作が意図しない物になる可能性があります。", "RefCount = " + target.RefCount, MessageBoxButtons.OKCancel) == DialogResult.Cancel)
 						return;
 				}
 				vallist.Remove(target.ValName);
@@ -418,7 +407,7 @@ namespace rcm
 				RefreshValList();
 				return;
 			}
-			try{
+			try {
 
 
 				target.ValName = txtName.Text;
@@ -431,8 +420,8 @@ namespace rcm
 				target.Max = new RcConst(txtMax.Text);
 				target.Step = new RcConst(txtStep.Text);
 
-				if(target.Min > target.Max){
-					MessageBox.Show("Max / Minの範囲が不正です。\nMaxをMinに合わせます。","適用エラー",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+				if (target.Min > target.Max) {
+					MessageBox.Show("Max / Minの範囲が不正です。\nMaxをMinに合わせます。", "適用エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					target.Max = target.Min;
 				}
 				if (target.Min > target.Default) {
@@ -445,11 +434,11 @@ namespace rcm
 				}
 
 			}
-			catch(FormatException fe){
-				MessageBox.Show("数字のみ有効です。",fe.Message,MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+			catch (FormatException fe) {
+				MessageBox.Show("数字のみ有効です。", fe.Message, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
-			catch(OverflowException oe){
-				MessageBox.Show("値の絶対値が大きすぎます。",oe.Message,MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+			catch (OverflowException oe) {
+				MessageBox.Show("値の絶対値が大きすぎます。", oe.Message, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 			target.Disp = chkDisp.Checked;
 			lstVals.Items[idx] = target.ToString();
@@ -460,16 +449,16 @@ namespace rcm
 
 		private void frmVals_Load(object sender, System.EventArgs e) {
 			RefreshValList();
-			lstVals_SelectedIndexChanged(sender,e);
+			lstVals_SelectedIndexChanged(sender, e);
 		}
 
 		private void lstVals_SelectedIndexChanged(object sender, System.EventArgs e) {
-			if(Modified && idx >= 0){
+			if (Modified && idx >= 0) {
 				AdoptValData();
 			}
 
 			int buff;
-			if(lstVals.SelectedIndex == -1){
+			if (lstVals.SelectedIndex == -1) {
 				idx = -1;
 				btnApply.Enabled = txtName.Enabled = txtDefault.Enabled = txtMin.Enabled = txtMax.Enabled = txtStep.Enabled = chkDisp.Enabled = grpPreviewer.Enabled = false;
 			}
@@ -515,42 +504,42 @@ namespace rcm
 			}
 
 
-			
+
 		}
 
 		private void btnUp_Click(object sender, System.EventArgs e) {
-			if(lstVals.SelectedIndex <= 0)return;
+			if (lstVals.SelectedIndex <= 0) return;
 			AdoptValData();
 
 			vallist.Swap(
 				vallist[idx],
-				vallist[idx - 1]   );
+				vallist[idx - 1]);
 
 			RefreshValList();
 
-			lstVals.SelectedIndex = idx-1;
+			lstVals.SelectedIndex = idx - 1;
 		}
 
 		private void btnDown_Click(object sender, System.EventArgs e) {
-			if(lstVals.SelectedIndex == lstVals.Items.Count - 1)return;
+			if (lstVals.SelectedIndex == lstVals.Items.Count - 1) return;
 			AdoptValData();
 
 			vallist.Swap(
 				vallist[idx],
-				vallist[idx + 1]   );
+				vallist[idx + 1]);
 
 			RefreshValList();
 
-			lstVals.SelectedIndex = idx+1;
+			lstVals.SelectedIndex = idx + 1;
 
 		}
 
-		private void ValParams_Changed(object sender, System.EventArgs e){
+		private void ValParams_Changed(object sender, System.EventArgs e) {
 			Modified = true;
 		}
 
 		private void btnCancel_Click(object sender, System.EventArgs e) {
-			if(Modified && idx >= 0){
+			if (Modified && idx >= 0) {
 				AdoptValData();
 			}
 			this.DialogResult = result;
@@ -558,39 +547,39 @@ namespace rcm
 		}
 
 		private void btnApply_Click(object sender, System.EventArgs e) {
-			if(Modified && idx >= 0){
+			if (Modified && idx >= 0) {
 				AdoptValData();
 			}
 		}
 
 		private void tmrPreview_Tick(object sender, System.EventArgs e) {
-			try{
-				if(prevPushed){
-					try{
+			try {
+				if (prevPushed) {
+					try {
 						prevValue += float.Parse(txtPrevStep.Text);
 					}
-					catch{}
+					catch { }
 				}
-				else if(prevValue > vallist[idx].Default + vallist[idx].Step){
+				else if (prevValue > vallist[idx].Default + vallist[idx].Step) {
 					prevValue -= vallist[idx].Step;
 				}
-				else if(prevValue < vallist[idx].Default - vallist[idx].Step){
+				else if (prevValue < vallist[idx].Default - vallist[idx].Step) {
 					prevValue += vallist[idx].Step;
 				}
-				else{
+				else {
 					prevValue = vallist[idx].Default;
 				}
-				if(prevValue > vallist[idx].Max)
+				if (prevValue > vallist[idx].Max)
 					prevValue = vallist[idx].Max;
-				else if(prevValue < vallist[idx].Min)
+				else if (prevValue < vallist[idx].Min)
 					prevValue = vallist[idx].Min;
 				vsbPrevBar.Value = -(int)((prevValue - vallist[idx].Min) * 10000 / (vallist[idx].Max - vallist[idx].Min));
 				labelPrevDigit.Text = prevValue.ToString("##0.000");
 			}
-			catch(Exception){
+			catch (Exception) {
 				grpPreviewer.Enabled = false;
 			}
-			
+
 		}
 
 		private void btnPrevPush_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e) {
@@ -611,8 +600,8 @@ namespace rcm
 		}
 
 		private void ValParams_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e) {
-			if(e.KeyChar == 13)
-				btnApply_Click(sender,EventArgs.Empty);
+			if (e.KeyChar == 13)
+				btnApply_Click(sender, EventArgs.Empty);
 		}
 
 		private void btnCopy_Click(object sender, System.EventArgs e) {
@@ -621,11 +610,11 @@ namespace rcm
 			string copyflag = "_copy";
 			int count = 0;
 
-			copystate:
-			try{
+		copystate:
+			try {
 				temp2 = vallist.Add(temp.ValName + copyflag);
 			}
-			catch{
+			catch {
 				count++;
 				copyflag = "_copy" + count.ToString();
 				goto copystate;

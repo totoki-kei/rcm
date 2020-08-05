@@ -1,19 +1,13 @@
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace rcm
-{
+namespace rcm {
 	/// <summary>
 	/// 文字列入力用簡易ダイアログ
 	/// </summary>
-	public class dlgTextInput : System.Windows.Forms.Form
-	{
+	public class dlgTextInput : System.Windows.Forms.Form {
 		// 許容文字に関係する文字列
 		private string ignorelist = "";
-		
+
 		// ignorelistの文字群が無視対象になるフラグ。
 		private bool ignoremode = false;
 
@@ -26,8 +20,7 @@ namespace rcm
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		private dlgTextInput()
-		{
+		private dlgTextInput() {
 			//
 			// Windows フォーム デザイナ サポートに必要です。
 			//
@@ -41,16 +34,13 @@ namespace rcm
 		/// <summary>
 		/// 使用されているリソースに後処理を実行します。
 		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
+		protected override void Dispose(bool disposing) {
+			if (disposing) {
+				if (components != null) {
 					components.Dispose();
 				}
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows フォーム デザイナで生成されたコード 
@@ -58,8 +48,7 @@ namespace rcm
 		/// デザイナ サポートに必要なメソッドです。このメソッドの内容を
 		/// コード エディタで変更しないでください。
 		/// </summary>
-		private void InitializeComponent()
-		{
+		private void InitializeComponent() {
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
@@ -126,12 +115,12 @@ namespace rcm
 		///初期文字列、説明文、入力最大長を指定して、ダイアログを発生させる。
 		///maxlengthが0の場合、入力可能文字数はなし。
 		///</summery>
-		public static string ShowDialog(string defaulttext,string labelcaption, int maxlength){
+		public static string ShowDialog(string defaulttext, string labelcaption, int maxlength) {
 			dlgTextInput f = new dlgTextInput();
-			if(defaulttext != null)f.textBox1.Text = defaulttext;
-			if(maxlength > 0)f.textBox1.MaxLength = maxlength;
-			if(labelcaption != null)f.label1.Text = labelcaption;
-			
+			if (defaulttext != null) f.textBox1.Text = defaulttext;
+			if (maxlength > 0) f.textBox1.MaxLength = maxlength;
+			if (labelcaption != null) f.label1.Text = labelcaption;
+
 			string ret = (f.ShowDialog() == DialogResult.OK) ? f.textBox1.Text : null;
 			f.Dispose();
 			return ret;
@@ -141,13 +130,13 @@ namespace rcm
 		///初期文字列、説明文、入力最大長、入力時に発生するイベントハンドラを指定して
 		///ダイアログを発生させる。
 		///</summery>
-		public static string ShowDialog(string defaulttext,string labelcaption, int maxlength,KeyPressEventHandler keypresshandler){
+		public static string ShowDialog(string defaulttext, string labelcaption, int maxlength, KeyPressEventHandler keypresshandler) {
 			dlgTextInput f = new dlgTextInput();
-			if(defaulttext != null)f.textBox1.Text = defaulttext;
-			if(maxlength > 0)f.textBox1.MaxLength = maxlength;
-			if(labelcaption != null)f.label1.Text = labelcaption;
+			if (defaulttext != null) f.textBox1.Text = defaulttext;
+			if (maxlength > 0) f.textBox1.MaxLength = maxlength;
+			if (labelcaption != null) f.label1.Text = labelcaption;
 			f.textBox1.KeyPress += keypresshandler;
-			
+
 			string ret = (f.ShowDialog() == DialogResult.OK) ? f.textBox1.Text : null;
 			f.Dispose();
 			return ret;
@@ -158,15 +147,15 @@ namespace rcm
 		///初期文字列、説明文、入力最大長、許容文字リストを指定して、ダイアログを発生させる。
 		///ignoreがtrueの時、文字リストは無視対象となる。
 		///</summery>
-		public static string ShowDialog(string defaulttext,string labelcaption, int maxlength, string checkcharlist,bool ignore){
+		public static string ShowDialog(string defaulttext, string labelcaption, int maxlength, string checkcharlist, bool ignore) {
 			dlgTextInput f = new dlgTextInput();
-			if(defaulttext != null)f.textBox1.Text = defaulttext;
-			if(maxlength > 0)f.textBox1.MaxLength = maxlength;
-			if(labelcaption != null)f.label1.Text = labelcaption;
+			if (defaulttext != null) f.textBox1.Text = defaulttext;
+			if (maxlength > 0) f.textBox1.MaxLength = maxlength;
+			if (labelcaption != null) f.label1.Text = labelcaption;
 			f.ignorelist = checkcharlist;
 			f.ignoremode = ignore;
 			f.textBox1.KeyPress += new KeyPressEventHandler(f.textBox1_KeyPress);
-			
+
 			string ret = (f.ShowDialog() == DialogResult.OK) ? f.textBox1.Text : null;
 			f.Dispose();
 			return ret;
@@ -185,7 +174,7 @@ namespace rcm
 
 		private void textBox1_KeyPress(object sender, KeyPressEventArgs e) {
 			int buff = ignorelist.IndexOf(e.KeyChar);
-			if(buff >= 0)
+			if (buff >= 0)
 				e.Handled = ignoremode;
 			else
 				e.Handled = !ignoremode;

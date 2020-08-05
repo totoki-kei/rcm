@@ -1,15 +1,12 @@
+using RigidChips;
 using System;
-using System.Drawing;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 
-using RigidChips;
-using System.Diagnostics;
-using System.Collections.Generic;
-
-namespace rcm
-{
+namespace rcm {
 	/// <summary>
 	/// スクリプト編集フォーム。
 	/// </summary>
@@ -69,8 +66,7 @@ namespace rcm
 		private System.Windows.Forms.MenuItem miCatEnable9;
 		private IContainer components;
 
-		public frmScript(frmMain MainForm,RcData data)
-		{
+		public frmScript(frmMain MainForm, RcData data) {
 			//
 			// Windows フォーム デザイナ サポートに必要です。
 			//
@@ -81,23 +77,20 @@ namespace rcm
 			//
 			this.data = data;
 			this.mainForm = MainForm;
-			for(int i = 0;i < functionCategoryEnable.Length ;i++)
+			for (int i = 0; i < functionCategoryEnable.Length; i++)
 				functionCategoryEnable[i] = true;
 		}
 
 		/// <summary>
 		/// 使用されているリソースに後処理を実行します。
 		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
+		protected override void Dispose(bool disposing) {
+			if (disposing) {
+				if (components != null) {
 					components.Dispose();
 				}
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows フォーム デザイナで生成されたコード 
@@ -105,8 +98,7 @@ namespace rcm
 		/// デザイナ サポートに必要なメソッドです。このメソッドの内容を
 		/// コード エディタで変更しないでください。
 		/// </summary>
-		private void InitializeComponent()
-		{
+		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScript));
 			this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
@@ -141,16 +133,16 @@ namespace rcm
 			// mainMenu1
 			// 
 			this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miCommand,
-            this.miFuncList});
+			this.miCommand,
+			this.miFuncList});
 			// 
 			// miCommand
 			// 
 			this.miCommand.Index = 0;
 			this.miCommand.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miSave,
-            this.miCloseWithSave,
-            this.miCloseWithoutSave});
+			this.miSave,
+			this.miCloseWithSave,
+			this.miCloseWithoutSave});
 			this.miCommand.Text = "コマンド(&C)";
 			// 
 			// miSave
@@ -176,10 +168,10 @@ namespace rcm
 			// 
 			this.miFuncList.Index = 1;
 			this.miFuncList.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miScriptFuncs,
-            this.miLuaFuncs,
-            this.menuItem1,
-            this.miFuncCategory});
+			this.miScriptFuncs,
+			this.miLuaFuncs,
+			this.menuItem1,
+			this.miFuncCategory});
 			this.miFuncList.Text = "関数リスト(&F)";
 			// 
 			// miScriptFuncs
@@ -206,17 +198,17 @@ namespace rcm
 			// 
 			this.miFuncCategory.Index = 3;
 			this.miFuncCategory.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miCatEnable0,
-            this.miCatEnable1,
-            this.miCatEnable2,
-            this.miCatEnable3,
-            this.miCatEnable4,
-            this.miCatEnable5,
-            this.miCatEnable6,
-            this.miCatEnable7,
-            this.miCatEnable8,
-            this.miCatEnable9,
-            this.miCatEnable10});
+			this.miCatEnable0,
+			this.miCatEnable1,
+			this.miCatEnable2,
+			this.miCatEnable3,
+			this.miCatEnable4,
+			this.miCatEnable5,
+			this.miCatEnable6,
+			this.miCatEnable7,
+			this.miCatEnable8,
+			this.miCatEnable9,
+			this.miCatEnable10});
 			this.miFuncCategory.Text = "表示するカテゴリ(&C)";
 			// 
 			// miCatEnable0
@@ -391,21 +383,21 @@ namespace rcm
 		}
 
 		private void miSave_Click(object sender, System.EventArgs e) {
-			if(Modified){
+			if (Modified) {
 				data.script = txtScript.Text;
 				mainForm.Modified = true;
 			}
-			
+
 			Modified = false;
 		}
 
 		private void miCloseWithSave_Click(object sender, System.EventArgs e) {
-			miSave_Click(sender,e);
+			miSave_Click(sender, e);
 			this.Hide();
 		}
 
 		private void frmScript_VisibleChanged(object sender, System.EventArgs e) {
-			if(Visible){
+			if (Visible) {
 				this.txtScript.Text = data.script;
 				this.miScriptFuncs.Checked = !(this.miLuaFuncs.Checked = data.luascript);
 				this.txtScript.ClearHistory();
@@ -415,7 +407,7 @@ namespace rcm
 
 		private void cmbVals_Enter(object sender, System.EventArgs e) {
 			cmbVals.Items.Clear();
-			foreach(RcVal v in data.vals.List){
+			foreach (RcVal v in data.vals.List) {
 				cmbVals.Items.Add(miLuaFuncs.Checked ? v.ValName.ToUpper() : v.ValName);
 			}
 		}
@@ -423,19 +415,19 @@ namespace rcm
 		private void cmbNames_Enter(object sender, System.EventArgs e) {
 			cmbNames.Items.Clear();
 			RcChipBase chip;
-			for(int i = 0;i < RcData.MaxChipCount;i++){
+			for (int i = 0; i < RcData.MaxChipCount; i++) {
 				chip = data.GetChipFromLib(i);
-				if(chip != null && chip.Name != null && chip.Name != "")
+				if (chip != null && chip.Name != null && chip.Name != "")
 					cmbNames.Items.Add(miLuaFuncs.Checked ? chip.Name.ToUpper() : chip.Name);
 			}
 		}
 
 		private void cmbInsertion_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e) {
-			if(e.KeyChar == 13){
+			if (e.KeyChar == 13) {
 				int selStart, selEnd;
 				txtScript.GetSelection(out selStart, out selEnd);
 				txtScript.Document.Replace(((ComboBox)sender).Text, selStart, selEnd);
-			//	txtScript.SelectedText = ((ComboBox)sender).Text;
+				//	txtScript.SelectedText = ((ComboBox)sender).Text;
 				txtScript.Focus();
 			}
 		}
@@ -476,7 +468,7 @@ namespace rcm
 			public FunctionEntry(int cat, string txt) {
 				Category = cat;
 				Text = txt;
-				Debug.WriteLine(string.Format("new FunctionEntry({0},{1})", cat,txt));
+				Debug.WriteLine(string.Format("new FunctionEntry({0},{1})", cat, txt));
 			}
 			public override string ToString() {
 				return Text;
@@ -508,7 +500,7 @@ namespace rcm
 						i++;
 					}
 					else // if (inputswitch)
-						funcs.Add(new FunctionEntry(i-1, input));
+						funcs.Add(new FunctionEntry(i - 1, input));
 				}
 			}
 			else if (miLuaFuncs.Checked) {
@@ -532,15 +524,15 @@ namespace rcm
 
 		private void miCatEnable_Click(object sender, System.EventArgs e) {
 			MenuItem item = (MenuItem)sender;
-			for(int i = 0;i < functionCategory.Length; i++){
-				if(functionCategory[i] == "#" + item.Text)
+			for (int i = 0; i < functionCategory.Length; i++) {
+				if (functionCategory[i] == "#" + item.Text)
 					functionCategoryEnable[i] = item.Checked = !item.Checked;
 			}
 			functionList = null;
 		}
 
 		private void cmbFunction_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e) {
-			if(e.KeyChar == 13){
+			if (e.KeyChar == 13) {
 				int selStart, selEnd;
 				txtScript.GetSelection(out selStart, out selEnd);
 				txtScript.Document.Replace(((ComboBox)sender).Text.Split(':')[0], selStart, selEnd);
@@ -550,8 +542,8 @@ namespace rcm
 		}
 
 		private void miLuaFuncs_Click(object sender, System.EventArgs e) {
-			if(miLuaFuncs.Checked == false){
-				if(MessageBox.Show("スクリプト形式を変更しても、コードは変換されません。\n\nそれでも変更しますか？","スクリプト形式変更確認",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation,MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+			if (miLuaFuncs.Checked == false) {
+				if (MessageBox.Show("スクリプト形式を変更しても、コードは変換されません。\n\nそれでも変更しますか？", "スクリプト形式変更確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
 					return;
 			}
 			miScriptFuncs.Checked = false;
@@ -561,8 +553,8 @@ namespace rcm
 		}
 
 		private void miScriptFuncs_Click(object sender, System.EventArgs e) {
-			if(miScriptFuncs.Checked == false){
-				if(MessageBox.Show("スクリプト形式を変更しても、コードは変換されません。\n\nそれでも変更しますか？","スクリプト形式変更確認",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation,MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+			if (miScriptFuncs.Checked == false) {
+				if (MessageBox.Show("スクリプト形式を変更しても、コードは変換されません。\n\nそれでも変更しますか？", "スクリプト形式変更確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
 					return;
 			}
 			miScriptFuncs.Checked = true;
@@ -572,12 +564,12 @@ namespace rcm
 		}
 
 		private void frmScript_Load(object sender, System.EventArgs e) {
-			try{
+			try {
 				System.IO.StreamReader file = new System.IO.StreamReader(Application.StartupPath + "\\func.cfg");
 
 				int val = int.Parse(file.ReadLine());
 
-				for(int i = 0;i < functionCategory.Length;i++){
+				for (int i = 0; i < functionCategory.Length; i++) {
 					functionCategoryEnable[i] = ((val & (1 << i)) > 0);
 				}
 				file.Close();
@@ -594,16 +586,16 @@ namespace rcm
 				miCatEnable9.Checked = functionCategoryEnable[9];
 				miCatEnable10.Checked = functionCategoryEnable[10];
 			}
-			catch{}
+			catch { }
 
 			setupAzuki();
 		}
 
-		~frmScript(){
+		~frmScript() {
 			System.IO.StreamWriter file = new System.IO.StreamWriter(Application.StartupPath + "\\func.cfg");
 
 			int val = 0;
-			for(int i = 0;i < functionCategory.Length;i++){
+			for (int i = 0; i < functionCategory.Length; i++) {
 				val |= (functionCategoryEnable[i] ? 1 : 0) << i;
 			}
 			file.Write(val.ToString());
@@ -612,8 +604,8 @@ namespace rcm
 		}
 
 		private void miCloseWithoutSave_Click(object sender, System.EventArgs e) {
-			if(MessageBox.Show("編集内容は保存されません。ウィンドウを閉じますか？","変更破棄確認",MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)
-				== DialogResult.Yes){
+			if (MessageBox.Show("編集内容は保存されません。ウィンドウを閉じますか？", "変更破棄確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+				== DialogResult.Yes) {
 				this.Modified = false;
 				this.Close();
 			}
@@ -775,11 +767,11 @@ namespace rcm
 			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Type, Color.Gold, Color.White); // ライブラリ名(Luaのみ)
 			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Number, Color.DarkGreen, Color.White); // 数値
 
-			
+
 		}
 
 		private void txtScript_Validated(object sender, EventArgs e) {
-		//	setupAzuki();
+			//	setupAzuki();
 		}
 
 		private void txtScript_Enter(object sender, EventArgs e) {

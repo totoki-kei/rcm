@@ -44,7 +44,7 @@
 追加点：
 ・スクリプト編集部分の色分け
 	Azuki テキストエディタエンジンをお借りしています。
-	( http://azuki.sourceforge.jp/index.html )
+	( https://ja.osdn.net/projects/azuki/ )
 	とりあえずチップ名・Val変数名・RigidChips関数名は色がつくはずです。
 	スクリプト内定義の変数に色をつける予定はありません。
 	あと、遙か昔に知り合いから要望があった関数名補完とかは後回しです。

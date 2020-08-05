@@ -1627,9 +1627,6 @@ namespace RigidChips {
 			var body = new StringBuilder();
 			var scr = new StringBuilder();
 
-			int pos = 0;
-			bool finished = false;
-
 			var itr = new SourceIterator(filedata);
 			foreach (char c in itr) {
 				tokenBuffer.Append(c);

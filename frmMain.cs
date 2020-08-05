@@ -73,7 +73,7 @@ namespace rcm {
 		Vector3 CamNext;
 		int ScrollCount = 0;
 
-		ToolBarButton selected; // 古い仕様
+		//ToolBarButton selected; // 古い仕様
 		ToolStripButton selectedButton;
 
 		bool Pause = false;
@@ -2573,7 +2573,7 @@ namespace rcm {
 				catch(Exception e2){
 					throw new IOException("エラーダンプに失敗しました : " + e2.Message, e);
 				}
-				throw e;
+				throw;
 			}
 #else
 			// デバッグ時は、例外は外まで飛ばす。

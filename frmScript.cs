@@ -16,10 +16,14 @@ namespace rcm
 	public class frmScript : System.Windows.Forms.Form {
 		RcData data;
 		frmMain mainForm;
-		
+
 		bool Modified {
 			get { return txtScript.Document.IsDirty; }
-			set { txtScript.Document.IsDirty = value; }
+			set {
+				if (!value) {
+					txtScript.Document.IsDirty = value;
+				}
+			}
 		}
 
 		string[] functionCategory = {
@@ -45,7 +49,7 @@ namespace rcm
 		private System.Windows.Forms.MenuItem miSave;
 		private System.Windows.Forms.MenuItem miCloseWithSave;
 		private System.Windows.Forms.MenuItem miCloseWithoutSave;
-		private Sgry.Azuki.Windows.AzukiControl txtScript;
+		private Sgry.Azuki.WinForms.AzukiControl txtScript;
 		private System.Windows.Forms.ComboBox cmbFunction;
 		private System.Windows.Forms.MenuItem miFuncList;
 		private System.Windows.Forms.MenuItem miScriptFuncs;
@@ -130,7 +134,7 @@ namespace rcm
 			this.panelInsertion = new System.Windows.Forms.Panel();
 			this.cmbFunction = new System.Windows.Forms.ComboBox();
 			this.cmbNames = new System.Windows.Forms.ComboBox();
-			this.txtScript = new Sgry.Azuki.Windows.AzukiControl();
+			this.txtScript = new Sgry.Azuki.WinForms.AzukiControl();
 			this.panelInsertion.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -462,7 +466,7 @@ namespace rcm
 		}
 
 		private void txtScript_TextChanged(object sender, System.EventArgs e) {
-			Modified = true;
+			//Modified = true;
 			Debug.WriteLine("txtScript_TextChanged called");
 		}
 

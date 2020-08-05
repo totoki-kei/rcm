@@ -82,7 +82,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Azuki, Version=1.5.0.35064, Culture=neutral, PublicKeyToken=46b77eb7f2d82aba, processorArchitecture=MSIL">
+    <Reference Include="Azuki, Version=1.7.13.20355, Culture=neutral, PublicKeyToken=46b77eb7f2d82aba, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>content\Azuki.dll</HintPath>
     </Reference>

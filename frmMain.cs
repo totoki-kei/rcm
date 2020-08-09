@@ -6246,10 +6246,17 @@ namespace rcm {
 		bool[] previewKeys = new bool[17];
 		private void frmMain_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
 			if (PreviewMode) {
+				if (e.KeyCode == Keys.Escape) {
+					SwitchPreviewMode();
+					e.Handled = true;
+					return;
+				}
+
 				int i = Array.IndexOf(RcKeyList.KeyMap, e.KeyCode);
-				if (i < 0) return;
-				previewKeys[i] = true;
-				e.Handled = true;
+				if (i >= 0) {
+					previewKeys[i] = true;
+					e.Handled = true;
+				}
 			}
 		}
 
@@ -6532,7 +6539,8 @@ namespace rcm {
 							miEdit,
 							miTool,
 						},
-						m => m.Enabled = !value);
+						m => m.Enabled = !value
+					);
 
 				}
 			}
@@ -6540,6 +6548,10 @@ namespace rcm {
 
 		bool koukakuMode;
 		private void btnEditPanel_Click(object sender, System.EventArgs e) {
+			SwitchPreviewMode();
+		}
+
+		private void SwitchPreviewMode() {
 			this.SuspendLayout();
 			koukakuMode = !koukakuMode;
 			toolStripContainer1.TopToolStripPanelVisible = labelTip.Visible = panelCtrl.Visible = !koukakuMode;

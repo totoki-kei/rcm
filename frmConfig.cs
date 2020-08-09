@@ -1,10 +1,10 @@
-using RigidChips;
+ï»¿using RigidChips;
 using System;
 using System.Windows.Forms;
 
 namespace rcm {
 	/// <summary>
-	/// İ’èƒ_ƒCƒAƒƒOB
+	/// è¨­å®šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã€‚
 	/// </summary>
 	public class frmConfig : System.Windows.Forms.Form {
 		RcDrawOptions optDraw;
@@ -92,12 +92,12 @@ namespace rcm {
 
 		public frmConfig(frmMain mainform) {
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
 			//
-			// TODO: InitializeComponent ŒÄ‚Ño‚µ‚ÌŒã‚ÉAƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: InitializeComponent å‘¼ã³å‡ºã—ã®å¾Œã«ã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			mainwindow = mainform;
 			optDraw = mainform.rcdata.DrawOption;
@@ -115,7 +115,7 @@ namespace rcm {
 			new RcChipFrame(mainform.rcdata, buff, RcJointPosition.East);
 			attr.Const = 0.2f;
 			new RcChipFrame(mainform.rcdata, buff, RcJointPosition.West)["Damper"] = attr;
-			new RcChipTrim(mainform.rcdata, chipSample, RcJointPosition.North).Comment = "‚±‚ê‚ÍƒRƒƒ“ƒg‚Å‚·B";
+			new RcChipTrim(mainform.rcdata, chipSample, RcJointPosition.North).Comment = "ã“ã‚Œã¯ã‚³ãƒ¡ãƒ³ãƒˆã§ã™ã€‚";
 			chipSample.Name = "Root";
 
 			mainform.rcdata.CheckBackTrack();
@@ -131,7 +131,7 @@ namespace rcm {
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose(bool disposing) {
 			if (disposing) {
@@ -142,10 +142,10 @@ namespace rcm {
 			base.Dispose(disposing);
 		}
 
-		#region Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi‚Å¶¬‚³‚ê‚½ƒR[ƒh 
+		#region Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠã§ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ 
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
@@ -272,7 +272,7 @@ namespace rcm {
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Size = new System.Drawing.Size(488, 247);
 			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "•\¦";
+			this.tabPage1.Text = "è¡¨ç¤º";
 			// 
 			// groupBox4
 			// 
@@ -297,7 +297,7 @@ namespace rcm {
 			this.groupBox4.Size = new System.Drawing.Size(232, 120);
 			this.groupBox4.TabIndex = 11;
 			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "‘¼";
+			this.groupBox4.Text = "ä»–";
 			// 
 			// chkShowAlways
 			// 
@@ -305,8 +305,8 @@ namespace rcm {
 			this.chkShowAlways.Name = "chkShowAlways";
 			this.chkShowAlways.Size = new System.Drawing.Size(128, 16);
 			this.chkShowAlways.TabIndex = 34;
-			this.chkShowAlways.Text = "ƒKƒCƒh“™‚Íí‚É•\¦";
-			this.ttDescription.SetToolTip(this.chkShowAlways, "‹“_•ÏX’†‚àƒKƒCƒh—Ş‚ğ•\¦‚·‚é‚æ‚¤‚É‚µ‚Ü‚·B");
+			this.chkShowAlways.Text = "ã‚¬ã‚¤ãƒ‰ç­‰ã¯å¸¸ã«è¡¨ç¤º";
+			this.ttDescription.SetToolTip(this.chkShowAlways, "è¦–ç‚¹å¤‰æ›´ä¸­ã‚‚ã‚¬ã‚¤ãƒ‰é¡ã‚’è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ã—ã¾ã™ã€‚");
 			// 
 			// label10
 			// 
@@ -314,7 +314,7 @@ namespace rcm {
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(16, 16);
 			this.label10.TabIndex = 33;
-			this.label10.Text = "— ";
+			this.label10.Text = "è£";
 			// 
 			// label9
 			// 
@@ -322,7 +322,7 @@ namespace rcm {
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(56, 16);
 			this.label9.TabIndex = 32;
-			this.label9.Text = "ƒJ[ƒ\ƒ‹•\";
+			this.label9.Text = "ã‚«ãƒ¼ã‚½ãƒ«è¡¨";
 			// 
 			// label8
 			// 
@@ -330,7 +330,7 @@ namespace rcm {
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(32, 16);
 			this.label8.TabIndex = 31;
-			this.label8.Text = "”wŒi";
+			this.label8.Text = "èƒŒæ™¯";
 			// 
 			// label7
 			// 
@@ -338,7 +338,7 @@ namespace rcm {
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(16, 16);
 			this.label7.TabIndex = 30;
-			this.label7.Text = "“ì";
+			this.label7.Text = "å—";
 			// 
 			// label6
 			// 
@@ -346,7 +346,7 @@ namespace rcm {
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(16, 16);
 			this.label6.TabIndex = 29;
-			this.label6.Text = "“Œ";
+			this.label6.Text = "æ±";
 			// 
 			// label5
 			// 
@@ -354,7 +354,7 @@ namespace rcm {
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(16, 16);
 			this.label5.TabIndex = 28;
-			this.label5.Text = "¼";
+			this.label5.Text = "è¥¿";
 			// 
 			// label4
 			// 
@@ -362,7 +362,7 @@ namespace rcm {
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(16, 16);
 			this.label4.TabIndex = 27;
-			this.label4.Text = "–k";
+			this.label4.Text = "åŒ—";
 			// 
 			// clrNorth
 			// 
@@ -372,7 +372,7 @@ namespace rcm {
 			this.clrNorth.Size = new System.Drawing.Size(24, 24);
 			this.clrNorth.TabIndex = 25;
 			this.clrNorth.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrNorth, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrNorth, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrNorth.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrWest
@@ -383,7 +383,7 @@ namespace rcm {
 			this.clrWest.Size = new System.Drawing.Size(24, 24);
 			this.clrWest.TabIndex = 23;
 			this.clrWest.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrWest, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrWest, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrWest.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrEast
@@ -394,7 +394,7 @@ namespace rcm {
 			this.clrEast.Size = new System.Drawing.Size(24, 24);
 			this.clrEast.TabIndex = 21;
 			this.clrEast.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrEast, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrEast, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrEast.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrSouth
@@ -405,7 +405,7 @@ namespace rcm {
 			this.clrSouth.Size = new System.Drawing.Size(24, 24);
 			this.clrSouth.TabIndex = 19;
 			this.clrSouth.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrSouth, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrSouth, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrSouth.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrCursorB
@@ -416,7 +416,7 @@ namespace rcm {
 			this.clrCursorB.Size = new System.Drawing.Size(24, 24);
 			this.clrCursorB.TabIndex = 17;
 			this.clrCursorB.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrCursorB, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrCursorB, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrCursorB.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrCursorF
@@ -427,7 +427,7 @@ namespace rcm {
 			this.clrCursorF.Size = new System.Drawing.Size(24, 24);
 			this.clrCursorF.TabIndex = 15;
 			this.clrCursorF.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrCursorF, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrCursorF, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrCursorF.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrBack
@@ -438,7 +438,7 @@ namespace rcm {
 			this.clrBack.Size = new System.Drawing.Size(24, 24);
 			this.clrBack.TabIndex = 13;
 			this.clrBack.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrBack, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrBack, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrBack.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// chkCameraOrtho
@@ -447,8 +447,8 @@ namespace rcm {
 			this.chkCameraOrtho.Name = "chkCameraOrtho";
 			this.chkCameraOrtho.Size = new System.Drawing.Size(80, 16);
 			this.chkCameraOrtho.TabIndex = 0;
-			this.chkCameraOrtho.Text = "•½s“Š‰e";
-			this.ttDescription.SetToolTip(this.chkCameraOrtho, "‰œs‚«‚Ì‚È‚¢•\¦•û–@‚ğ—p‚¢‚Ü‚·B");
+			this.chkCameraOrtho.Text = "å¹³è¡ŒæŠ•å½±";
+			this.ttDescription.SetToolTip(this.chkCameraOrtho, "å¥¥è¡Œãã®ãªã„è¡¨ç¤ºæ–¹æ³•ã‚’ç”¨ã„ã¾ã™ã€‚");
 			// 
 			// groupBox3
 			// 
@@ -469,7 +469,7 @@ namespace rcm {
 			this.groupBox3.Size = new System.Drawing.Size(232, 112);
 			this.groupBox3.TabIndex = 10;
 			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "²";
+			this.groupBox3.Text = "è»¸";
 			// 
 			// chkZNegAxis
 			// 
@@ -477,8 +477,8 @@ namespace rcm {
 			this.chkZNegAxis.Name = "chkZNegAxis";
 			this.chkZNegAxis.Size = new System.Drawing.Size(64, 24);
 			this.chkZNegAxis.TabIndex = 27;
-			this.chkZNegAxis.Text = "ZÀ•W-";
-			this.ttDescription.SetToolTip(this.chkZNegAxis, "ZÀ•W•‰•ûŒü(è‘O)‚Ìƒ‰ƒCƒ“‚ğ•\¦‚µ‚Ü‚·B");
+			this.chkZNegAxis.Text = "Zåº§æ¨™-";
+			this.ttDescription.SetToolTip(this.chkZNegAxis, "Zåº§æ¨™è² æ–¹å‘(æ‰‹å‰)ã®ãƒ©ã‚¤ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚");
 			// 
 			// chkYNegAxis
 			// 
@@ -486,8 +486,8 @@ namespace rcm {
 			this.chkYNegAxis.Name = "chkYNegAxis";
 			this.chkYNegAxis.Size = new System.Drawing.Size(64, 24);
 			this.chkYNegAxis.TabIndex = 26;
-			this.chkYNegAxis.Text = "YÀ•W-";
-			this.ttDescription.SetToolTip(this.chkYNegAxis, "YÀ•W•‰•ûŒü(‰º)‚Ìƒ‰ƒCƒ“‚ğ•\¦‚µ‚Ü‚·B");
+			this.chkYNegAxis.Text = "Yåº§æ¨™-";
+			this.ttDescription.SetToolTip(this.chkYNegAxis, "Yåº§æ¨™è² æ–¹å‘(ä¸‹)ã®ãƒ©ã‚¤ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚");
 			// 
 			// chkXNegAxis
 			// 
@@ -495,8 +495,8 @@ namespace rcm {
 			this.chkXNegAxis.Name = "chkXNegAxis";
 			this.chkXNegAxis.Size = new System.Drawing.Size(64, 24);
 			this.chkXNegAxis.TabIndex = 25;
-			this.chkXNegAxis.Text = "XÀ•W-";
-			this.ttDescription.SetToolTip(this.chkXNegAxis, "XÀ•W•‰•ûŒü(¶)‚Ìƒ‰ƒCƒ“‚ğ•\¦‚µ‚Ü‚·B");
+			this.chkXNegAxis.Text = "Xåº§æ¨™-";
+			this.ttDescription.SetToolTip(this.chkXNegAxis, "Xåº§æ¨™è² æ–¹å‘(å·¦)ã®ãƒ©ã‚¤ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚");
 			// 
 			// chkZAxis
 			// 
@@ -504,8 +504,8 @@ namespace rcm {
 			this.chkZAxis.Name = "chkZAxis";
 			this.chkZAxis.Size = new System.Drawing.Size(64, 24);
 			this.chkZAxis.TabIndex = 24;
-			this.chkZAxis.Text = "ZÀ•W+";
-			this.ttDescription.SetToolTip(this.chkZAxis, "ZÀ•W³•ûŒü(‰œ)‚Ìƒ‰ƒCƒ“‚ğ•\¦‚µ‚Ü‚·B");
+			this.chkZAxis.Text = "Zåº§æ¨™+";
+			this.ttDescription.SetToolTip(this.chkZAxis, "Zåº§æ¨™æ­£æ–¹å‘(å¥¥)ã®ãƒ©ã‚¤ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚");
 			// 
 			// chkYAxis
 			// 
@@ -513,8 +513,8 @@ namespace rcm {
 			this.chkYAxis.Name = "chkYAxis";
 			this.chkYAxis.Size = new System.Drawing.Size(64, 24);
 			this.chkYAxis.TabIndex = 23;
-			this.chkYAxis.Text = "YÀ•W+";
-			this.ttDescription.SetToolTip(this.chkYAxis, "YÀ•W³•ûŒü(ã)‚Ìƒ‰ƒCƒ“‚ğ•\¦‚µ‚Ü‚·B");
+			this.chkYAxis.Text = "Yåº§æ¨™+";
+			this.ttDescription.SetToolTip(this.chkYAxis, "Yåº§æ¨™æ­£æ–¹å‘(ä¸Š)ã®ãƒ©ã‚¤ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚");
 			// 
 			// chkXAxis
 			// 
@@ -522,8 +522,8 @@ namespace rcm {
 			this.chkXAxis.Name = "chkXAxis";
 			this.chkXAxis.Size = new System.Drawing.Size(64, 24);
 			this.chkXAxis.TabIndex = 22;
-			this.chkXAxis.Text = "XÀ•W+";
-			this.ttDescription.SetToolTip(this.chkXAxis, "XÀ•W³•ûŒü(‰E)‚Ìƒ‰ƒCƒ“‚ğ•\¦‚µ‚Ü‚·B");
+			this.chkXAxis.Text = "Xåº§æ¨™+";
+			this.ttDescription.SetToolTip(this.chkXAxis, "Xåº§æ¨™æ­£æ–¹å‘(å³)ã®ãƒ©ã‚¤ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚");
 			// 
 			// clrZn
 			// 
@@ -533,7 +533,7 @@ namespace rcm {
 			this.clrZn.Size = new System.Drawing.Size(24, 24);
 			this.clrZn.TabIndex = 21;
 			this.clrZn.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrZn, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrZn, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrZn.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrZp
@@ -544,7 +544,7 @@ namespace rcm {
 			this.clrZp.Size = new System.Drawing.Size(24, 24);
 			this.clrZp.TabIndex = 19;
 			this.clrZp.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrZp, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrZp, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrZp.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrYn
@@ -555,7 +555,7 @@ namespace rcm {
 			this.clrYn.Size = new System.Drawing.Size(24, 24);
 			this.clrYn.TabIndex = 17;
 			this.clrYn.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrYn, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrYn, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrYn.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrYp
@@ -566,7 +566,7 @@ namespace rcm {
 			this.clrYp.Size = new System.Drawing.Size(24, 24);
 			this.clrYp.TabIndex = 15;
 			this.clrYp.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrYp, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrYp, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrYp.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrXn
@@ -577,7 +577,7 @@ namespace rcm {
 			this.clrXn.Size = new System.Drawing.Size(24, 24);
 			this.clrXn.TabIndex = 13;
 			this.clrXn.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrXn, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrXn, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrXn.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// clrXp
@@ -588,7 +588,7 @@ namespace rcm {
 			this.clrXp.Size = new System.Drawing.Size(24, 24);
 			this.clrXp.TabIndex = 11;
 			this.clrXp.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrXp, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrXp, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrXp.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// groupBox2
@@ -606,7 +606,7 @@ namespace rcm {
 			this.groupBox2.Size = new System.Drawing.Size(240, 120);
 			this.groupBox2.TabIndex = 9;
 			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "dS";
+			this.groupBox2.Text = "é‡å¿ƒ";
 			// 
 			// clrWeightGuide
 			// 
@@ -616,7 +616,7 @@ namespace rcm {
 			this.clrWeightGuide.Size = new System.Drawing.Size(24, 24);
 			this.clrWeightGuide.TabIndex = 15;
 			this.clrWeightGuide.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrWeightGuide, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrWeightGuide, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrWeightGuide.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// txtWeightAlpha
@@ -626,7 +626,7 @@ namespace rcm {
 			this.txtWeightAlpha.Size = new System.Drawing.Size(40, 19);
 			this.txtWeightAlpha.TabIndex = 14;
 			this.txtWeightAlpha.Text = "textBox3";
-			this.ttDescription.SetToolTip(this.txtWeightAlpha, "dSƒKƒCƒh‚Ì•s“§–¾“x‚Å‚·B¬‚³‚¢‚Ù‚Ç“§–¾‚É‚È‚è‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.txtWeightAlpha, "é‡å¿ƒã‚¬ã‚¤ãƒ‰ã®ä¸é€æ˜åº¦ã§ã™ã€‚å°ã•ã„ã»ã©é€æ˜ã«ãªã‚Šã¾ã™ã€‚");
 			this.txtWeightAlpha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValueInput_KeyPress);
 			// 
 			// label3
@@ -635,7 +635,7 @@ namespace rcm {
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(96, 16);
 			this.label3.TabIndex = 13;
-			this.label3.Text = "“§–¾“x(0.0 - 1.0)";
+			this.label3.Text = "é€æ˜åº¦(0.0 - 1.0)";
 			// 
 			// txtWeightSize
 			// 
@@ -644,7 +644,7 @@ namespace rcm {
 			this.txtWeightSize.Size = new System.Drawing.Size(40, 19);
 			this.txtWeightSize.TabIndex = 12;
 			this.txtWeightSize.Text = "textBox2";
-			this.ttDescription.SetToolTip(this.txtWeightSize, "dSƒKƒCƒh‚Ì‘å‚«‚³‚Å‚·B");
+			this.ttDescription.SetToolTip(this.txtWeightSize, "é‡å¿ƒã‚¬ã‚¤ãƒ‰ã®å¤§ãã•ã§ã™ã€‚");
 			this.txtWeightSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValueInput_KeyPress);
 			// 
 			// label2
@@ -653,7 +653,7 @@ namespace rcm {
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(96, 16);
 			this.label2.TabIndex = 11;
-			this.label2.Text = "‘å‚«‚³(•W€: 1.5)";
+			this.label2.Text = "å¤§ãã•(æ¨™æº–: 1.5)";
 			// 
 			// chkShowWeightGuide
 			// 
@@ -661,8 +661,8 @@ namespace rcm {
 			this.chkShowWeightGuide.Name = "chkShowWeightGuide";
 			this.chkShowWeightGuide.Size = new System.Drawing.Size(120, 24);
 			this.chkShowWeightGuide.TabIndex = 10;
-			this.chkShowWeightGuide.Text = "dS‚ÉƒKƒCƒh‚ğ•\¦";
-			this.ttDescription.SetToolTip(this.chkShowWeightGuide, "dSˆÊ’u‚É•HŒ`‚ÌƒKƒCƒh‚ğ•\¦‚µ‚Ü‚·B");
+			this.chkShowWeightGuide.Text = "é‡å¿ƒã«ã‚¬ã‚¤ãƒ‰ã‚’è¡¨ç¤º";
+			this.ttDescription.SetToolTip(this.chkShowWeightGuide, "é‡å¿ƒä½ç½®ã«è±å½¢ã®ã‚¬ã‚¤ãƒ‰ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚");
 			// 
 			// clrWeight
 			// 
@@ -672,7 +672,7 @@ namespace rcm {
 			this.clrWeight.Size = new System.Drawing.Size(24, 24);
 			this.clrWeight.TabIndex = 9;
 			this.clrWeight.TabStop = false;
-			this.ttDescription.SetToolTip(this.clrWeight, "F‚ğİ’è‚µ‚Ü‚·B");
+			this.ttDescription.SetToolTip(this.clrWeight, "è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚");
 			this.clrWeight.Click += new System.EventHandler(this.ColorBox_Click);
 			// 
 			// chkShowWeight
@@ -681,8 +681,8 @@ namespace rcm {
 			this.chkShowWeight.Name = "chkShowWeight";
 			this.chkShowWeight.Size = new System.Drawing.Size(112, 24);
 			this.chkShowWeight.TabIndex = 7;
-			this.chkShowWeight.Text = "dSˆÊ’u‚ğ•\¦";
-			this.ttDescription.SetToolTip(this.chkShowWeight, "dS‚ğ•\‚·ƒ‰ƒCƒ“‚ğ•\¦‚µ‚Ü‚·B");
+			this.chkShowWeight.Text = "é‡å¿ƒä½ç½®ã‚’è¡¨ç¤º";
+			this.ttDescription.SetToolTip(this.chkShowWeight, "é‡å¿ƒã‚’è¡¨ã™ãƒ©ã‚¤ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚");
 			// 
 			// groupBox1
 			// 
@@ -699,7 +699,7 @@ namespace rcm {
 			this.groupBox1.Size = new System.Drawing.Size(240, 112);
 			this.groupBox1.TabIndex = 8;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "ƒ`ƒbƒv";
+			this.groupBox1.Text = "ãƒãƒƒãƒ—";
 			// 
 			// rbGChip
 			// 
@@ -707,8 +707,8 @@ namespace rcm {
 			this.rbGChip.Name = "rbGChip";
 			this.rbGChip.Size = new System.Drawing.Size(64, 16);
 			this.rbGChip.TabIndex = 14;
-			this.rbGChip.Text = "HHG.x";
-			this.ttDescription.SetToolTip(this.rbGChip, "ChipG.x, RudderG.x‚Æ‚¢‚¤–¼‘O‚Ì•Êƒtƒ@ƒCƒ‹‚ğg‚¢‚Ü‚·B");
+			this.rbGChip.Text = "ï¼Ÿï¼ŸG.x";
+			this.ttDescription.SetToolTip(this.rbGChip, "ChipG.x, RudderG.xã¨ã„ã†åå‰ã®åˆ¥ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ã„ã¾ã™ã€‚");
 			// 
 			// rbFrame
 			// 
@@ -716,8 +716,8 @@ namespace rcm {
 			this.rbFrame.Name = "rbFrame";
 			this.rbFrame.Size = new System.Drawing.Size(64, 16);
 			this.rbFrame.TabIndex = 13;
-			this.rbFrame.Text = "ƒtƒŒ[ƒ€";
-			this.ttDescription.SetToolTip(this.rbFrame, "ƒS[ƒXƒg‰»‚µ‚Ä‚¢‚È‚¢ƒtƒŒ[ƒ€‚Æ“¯ˆê‚Ì•\¦‚ğ‚µ‚Ü‚·B");
+			this.rbFrame.Text = "ãƒ•ãƒ¬ãƒ¼ãƒ ";
+			this.ttDescription.SetToolTip(this.rbFrame, "ã‚´ãƒ¼ã‚¹ãƒˆåŒ–ã—ã¦ã„ãªã„ãƒ•ãƒ¬ãƒ¼ãƒ ã¨åŒä¸€ã®è¡¨ç¤ºã‚’ã—ã¾ã™ã€‚");
 			// 
 			// rbAlpha
 			// 
@@ -725,8 +725,8 @@ namespace rcm {
 			this.rbAlpha.Name = "rbAlpha";
 			this.rbAlpha.Size = new System.Drawing.Size(64, 16);
 			this.rbAlpha.TabIndex = 12;
-			this.rbAlpha.Text = "”¼“§–¾";
-			this.ttDescription.SetToolTip(this.rbAlpha, "Frame‚È‚çChip‚ğARudderF‚È‚çRudder‚ÌA‚»‚ê‚ç‚Ì”¼“§–¾•\¦‚ğs‚¢‚Ü‚·B");
+			this.rbAlpha.Text = "åŠé€æ˜";
+			this.ttDescription.SetToolTip(this.rbAlpha, "Frameãªã‚‰Chipã‚’ã€RudderFãªã‚‰Rudderã®ã€ãã‚Œã‚‰ã®åŠé€æ˜è¡¨ç¤ºã‚’è¡Œã„ã¾ã™ã€‚");
 			// 
 			// chkShowGhost
 			// 
@@ -734,8 +734,8 @@ namespace rcm {
 			this.chkShowGhost.Name = "chkShowGhost";
 			this.chkShowGhost.Size = new System.Drawing.Size(128, 16);
 			this.chkShowGhost.TabIndex = 11;
-			this.chkShowGhost.Text = "ƒS[ƒXƒgƒ`ƒbƒv‚ğ•\¦";
-			this.ttDescription.SetToolTip(this.chkShowGhost, "ƒS[ƒXƒgƒ`ƒbƒv‚ğ‰Â‹‰»‚µ‚Ü‚·B");
+			this.chkShowGhost.Text = "ã‚´ãƒ¼ã‚¹ãƒˆãƒãƒƒãƒ—ã‚’è¡¨ç¤º";
+			this.ttDescription.SetToolTip(this.chkShowGhost, "ã‚´ãƒ¼ã‚¹ãƒˆãƒãƒƒãƒ—ã‚’å¯è¦–åŒ–ã—ã¾ã™ã€‚");
 			// 
 			// txtSwellRate
 			// 
@@ -752,7 +752,7 @@ namespace rcm {
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 24);
 			this.label1.TabIndex = 9;
-			this.label1.Text = "–c’£ŒW”(•W€:0.5)";
+			this.label1.Text = "è†¨å¼µä¿‚æ•°(æ¨™æº–:0.5)";
 			// 
 			// chkBaloonSwell
 			// 
@@ -760,8 +760,8 @@ namespace rcm {
 			this.chkBaloonSwell.Name = "chkBaloonSwell";
 			this.chkBaloonSwell.Size = new System.Drawing.Size(128, 16);
 			this.chkBaloonSwell.TabIndex = 8;
-			this.chkBaloonSwell.Text = "ƒoƒ‹[ƒ“‚ğ–c’£‚³‚¹‚é";
-			this.ttDescription.SetToolTip(this.chkBaloonSwell, "Jetƒoƒ‹[ƒ“‚ÌPower‚Ì’l‚É‚æ‚Á‚Ä‘å‚«‚³‚ª•Ï‚í‚é‚æ‚¤‚É‚µ‚Ü‚·B");
+			this.chkBaloonSwell.Text = "ãƒãƒ«ãƒ¼ãƒ³ã‚’è†¨å¼µã•ã›ã‚‹";
+			this.ttDescription.SetToolTip(this.chkBaloonSwell, "Jetãƒãƒ«ãƒ¼ãƒ³ã®Powerã®å€¤ã«ã‚ˆã£ã¦å¤§ãã•ãŒå¤‰ã‚ã‚‹ã‚ˆã†ã«ã—ã¾ã™ã€‚");
 			// 
 			// chkShowCowl
 			// 
@@ -769,8 +769,8 @@ namespace rcm {
 			this.chkShowCowl.Name = "chkShowCowl";
 			this.chkShowCowl.Size = new System.Drawing.Size(104, 16);
 			this.chkShowCowl.TabIndex = 7;
-			this.chkShowCowl.Text = "ƒJƒEƒ‹‚ğ•\¦";
-			this.ttDescription.SetToolTip(this.chkShowCowl, "ƒ`ƒFƒbƒN‚ğ‚Í‚¸‚·‚ÆƒJƒEƒ‹‚ğ”ñ•\¦‚É‚µ‚Ü‚·B");
+			this.chkShowCowl.Text = "ã‚«ã‚¦ãƒ«ã‚’è¡¨ç¤º";
+			this.ttDescription.SetToolTip(this.chkShowCowl, "ãƒã‚§ãƒƒã‚¯ã‚’ã¯ãšã™ã¨ã‚«ã‚¦ãƒ«ã‚’éè¡¨ç¤ºã«ã—ã¾ã™ã€‚");
 			// 
 			// tabPage2
 			// 
@@ -788,7 +788,7 @@ namespace rcm {
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Size = new System.Drawing.Size(488, 247);
 			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "RCDo—Í";
+			this.tabPage2.Text = "RCDå‡ºåŠ›";
 			// 
 			// label13
 			// 
@@ -796,7 +796,7 @@ namespace rcm {
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(176, 16);
 			this.label13.TabIndex = 9;
-			this.label13.Text = "¦ u“K—pv‚ğ‰Ÿ‚·‚Æ”½‰f‚³‚ê‚Ü‚·";
+			this.label13.Text = "â€» ã€Œé©ç”¨ã€ã‚’æŠ¼ã™ã¨åæ˜ ã•ã‚Œã¾ã™";
 			// 
 			// chkPrintAllAttribute
 			// 
@@ -804,7 +804,7 @@ namespace rcm {
 			this.chkPrintAllAttribute.Name = "chkPrintAllAttribute";
 			this.chkPrintAllAttribute.Size = new System.Drawing.Size(176, 16);
 			this.chkPrintAllAttribute.TabIndex = 8;
-			this.chkPrintAllAttribute.Text = "‚·‚×‚Ä‚Ì‘®«‚ğ‘‚«o‚·";
+			this.chkPrintAllAttribute.Text = "ã™ã¹ã¦ã®å±æ€§ã‚’æ›¸ãå‡ºã™";
 			this.chkPrintAllAttribute.CheckedChanged += new System.EventHandler(this.updateOutputPreview);
 			// 
 			// chkCommaWithSpace
@@ -813,7 +813,7 @@ namespace rcm {
 			this.chkCommaWithSpace.Name = "chkCommaWithSpace";
 			this.chkCommaWithSpace.Size = new System.Drawing.Size(176, 16);
 			this.chkCommaWithSpace.TabIndex = 7;
-			this.chkCommaWithSpace.Text = "ƒJƒ“ƒ}‚ÉƒXƒy[ƒX‚ğ•t‚¯‚é";
+			this.chkCommaWithSpace.Text = "ã‚«ãƒ³ãƒã«ã‚¹ãƒšãƒ¼ã‚¹ã‚’ä»˜ã‘ã‚‹";
 			this.chkCommaWithSpace.CheckedChanged += new System.EventHandler(this.updateOutputPreview);
 			// 
 			// label11
@@ -822,7 +822,7 @@ namespace rcm {
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(32, 16);
 			this.label11.TabIndex = 6;
-			this.label11.Text = "ŒÂ”";
+			this.label11.Text = "å€‹æ•°";
 			// 
 			// txtIndentSpaceNum
 			// 
@@ -841,7 +841,7 @@ namespace rcm {
 			this.chkIndentBySpace.Name = "chkIndentBySpace";
 			this.chkIndentBySpace.Size = new System.Drawing.Size(176, 16);
 			this.chkIndentBySpace.TabIndex = 4;
-			this.chkIndentBySpace.Text = "ƒ^ƒu‚Å‚È‚­ƒXƒy[ƒX‚ÅƒCƒ“ƒfƒ“ƒg";
+			this.chkIndentBySpace.Text = "ã‚¿ãƒ–ã§ãªãã‚¹ãƒšãƒ¼ã‚¹ã§ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆ";
 			this.chkIndentBySpace.CheckedChanged += new System.EventHandler(this.updateOutputPreview);
 			// 
 			// chkIndentEnable
@@ -850,7 +850,7 @@ namespace rcm {
 			this.chkIndentEnable.Name = "chkIndentEnable";
 			this.chkIndentEnable.Size = new System.Drawing.Size(176, 16);
 			this.chkIndentEnable.TabIndex = 3;
-			this.chkIndentEnable.Text = "ƒCƒ“ƒfƒ“ƒg‚·‚é";
+			this.chkIndentEnable.Text = "ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆã™ã‚‹";
 			this.chkIndentEnable.CheckedChanged += new System.EventHandler(this.updateOutputPreview);
 			// 
 			// chkOpenBracketWithChipDefinition
@@ -859,7 +859,7 @@ namespace rcm {
 			this.chkOpenBracketWithChipDefinition.Name = "chkOpenBracketWithChipDefinition";
 			this.chkOpenBracketWithChipDefinition.Size = new System.Drawing.Size(176, 16);
 			this.chkOpenBracketWithChipDefinition.TabIndex = 2;
-			this.chkOpenBracketWithChipDefinition.Text = "u{v‚ğƒ`ƒbƒv’è‹`‚Æ“¯‚¶s‚É’u‚­";
+			this.chkOpenBracketWithChipDefinition.Text = "ã€Œ{ã€ã‚’ãƒãƒƒãƒ—å®šç¾©ã¨åŒã˜è¡Œã«ç½®ã";
 			this.chkOpenBracketWithChipDefinition.CheckedChanged += new System.EventHandler(this.updateOutputPreview);
 			// 
 			// chkReturnEndChipBracket
@@ -868,7 +868,7 @@ namespace rcm {
 			this.chkReturnEndChipBracket.Name = "chkReturnEndChipBracket";
 			this.chkReturnEndChipBracket.Size = new System.Drawing.Size(176, 16);
 			this.chkReturnEndChipBracket.TabIndex = 1;
-			this.chkReturnEndChipBracket.Text = "––”ö‚Ìƒ`ƒbƒv‚à‰üs‚·‚é";
+			this.chkReturnEndChipBracket.Text = "æœ«å°¾ã®ãƒãƒƒãƒ—ã‚‚æ”¹è¡Œã™ã‚‹";
 			this.chkReturnEndChipBracket.CheckedChanged += new System.EventHandler(this.updateOutputPreview);
 			// 
 			// groupBox5
@@ -879,13 +879,13 @@ namespace rcm {
 			this.groupBox5.Size = new System.Drawing.Size(264, 232);
 			this.groupBox5.TabIndex = 0;
 			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "ƒTƒ“ƒvƒ‹";
+			this.groupBox5.Text = "ã‚µãƒ³ãƒ—ãƒ«";
 			this.groupBox5.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox5_Paint);
 			// 
 			// txtOutputSample
 			// 
 			this.txtOutputSample.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.txtOutputSample.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.txtOutputSample.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.txtOutputSample.Location = new System.Drawing.Point(3, 15);
 			this.txtOutputSample.Multiline = true;
 			this.txtOutputSample.Name = "txtOutputSample";
@@ -907,7 +907,7 @@ namespace rcm {
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Size = new System.Drawing.Size(488, 247);
 			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "ƒGƒfƒBƒbƒg";
+			this.tabPage3.Text = "ã‚¨ãƒ‡ã‚£ãƒƒãƒˆ";
 			// 
 			// chkAttrAutoApply
 			// 
@@ -915,7 +915,7 @@ namespace rcm {
 			this.chkAttrAutoApply.Name = "chkAttrAutoApply";
 			this.chkAttrAutoApply.Size = new System.Drawing.Size(288, 16);
 			this.chkAttrAutoApply.TabIndex = 5;
-			this.chkAttrAutoApply.Text = "ƒ`ƒbƒv‚Ì‘®«•ÏX‚Í©“®‚Å“K—p‚·‚é";
+			this.chkAttrAutoApply.Text = "ãƒãƒƒãƒ—ã®å±æ€§å¤‰æ›´ã¯è‡ªå‹•ã§é©ç”¨ã™ã‚‹";
 			// 
 			// lblScrollValue
 			// 
@@ -931,7 +931,7 @@ namespace rcm {
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(256, 16);
 			this.label12.TabIndex = 3;
-			this.label12.Text = "ƒXƒNƒ[ƒ‹‚ÌƒtƒŒ[ƒ€”(0‚ÅˆêuA‘å‚«‚¢‚Ù‚Ç’x‚¢)";
+			this.label12.Text = "ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°(0ã§ä¸€ç¬ã€å¤§ãã„ã»ã©é…ã„)";
 			// 
 			// trkScrollFrame
 			// 
@@ -950,7 +950,7 @@ namespace rcm {
 			this.chkUnbisibleUnselectable.Name = "chkUnbisibleUnselectable";
 			this.chkUnbisibleUnselectable.Size = new System.Drawing.Size(312, 16);
 			this.chkUnbisibleUnselectable.TabIndex = 1;
-			this.chkUnbisibleUnselectable.Text = "”ñ•\¦‚ÌƒJƒEƒ‹‚ÆƒtƒŒ[ƒ€‚ÍƒNƒŠƒbƒN‚Å‘I‘ğ‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é";
+			this.chkUnbisibleUnselectable.Text = "éè¡¨ç¤ºã®ã‚«ã‚¦ãƒ«ã¨ãƒ•ãƒ¬ãƒ¼ãƒ ã¯ã‚¯ãƒªãƒƒã‚¯ã§é¸æŠã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹";
 			// 
 			// chkAttrCopy
 			// 
@@ -958,7 +958,7 @@ namespace rcm {
 			this.chkAttrCopy.Name = "chkAttrCopy";
 			this.chkAttrCopy.Size = new System.Drawing.Size(440, 16);
 			this.chkAttrCopy.TabIndex = 0;
-			this.chkAttrCopy.Text = "“¯í‚Ìƒ`ƒbƒv‚ğ”h¶ƒ`ƒbƒv‚Æ‚µ‚Ä’Ç‰Á‚µ‚½‚Æ‚«Aeƒ`ƒbƒv‚ÌAngleˆÈŠO‚Ì‘®«‚ğƒRƒs[‚·‚é";
+			this.chkAttrCopy.Text = "åŒç¨®ã®ãƒãƒƒãƒ—ã‚’æ´¾ç”Ÿãƒãƒƒãƒ—ã¨ã—ã¦è¿½åŠ ã—ãŸã¨ãã€è¦ªãƒãƒƒãƒ—ã®Angleä»¥å¤–ã®å±æ€§ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹";
 			// 
 			// btnOK
 			// 
@@ -976,7 +976,7 @@ namespace rcm {
 			this.btnApply.Name = "btnApply";
 			this.btnApply.Size = new System.Drawing.Size(80, 24);
 			this.btnApply.TabIndex = 2;
-			this.btnApply.Text = "“K—p";
+			this.btnApply.Text = "é©ç”¨";
 			this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
 			// 
 			// btnCancel
@@ -986,7 +986,7 @@ namespace rcm {
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(80, 24);
 			this.btnCancel.TabIndex = 3;
-			this.btnCancel.Text = "ƒLƒƒƒ“ƒZƒ‹";
+			this.btnCancel.Text = "ã‚­ãƒ£ãƒ³ã‚»ãƒ«";
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
 			// frmConfig
@@ -1004,7 +1004,7 @@ namespace rcm {
 			this.MinimizeBox = false;
 			this.Name = "frmConfig";
 			this.ShowInTaskbar = false;
-			this.Text = "Šeíİ’è";
+			this.Text = "å„ç¨®è¨­å®š";
 			this.Load += new System.EventHandler(this.frmConfig_Load);
 			this.Closing += new System.ComponentModel.CancelEventHandler(this.frmConfig_Closing);
 			this.tabControl1.ResumeLayout(false);

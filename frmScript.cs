@@ -1,14 +1,15 @@
-using RigidChips;
+ï»¿using RigidChips;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace rcm {
 	/// <summary>
-	/// ƒXƒNƒŠƒvƒg•ÒWƒtƒH[ƒ€B
+	/// ã‚¹ã‚¯ãƒªãƒ—ãƒˆç·¨é›†ãƒ•ã‚©ãƒ¼ãƒ ã€‚
 	/// </summary>
 	public class frmScript : System.Windows.Forms.Form {
 		RcData data;
@@ -24,17 +25,17 @@ namespace rcm {
 		}
 
 		string[] functionCategory = {
-										@"#‰æ–ÊƒTƒCƒYEƒpƒtƒH[ƒ}ƒ“ƒX"
-										,@"#ƒ‰ƒCƒ“•`‰æ"
-										,@"#“ü—ÍŒŸ’m"
-										,@"#ƒ‚ƒfƒ‹î•ñ"
-										,@"#ƒ`ƒbƒvî•ñ"
-										,@"#Ø‚è—£‚µ"
-										,@"#ƒ`ƒbƒvƒ^ƒCƒvæ“¾"
-										,@"#ƒIƒuƒWƒFƒNƒg(ƒ{[ƒ‹)"
-										,@"#CCDƒJƒƒ‰"
-										,@"#ƒlƒbƒgƒ[ƒN"
-										,@"#”ŠwŠÖ”"
+										@"#ç”»é¢ã‚µã‚¤ã‚ºãƒ»ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹"
+										,@"#ãƒ©ã‚¤ãƒ³æç”»"
+										,@"#å…¥åŠ›æ¤œçŸ¥"
+										,@"#ãƒ¢ãƒ‡ãƒ«æƒ…å ±"
+										,@"#ãƒãƒƒãƒ—æƒ…å ±"
+										,@"#åˆ‡ã‚Šé›¢ã—"
+										,@"#ãƒãƒƒãƒ—ã‚¿ã‚¤ãƒ—å–å¾—"
+										,@"#ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ(ãƒœãƒ¼ãƒ«)"
+										,@"#CCDã‚«ãƒ¡ãƒ©"
+										,@"#ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯"
+										,@"#æ•°å­¦é–¢æ•°"
 									};
 		bool[] functionCategoryEnable = new bool[11];
 
@@ -68,12 +69,12 @@ namespace rcm {
 
 		public frmScript(frmMain MainForm, RcData data) {
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
 			//
-			// TODO: InitializeComponent ŒÄ‚Ño‚µ‚ÌŒã‚ÉAƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: InitializeComponent å‘¼ã³å‡ºã—ã®å¾Œã«ã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.data = data;
 			this.mainForm = MainForm;
@@ -82,7 +83,7 @@ namespace rcm {
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose(bool disposing) {
 			if (disposing) {
@@ -93,10 +94,10 @@ namespace rcm {
 			base.Dispose(disposing);
 		}
 
-		#region Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi‚Å¶¬‚³‚ê‚½ƒR[ƒh 
+		#region Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠã§ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ 
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
@@ -143,25 +144,25 @@ namespace rcm {
 			this.miSave,
 			this.miCloseWithSave,
 			this.miCloseWithoutSave});
-			this.miCommand.Text = "ƒRƒ}ƒ“ƒh(&C)";
+			this.miCommand.Text = "ã‚³ãƒãƒ³ãƒ‰(&C)";
 			// 
 			// miSave
 			// 
 			this.miSave.Index = 0;
 			this.miSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
-			this.miSave.Text = "•ÏX‚ğ•Û‘¶(&S)";
+			this.miSave.Text = "å¤‰æ›´ã‚’ä¿å­˜(&S)";
 			this.miSave.Click += new System.EventHandler(this.miSave_Click);
 			// 
 			// miCloseWithSave
 			// 
 			this.miCloseWithSave.Index = 1;
-			this.miCloseWithSave.Text = "•ÏX‚ğ•Û‘¶‚µ‚Ä•Â‚¶‚é(&C)";
+			this.miCloseWithSave.Text = "å¤‰æ›´ã‚’ä¿å­˜ã—ã¦é–‰ã˜ã‚‹(&C)";
 			this.miCloseWithSave.Click += new System.EventHandler(this.miCloseWithSave_Click);
 			// 
 			// miCloseWithoutSave
 			// 
 			this.miCloseWithoutSave.Index = 2;
-			this.miCloseWithoutSave.Text = "•ÏX‚ğ•Û‘¶‚µ‚È‚¢‚Å•Â‚¶‚é(&Q)";
+			this.miCloseWithoutSave.Text = "å¤‰æ›´ã‚’ä¿å­˜ã—ãªã„ã§é–‰ã˜ã‚‹(&Q)";
 			this.miCloseWithoutSave.Click += new System.EventHandler(this.miCloseWithoutSave_Click);
 			// 
 			// miFuncList
@@ -172,7 +173,7 @@ namespace rcm {
 			this.miLuaFuncs,
 			this.menuItem1,
 			this.miFuncCategory});
-			this.miFuncList.Text = "ŠÖ”ƒŠƒXƒg(&F)";
+			this.miFuncList.Text = "é–¢æ•°ãƒªã‚¹ãƒˆ(&F)";
 			// 
 			// miScriptFuncs
 			// 
@@ -209,83 +210,83 @@ namespace rcm {
 			this.miCatEnable8,
 			this.miCatEnable9,
 			this.miCatEnable10});
-			this.miFuncCategory.Text = "•\¦‚·‚éƒJƒeƒSƒŠ(&C)";
+			this.miFuncCategory.Text = "è¡¨ç¤ºã™ã‚‹ã‚«ãƒ†ã‚´ãƒª(&C)";
 			// 
 			// miCatEnable0
 			// 
 			this.miCatEnable0.Checked = true;
 			this.miCatEnable0.Index = 0;
-			this.miCatEnable0.Text = "‰æ–ÊƒTƒCƒYEƒpƒtƒH[ƒ}ƒ“ƒX";
+			this.miCatEnable0.Text = "ç”»é¢ã‚µã‚¤ã‚ºãƒ»ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹";
 			this.miCatEnable0.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable1
 			// 
 			this.miCatEnable1.Checked = true;
 			this.miCatEnable1.Index = 1;
-			this.miCatEnable1.Text = "ƒ‰ƒCƒ“•`‰æ";
+			this.miCatEnable1.Text = "ãƒ©ã‚¤ãƒ³æç”»";
 			this.miCatEnable1.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable2
 			// 
 			this.miCatEnable2.Checked = true;
 			this.miCatEnable2.Index = 2;
-			this.miCatEnable2.Text = "“ü—ÍŒŸ’m";
+			this.miCatEnable2.Text = "å…¥åŠ›æ¤œçŸ¥";
 			this.miCatEnable2.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable3
 			// 
 			this.miCatEnable3.Checked = true;
 			this.miCatEnable3.Index = 3;
-			this.miCatEnable3.Text = "ƒ‚ƒfƒ‹î•ñ";
+			this.miCatEnable3.Text = "ãƒ¢ãƒ‡ãƒ«æƒ…å ±";
 			this.miCatEnable3.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable4
 			// 
 			this.miCatEnable4.Checked = true;
 			this.miCatEnable4.Index = 4;
-			this.miCatEnable4.Text = "ƒ`ƒbƒvî•ñ";
+			this.miCatEnable4.Text = "ãƒãƒƒãƒ—æƒ…å ±";
 			this.miCatEnable4.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable5
 			// 
 			this.miCatEnable5.Checked = true;
 			this.miCatEnable5.Index = 5;
-			this.miCatEnable5.Text = "Ø‚è—£‚µ";
+			this.miCatEnable5.Text = "åˆ‡ã‚Šé›¢ã—";
 			this.miCatEnable5.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable6
 			// 
 			this.miCatEnable6.Checked = true;
 			this.miCatEnable6.Index = 6;
-			this.miCatEnable6.Text = "ƒ`ƒbƒvƒ^ƒCƒvæ“¾";
+			this.miCatEnable6.Text = "ãƒãƒƒãƒ—ã‚¿ã‚¤ãƒ—å–å¾—";
 			this.miCatEnable6.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable7
 			// 
 			this.miCatEnable7.Checked = true;
 			this.miCatEnable7.Index = 7;
-			this.miCatEnable7.Text = "ƒIƒuƒWƒFƒNƒg(ƒ{[ƒ‹)";
+			this.miCatEnable7.Text = "ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ(ãƒœãƒ¼ãƒ«)";
 			this.miCatEnable7.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable8
 			// 
 			this.miCatEnable8.Checked = true;
 			this.miCatEnable8.Index = 8;
-			this.miCatEnable8.Text = "CCDƒJƒƒ‰";
+			this.miCatEnable8.Text = "CCDã‚«ãƒ¡ãƒ©";
 			this.miCatEnable8.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable9
 			// 
 			this.miCatEnable9.Checked = true;
 			this.miCatEnable9.Index = 9;
-			this.miCatEnable9.Text = "ƒlƒbƒgƒ[ƒN";
+			this.miCatEnable9.Text = "ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯";
 			this.miCatEnable9.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// miCatEnable10
 			// 
 			this.miCatEnable10.Checked = true;
 			this.miCatEnable10.Index = 10;
-			this.miCatEnable10.Text = "”ŠwŠÖ”";
+			this.miCatEnable10.Text = "æ•°å­¦é–¢æ•°";
 			this.miCatEnable10.Click += new System.EventHandler(this.miCatEnable_Click);
 			// 
 			// cmbVals
@@ -295,7 +296,7 @@ namespace rcm {
 			this.cmbVals.Name = "cmbVals";
 			this.cmbVals.Size = new System.Drawing.Size(121, 20);
 			this.cmbVals.TabIndex = 0;
-			this.cmbVals.Text = "(•Ï”)";
+			this.cmbVals.Text = "(å¤‰æ•°)";
 			this.cmbVals.Enter += new System.EventHandler(this.cmbVals_Enter);
 			this.cmbVals.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbInsertion_KeyPress);
 			// 
@@ -318,7 +319,7 @@ namespace rcm {
 			this.cmbFunction.Name = "cmbFunction";
 			this.cmbFunction.Size = new System.Drawing.Size(121, 20);
 			this.cmbFunction.TabIndex = 2;
-			this.cmbFunction.Text = "(ŠÖ”)";
+			this.cmbFunction.Text = "(é–¢æ•°)";
 			this.cmbFunction.Enter += new System.EventHandler(this.cmbFunction_Enter);
 			this.cmbFunction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFunction_KeyPress);
 			this.cmbFunction.DropDown += new System.EventHandler(this.cmbFunction_Enter);
@@ -330,7 +331,7 @@ namespace rcm {
 			this.cmbNames.Name = "cmbNames";
 			this.cmbNames.Size = new System.Drawing.Size(121, 20);
 			this.cmbNames.TabIndex = 1;
-			this.cmbNames.Text = "(ƒ`ƒbƒv–¼)";
+			this.cmbNames.Text = "(ãƒãƒƒãƒ—å)";
 			this.cmbNames.Enter += new System.EventHandler(this.cmbNames_Enter);
 			this.cmbNames.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbInsertion_KeyPress);
 			// 
@@ -343,7 +344,7 @@ namespace rcm {
 						| Sgry.Azuki.DrawingOption.DrawsEol)
 						| Sgry.Azuki.DrawingOption.HighlightCurrentLine)
 						| Sgry.Azuki.DrawingOption.ShowsLineNumber)));
-			this.txtScript.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.txtScript.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.txtScript.Location = new System.Drawing.Point(0, 24);
 			this.txtScript.Name = "txtScript";
 			this.txtScript.Size = new System.Drawing.Size(352, 226);
@@ -366,7 +367,7 @@ namespace rcm {
 			this.Menu = this.mainMenu1;
 			this.MinimizeBox = false;
 			this.Name = "frmScript";
-			this.Text = "Script{...}/Lua{...}İ’è";
+			this.Text = "Script{...}/Lua{...}è¨­å®š";
 			this.Load += new System.EventHandler(this.frmScript_Load);
 			this.VisibleChanged += new System.EventHandler(this.frmScript_VisibleChanged);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmScript_Closing);
@@ -436,7 +437,7 @@ namespace rcm {
 			if (mainForm.NowClosing) return;
 			if (Modified) {
 				DialogResult res;
-				res = MessageBox.Show("ƒXƒNƒŠƒvƒg‚Í•ÏX‚³‚ê‚Ä‚¢‚Ü‚·B\n•ÏX‚ğ“K—p‚µ‚Ü‚·‚©H", "ƒEƒBƒ“ƒhƒE‚ª•Â‚¶‚ç‚ê‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+				res = MessageBox.Show("ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¯å¤‰æ›´ã•ã‚Œã¦ã„ã¾ã™ã€‚\nå¤‰æ›´ã‚’é©ç”¨ã—ã¾ã™ã‹ï¼Ÿ", "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒé–‰ã˜ã‚‰ã‚Œã‚ˆã†ã¨ã—ã¦ã„ã¾ã™", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 				switch (res) {
 					case DialogResult.Yes:
 						miSave_Click(sender, EventArgs.Empty);
@@ -494,7 +495,7 @@ namespace rcm {
 
 			var funcs = new List<FunctionEntry>();
 			if (miScriptFuncs.Checked) {
-				file = new System.IO.StreamReader("scriptfunc.dat", System.Text.Encoding.Default);
+				file = new System.IO.StreamReader("scriptfunc.dat", Encoding.UTF8);
 				while ((input = file.ReadLine()) != null) {
 					if (i < functionCategory.Length && input == functionCategory[i]) {
 						i++;
@@ -504,7 +505,7 @@ namespace rcm {
 				}
 			}
 			else if (miLuaFuncs.Checked) {
-				file = new System.IO.StreamReader("luafunc.dat", System.Text.Encoding.Default);
+				file = new System.IO.StreamReader("luafunc.dat", Encoding.UTF8);
 				while ((input = file.ReadLine()) != null) {
 					if (i < functionCategory.Length && input == functionCategory[i]) {
 						i++;
@@ -514,7 +515,7 @@ namespace rcm {
 				}
 			}
 			else {
-				throw new ApplicationException("ƒXƒNƒŠƒvƒgƒ^ƒCƒv‚ª•s³‚Å‚·B");
+				throw new ApplicationException("ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¿ã‚¤ãƒ—ãŒä¸æ­£ã§ã™ã€‚");
 			}
 			System.IO.Directory.SetCurrentDirectory(prevCD);
 
@@ -543,7 +544,7 @@ namespace rcm {
 
 		private void miLuaFuncs_Click(object sender, System.EventArgs e) {
 			if (miLuaFuncs.Checked == false) {
-				if (MessageBox.Show("ƒXƒNƒŠƒvƒgŒ`®‚ğ•ÏX‚µ‚Ä‚àAƒR[ƒh‚Í•ÏŠ·‚³‚ê‚Ü‚¹‚ñB\n\n‚»‚ê‚Å‚à•ÏX‚µ‚Ü‚·‚©H", "ƒXƒNƒŠƒvƒgŒ`®•ÏXŠm”F", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+				if (MessageBox.Show("ã‚¹ã‚¯ãƒªãƒ—ãƒˆå½¢å¼ã‚’å¤‰æ›´ã—ã¦ã‚‚ã€ã‚³ãƒ¼ãƒ‰ã¯å¤‰æ›ã•ã‚Œã¾ã›ã‚“ã€‚\n\nãã‚Œã§ã‚‚å¤‰æ›´ã—ã¾ã™ã‹ï¼Ÿ", "ã‚¹ã‚¯ãƒªãƒ—ãƒˆå½¢å¼å¤‰æ›´ç¢ºèª", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
 					return;
 			}
 			miScriptFuncs.Checked = false;
@@ -554,7 +555,7 @@ namespace rcm {
 
 		private void miScriptFuncs_Click(object sender, System.EventArgs e) {
 			if (miScriptFuncs.Checked == false) {
-				if (MessageBox.Show("ƒXƒNƒŠƒvƒgŒ`®‚ğ•ÏX‚µ‚Ä‚àAƒR[ƒh‚Í•ÏŠ·‚³‚ê‚Ü‚¹‚ñB\n\n‚»‚ê‚Å‚à•ÏX‚µ‚Ü‚·‚©H", "ƒXƒNƒŠƒvƒgŒ`®•ÏXŠm”F", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+				if (MessageBox.Show("ã‚¹ã‚¯ãƒªãƒ—ãƒˆå½¢å¼ã‚’å¤‰æ›´ã—ã¦ã‚‚ã€ã‚³ãƒ¼ãƒ‰ã¯å¤‰æ›ã•ã‚Œã¾ã›ã‚“ã€‚\n\nãã‚Œã§ã‚‚å¤‰æ›´ã—ã¾ã™ã‹ï¼Ÿ", "ã‚¹ã‚¯ãƒªãƒ—ãƒˆå½¢å¼å¤‰æ›´ç¢ºèª", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
 					return;
 			}
 			miScriptFuncs.Checked = true;
@@ -604,7 +605,7 @@ namespace rcm {
 		}
 
 		private void miCloseWithoutSave_Click(object sender, System.EventArgs e) {
-			if (MessageBox.Show("•ÒW“à—e‚Í•Û‘¶‚³‚ê‚Ü‚¹‚ñBƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚Ü‚·‚©H", "•ÏX”jŠüŠm”F", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+			if (MessageBox.Show("ç·¨é›†å†…å®¹ã¯ä¿å­˜ã•ã‚Œã¾ã›ã‚“ã€‚ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã¾ã™ã‹ï¼Ÿ", "å¤‰æ›´ç ´æ£„ç¢ºèª", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
 				== DialogResult.Yes) {
 				this.Modified = false;
 				this.Close();
@@ -617,7 +618,7 @@ namespace rcm {
 			var highlighter = new Sgry.Azuki.Highlighter.KeywordHighlighter();
 
 			RcChipBase chip;
-			// ƒ`ƒbƒv–¼
+			// ãƒãƒƒãƒ—å
 			{
 				List<string> list = new List<string>();
 				for (int i = 0; i < RcData.MaxChipCount; i++) {
@@ -630,7 +631,7 @@ namespace rcm {
 				highlighter.AddKeywordSet(list.ToArray(), Sgry.Azuki.CharClass.Keyword);
 			}
 
-			// •Ï”–¼
+			// å¤‰æ•°å
 			{
 				List<string> list = new List<string>();
 				foreach (RcVal v in data.vals.List) {
@@ -640,7 +641,7 @@ namespace rcm {
 				//highlighter.SetKeywords(list.ToArray(), Sgry.Azuki.CharClass.Keyword2);
 				highlighter.AddKeywordSet(list.ToArray(), Sgry.Azuki.CharClass.Keyword2);
 			}
-			// ŠÖ”–¼
+			// é–¢æ•°å
 			{
 				List<string> list = new List<string>();
 				if (functionList == null) updateFunctionList();
@@ -660,10 +661,10 @@ namespace rcm {
 				//highlighter.SetKeywords(list.ToArray(), Sgry.Azuki.CharClass.Keyword3);
 				highlighter.AddKeywordSet(list.ToArray(), Sgry.Azuki.CharClass.Keyword3);
 			}
-			// ‚»‚Ì‘¼
+			// ãã®ä»–
 			highlighter.AddEnclosure("\"", "\"", Sgry.Azuki.CharClass.String);
 			if (data.luascript) {
-				// Lua‚Ìİ’è
+				// Luaã®è¨­å®š
 				var kwd = new[]{
 					"and",
 					"break",
@@ -686,7 +687,7 @@ namespace rcm {
 					"true",
 					"until",
 					"while",
-					// ‚±‚±‚©‚çLua‘g‚İ‚İŠÖ”
+					// ã“ã“ã‹ã‚‰Luaçµ„ã¿è¾¼ã¿é–¢æ•°
 					"assert",
 					"collectgarbage",
 					"dofile",
@@ -736,7 +737,7 @@ namespace rcm {
 				highlighter.AddEnclosure("[[", "]]", Sgry.Azuki.CharClass.Comment);
 			}
 			else {
-				// Script‚Ìİ’è
+				// Scriptã®è¨­å®š
 				var kwd = new[] { "if", "goto", "label", "print" };
 				Array.Sort<string>(kwd);
 				//highlighter.SetKeywords(kwd, Sgry.Azuki.CharClass.Macro);
@@ -751,21 +752,21 @@ namespace rcm {
 
 			editor.Highlighter = highlighter;
 
-			// ƒ^ƒu•‚Ío—ÍƒIƒvƒVƒ‡ƒ“‚©‚çŒp³
+			// ã‚¿ãƒ–å¹…ã¯å‡ºåŠ›ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‹ã‚‰ç¶™æ‰¿
 			editor.TabWidth = (int)data.OutputOption.IndentNum;
 
-			// Fİ’è
+			// è‰²è¨­å®š
 			editor.ColorScheme.ForeColor = Color.Black;
 			editor.ColorScheme.BackColor = Color.White;
-			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Keyword, Color.DarkCyan, Color.White); // ƒ`ƒbƒv–¼
-			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Keyword2, Color.DarkBlue, Color.White);// •Ï”–¼
-			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Keyword3, Color.Red, Color.White); // ŠÖ”–¼
-			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.String, Color.DarkRed, Color.White); // •¶š—ñ
-			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Comment, Color.Green, Color.White); // ƒRƒƒ“ƒg
-			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Macro, Color.Blue, Color.White); // §Œä\•¶
-			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Delimiter, Color.Violet, Color.White); // ‰‰Zq
-			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Type, Color.Gold, Color.White); // ƒ‰ƒCƒuƒ‰ƒŠ–¼(Lua‚Ì‚İ)
-			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Number, Color.DarkGreen, Color.White); // ”’l
+			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Keyword, Color.DarkCyan, Color.White); // ãƒãƒƒãƒ—å
+			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Keyword2, Color.DarkBlue, Color.White);// å¤‰æ•°å
+			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Keyword3, Color.Red, Color.White); // é–¢æ•°å
+			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.String, Color.DarkRed, Color.White); // æ–‡å­—åˆ—
+			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Comment, Color.Green, Color.White); // ã‚³ãƒ¡ãƒ³ãƒˆ
+			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Macro, Color.Blue, Color.White); // åˆ¶å¾¡æ§‹æ–‡
+			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Delimiter, Color.Violet, Color.White); // æ¼”ç®—å­
+			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Type, Color.Gold, Color.White); // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå(Luaã®ã¿)
+			editor.ColorScheme.SetColor(Sgry.Azuki.CharClass.Number, Color.DarkGreen, Color.White); // æ•°å€¤
 
 
 		}

@@ -1,4 +1,4 @@
-using RigidChips;
+ï»¿using RigidChips;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace rcm {
 	/// <summary>
-	/// ƒcƒŠ[•\¦ƒ_ƒCƒAƒƒO
+	/// ãƒ„ãƒªãƒ¼è¡¨ç¤ºãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 	/// </summary>
 	public class frmTree : System.Windows.Forms.Form {
 		RcData datasource;
@@ -23,7 +23,7 @@ namespace rcm {
 		public frmTree(RcData rcdata, ContextMenu chipmenu) {
 			initializing = true;
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
@@ -46,11 +46,11 @@ namespace rcm {
 			//RcTreeNode n;
 			RcTreeNode top = new RcTreeNode(datasource.model.root);
 
-			//// ƒ‹[ƒgƒ`ƒbƒv‚ğƒLƒ…[‚É“ü‚ê‚é
+			//// ãƒ«ãƒ¼ãƒˆãƒãƒƒãƒ—ã‚’ã‚­ãƒ¥ãƒ¼ã«å…¥ã‚Œã‚‹
 			//p.Enqueue(datasource.model.root);
 			//q.Enqueue(datasource.model.root);
 
-			//// q‚É‘Î‚µ‚ÄAƒ`ƒbƒv‚ÌƒcƒŠ[‚ğ“WŠJ‚µ‚Ä‚¢‚­
+			//// qã«å¯¾ã—ã¦ã€ãƒãƒƒãƒ—ã®ãƒ„ãƒªãƒ¼ã‚’å±•é–‹ã—ã¦ã„ã
 			//while(p.Count > 0){
 			//    w = p.Dequeue();
 			//    foreach(RcChipBase c in w.Child){
@@ -61,7 +61,7 @@ namespace rcm {
 			//    q.Enqueue(null);
 			//}
 
-			//// “WŠJ‚³‚ê‚½ƒ`ƒbƒvƒŠƒXƒg‚©‚çƒcƒŠ[‚ğÄ\’z
+			//// å±•é–‹ã•ã‚ŒãŸãƒãƒƒãƒ—ãƒªã‚¹ãƒˆã‹ã‚‰ãƒ„ãƒªãƒ¼ã‚’å†æ§‹ç¯‰
 			//r.Enqueue(top = new RcTreeNode(q.Dequeue()));
 			//while(q.Count > 0){
 			//    w = q.Dequeue();
@@ -83,12 +83,12 @@ namespace rcm {
 			initializing = false;
 		}
 
-		//	[Obsolete("–¢Š®¬‚Å‚·B‚¸‚Á‚Æ“ú‚Ì–Ú‚ğŒ©‚È‚¢‚©‚àB")]
+		//	[Obsolete("æœªå®Œæˆã§ã™ã€‚ãšã£ã¨æ—¥ã®ç›®ã‚’è¦‹ãªã„ã‹ã‚‚ã€‚")]
 		public void UpdateTree(RcChipBase updateRoot) {
 			RcTreeNode root = ((RcTreeNode)tvModel.Nodes[0]).Find(updateRoot);
 
 			if (root == null) {
-				// ‚Ü‚¾‚È‚¢ƒ`ƒbƒv -> e‚ğƒAƒbƒvƒf[ƒg
+				// ã¾ã ãªã„ãƒãƒƒãƒ— -> è¦ªã‚’ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 				if (updateRoot.Parent == null) {
 					GenerateTree();
 					return;
@@ -96,7 +96,7 @@ namespace rcm {
 				Debug.WriteLine(updateRoot.Parent, "Parent Update");
 				UpdateTree(updateRoot.Parent);
 				root = ((RcTreeNode)tvModel.Nodes[0]).Find(updateRoot);
-				if (root == null) throw new ArgumentException("ƒcƒŠ[ƒrƒ…[‚ÌXV‚É¸”s‚µ‚Ü‚µ‚½B");
+				if (root == null) throw new ArgumentException("ãƒ„ãƒªãƒ¼ãƒ“ãƒ¥ãƒ¼ã®æ›´æ–°ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 			}
 
 			int childCount = 0;
@@ -108,13 +108,13 @@ namespace rcm {
 				int nodeIndex = root.Nodes.IndexOf(childNode);
 
 				if (childNode == null) {
-					// ’Ç‰Á
+					// è¿½åŠ 
 					RcTreeNode n;
 					root.Nodes.Insert(i, n = new RcTreeNode(childChip));
 					Debug.WriteLine(n, "New node");
 				}
 				else if (nodeIndex != i) {
-					// ŠÔ‚É‚ ‚éƒm[ƒh‚ğíœ
+					// é–“ã«ã‚ã‚‹ãƒãƒ¼ãƒ‰ã‚’å‰Šé™¤
 					List<TreeNode> nodesToDelete = new List<TreeNode>();
 					for (int j = i; j < nodeIndex; j++) {
 						nodesToDelete.Add(root.Nodes[j]);
@@ -135,7 +135,7 @@ namespace rcm {
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose(bool disposing) {
 			if (disposing) {
@@ -146,10 +146,10 @@ namespace rcm {
 			base.Dispose(disposing);
 		}
 
-		#region Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi‚Å¶¬‚³‚ê‚½ƒR[ƒh 
+		#region Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠã§ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ 
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
@@ -204,7 +204,7 @@ namespace rcm {
 			// menuItem1
 			// 
 			this.menuItem1.Index = 0;
-			this.menuItem1.Text = "ƒeƒXƒg‚Å‚·B";
+			this.menuItem1.Text = "ãƒ†ã‚¹ãƒˆã§ã™ã€‚";
 			this.menuItem1.Click += new System.EventHandler(this.menuItem1_Click);
 			// 
 			// frmTree
@@ -218,7 +218,7 @@ namespace rcm {
 			this.Name = "frmTree";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.Text = "ƒcƒŠ[\‘¢";
+			this.Text = "ãƒ„ãƒªãƒ¼æ§‹é€ ";
 			this.Load += new System.EventHandler(this.frmTree_Load);
 			this.Activated += new System.EventHandler(this.frmTree_Activated);
 			this.ResumeLayout(false);
@@ -237,7 +237,7 @@ namespace rcm {
 		}
 
 		private void menuItem1_Click(object sender, System.EventArgs e) {
-			datasource.SelectedChip.Comment = "ƒcƒŠ[‚ÅƒRƒ“ƒeƒLƒXƒg";
+			datasource.SelectedChip.Comment = "ãƒ„ãƒªãƒ¼ã§ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ";
 		}
 
 		private void tvModel_BeforeSelect(object sender, System.Windows.Forms.TreeViewCancelEventArgs e) {
@@ -291,7 +291,7 @@ namespace rcm {
 
 			if (c is RcChipCowl && Array.Exists(rcnode.Chip.Child , x => !(x is RcChipCowl)) ) {
 				if (
-					MessageBox.Show("”h¶ƒ`ƒbƒv‚ÉƒJƒEƒ‹ˆÈŠO‚Ìƒ`ƒbƒv‚ª‘¶İ‚µ‚Ü‚·B‚·‚×‚ÄƒJƒEƒ‹‚É•ÏX‚µ‚Ü‚·‚©H", "ƒcƒŠ[ƒrƒ…[•ÒW", MessageBoxButtons.YesNo)
+					MessageBox.Show("æ´¾ç”Ÿãƒãƒƒãƒ—ã«ã‚«ã‚¦ãƒ«ä»¥å¤–ã®ãƒãƒƒãƒ—ãŒå­˜åœ¨ã—ã¾ã™ã€‚ã™ã¹ã¦ã‚«ã‚¦ãƒ«ã«å¤‰æ›´ã—ã¾ã™ã‹ï¼Ÿ", "ãƒ„ãƒªãƒ¼ãƒ“ãƒ¥ãƒ¼ç·¨é›†", MessageBoxButtons.YesNo)
 					== DialogResult.Yes) {
 
 					for (int i = 0; i < RcData.ChildCapasity; i++) {

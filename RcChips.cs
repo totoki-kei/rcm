@@ -1,4 +1,4 @@
-using Microsoft.DirectX;
+ï»¿using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
 using System;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace RigidChips {
 	///<summery>
-	///ƒRƒA ƒ`ƒbƒv ƒNƒ‰ƒXB
+	///ã‚³ã‚¢ ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹ã€‚
 	///</summery>
 	public class RcChipCore : RcChipBase {
 		RcXFile mesh;
@@ -33,15 +33,15 @@ namespace RigidChips {
 
 		public override void Attach(RcChipBase to, RcJointPosition pos) {
 			if (to == null) return;
-			throw new Exception("Core‚Í‘¼‚Ìƒ`ƒbƒv‚Ì”h¶ƒ`ƒbƒv‚É‚Ío—ˆ‚Ü‚¹‚ñB");
+			throw new Exception("Coreã¯ä»–ã®ãƒãƒƒãƒ—ã®æ´¾ç”Ÿãƒãƒƒãƒ—ã«ã¯å‡ºæ¥ã¾ã›ã‚“ã€‚");
 		}
 
 		public override string AttrTip(string AttrName) {
 			switch (AttrName) {
 				case "User1":
-					return "ƒVƒiƒŠƒI—p";
+					return "ã‚·ãƒŠãƒªã‚ªç”¨";
 				case "User2":
-					return "ƒVƒiƒŠƒI—p";
+					return "ã‚·ãƒŠãƒªã‚ªç”¨";
 				default:
 					return base.AttrTip(AttrName);
 			}
@@ -117,9 +117,9 @@ namespace RigidChips {
 
 		/*		public override string ToString() {
 					string s = "";
-					s += "Core(";	//	©ƒ`ƒbƒv‚Ìo—Í–¼
+					s += "Core(";	//	â†ãƒãƒƒãƒ—ã®å‡ºåŠ›å
 
-					//	‘®«‹LqƒuƒƒbƒN
+					//	å±æ€§è¨˜è¿°ãƒ–ãƒ­ãƒƒã‚¯
 					if(ChipColor != RcColor.Default)
 						s += "Color=" + ChipColor.ToString() + ",";
 					if(Name != null && Name != "")
@@ -183,7 +183,7 @@ namespace RigidChips {
 				}
 			}
 			catch (IndexOutOfRangeException) {
-				throw new Exception("•s³‚È‘®«’lw’è‚ª‘¶İ‚µ‚Ü‚·B");
+				throw new Exception("ä¸æ­£ãªå±æ€§å€¤æŒ‡å®šãŒå­˜åœ¨ã—ã¾ã™ã€‚");
 			}
 			catch (Exception e) {
 				MessageBox.Show(e.Message);
@@ -193,7 +193,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒ`ƒbƒv ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ãƒãƒƒãƒ— ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipChip : RcChipBase {
 		protected RcAttrValue damper, spring;
@@ -219,17 +219,17 @@ namespace RigidChips {
 		public override string AttrTip(string AttrName) {
 			switch (AttrName) {
 				case "Angle":
-					return "Ü‚è‹È‚°Šp“x";
+					return "æŠ˜ã‚Šæ›²ã’è§’åº¦";
 				case "Damper":
 				case "Dumper":
 				case "Danper":
 				case "Dunper":
-					return "Ú‘±•”‚ÌŒ˜‚³";
+					return "æ¥ç¶šéƒ¨ã®å …ã•";
 				case "Spring":
-					return "Ú‘±•”‚Ì’e«";
+					return "æ¥ç¶šéƒ¨ã®å¼¾æ€§";
 				case "User1":
 				case "User2":
-					return "ƒVƒiƒŠƒI—p";
+					return "ã‚·ãƒŠãƒªã‚ªç”¨";
 				default:
 					return base.AttrTip(AttrName);
 			}
@@ -379,7 +379,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒtƒŒ[ƒ€ ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ãƒ•ãƒ¬ãƒ¼ãƒ  ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipFrame : RcChipChip {
 		bool option;
@@ -440,7 +440,7 @@ namespace RigidChips {
 
 		public override string AttrTip(string AttrName) {
 			if (AttrName == "Option")
-				return "0ˆÈŠO‚ÅƒS[ƒXƒg‰»";
+				return "0ä»¥å¤–ã§ã‚´ãƒ¼ã‚¹ãƒˆåŒ–";
 			return base.AttrTip(AttrName);
 		}
 
@@ -489,9 +489,9 @@ namespace RigidChips {
 
 		/*		public override string ToString() {
 					string s = "";
-					s += "Frame(";	//	©ƒ`ƒbƒv‚Ìo—Í–¼
+					s += "Frame(";	//	â†ãƒãƒƒãƒ—ã®å‡ºåŠ›å
 
-					//	‘®«‹LqƒuƒƒbƒN
+					//	å±æ€§è¨˜è¿°ãƒ–ãƒ­ãƒƒã‚¯
 					if(ChipColor != RcColor.Default)
 						s += "Color=" + ChipColor.ToString() + ",";
 					if(Name != null && Name != "")
@@ -577,7 +577,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒ‰ƒ_[ ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ãƒ©ãƒ€ãƒ¼ ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipRudder : RcChipChip {
 		public RcChipRudder() { }
@@ -706,7 +706,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒ‰ƒ_[ƒtƒŒ[ƒ€ ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ  ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipRudderF : RcChipRudder {
 		bool option;
@@ -758,7 +758,7 @@ namespace RigidChips {
 
 		public override string AttrTip(string AttrName) {
 			if (AttrName == "Option")
-				return "0ˆÈŠO‚ÅƒS[ƒXƒg‰»";
+				return "0ä»¥å¤–ã§ã‚´ãƒ¼ã‚¹ãƒˆåŒ–";
 			return base.AttrTip(AttrName);
 		}
 
@@ -891,7 +891,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒgƒŠƒ€ ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ãƒˆãƒªãƒ  ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipTrim : RcChipChip {
 		public RcChipTrim() { }
@@ -1007,7 +1007,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒgƒŠƒ€ƒtƒŒ[ƒ€ ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ  ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipTrimF : RcChipTrim {
 		bool option;
@@ -1059,7 +1059,7 @@ namespace RigidChips {
 
 		public override string AttrTip(string AttrName) {
 			if (AttrName == "Option")
-				return "0ˆÈŠO‚ÅƒS[ƒXƒg‰»";
+				return "0ä»¥å¤–ã§ã‚´ãƒ¼ã‚¹ãƒˆåŒ–";
 			return base.AttrTip(AttrName);
 		}
 
@@ -1191,7 +1191,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒWƒFƒbƒg/ƒoƒ‹[ƒ“ ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ã‚¸ã‚§ãƒƒãƒˆ/ãƒãƒ«ãƒ¼ãƒ³ ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipJet : RcChipBase {
 		RcXFile jet, baloon, fire;
@@ -1223,23 +1223,23 @@ namespace RigidChips {
 		public override string AttrTip(string AttrName) {
 			switch (AttrName) {
 				case "Angle":
-					return "Ü‚è‹È‚°Šp“x";
+					return "æŠ˜ã‚Šæ›²ã’è§’åº¦";
 				case "Damper":
 				case "Dumper":
 				case "Danper":
 				case "Dunper":
-					return "Ú‘±•”‚ÌŒ˜‚³";
+					return "æ¥ç¶šéƒ¨ã®å …ã•";
 				case "Spring":
-					return "Ú‘±•”‚Ì’e«";
+					return "æ¥ç¶šéƒ¨ã®å¼¾æ€§";
 				case "Power":
-					return "ƒWƒFƒbƒgo—Í:ƒoƒ‹[ƒ“ƒKƒX—Ê";
+					return "ã‚¸ã‚§ãƒƒãƒˆå‡ºåŠ›:ãƒãƒ«ãƒ¼ãƒ³ã‚¬ã‚¹é‡";
 				case "Option":
-					return "0:ƒWƒFƒbƒg 1:…‘fƒoƒ‹[ƒ“ 2:‹ó‹Cƒoƒ‹[ƒ“";
+					return "0:ã‚¸ã‚§ãƒƒãƒˆ 1:æ°´ç´ ãƒãƒ«ãƒ¼ãƒ³ 2:ç©ºæ°—ãƒãƒ«ãƒ¼ãƒ³";
 				case "Effect":
-					return "1-4:ƒXƒ‚[ƒN‚ğo‚·(ƒWƒFƒbƒg‚Ì‚İ)";
+					return "1-4:ã‚¹ãƒ¢ãƒ¼ã‚¯ã‚’å‡ºã™(ã‚¸ã‚§ãƒƒãƒˆæ™‚ã®ã¿)";
 				case "User1":
 				case "User2":
-					return "ƒVƒiƒŠƒI—p";
+					return "ã‚·ãƒŠãƒªã‚ªç”¨";
 				default:
 					return base.AttrTip(AttrName);
 			}
@@ -1256,9 +1256,9 @@ namespace RigidChips {
 				if (jet != null)
 					jet.Draw(Generics.d3ddevice, ChipColor.ToColor(), matRotation * Matrix);
 				if (Generics.Preview) {
-					// 2000‚Å1ƒ`ƒbƒv‚Ì’·‚³
-					// Å‘å‚Å2.5ƒ`ƒbƒv•ª(5000)
-					// ‚»‚êˆÈã‚ÍL‚Ñ‚È‚¢
+					// 2000ã§1ãƒãƒƒãƒ—ã®é•·ã•
+					// æœ€å¤§ã§2.5ãƒãƒƒãƒ—åˆ†(5000)
+					// ãã‚Œä»¥ä¸Šã¯ä¼¸ã³ãªã„
 					if (fire == null)
 						fire = Generics.GetMesh("Fire.x");
 					float scale = Math.Abs(this.power.Value);
@@ -1383,9 +1383,9 @@ namespace RigidChips {
 
 		/*		public override string ToString() {
 					string s = "";
-					s += "Jet(";	//	©ƒ`ƒbƒv‚Ìo—Í–¼
+					s += "Jet(";	//	â†ãƒãƒƒãƒ—ã®å‡ºåŠ›å
 
-					//	‘®«‹LqƒuƒƒbƒN
+					//	å±æ€§è¨˜è¿°ãƒ–ãƒ­ãƒƒã‚¯
 					if(ChipColor != RcColor.Default)
 						s += "Color=" + ChipColor.ToString() + ",";
 					if(Name != null && Name != "")
@@ -1426,11 +1426,11 @@ namespace RigidChips {
 					}
 				}
 			}
-			// “Š‰es—ñ
+			// æŠ•å½±è¡Œåˆ—
 			Matrix projMat = Generics.d3ddevice.Transform.Projection;
-			// ƒrƒ…[s—ñ
+			// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
 			Matrix viewMat = Generics.d3ddevice.Transform.View;
-			// ƒrƒ…[ƒ|[ƒg
+			// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆ
 			Viewport viewport = new Viewport();
 
 			IntersectInformation sectinfo = new IntersectInformation();
@@ -1441,11 +1441,11 @@ namespace RigidChips {
 			viewport.MaxZ = 1.0f;
 			viewport.MinZ = 0.0f;
 
-			// ƒNƒŠƒbƒN‚µ‚½ƒXƒNƒŠ[ƒ“À•W‚©‚çƒŒƒC‚ğŒvZ‚µA‘ÎÛƒƒbƒVƒ…‚Æ‚ÌŒğ·‚ğƒ`ƒFƒbƒN 
+			// ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‹ã‚‰ãƒ¬ã‚¤ã‚’è¨ˆç®—ã—ã€å¯¾è±¡ãƒ¡ãƒƒã‚·ãƒ¥ã¨ã®äº¤å·®ã‚’ãƒã‚§ãƒƒã‚¯ 
 			Vector3 vNear = Vector3.Unproject(new Vector3(X, Y, viewport.MinZ),
-				viewport, projMat, viewMat, this.Matrix /* ‚±‚±‚ªWorlds—ñ */);
+				viewport, projMat, viewMat, this.Matrix /* ã“ã“ãŒWorldè¡Œåˆ— */);
 			Vector3 vFar = Vector3.Unproject(new Vector3(X, Y, viewport.MaxZ),
-				viewport, projMat, viewMat, this.Matrix /* ‚±‚±‚ªWorlds—ñ */);
+				viewport, projMat, viewMat, this.Matrix /* ã“ã“ãŒWorldè¡Œåˆ— */);
 			Vector3 vDir = Vector3.Normalize(vFar - vNear);
 
 			if (option.Value != 0f)
@@ -1516,7 +1516,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒzƒC[ƒ‹ ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ãƒ›ã‚¤ãƒ¼ãƒ« ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipWheel : RcChipBase {
 		protected RcXFile mesh;
@@ -1551,7 +1551,7 @@ namespace RigidChips {
 			if (mesh == null)
 				mesh = Generics.GetMesh("Wheel.x");
 
-			// Šp“x”½‰f
+			// è§’åº¦åæ˜ 
 			Matrix rot;
 			if (Generics.Preview) {
 				PreviewRotation += (float)(power.Value * Math.PI / 15000);
@@ -1591,26 +1591,26 @@ namespace RigidChips {
 		public override string AttrTip(string AttrName) {
 			switch (AttrName) {
 				case "Angle":
-					return "Ü‚è‹È‚°Šp“x";
+					return "æŠ˜ã‚Šæ›²ã’è§’åº¦";
 				case "Damper":
 				case "Dumper":
 				case "Danper":
 				case "Dunper":
-					return "Ú‘±•”‚ÌŒ˜‚³";
+					return "æ¥ç¶šéƒ¨ã®å …ã•";
 				case "Spring":
-					return "Ú‘±•”‚Ì’e«";
+					return "æ¥ç¶šéƒ¨ã®å¼¾æ€§";
 				case "Power":
-					return "‰ñ“]o—Í";
+					return "å›è»¢å‡ºåŠ›";
 				case "Brake":
 				case "Break":
-					return "§“®—Í";
+					return "åˆ¶å‹•åŠ›";
 				case "Option":
-					return "ƒ^ƒCƒ„Œa 1:x1.5 2:x2.0";
+					return "ã‚¿ã‚¤ãƒ¤å¾„ 1:x1.5 2:x2.0";
 				case "Effect":
-					return "ƒ^ƒCƒ„•(1.0-10.0 •¨—“I‚È‰e‹¿‚È‚µ)";
+					return "ã‚¿ã‚¤ãƒ¤å¹…(1.0-10.0 ç‰©ç†çš„ãªå½±éŸ¿ãªã—)";
 				case "User1":
 				case "User2":
-					return "ƒVƒiƒŠƒI—p";
+					return "ã‚·ãƒŠãƒªã‚ªç”¨";
 				default:
 					return base.AttrTip(AttrName);
 			}
@@ -1718,9 +1718,9 @@ namespace RigidChips {
 
 		/*		public override string ToString() {
 					string s = "";
-					s += "Wheel(";	//	©ƒ`ƒbƒv‚Ìo—Í–¼
+					s += "Wheel(";	//	â†ãƒãƒƒãƒ—ã®å‡ºåŠ›å
 
-					//	‘®«‹LqƒuƒƒbƒN
+					//	å±æ€§è¨˜è¿°ãƒ–ãƒ­ãƒƒã‚¯
 					if(ChipColor != RcColor.Default)
 						s += "Color=" + ChipColor.ToString() + ",";
 					if(Name != null && Name != "")
@@ -1825,7 +1825,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///RLW ƒ`ƒbƒv ƒNƒ‰ƒX
+	///RLW ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipRLW : RcChipWheel {
 		public RcChipRLW() { }
@@ -1905,7 +1905,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒEƒFƒCƒg ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ã‚¦ã‚§ã‚¤ãƒˆ ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipWeight : RcChipChip {
 		RcAttrValue option;
@@ -2021,7 +2021,7 @@ namespace RigidChips {
 
 		public override string AttrTip(string AttrName) {
 			if (AttrName == "Option")
-				return "d—Ê”{—¦(1-8)";
+				return "é‡é‡å€ç‡(1-8)";
 			else
 				return base.AttrTip(AttrName);
 		}
@@ -2029,7 +2029,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒJƒEƒ‹ ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ã‚«ã‚¦ãƒ« ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipCowl : RcChipBase {
 		RcXFile[] meshes;
@@ -2062,7 +2062,7 @@ namespace RigidChips {
 
 		public override void Add(RcJointPosition joint, RcChipBase chip, bool Registeration) {
 			if (!(chip is RcChipCowl)) {
-				throw new Exception("ƒJƒEƒ‹‚É‚ÍƒJƒEƒ‹‚µ‚©Ú‘±‚Å‚«‚Ü‚¹‚ñB");
+				throw new Exception("ã‚«ã‚¦ãƒ«ã«ã¯ã‚«ã‚¦ãƒ«ã—ã‹æ¥ç¶šã§ãã¾ã›ã‚“ã€‚");
 			}
 			base.Add(joint, chip, Registeration);
 		}
@@ -2070,14 +2070,14 @@ namespace RigidChips {
 		public override string AttrTip(string AttrName) {
 			switch (AttrName) {
 				case "Angle":
-					return "Ü‚è‹È‚°Šp“x";
+					return "æŠ˜ã‚Šæ›²ã’è§’åº¦";
 				case "Option":
-					return "Œ`ó\n1:˜g 2:‰~ 3,4:’¼ŠpOŠpŒ` 5:”¼‰~ ‘¼:lŠp";
+					return "å½¢çŠ¶\n1:æ  2:å†† 3,4:ç›´è§’ä¸‰è§’å½¢ 5:åŠå†† ä»–:å››è§’";
 				case "Effect":
-					return "ƒ}ƒeƒŠƒAƒ‹‚ÌÚ×(4Œ…16i”)\n¶©“§–¾“xA”­Œõ“xAƒXƒyƒLƒ…ƒ‰‚Ì‹­“xAƒXƒyƒLƒ…ƒ‰¨‰E";
+					return "ãƒãƒ†ãƒªã‚¢ãƒ«ã®è©³ç´°(4æ¡16é€²æ•°)\nå·¦â†é€æ˜åº¦ã€ç™ºå…‰åº¦ã€ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·åº¦ã€ã‚¹ãƒšã‚­ãƒ¥ãƒ©â†’å³";
 				case "User1":
 				case "User2":
-					return "ƒVƒiƒŠƒI—p";
+					return "ã‚·ãƒŠãƒªã‚ªç”¨";
 				default:
 					return base.AttrTip(AttrName);
 			}
@@ -2164,9 +2164,9 @@ namespace RigidChips {
 
 		/*		public override string ToString() {
 					string str = "";
-					str += "Cowl(";	//	©ƒ`ƒbƒv‚Ìo—Í–¼
+					str += "Cowl(";	//	â†ãƒãƒƒãƒ—ã®å‡ºåŠ›å
 
-					//	‘®«‹LqƒuƒƒbƒN
+					//	å±æ€§è¨˜è¿°ãƒ–ãƒ­ãƒƒã‚¯
 					if(ChipColor != RcColor.Default)
 						str += "Color=" + ChipColor.ToString() + ",";
 					if(angle.Val != null || angle.Const != 0f)
@@ -2272,7 +2272,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒA[ƒ€ ƒ`ƒbƒv ƒNƒ‰ƒX
+	///ã‚¢ãƒ¼ãƒ  ãƒãƒƒãƒ— ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipArm : RcChipBase {
 		RcXFile mesh;
@@ -2296,21 +2296,21 @@ namespace RigidChips {
 		public override string AttrTip(string AttrName) {
 			switch (AttrName) {
 				case "Angle":
-					return "Ü‚è‹È‚°Šp“x";
+					return "æŠ˜ã‚Šæ›²ã’è§’åº¦";
 				case "Damper":
 				case "Dumper":
 				case "Danper":
 				case "Dunper":
-					return "Ú‘±•”‚ÌŒ˜‚³";
+					return "æ¥ç¶šéƒ¨ã®å …ã•";
 				case "Spring":
-					return "Ú‘±•”‚Ì’e«";
+					return "æ¥ç¶šéƒ¨ã®å¼¾æ€§";
 				case "Power":
-					return "ƒgƒŠƒK";
+					return "ãƒˆãƒªã‚¬";
 				case "Option":
-					return "ˆĞ—Í\n‚±‚ê‚É”ä—á‚µ‚½ŠÔ‚ğƒ`ƒƒ[ƒW‚É—v‚·‚é";
+					return "å¨åŠ›\nã“ã‚Œã«æ¯”ä¾‹ã—ãŸæ™‚é–“ã‚’ãƒãƒ£ãƒ¼ã‚¸ã«è¦ã™ã‚‹";
 				case "User1":
 				case "User2":
-					return "ƒVƒiƒŠƒI—p";
+					return "ã‚·ãƒŠãƒªã‚ªç”¨";
 				default:
 					return base.AttrTip(AttrName);
 			}
@@ -2403,9 +2403,9 @@ namespace RigidChips {
 
 		/*		public override string ToString() {
 					string s = "";
-					s += "Arm(";	//	©ƒ`ƒbƒv‚Ìo—Í–¼
+					s += "Arm(";	//	â†ãƒãƒƒãƒ—ã®å‡ºåŠ›å
 
-					//	‘®«‹LqƒuƒƒbƒN
+					//	å±æ€§è¨˜è¿°ãƒ–ãƒ­ãƒƒã‚¯
 					if(ChipColor != RcColor.Default)
 						s += "Color=" + ChipColor.ToString() + ",";
 					if(Name != null && Name != "")
@@ -2479,10 +2479,10 @@ namespace RigidChips {
 	}
 
 
-	#region ƒVƒXƒeƒ€—p
+	#region ã‚·ã‚¹ãƒ†ãƒ ç”¨
 
 	///<summery>
-	///ƒJ[ƒ\ƒ‹ ƒNƒ‰ƒX
+	///ã‚«ãƒ¼ã‚½ãƒ« ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipCursor : RcChipBase {
 		RcXFile mesh;
@@ -2516,12 +2516,12 @@ namespace RigidChips {
 				}
 				return;
 			}
-			throw new Exception("RcChipCursor‚É’Ç‰Á‚Å‚«‚é‚Ì‚ÍRcChipGuideƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‚İ‚Å‚·B");
+			throw new Exception("RcChipCursorã«è¿½åŠ ã§ãã‚‹ã®ã¯RcChipGuideã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã¿ã§ã™ã€‚");
 		}
 
 		public override void Attach(RcChipBase to, RcJointPosition pos) {
-			this.Parent = to;   // ˆê•û“I‚ÈQÆ‚Å‚ ‚èAAttachæ‚Ìƒ`ƒbƒv‚É‚Í‰e‹¿‚ğ‹y‚Ú‚³‚È‚¢B
-								// ‚±‚ê‚É‚æ‚èAcursor.Parent‚Å‘I‘ğ‚³‚ê‚½ƒ`ƒbƒv‚ğæ“¾‚Å‚«‚éB
+			this.Parent = to;   // ä¸€æ–¹çš„ãªå‚ç…§ã§ã‚ã‚Šã€Attachå…ˆã®ãƒãƒƒãƒ—ã«ã¯å½±éŸ¿ã‚’åŠã¼ã•ãªã„ã€‚
+								// ã“ã‚Œã«ã‚ˆã‚Šã€cursor.Parentã§é¸æŠã•ã‚ŒãŸãƒãƒƒãƒ—ã‚’å–å¾—ã§ãã‚‹ã€‚
 			UpdateMatrix();
 		}
 
@@ -2562,7 +2562,7 @@ namespace RigidChips {
 		//		public override string ToString(int tabs){
 		//			string s = "";
 		//			for(int i = 0;i < tabs;i++)s += "\t";
-		//			return s + "//C:Guide(){}\n";		//	”h¶ƒ`ƒbƒv‚Í‚½‚È‚¢
+		//			return s + "//C:Guide(){}\n";		//	æ´¾ç”Ÿãƒãƒƒãƒ—ã¯æŒãŸãªã„
 		//		}
 		//
 		//		public override string ToString() {
@@ -2571,10 +2571,10 @@ namespace RigidChips {
 
 		public override RcAttrValue this[string AttrName] {
 			get {
-				throw new Exception("RcChipCursor‚Í‘®«’l‚ğ‚¿‚Ü‚¹‚ñB\nRcAttrValueƒvƒƒpƒeƒB‚Íg—p‚Å‚«‚Ü‚¹‚ñB");
+				throw new Exception("RcChipCursorã¯å±æ€§å€¤ã‚’æŒã¡ã¾ã›ã‚“ã€‚\nRcAttrValueãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚");
 			}
 			set {
-				throw new Exception("RcChipCursor‚Í‘®«’l‚ğ‚¿‚Ü‚¹‚ñB\nRcAttrValueƒvƒƒpƒeƒB‚Íg—p‚Å‚«‚Ü‚¹‚ñB");
+				throw new Exception("RcChipCursorã¯å±æ€§å€¤ã‚’æŒã¡ã¾ã›ã‚“ã€‚\nRcAttrValueãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚");
 			}
 		}
 
@@ -2593,11 +2593,11 @@ namespace RigidChips {
 					}
 				}
 			}
-			// “Š‰es—ñ
+			// æŠ•å½±è¡Œåˆ—
 			Matrix projMat = Generics.d3ddevice.Transform.Projection;
-			// ƒrƒ…[s—ñ
+			// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
 			Matrix viewMat = Generics.d3ddevice.Transform.View;
-			// ƒrƒ…[ƒ|[ƒg
+			// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆ
 			Viewport viewport = new Viewport();
 
 			IntersectInformation sectinfo = new IntersectInformation();
@@ -2608,11 +2608,11 @@ namespace RigidChips {
 			viewport.MaxZ = 1.0f;
 			viewport.MinZ = 0.0f;
 
-			// ƒNƒŠƒbƒN‚µ‚½ƒXƒNƒŠ[ƒ“À•W‚©‚çƒŒƒC‚ğŒvZ‚µA‘ÎÛƒƒbƒVƒ…‚Æ‚ÌŒğ·‚ğƒ`ƒFƒbƒN 
+			// ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‹ã‚‰ãƒ¬ã‚¤ã‚’è¨ˆç®—ã—ã€å¯¾è±¡ãƒ¡ãƒƒã‚·ãƒ¥ã¨ã®äº¤å·®ã‚’ãƒã‚§ãƒƒã‚¯ 
 			Vector3 vNear = Vector3.Unproject(new Vector3(X, Y, viewport.MinZ),
-				viewport, projMat, viewMat, this.Matrix /* ‚±‚±‚ªWorlds—ñ */);
+				viewport, projMat, viewMat, this.Matrix /* ã“ã“ãŒWorldè¡Œåˆ— */);
 			Vector3 vFar = Vector3.Unproject(new Vector3(X, Y, viewport.MaxZ),
-				viewport, projMat, viewMat, this.Matrix /* ‚±‚±‚ªWorlds—ñ */);
+				viewport, projMat, viewMat, this.Matrix /* ã“ã“ãŒWorldè¡Œåˆ— */);
 			Vector3 vDir = Vector3.Normalize(vFar - vNear);
 
 			buff.distance = (Generics.imesh.Intersect(vNear, vDir, out sectinfo)) ? sectinfo.Dist : float.MaxValue;
@@ -2627,7 +2627,7 @@ namespace RigidChips {
 	}
 
 	///<summery>
-	///ƒ`ƒbƒv’Ç‰Á—p ƒKƒCƒh ƒNƒ‰ƒX
+	///ãƒãƒƒãƒ—è¿½åŠ ç”¨ ã‚¬ã‚¤ãƒ‰ ã‚¯ãƒ©ã‚¹
 	///</summery>
 	public class RcChipGuide : RcChipBase {
 		RcXFile mesh;
@@ -2636,7 +2636,7 @@ namespace RigidChips {
 		}
 
 		public override void Add(RcJointPosition joint, RcChipBase chip, bool Registeration) {
-			throw new Exception("RcChipGuide‚ÉAAdd()‚Í–³Œø‚Å‚·B");
+			throw new Exception("RcChipGuideã«ã€Add()ã¯ç„¡åŠ¹ã§ã™ã€‚");
 		}
 
 		public override string AttrTip(string AttrName) {
@@ -2682,15 +2682,15 @@ namespace RigidChips {
 
 		public override RcAttrValue this[string AttrName] {
 			get {
-				throw new Exception("RcChipGuide‚Í‘®«’l‚ğ‚¿‚Ü‚¹‚ñB\nRcAttrValueƒvƒƒpƒeƒB‚Íg—p‚Å‚«‚Ü‚¹‚ñB");
+				throw new Exception("RcChipGuideã¯å±æ€§å€¤ã‚’æŒã¡ã¾ã›ã‚“ã€‚\nRcAttrValueãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚");
 			}
 			set {
-				throw new Exception("RcChipGuide‚Í‘®«’l‚ğ‚¿‚Ü‚¹‚ñB\nRcAttrValueƒvƒƒpƒeƒB‚Íg—p‚Å‚«‚Ü‚¹‚ñB");
+				throw new Exception("RcChipGuideã¯å±æ€§å€¤ã‚’æŒã¡ã¾ã›ã‚“ã€‚\nRcAttrValueãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚");
 			}
 		}
 
 		//		public override string ToString(int tabs) {
-		//			return "";		//	o—Í‚³‚ê‚È‚¢
+		//			return "";		//	å‡ºåŠ›ã•ã‚Œãªã„
 		//		}
 		//		public override string ToString() {
 		//			return "";
@@ -2699,11 +2699,11 @@ namespace RigidChips {
 		public override RcHitStatus IsHit(int X, int Y, int ScrWidth, int ScrHeight) {
 			RcHitStatus dist = new RcHitStatus();
 
-			// “Š‰es—ñ
+			// æŠ•å½±è¡Œåˆ—
 			Matrix projMat = Generics.d3ddevice.Transform.Projection;
-			// ƒrƒ…[s—ñ
+			// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
 			Matrix viewMat = Generics.d3ddevice.Transform.View;
-			// ƒrƒ…[ƒ|[ƒg
+			// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆ
 			Viewport viewport = new Viewport();
 
 			IntersectInformation sectinfo = new IntersectInformation();
@@ -2714,7 +2714,7 @@ namespace RigidChips {
 			viewport.MaxZ = 1.0f;
 			viewport.MinZ = 0.0f;
 
-			// ƒNƒŠƒbƒN‚µ‚½ƒXƒNƒŠ[ƒ“À•W‚©‚çƒŒƒC‚ğŒvZ‚µA‘ÎÛƒƒbƒVƒ…‚Æ‚ÌŒğ·‚ğƒ`ƒFƒbƒN 
+			// ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‹ã‚‰ãƒ¬ã‚¤ã‚’è¨ˆç®—ã—ã€å¯¾è±¡ãƒ¡ãƒƒã‚·ãƒ¥ã¨ã®äº¤å·®ã‚’ãƒã‚§ãƒƒã‚¯ 
 			Vector3 vNear = Vector3.Unproject(new Vector3(X, Y, viewport.MinZ),
 				viewport, projMat, viewMat, matRotation * this.Matrix);
 			Vector3 vFar = Vector3.Unproject(new Vector3(X, Y, viewport.MaxZ),

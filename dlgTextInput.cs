@@ -1,14 +1,14 @@
-using System.Windows.Forms;
+ï»¿using System.Windows.Forms;
 
 namespace rcm {
 	/// <summary>
-	/// •¶š—ñ“ü—Í—pŠÈˆÕƒ_ƒCƒAƒƒO
+	/// æ–‡å­—åˆ—å…¥åŠ›ç”¨ç°¡æ˜“ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 	/// </summary>
 	public class dlgTextInput : System.Windows.Forms.Form {
-		// ‹–—e•¶š‚ÉŠÖŒW‚·‚é•¶š—ñ
+		// è¨±å®¹æ–‡å­—ã«é–¢ä¿‚ã™ã‚‹æ–‡å­—åˆ—
 		private string ignorelist = "";
 
-		// ignorelist‚Ì•¶šŒQ‚ª–³‹‘ÎÛ‚É‚È‚éƒtƒ‰ƒOB
+		// ignorelistã®æ–‡å­—ç¾¤ãŒç„¡è¦–å¯¾è±¡ã«ãªã‚‹ãƒ•ãƒ©ã‚°ã€‚
 		private bool ignoremode = false;
 
 		private System.Windows.Forms.TextBox textBox1;
@@ -16,23 +16,23 @@ namespace rcm {
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
 		private dlgTextInput() {
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
 			//
-			// TODO: InitializeComponent ŒÄ‚Ño‚µ‚ÌŒã‚ÉAƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: InitializeComponent å‘¼ã³å‡ºã—ã®å¾Œã«ã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose(bool disposing) {
 			if (disposing) {
@@ -43,10 +43,10 @@ namespace rcm {
 			base.Dispose(disposing);
 		}
 
-		#region Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi‚Å¶¬‚³‚ê‚½ƒR[ƒh 
+		#region Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠã§ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ 
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent() {
 			this.textBox1 = new System.Windows.Forms.TextBox();
@@ -70,7 +70,7 @@ namespace rcm {
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(157, 15);
 			this.label1.TabIndex = 1;
-			this.label1.Text = "•¶š—ñ‚ğ“ü—Í‚µ‚È‚³‚¢‚Á‚Ä‚±‚Á‚½";
+			this.label1.Text = "æ–‡å­—åˆ—ã‚’å…¥åŠ›ã—ãªã•ã„ã£ã¦ã“ã£ãŸ";
 			// 
 			// button1
 			// 
@@ -104,7 +104,7 @@ namespace rcm {
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Name = "dlgTextInput";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "•¶š—ñ“ü—Íƒ_ƒCƒAƒƒO";
+			this.Text = "æ–‡å­—åˆ—å…¥åŠ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°";
 			this.Load += new System.EventHandler(this.dlgTextInput_Load);
 			this.ResumeLayout(false);
 
@@ -112,8 +112,8 @@ namespace rcm {
 		#endregion
 
 		///<summery>
-		///‰Šú•¶š—ñAà–¾•¶A“ü—ÍÅ‘å’·‚ğw’è‚µ‚ÄAƒ_ƒCƒAƒƒO‚ğ”­¶‚³‚¹‚éB
-		///maxlength‚ª0‚Ìê‡A“ü—Í‰Â”\•¶š”‚Í‚È‚µB
+		///åˆæœŸæ–‡å­—åˆ—ã€èª¬æ˜æ–‡ã€å…¥åŠ›æœ€å¤§é•·ã‚’æŒ‡å®šã—ã¦ã€ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
+		///maxlengthãŒ0ã®å ´åˆã€å…¥åŠ›å¯èƒ½æ–‡å­—æ•°ã¯ãªã—ã€‚
 		///</summery>
 		public static string ShowDialog(string defaulttext, string labelcaption, int maxlength) {
 			dlgTextInput f = new dlgTextInput();
@@ -127,8 +127,8 @@ namespace rcm {
 		}
 
 		///<summery>
-		///‰Šú•¶š—ñAà–¾•¶A“ü—ÍÅ‘å’·A“ü—Í‚É”­¶‚·‚éƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰‚ğw’è‚µ‚Ä
-		///ƒ_ƒCƒAƒƒO‚ğ”­¶‚³‚¹‚éB
+		///åˆæœŸæ–‡å­—åˆ—ã€èª¬æ˜æ–‡ã€å…¥åŠ›æœ€å¤§é•·ã€å…¥åŠ›æ™‚ã«ç™ºç”Ÿã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ã‚’æŒ‡å®šã—ã¦
+		///ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		///</summery>
 		public static string ShowDialog(string defaulttext, string labelcaption, int maxlength, KeyPressEventHandler keypresshandler) {
 			dlgTextInput f = new dlgTextInput();
@@ -144,8 +144,8 @@ namespace rcm {
 		}
 
 		///<summery>
-		///‰Šú•¶š—ñAà–¾•¶A“ü—ÍÅ‘å’·A‹–—e•¶šƒŠƒXƒg‚ğw’è‚µ‚ÄAƒ_ƒCƒAƒƒO‚ğ”­¶‚³‚¹‚éB
-		///ignore‚ªtrue‚ÌA•¶šƒŠƒXƒg‚Í–³‹‘ÎÛ‚Æ‚È‚éB
+		///åˆæœŸæ–‡å­—åˆ—ã€èª¬æ˜æ–‡ã€å…¥åŠ›æœ€å¤§é•·ã€è¨±å®¹æ–‡å­—ãƒªã‚¹ãƒˆã‚’æŒ‡å®šã—ã¦ã€ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
+		///ignoreãŒtrueã®æ™‚ã€æ–‡å­—ãƒªã‚¹ãƒˆã¯ç„¡è¦–å¯¾è±¡ã¨ãªã‚‹ã€‚
 		///</summery>
 		public static string ShowDialog(string defaulttext, string labelcaption, int maxlength, string checkcharlist, bool ignore) {
 			dlgTextInput f = new dlgTextInput();

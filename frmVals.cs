@@ -1,9 +1,9 @@
-using RigidChips;
+ï»¿using RigidChips;
 using System;
 using System.Windows.Forms;
 namespace rcm {
 	/// <summary>
-	/// •Ï”(Vals)İ’èƒ_ƒCƒAƒƒOB
+	/// å¤‰æ•°(Vals)è¨­å®šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã€‚
 	/// </summary>
 	public class frmVals : System.Windows.Forms.Form {
 		RcValList vallist;
@@ -42,7 +42,7 @@ namespace rcm {
 
 		public frmVals(RcValList list) {
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
@@ -62,7 +62,7 @@ namespace rcm {
 
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose(bool disposing) {
 			if (disposing) {
@@ -73,10 +73,10 @@ namespace rcm {
 			base.Dispose(disposing);
 		}
 
-		#region Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi‚Å¶¬‚³‚ê‚½ƒR[ƒh 
+		#region Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠã§ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ 
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
@@ -111,7 +111,7 @@ namespace rcm {
 			// 
 			// lstVals
 			// 
-			this.lstVals.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.lstVals.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.lstVals.HorizontalScrollbar = true;
 			this.lstVals.IntegralHeight = false;
 			this.lstVals.ItemHeight = 12;
@@ -136,7 +136,7 @@ namespace rcm {
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 24);
 			this.label1.TabIndex = 2;
-			this.label1.Text = "‰Šú’l(Default)";
+			this.label1.Text = "åˆæœŸå€¤(Default)";
 			// 
 			// label2
 			// 
@@ -144,7 +144,7 @@ namespace rcm {
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(56, 24);
 			this.label2.TabIndex = 4;
-			this.label2.Text = "Å¬’l(Min)";
+			this.label2.Text = "æœ€å°å€¤(Min)";
 			// 
 			// txtMin
 			// 
@@ -161,7 +161,7 @@ namespace rcm {
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 24);
 			this.label3.TabIndex = 6;
-			this.label3.Text = "Å‘å’l(Max)";
+			this.label3.Text = "æœ€å¤§å€¤(Max)";
 			// 
 			// txtMax
 			// 
@@ -178,7 +178,7 @@ namespace rcm {
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(80, 24);
 			this.label4.TabIndex = 8;
-			this.label4.Text = "•œ‹AƒXƒeƒbƒv—Ê(Step)";
+			this.label4.Text = "å¾©å¸°ã‚¹ãƒ†ãƒƒãƒ—é‡(Step)";
 			// 
 			// txtStep
 			// 
@@ -195,7 +195,7 @@ namespace rcm {
 			this.chkDisp.Name = "chkDisp";
 			this.chkDisp.Size = new System.Drawing.Size(112, 32);
 			this.chkDisp.TabIndex = 9;
-			this.chkDisp.Text = "‰æ–Ê‚É•\¦‚·‚é(Disp)";
+			this.chkDisp.Text = "ç”»é¢ã«è¡¨ç¤ºã™ã‚‹(Disp)";
 			this.chkDisp.CheckedChanged += new System.EventHandler(this.ValParams_Changed);
 			// 
 			// btnCancel
@@ -204,7 +204,7 @@ namespace rcm {
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(80, 24);
 			this.btnCancel.TabIndex = 13;
-			this.btnCancel.Text = "•Â‚¶‚é";
+			this.btnCancel.Text = "é–‰ã˜ã‚‹";
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
 			// label5
@@ -213,7 +213,7 @@ namespace rcm {
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(72, 24);
 			this.label5.TabIndex = 15;
-			this.label5.Text = "•Ï”–¼";
+			this.label5.Text = "å¤‰æ•°å";
 			// 
 			// txtName
 			// 
@@ -222,7 +222,7 @@ namespace rcm {
 			this.txtName.Size = new System.Drawing.Size(64, 19);
 			this.txtName.TabIndex = 1;
 			this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.tpVals.SetToolTip(this.txtName, "•Ï”‚ğíœ‚µ‚½‚¢‚Æ‚«‚É‚ÍA‚±‚±‚ğ‹ó‚É‚µ‚Ä‚­‚¾‚³‚¢B");
+			this.tpVals.SetToolTip(this.txtName, "å¤‰æ•°ã‚’å‰Šé™¤ã—ãŸã„ã¨ãã«ã¯ã€ã“ã“ã‚’ç©ºã«ã—ã¦ãã ã•ã„ã€‚");
 			this.txtName.TextChanged += new System.EventHandler(this.ValParams_Changed);
 			this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValParams_KeyPress);
 			// 
@@ -238,7 +238,7 @@ namespace rcm {
 			this.grpPreviewer.Size = new System.Drawing.Size(136, 176);
 			this.grpPreviewer.TabIndex = 16;
 			this.grpPreviewer.TabStop = false;
-			this.grpPreviewer.Text = "’´ŠÈˆÕ“®ìƒvƒŒƒrƒ…[";
+			this.grpPreviewer.Text = "è¶…ç°¡æ˜“å‹•ä½œãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼";
 			this.grpPreviewer.EnabledChanged += new System.EventHandler(this.grpPreviewer_EnabledChanged);
 			// 
 			// labelPrevDigit
@@ -256,7 +256,7 @@ namespace rcm {
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(48, 16);
 			this.label6.TabIndex = 3;
-			this.label6.Text = "ƒXƒeƒbƒv:";
+			this.label6.Text = "ã‚¹ãƒ†ãƒƒãƒ—:";
 			// 
 			// vsbPrevBar
 			// 
@@ -285,7 +285,7 @@ namespace rcm {
 			this.btnPrevPush.Size = new System.Drawing.Size(56, 24);
 			this.btnPrevPush.TabIndex = 0;
 			this.btnPrevPush.TabStop = false;
-			this.btnPrevPush.Text = "ƒ{ƒ^ƒ“";
+			this.btnPrevPush.Text = "ãƒœã‚¿ãƒ³";
 			this.btnPrevPush.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnPrevPush_MouseDown);
 			this.btnPrevPush.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnPrevPush_MouseUp);
 			// 
@@ -300,8 +300,8 @@ namespace rcm {
 			this.btnUp.Name = "btnUp";
 			this.btnUp.Size = new System.Drawing.Size(24, 24);
 			this.btnUp.TabIndex = 17;
-			this.btnUp.Text = "ª";
-			this.tpVals.SetToolTip(this.btnUp, "ã‚Ö");
+			this.btnUp.Text = "â†‘";
+			this.tpVals.SetToolTip(this.btnUp, "ä¸Šã¸");
 			this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
 			// 
 			// btnDown
@@ -310,8 +310,8 @@ namespace rcm {
 			this.btnDown.Name = "btnDown";
 			this.btnDown.Size = new System.Drawing.Size(24, 24);
 			this.btnDown.TabIndex = 18;
-			this.btnDown.Text = "«";
-			this.tpVals.SetToolTip(this.btnDown, "‰º‚Ö");
+			this.btnDown.Text = "â†“";
+			this.tpVals.SetToolTip(this.btnDown, "ä¸‹ã¸");
 			this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
 			// 
 			// btnApply
@@ -320,7 +320,7 @@ namespace rcm {
 			this.btnApply.Name = "btnApply";
 			this.btnApply.Size = new System.Drawing.Size(72, 24);
 			this.btnApply.TabIndex = 19;
-			this.btnApply.Text = "“K—p";
+			this.btnApply.Text = "é©ç”¨";
 			this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
 			// 
 			// btnCopy
@@ -329,7 +329,7 @@ namespace rcm {
 			this.btnCopy.Name = "btnCopy";
 			this.btnCopy.Size = new System.Drawing.Size(24, 24);
 			this.btnCopy.TabIndex = 20;
-			this.btnCopy.Text = "•¡";
+			this.btnCopy.Text = "è¤‡";
 			this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
 			// 
 			// btnDelete
@@ -338,7 +338,7 @@ namespace rcm {
 			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.Size = new System.Drawing.Size(24, 24);
 			this.btnDelete.TabIndex = 21;
-			this.btnDelete.Text = "í";
+			this.btnDelete.Text = "å‰Š";
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
 			// frmVals
@@ -370,7 +370,7 @@ namespace rcm {
 			this.Name = "frmVals";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Val{...}İ’è";
+			this.Text = "Val{...}è¨­å®š";
 			this.Load += new System.EventHandler(this.frmVals_Load);
 			this.grpPreviewer.ResumeLayout(false);
 			this.grpPreviewer.PerformLayout();
@@ -386,7 +386,7 @@ namespace rcm {
 			foreach (RcVal v in vallist.List) {
 				lstVals.Items.Add(v.ToString());
 			}
-			lstVals.Items.Add("(V‹K)");
+			lstVals.Items.Add("(æ–°è¦)");
 			if (0 <= idx && idx < lstVals.Items.Count)
 				lstVals.SelectedIndex = idx;
 			lstVals.EndUpdate();
@@ -399,7 +399,7 @@ namespace rcm {
 			RcVal target = vallist[idx];
 			if (txtName.Text == "") {
 				if (target.RefCount > 0) {
-					if (MessageBox.Show("‚±‚Ì•Ï”‚Í‘¼‚Ì•”•ª‚Åg—p‚³‚ê‚Ä‚¢‚Ü‚·B\n‚»‚Ì‚½‚ßíœ‚·‚é‚Æƒ‚ƒfƒ‹“®ì‚ªˆÓ}‚µ‚È‚¢•¨‚É‚È‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B", "RefCount = " + target.RefCount, MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+					if (MessageBox.Show("ã“ã®å¤‰æ•°ã¯ä»–ã®éƒ¨åˆ†ã§ä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã™ã€‚\nãã®ãŸã‚å‰Šé™¤ã™ã‚‹ã¨ãƒ¢ãƒ‡ãƒ«å‹•ä½œãŒæ„å›³ã—ãªã„ç‰©ã«ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚", "RefCount = " + target.RefCount, MessageBoxButtons.OKCancel) == DialogResult.Cancel)
 						return;
 				}
 				vallist.Remove(target.ValName);
@@ -421,24 +421,24 @@ namespace rcm {
 				target.Step = new RcConst(txtStep.Text);
 
 				if (target.Min > target.Max) {
-					MessageBox.Show("Max / Min‚Ì”ÍˆÍ‚ª•s³‚Å‚·B\nMax‚ğMin‚É‡‚í‚¹‚Ü‚·B", "“K—pƒGƒ‰[", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					MessageBox.Show("Max / Minã®ç¯„å›²ãŒä¸æ­£ã§ã™ã€‚\nMaxã‚’Minã«åˆã‚ã›ã¾ã™ã€‚", "é©ç”¨ã‚¨ãƒ©ãƒ¼", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					target.Max = target.Min;
 				}
 				if (target.Min > target.Default) {
-					MessageBox.Show("Default‚ªAMax / Min‚Ì”ÍˆÍŠO‚Å‚·B\nMin‚É‡‚í‚¹‚Ü‚·B", "“K—pƒGƒ‰[", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					MessageBox.Show("DefaultãŒã€Max / Minã®ç¯„å›²å¤–ã§ã™ã€‚\nMinã«åˆã‚ã›ã¾ã™ã€‚", "é©ç”¨ã‚¨ãƒ©ãƒ¼", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					target.Default = target.Min;
 				}
 				else if (target.Default > target.Max) {
-					MessageBox.Show("Default‚ªAMax / Min‚Ì”ÍˆÍŠO‚Å‚·B\nMax0‚É‡‚í‚¹‚Ü‚·B", "“K—pƒGƒ‰[", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					MessageBox.Show("DefaultãŒã€Max / Minã®ç¯„å›²å¤–ã§ã™ã€‚\nMax0ã«åˆã‚ã›ã¾ã™ã€‚", "é©ç”¨ã‚¨ãƒ©ãƒ¼", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					target.Default = target.Max;
 				}
 
 			}
 			catch (FormatException fe) {
-				MessageBox.Show("”š‚Ì‚İ—LŒø‚Å‚·B", fe.Message, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBox.Show("æ•°å­—ã®ã¿æœ‰åŠ¹ã§ã™ã€‚", fe.Message, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 			catch (OverflowException oe) {
-				MessageBox.Show("’l‚Ìâ‘Î’l‚ª‘å‚«‚·‚¬‚Ü‚·B", oe.Message, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBox.Show("å€¤ã®çµ¶å¯¾å€¤ãŒå¤§ãã™ãã¾ã™ã€‚", oe.Message, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 			target.Disp = chkDisp.Checked;
 			lstVals.Items[idx] = target.ToString();
@@ -462,14 +462,14 @@ namespace rcm {
 				idx = -1;
 				btnApply.Enabled = txtName.Enabled = txtDefault.Enabled = txtMin.Enabled = txtMax.Enabled = txtStep.Enabled = chkDisp.Enabled = grpPreviewer.Enabled = false;
 			}
-			else if (lstVals.SelectedItem as string == "(V‹K)") {
-				// V‹K’Ç‰Á
+			else if (lstVals.SelectedItem as string == "(æ–°è¦)") {
+				// æ–°è¦è¿½åŠ 
 				RcVal NewVal = vallist.Add("val" + (vallist.Count + 1).ToString());
 				if (NewVal == null) {
 					lstVals.SelectedIndex = -1;
 					return;
 				}
-				//string name = dlgTextInput.ShowDialog("val" + vallist.Count, "V‚µ‚¢•Ï”‚Ì–¼‘O‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢", 0, @" ""!#$%&'()-=^~|\[]{}`@:*;+,<.>/?", true);
+				//string name = dlgTextInput.ShowDialog("val" + vallist.Count, "æ–°ã—ã„å¤‰æ•°ã®åå‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„", 0, @" ""!#$%&'()-=^~|\[]{}`@:*;+,<.>/?", true);
 				//if (name != null)
 				int tmp = lstVals.SelectedIndex;
 				RefreshValList();
@@ -632,7 +632,7 @@ namespace rcm {
 		private void btnDelete_Click(object sender, EventArgs e) {
 			RcVal target = vallist[idx];
 			if (target.RefCount > 0) {
-				if (MessageBox.Show("‚±‚Ì•Ï”‚Í‘¼‚Ì•”•ª‚Åg—p‚³‚ê‚Ä‚¢‚Ü‚·B\n‚»‚Ì‚½‚ßíœ‚·‚é‚Æƒ‚ƒfƒ‹“®ì‚ªˆÓ}‚µ‚È‚¢•¨‚É‚È‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B", "RefCount = " + target.RefCount, MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+				if (MessageBox.Show("ã“ã®å¤‰æ•°ã¯ä»–ã®éƒ¨åˆ†ã§ä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã™ã€‚\nãã®ãŸã‚å‰Šé™¤ã™ã‚‹ã¨ãƒ¢ãƒ‡ãƒ«å‹•ä½œãŒæ„å›³ã—ãªã„ç‰©ã«ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚", "RefCount = " + target.RefCount, MessageBoxButtons.OKCancel) == DialogResult.Cancel)
 					return;
 			}
 			vallist.Remove(target.ValName);

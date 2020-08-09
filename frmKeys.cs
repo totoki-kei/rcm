@@ -1,4 +1,4 @@
-using RigidChips;
+ï»¿using RigidChips;
 using System;
 using System.Drawing;
 using System.Text;
@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace rcm {
 	/// <summary>
-	/// ƒL[İ’èƒ_ƒCƒAƒƒOBg‚¢‚Ã‚ç‚¢‚±‚Æ‚Å—L–¼(@L_TM)
+	/// ã‚­ãƒ¼è¨­å®šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã€‚ä½¿ã„ã¥ã‚‰ã„ã“ã¨ã§æœ‰å(ã€€Â´_ã‚ï½€)
 	/// </summary>
 	public class frmKeys : System.Windows.Forms.Form {
 		RcData data;
@@ -33,13 +33,13 @@ namespace rcm {
 		private System.Windows.Forms.Button btnDelete;
 		private Label label7;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
 		public frmKeys(RcData rcdata) {
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
@@ -58,12 +58,12 @@ namespace rcm {
 
 		private void UpdateKeyDescriptions(bool keepIndex) {
 			string[] str = {
-							   "[ª]","[«]","[©]","[¨]",
-							   "[‚y]","[‚w]","[‚b]",
-							   "[‚`]","[‚r]","[‚c]",
-							   "[‚u]","[‚a]",
-							   "[‚e]","[‚f]",
-							   "[‚p]","[‚v]","[‚d]"
+							   "[â†‘]","[â†“]","[â†]","[â†’]",
+							   "[ï¼º]","[ï¼¸]","[ï¼£]",
+							   "[ï¼¡]","[ï¼³]","[ï¼¤]",
+							   "[ï¼¶]","[ï¼¢]",
+							   "[ï¼¦]","[ï¼§]",
+							   "[ï¼±]","[ï¼·]","[ï¼¥]"
 						   };
 			int index = lstKeyList.SelectedIndex;
 			lstKeyList.SuspendLayout();
@@ -92,12 +92,12 @@ namespace rcm {
 			foreach (RcVal v in vallist.List) {
 				cmbVals.Items.Add(v);
 			}
-			cmbVals.Items.Add("(Val•ÒW...)");
+			cmbVals.Items.Add("(Valç·¨é›†...)");
 			cmbVals.ResumeLayout();
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose(bool disposing) {
 			if (disposing) {
@@ -108,10 +108,10 @@ namespace rcm {
 			base.Dispose(disposing);
 		}
 
-		#region Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi‚Å¶¬‚³‚ê‚½ƒR[ƒh 
+		#region Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠã§ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ 
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent() {
 			this.lstKeyList = new System.Windows.Forms.ListBox();
@@ -138,7 +138,7 @@ namespace rcm {
 			// 
 			// lstKeyList
 			// 
-			this.lstKeyList.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.lstKeyList.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.lstKeyList.IntegralHeight = false;
 			this.lstKeyList.ItemHeight = 12;
 			this.lstKeyList.Location = new System.Drawing.Point(8, 8);
@@ -182,7 +182,7 @@ namespace rcm {
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(48, 24);
 			this.btnAdd.TabIndex = 4;
-			this.btnAdd.Text = "’Ç‰Á";
+			this.btnAdd.Text = "è¿½åŠ ";
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
 			// btnClose
@@ -191,7 +191,7 @@ namespace rcm {
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(60, 24);
 			this.btnClose.TabIndex = 6;
-			this.btnClose.Text = "•Â‚¶‚é";
+			this.btnClose.Text = "é–‰ã˜ã‚‹";
 			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
 			// 
 			// label1
@@ -208,7 +208,7 @@ namespace rcm {
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(112, 16);
 			this.label3.TabIndex = 8;
-			this.label3.Text = "“o˜^‚³‚ê‚Ä‚¢‚é•Ï”";
+			this.label3.Text = "ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å¤‰æ•°";
 			// 
 			// groupBox1
 			// 
@@ -225,7 +225,7 @@ namespace rcm {
 			this.groupBox1.Size = new System.Drawing.Size(128, 176);
 			this.groupBox1.TabIndex = 9;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "•Ï”Ú×";
+			this.groupBox1.Text = "å¤‰æ•°è©³ç´°";
 			// 
 			// labelValStep
 			// 
@@ -233,7 +233,7 @@ namespace rcm {
 			this.labelValStep.Name = "labelValStep";
 			this.labelValStep.Size = new System.Drawing.Size(72, 16);
 			this.labelValStep.TabIndex = 7;
-			this.labelValStep.Text = "(î•ñ‚È‚µ)";
+			this.labelValStep.Text = "(æƒ…å ±ãªã—)";
 			this.labelValStep.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// labelValMax
@@ -242,7 +242,7 @@ namespace rcm {
 			this.labelValMax.Name = "labelValMax";
 			this.labelValMax.Size = new System.Drawing.Size(72, 16);
 			this.labelValMax.TabIndex = 6;
-			this.labelValMax.Text = "(î•ñ‚È‚µ)";
+			this.labelValMax.Text = "(æƒ…å ±ãªã—)";
 			this.labelValMax.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// labelValMin
@@ -251,7 +251,7 @@ namespace rcm {
 			this.labelValMin.Name = "labelValMin";
 			this.labelValMin.Size = new System.Drawing.Size(72, 16);
 			this.labelValMin.TabIndex = 5;
-			this.labelValMin.Text = "(î•ñ‚È‚µ)";
+			this.labelValMin.Text = "(æƒ…å ±ãªã—)";
 			this.labelValMin.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// labelValDefault
@@ -260,7 +260,7 @@ namespace rcm {
 			this.labelValDefault.Name = "labelValDefault";
 			this.labelValDefault.Size = new System.Drawing.Size(72, 16);
 			this.labelValDefault.TabIndex = 4;
-			this.labelValDefault.Text = "(î•ñ‚È‚µ)";
+			this.labelValDefault.Text = "(æƒ…å ±ãªã—)";
 			this.labelValDefault.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// label6
@@ -269,7 +269,7 @@ namespace rcm {
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(88, 16);
 			this.label6.TabIndex = 3;
-			this.label6.Text = "•œ‹A—Ê(Step)";
+			this.label6.Text = "å¾©å¸°é‡(Step)";
 			// 
 			// label5
 			// 
@@ -277,7 +277,7 @@ namespace rcm {
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(88, 16);
 			this.label5.TabIndex = 2;
-			this.label5.Text = "Å‘å’l(Max)";
+			this.label5.Text = "æœ€å¤§å€¤(Max)";
 			// 
 			// label4
 			// 
@@ -285,7 +285,7 @@ namespace rcm {
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(88, 16);
 			this.label4.TabIndex = 1;
-			this.label4.Text = "Å¬’l(Min)";
+			this.label4.Text = "æœ€å°å€¤(Min)";
 			// 
 			// label2
 			// 
@@ -293,7 +293,7 @@ namespace rcm {
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(88, 16);
 			this.label2.TabIndex = 0;
-			this.label2.Text = "‰Šú’l(Default)";
+			this.label2.Text = "åˆæœŸå€¤(Default)";
 			// 
 			// btnDelete
 			// 
@@ -302,7 +302,7 @@ namespace rcm {
 			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.Size = new System.Drawing.Size(48, 24);
 			this.btnDelete.TabIndex = 5;
-			this.btnDelete.Text = "íœ";
+			this.btnDelete.Text = "å‰Šé™¤";
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
 			// label7
@@ -333,7 +333,7 @@ namespace rcm {
 			this.MinimizeBox = false;
 			this.Name = "frmKeys";
 			this.ShowInTaskbar = false;
-			this.Text = "Key{...}İ’è";
+			this.Text = "Key{...}è¨­å®š";
 			this.Load += new System.EventHandler(this.frmKeys_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -365,14 +365,14 @@ namespace rcm {
 				else
 					lstValList.Items.Add(w.ToString());
 			}
-			lstValList.Items.Add("(V‹K)");
+			lstValList.Items.Add("(æ–°è¦)");
 			lstValList_SelectedIndexChanged(sender, e);
 			txtStep.Text = "0";
 		}
 
 		private void btnAdd_Click(object sender, System.EventArgs e) {
 			if (cmbVals.SelectedIndex < 0) return;
-			if (cmbVals.SelectedItem.ToString() == "(Val•ÒW...)") return;
+			if (cmbVals.SelectedItem.ToString() == "(Valç·¨é›†...)") return;
 			try {
 				keylist[lstKeyList.SelectedIndex].AssignWork((RcVal)cmbVals.SelectedItem, float.Parse(txtStep.Text));
 			}
@@ -386,7 +386,7 @@ namespace rcm {
 		}
 
 		private void lstValList_SelectedIndexChanged(object sender, System.EventArgs e) {
-			if (lstValList.SelectedIndex < 0 || lstValList.SelectedItem as string == "(V‹K)") {
+			if (lstValList.SelectedIndex < 0 || lstValList.SelectedItem as string == "(æ–°è¦)") {
 				btnDelete.Enabled = false;
 				return;
 			}
@@ -408,10 +408,10 @@ namespace rcm {
 
 		private void cmbVals_SelectedIndexChanged(object sender, System.EventArgs e) {
 			if (cmbVals.SelectedIndex < 0) {
-				labelValDefault.Text = labelValMin.Text = labelValMax.Text = labelValStep.Text = "(î•ñ‚È‚µ)";
+				labelValDefault.Text = labelValMin.Text = labelValMax.Text = labelValStep.Text = "(æƒ…å ±ãªã—)";
 				btnAdd.Enabled = false;
 			}
-			else if (cmbVals.SelectedItem as string == "(Val•ÒW...)") {
+			else if (cmbVals.SelectedItem as string == "(Valç·¨é›†...)") {
 				frmVals valform = new frmVals(data.vals);
 				bool val = (valform.ShowDialog() == DialogResult.Yes);
 				if (val) {

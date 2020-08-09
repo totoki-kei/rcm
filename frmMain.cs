@@ -1,4 +1,4 @@
-using Microsoft.DirectX;
+ï»¿using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
 using RigidChips;
 using System;
@@ -9,6 +9,7 @@ using System.Drawing;
 //using System.Data;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 //using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ using System.Windows.Forms;
 namespace rcm {
 
 	///<summery>
-	///ƒƒCƒ“ƒtƒH[ƒ€B
+	///ãƒ¡ã‚¤ãƒ³ãƒ•ã‚©ãƒ¼ãƒ ã€‚
 	///</summery>
 	public class frmMain : System.Windows.Forms.Form {
 		class PanelEx : Panel {
@@ -70,7 +71,7 @@ namespace rcm {
 		Vector3 CamNext;
 		int ScrollCount = 0;
 
-		//ToolBarButton selected; // ŒÃ‚¢d—l
+		//ToolBarButton selected; // å¤ã„ä»•æ§˜
 		ToolStripButton selectedButton;
 
 		bool Pause = false;
@@ -176,20 +177,20 @@ namespace rcm {
 		private System.Windows.Forms.Button btnEditPanel;
 		private ToolStripContainer toolStripContainer1;
 		private MenuStrip menuStrip1;
-		private ToolStripMenuItem ƒtƒ@ƒCƒ‹FToolStripMenuItem;
-		private ToolStripMenuItem V‹Kì¬ToolStripMenuItem;
-		private ToolStripMenuItem ŠJ‚­ToolStripMenuItem;
-		private ToolStripMenuItem ã‘‚«•Û‘¶ToolStripMenuItem;
-		private ToolStripMenuItem –¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶ToolStripMenuItem;
+		private ToolStripMenuItem ãƒ•ã‚¡ã‚¤ãƒ«FToolStripMenuItem;
+		private ToolStripMenuItem æ–°è¦ä½œæˆToolStripMenuItem;
+		private ToolStripMenuItem é–‹ãToolStripMenuItem;
+		private ToolStripMenuItem ä¸Šæ›¸ãä¿å­˜ToolStripMenuItem;
+		private ToolStripMenuItem åå‰ã‚’ã¤ã‘ã¦ä¿å­˜ToolStripMenuItem;
 		private ToolStripSeparator toolStripSeparator1;
-		private ToolStripMenuItem •ÒWEToolStripMenuItem;
-		private ToolStripMenuItem ƒc[ƒ‹TToolStripMenuItem;
-		private ToolStripMenuItem İ’èCToolStripMenuItem;
-		private ToolStripMenuItem ƒwƒ‹ƒvHToolStripMenuItem;
-		private ToolStripMenuItem rCDTXT‚ğŠJ‚­ToolStripMenuItem;
-		private ToolStripMenuItem rCD‚Å•Û‘¶ToolStripMenuItem;
+		private ToolStripMenuItem ç·¨é›†EToolStripMenuItem;
+		private ToolStripMenuItem ãƒ„ãƒ¼ãƒ«TToolStripMenuItem;
+		private ToolStripMenuItem è¨­å®šCToolStripMenuItem;
+		private ToolStripMenuItem ãƒ˜ãƒ«ãƒ—HToolStripMenuItem;
+		private ToolStripMenuItem rCDTXTã‚’é–‹ãToolStripMenuItem;
+		private ToolStripMenuItem rCDã§ä¿å­˜ToolStripMenuItem;
 		private ToolStripSeparator toolStripSeparator2;
-		private ToolStripMenuItem I—¹ToolStripMenuItem;
+		private ToolStripMenuItem çµ‚äº†ToolStripMenuItem;
 		private ToolStrip toolStrip1;
 		private ToolStripButton tsbSelectMode;
 		private ToolStripButton tsbCut;
@@ -216,13 +217,13 @@ namespace rcm {
 		private ToolStripButton tsbWeightMode;
 		private ToolStripButton tsbCowlMode;
 		private ToolStripButton tsbArmMode;
-		private ToolStripMenuItem Ø‚èæ‚èTToolStripMenuItem;
-		private ToolStripMenuItem ƒRƒs[CToolStripMenuItem;
-		private ToolStripMenuItem “\‚è•t‚¯PToolStripMenuItem;
+		private ToolStripMenuItem åˆ‡ã‚Šå–ã‚ŠTToolStripMenuItem;
+		private ToolStripMenuItem ã‚³ãƒ”ãƒ¼CToolStripMenuItem;
+		private ToolStripMenuItem è²¼ã‚Šä»˜ã‘PToolStripMenuItem;
 		private ToolStripSeparator toolStripMenuItem1;
-		private ToolStripMenuItem ‹“_•ÏXVToolStripMenuItem;
-		private ToolStripMenuItem ‘I‘ğSToolStripMenuItem;
-		private ToolStripMenuItem ƒ‚ƒfƒ‹î•ñSToolStripMenuItem;
+		private ToolStripMenuItem è¦–ç‚¹å¤‰æ›´VToolStripMenuItem;
+		private ToolStripMenuItem é¸æŠSToolStripMenuItem;
+		private ToolStripMenuItem ãƒ¢ãƒ‡ãƒ«æƒ…å ±SToolStripMenuItem;
 		private MenuItem menuItem2;
 		private MenuItem miPaletteShowDlg;
 		private ColorDialog dlgColor;
@@ -330,11 +331,11 @@ namespace rcm {
 
 		public frmMain(string[] args) {
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
-			#region	–}’²‚È‚é”z—ñ‚Ìì¬
+			#region	å‡¡èª¿ãªã‚‹é…åˆ—ã®ä½œæˆ
 			labelAttrItems = new Label[10];
 			labelAttrItems[0] = labelAttrItem0;
 			labelAttrItems[1] = labelAttrItem1;
@@ -388,7 +389,7 @@ namespace rcm {
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose(bool disposing) {
 			if (disposing) {
@@ -399,10 +400,10 @@ namespace rcm {
 			base.Dispose(disposing);
 		}
 
-		#region Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi‚Å¶¬‚³‚ê‚½ƒR[ƒh
+		#region Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠã§ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
@@ -563,27 +564,27 @@ namespace rcm {
 			this.dlgSave = new System.Windows.Forms.SaveFileDialog();
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.ƒtƒ@ƒCƒ‹FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.V‹Kì¬ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.ŠJ‚­ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.ã‘‚«•Û‘¶ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.–¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ãƒ•ã‚¡ã‚¤ãƒ«FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.æ–°è¦ä½œæˆToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.é–‹ãToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ä¸Šæ›¸ãä¿å­˜ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.åå‰ã‚’ã¤ã‘ã¦ä¿å­˜ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.rCDTXT‚ğŠJ‚­ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rCD‚Å•Û‘¶ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rCDTXTã‚’é–‹ãToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rCDã§ä¿å­˜ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.I—¹ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.•ÒWEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.Ø‚èæ‚èTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.ƒRƒs[CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.“\‚è•t‚¯PToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.çµ‚äº†ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ç·¨é›†EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.åˆ‡ã‚Šå–ã‚ŠTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ã‚³ãƒ”ãƒ¼CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.è²¼ã‚Šä»˜ã‘PToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-			this.‹“_•ÏXVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.‘I‘ğSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.ƒ‚ƒfƒ‹î•ñSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.ƒc[ƒ‹TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.İ’èCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.ƒwƒ‹ƒvHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.è¦–ç‚¹å¤‰æ›´VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.é¸æŠSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ãƒ¢ãƒ‡ãƒ«æƒ…å ±SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ãƒ„ãƒ¼ãƒ«TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.è¨­å®šCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ãƒ˜ãƒ«ãƒ—HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbSelectMode = new System.Windows.Forms.ToolStripButton();
 			this.tsbCut = new System.Windows.Forms.ToolStripButton();
@@ -651,35 +652,35 @@ namespace rcm {
 			this.miFileExport,
 			this.menuItem1,
 			this.miFileQuit});
-			this.miFile.Text = "ƒtƒ@ƒCƒ‹(&F)";
+			this.miFile.Text = "ãƒ•ã‚¡ã‚¤ãƒ«(&F)";
 			this.miFile.Click += new System.EventHandler(this.miFile_Click);
 			// 
 			// miFileNew
 			// 
 			this.miFileNew.Index = 0;
 			this.miFileNew.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
-			this.miFileNew.Text = "V‹Kƒ‚ƒfƒ‹(&N)";
+			this.miFileNew.Text = "æ–°è¦ãƒ¢ãƒ‡ãƒ«(&N)";
 			this.miFileNew.Click += new System.EventHandler(this.miFileNew_Click);
 			// 
 			// miFileOpen
 			// 
 			this.miFileOpen.Index = 1;
 			this.miFileOpen.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
-			this.miFileOpen.Text = "ŠJ‚­(&O)";
+			this.miFileOpen.Text = "é–‹ã(&O)";
 			this.miFileOpen.Click += new System.EventHandler(this.miFileOpen_Click);
 			// 
 			// miFileSave
 			// 
 			this.miFileSave.Index = 2;
 			this.miFileSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
-			this.miFileSave.Text = "ã‘‚«•Û‘¶(&S)";
+			this.miFileSave.Text = "ä¸Šæ›¸ãä¿å­˜(&S)";
 			this.miFileSave.Click += new System.EventHandler(this.miFileSave_Click);
 			// 
 			// miFileSaveAs
 			// 
 			this.miFileSaveAs.Index = 3;
 			this.miFileSaveAs.Shortcut = System.Windows.Forms.Shortcut.CtrlA;
-			this.miFileSaveAs.Text = "–¼‘O‚ğ•t‚¯‚Ä•Û‘¶(&A)";
+			this.miFileSaveAs.Text = "åå‰ã‚’ä»˜ã‘ã¦ä¿å­˜(&A)";
 			this.miFileSaveAs.Click += new System.EventHandler(this.miFileSaveAs_Click);
 			// 
 			// menuItem19
@@ -692,7 +693,7 @@ namespace rcm {
 			// 
 			this.miFileImport.Index = 5;
 			this.miFileImport.Shortcut = System.Windows.Forms.Shortcut.CtrlI;
-			this.miFileImport.Text = "RCD/TXT‚©‚çŠJ‚­(&I)";
+			this.miFileImport.Text = "RCD/TXTã‹ã‚‰é–‹ã(&I)";
 			this.miFileImport.Visible = false;
 			this.miFileImport.Click += new System.EventHandler(this.miFileImport_Click);
 			// 
@@ -700,7 +701,7 @@ namespace rcm {
 			// 
 			this.miFileExport.Index = 6;
 			this.miFileExport.Shortcut = System.Windows.Forms.Shortcut.CtrlE;
-			this.miFileExport.Text = "RCDŒ`®‚Å•Û‘¶(&E)";
+			this.miFileExport.Text = "RCDå½¢å¼ã§ä¿å­˜(&E)";
 			this.miFileExport.Visible = false;
 			this.miFileExport.Click += new System.EventHandler(this.miFileExport_Click);
 			// 
@@ -712,7 +713,7 @@ namespace rcm {
 			// miFileQuit
 			// 
 			this.miFileQuit.Index = 8;
-			this.miFileQuit.Text = "ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌI—¹(&Q)";
+			this.miFileQuit.Text = "ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†(&Q)";
 			this.miFileQuit.Click += new System.EventHandler(this.miFileQuit_Click);
 			// 
 			// miEdit
@@ -726,27 +727,27 @@ namespace rcm {
 			this.miEditView,
 			this.miEditSelect,
 			this.miEditInfo});
-			this.miEdit.Text = "•ÒW(&E)";
+			this.miEdit.Text = "ç·¨é›†(&E)";
 			// 
 			// miEditCut
 			// 
 			this.miEditCut.Index = 0;
 			this.miEditCut.Shortcut = System.Windows.Forms.Shortcut.CtrlX;
-			this.miEditCut.Text = "Ø‚èæ‚è(&T)";
+			this.miEditCut.Text = "åˆ‡ã‚Šå–ã‚Š(&T)";
 			this.miEditCut.Click += new System.EventHandler(this.miCut_Click);
 			// 
 			// miEditCopy
 			// 
 			this.miEditCopy.Index = 1;
 			this.miEditCopy.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
-			this.miEditCopy.Text = "ƒRƒs[(&C)";
+			this.miEditCopy.Text = "ã‚³ãƒ”ãƒ¼(&C)";
 			this.miEditCopy.Click += new System.EventHandler(this.miCopy_Click);
 			// 
 			// miEditDelete
 			// 
 			this.miEditDelete.Index = 2;
 			this.miEditDelete.Shortcut = System.Windows.Forms.Shortcut.CtrlDel;
-			this.miEditDelete.Text = "íœ(&D)";
+			this.miEditDelete.Text = "å‰Šé™¤(&D)";
 			this.miEditDelete.Click += new System.EventHandler(this.miDelete_Click);
 			// 
 			// menuItem6
@@ -766,38 +767,38 @@ namespace rcm {
 			this.miEditViewRear,
 			this.menuItem14,
 			this.miEditViewUser});
-			this.miEditView.Text = "‹“_•ÏX(&V)";
+			this.miEditView.Text = "è¦–ç‚¹å¤‰æ›´(&V)";
 			this.miEditView.Visible = false;
 			// 
 			// miEditViewRight
 			// 
 			this.miEditViewRight.Index = 0;
-			this.miEditViewRight.Text = "‰E‘¤(&R)";
+			this.miEditViewRight.Text = "å³å´(&R)";
 			// 
 			// miEditViewLeft
 			// 
 			this.miEditViewLeft.Index = 1;
-			this.miEditViewLeft.Text = "¶‘¤(&L)";
+			this.miEditViewLeft.Text = "å·¦å´(&L)";
 			// 
 			// miEditViewTop
 			// 
 			this.miEditViewTop.Index = 2;
-			this.miEditViewTop.Text = "^ã(&T)";
+			this.miEditViewTop.Text = "çœŸä¸Š(&T)";
 			// 
 			// miEditViewBottom
 			// 
 			this.miEditViewBottom.Index = 3;
-			this.miEditViewBottom.Text = "^‰º(&B)";
+			this.miEditViewBottom.Text = "çœŸä¸‹(&B)";
 			// 
 			// miEditVierFront
 			// 
 			this.miEditVierFront.Index = 4;
-			this.miEditVierFront.Text = "³–Ê(&F)";
+			this.miEditVierFront.Text = "æ­£é¢(&F)";
 			// 
 			// miEditViewRear
 			// 
 			this.miEditViewRear.Index = 5;
-			this.miEditViewRear.Text = "”wŒã(&R)";
+			this.miEditViewRear.Text = "èƒŒå¾Œ(&R)";
 			// 
 			// menuItem14
 			// 
@@ -807,7 +808,7 @@ namespace rcm {
 			// miEditViewUser
 			// 
 			this.miEditViewUser.Index = 7;
-			this.miEditViewUser.Text = "”’l“ü—Í(&U)...";
+			this.miEditViewUser.Text = "æ•°å€¤å…¥åŠ›(&U)...";
 			// 
 			// miEditSelect
 			// 
@@ -817,40 +818,40 @@ namespace rcm {
 			this.miEditSelectCore,
 			this.miEditSelectChild,
 			this.miEditSelectAll});
-			this.miEditSelect.Text = "‘I‘ğ(&S)";
+			this.miEditSelect.Text = "é¸æŠ(&S)";
 			// 
 			// miEditSelectParent
 			// 
 			this.miEditSelectParent.Index = 0;
 			this.miEditSelectParent.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftP;
-			this.miEditSelectParent.Text = "eƒ`ƒbƒv(&P)";
+			this.miEditSelectParent.Text = "è¦ªãƒãƒƒãƒ—(&P)";
 			this.miEditSelectParent.Click += new System.EventHandler(this.miEditSelectParent_Click);
 			// 
 			// miEditSelectCore
 			// 
 			this.miEditSelectCore.Index = 1;
 			this.miEditSelectCore.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftC;
-			this.miEditSelectCore.Text = "ƒRƒAƒ`ƒbƒv(&C)";
+			this.miEditSelectCore.Text = "ã‚³ã‚¢ãƒãƒƒãƒ—(&C)";
 			this.miEditSelectCore.Click += new System.EventHandler(this.miEditSelectCore_Click);
 			// 
 			// miEditSelectChild
 			// 
 			this.miEditSelectChild.Index = 2;
 			this.miEditSelectChild.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftD;
-			this.miEditSelectChild.Text = "”h¶ƒ`ƒbƒv‘S‚Ä(&O)";
+			this.miEditSelectChild.Text = "æ´¾ç”Ÿãƒãƒƒãƒ—å…¨ã¦(&O)";
 			this.miEditSelectChild.Click += new System.EventHandler(this.miEditSelectChild_Click);
 			// 
 			// miEditSelectAll
 			// 
 			this.miEditSelectAll.Index = 3;
 			this.miEditSelectAll.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftA;
-			this.miEditSelectAll.Text = "‘Sƒ`ƒbƒv(&A)";
+			this.miEditSelectAll.Text = "å…¨ãƒãƒƒãƒ—(&A)";
 			this.miEditSelectAll.Click += new System.EventHandler(this.miEditSelectAll_Click);
 			// 
 			// miEditInfo
 			// 
 			this.miEditInfo.Index = 6;
-			this.miEditInfo.Text = "ƒ‚ƒfƒ‹î•ñ...(&I)";
+			this.miEditInfo.Text = "ãƒ¢ãƒ‡ãƒ«æƒ…å ±...(&I)";
 			this.miEditInfo.Click += new System.EventHandler(this.miEditInfo_Click);
 			// 
 			// miTool
@@ -865,28 +866,28 @@ namespace rcm {
 			this.miToolTree,
 			this.miToolPrev,
 			this.miToolSend});
-			this.miTool.Text = "ƒc[ƒ‹(&T)";
+			this.miTool.Text = "ãƒ„ãƒ¼ãƒ«(&T)";
 			this.miTool.Click += new System.EventHandler(this.menuItem2_Click);
 			// 
 			// miToolVal
 			// 
 			this.miToolVal.Index = 0;
 			this.miToolVal.Shortcut = System.Windows.Forms.Shortcut.F2;
-			this.miToolVal.Text = "&Val{...} •ÒW";
+			this.miToolVal.Text = "&Val{...} ç·¨é›†";
 			this.miToolVal.Click += new System.EventHandler(this.btnVal_Click);
 			// 
 			// miToolKey
 			// 
 			this.miToolKey.Index = 1;
 			this.miToolKey.Shortcut = System.Windows.Forms.Shortcut.F3;
-			this.miToolKey.Text = "&Key{...} •ÒW";
+			this.miToolKey.Text = "&Key{...} ç·¨é›†";
 			this.miToolKey.Click += new System.EventHandler(this.btnKey_Click);
 			// 
 			// miToolScript
 			// 
 			this.miToolScript.Index = 2;
 			this.miToolScript.Shortcut = System.Windows.Forms.Shortcut.F4;
-			this.miToolScript.Text = "&Script/Lua{...} •ÒW";
+			this.miToolScript.Text = "&Script/Lua{...} ç·¨é›†";
 			this.miToolScript.Click += new System.EventHandler(this.miToolScript_Click);
 			// 
 			// miToolComment
@@ -894,7 +895,7 @@ namespace rcm {
 			this.miToolComment.Enabled = false;
 			this.miToolComment.Index = 3;
 			this.miToolComment.Shortcut = System.Windows.Forms.Shortcut.ShiftF4;
-			this.miToolComment.Text = "ƒtƒ@ƒCƒ‹–`“ªƒRƒƒ“ƒg•ÒW(&C)";
+			this.miToolComment.Text = "ãƒ•ã‚¡ã‚¤ãƒ«å†’é ­ã‚³ãƒ¡ãƒ³ãƒˆç·¨é›†(&C)";
 			// 
 			// menuItem3
 			// 
@@ -905,21 +906,21 @@ namespace rcm {
 			// 
 			this.miToolTree.Index = 5;
 			this.miToolTree.Shortcut = System.Windows.Forms.Shortcut.F6;
-			this.miToolTree.Text = "ƒcƒŠ[\‘¢•\¦(&T)";
+			this.miToolTree.Text = "ãƒ„ãƒªãƒ¼æ§‹é€ è¡¨ç¤º(&T)";
 			this.miToolTree.Click += new System.EventHandler(this.miToolTree_Click);
 			// 
 			// miToolPrev
 			// 
 			this.miToolPrev.Index = 6;
 			this.miToolPrev.Shortcut = System.Windows.Forms.Shortcut.F8;
-			this.miToolPrev.Text = "ŠÈˆÕ“®ìƒvƒŒƒrƒ…[(&P)";
+			this.miToolPrev.Text = "ç°¡æ˜“å‹•ä½œãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼(&P)";
 			this.miToolPrev.Click += new System.EventHandler(this.btnEditPanel_Click);
 			// 
 			// miToolSend
 			// 
 			this.miToolSend.Index = 7;
 			this.miToolSend.Shortcut = System.Windows.Forms.Shortcut.F5;
-			this.miToolSend.Text = "RigidChipsã‚ÅƒvƒŒƒrƒ…[(&R)";
+			this.miToolSend.Text = "RigidChipsä¸Šã§ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼(&R)";
 			this.miToolSend.Click += new System.EventHandler(this.miToolSend_Click);
 			// 
 			// miConfig
@@ -929,24 +930,24 @@ namespace rcm {
 			this.miConfigDraw,
 			this.miConfigOutput,
 			this.miConfigEdit});
-			this.miConfig.Text = "İ’è(&C)";
+			this.miConfig.Text = "è¨­å®š(&C)";
 			// 
 			// miConfigDraw
 			// 
 			this.miConfigDraw.Index = 0;
-			this.miConfigDraw.Text = "•\¦İ’è(&R)";
+			this.miConfigDraw.Text = "è¡¨ç¤ºè¨­å®š(&R)";
 			this.miConfigDraw.Click += new System.EventHandler(this.miConfigDraw_Click);
 			// 
 			// miConfigOutput
 			// 
 			this.miConfigOutput.Index = 1;
-			this.miConfigOutput.Text = "o—ÍŒ`®İ’è(&O)";
+			this.miConfigOutput.Text = "å‡ºåŠ›å½¢å¼è¨­å®š(&O)";
 			this.miConfigOutput.Click += new System.EventHandler(this.miConfigOutput_Click);
 			// 
 			// miConfigEdit
 			// 
 			this.miConfigEdit.Index = 2;
-			this.miConfigEdit.Text = "ƒGƒfƒBƒbƒg“®ìİ’è(&E)";
+			this.miConfigEdit.Text = "ã‚¨ãƒ‡ã‚£ãƒƒãƒˆå‹•ä½œè¨­å®š(&E)";
 			this.miConfigEdit.Click += new System.EventHandler(this.miConfigEdit_Click);
 			// 
 			// miHelp
@@ -957,18 +958,18 @@ namespace rcm {
 			this.miHelpReadme,
 			this.menuItem13,
 			this.miHelpVersion});
-			this.miHelp.Text = "ƒwƒ‹ƒv(&H)";
+			this.miHelp.Text = "ãƒ˜ãƒ«ãƒ—(&H)";
 			// 
 			// miHelpOpen
 			// 
 			this.miHelpOpen.Enabled = false;
 			this.miHelpOpen.Index = 0;
-			this.miHelpOpen.Text = "ƒwƒ‹ƒv‚ğ•\¦";
+			this.miHelpOpen.Text = "ãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤º";
 			// 
 			// miHelpReadme
 			// 
 			this.miHelpReadme.Index = 1;
-			this.miHelpReadme.Text = "RCMà–¾‘.txt";
+			this.miHelpReadme.Text = "RCMèª¬æ˜æ›¸.txt";
 			this.miHelpReadme.Click += new System.EventHandler(this.miHelpReadme_Click);
 			// 
 			// menuItem13
@@ -979,7 +980,7 @@ namespace rcm {
 			// miHelpVersion
 			// 
 			this.miHelpVersion.Index = 3;
-			this.miHelpVersion.Text = "ƒo[ƒWƒ‡ƒ“î•ñ";
+			this.miHelpVersion.Text = "ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±";
 			this.miHelpVersion.Click += new System.EventHandler(this.menuItem14_Click);
 			// 
 			// labelTip
@@ -989,7 +990,7 @@ namespace rcm {
 			this.labelTip.Name = "labelTip";
 			this.labelTip.Size = new System.Drawing.Size(468, 15);
 			this.labelTip.TabIndex = 8;
-			this.labelTip.Text = "Welcome to ‘r› -RigidChips Modeler- Ver.0.4ƒÀ";
+			this.labelTip.Text = "Welcome to å–ªå¯º -RigidChips Modeler- Ver.0.4Î²";
 			this.labelTip.Click += new System.EventHandler(this.labelTip_Click);
 			// 
 			// imgIcons
@@ -1091,7 +1092,7 @@ namespace rcm {
 			this.btnRootChip.Name = "btnRootChip";
 			this.btnRootChip.Size = new System.Drawing.Size(60, 32);
 			this.btnRootChip.TabIndex = 1;
-			this.btnRootChip.Text = "eƒ`ƒbƒv";
+			this.btnRootChip.Text = "è¦ªãƒãƒƒãƒ—";
 			this.btnRootChip.Click += new System.EventHandler(this.btnRootChip_Click);
 			// 
 			// btnKey
@@ -1146,10 +1147,10 @@ namespace rcm {
 			// cmbAttrItem9
 			// 
 			this.cmbAttrItem9.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem9.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem9.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem9.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem9.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem9.Location = new System.Drawing.Point(0, 196);
 			this.cmbAttrItem9.Name = "cmbAttrItem9";
 			this.cmbAttrItem9.Size = new System.Drawing.Size(156, 20);
@@ -1162,10 +1163,10 @@ namespace rcm {
 			// cmbAttrItem8
 			// 
 			this.cmbAttrItem8.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem8.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem8.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem8.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem8.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem8.Location = new System.Drawing.Point(0, 176);
 			this.cmbAttrItem8.Name = "cmbAttrItem8";
 			this.cmbAttrItem8.Size = new System.Drawing.Size(156, 20);
@@ -1178,10 +1179,10 @@ namespace rcm {
 			// cmbAttrItem7
 			// 
 			this.cmbAttrItem7.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem7.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem7.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem7.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem7.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem7.Location = new System.Drawing.Point(0, 156);
 			this.cmbAttrItem7.Name = "cmbAttrItem7";
 			this.cmbAttrItem7.Size = new System.Drawing.Size(156, 20);
@@ -1194,10 +1195,10 @@ namespace rcm {
 			// cmbAttrItem6
 			// 
 			this.cmbAttrItem6.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem6.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem6.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem6.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem6.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem6.Location = new System.Drawing.Point(0, 136);
 			this.cmbAttrItem6.Name = "cmbAttrItem6";
 			this.cmbAttrItem6.Size = new System.Drawing.Size(156, 20);
@@ -1210,10 +1211,10 @@ namespace rcm {
 			// cmbAttrItem5
 			// 
 			this.cmbAttrItem5.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem5.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem5.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem5.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem5.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem5.Location = new System.Drawing.Point(0, 116);
 			this.cmbAttrItem5.Name = "cmbAttrItem5";
 			this.cmbAttrItem5.Size = new System.Drawing.Size(156, 20);
@@ -1226,10 +1227,10 @@ namespace rcm {
 			// cmbAttrItem4
 			// 
 			this.cmbAttrItem4.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem4.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem4.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem4.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem4.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem4.Location = new System.Drawing.Point(0, 96);
 			this.cmbAttrItem4.Name = "cmbAttrItem4";
 			this.cmbAttrItem4.Size = new System.Drawing.Size(156, 20);
@@ -1242,10 +1243,10 @@ namespace rcm {
 			// cmbAttrItem3
 			// 
 			this.cmbAttrItem3.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem3.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem3.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem3.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem3.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem3.Location = new System.Drawing.Point(0, 76);
 			this.cmbAttrItem3.Name = "cmbAttrItem3";
 			this.cmbAttrItem3.Size = new System.Drawing.Size(156, 20);
@@ -1258,10 +1259,10 @@ namespace rcm {
 			// cmbAttrItem2
 			// 
 			this.cmbAttrItem2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem2.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem2.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem2.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem2.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem2.Location = new System.Drawing.Point(0, 56);
 			this.cmbAttrItem2.Name = "cmbAttrItem2";
 			this.cmbAttrItem2.Size = new System.Drawing.Size(156, 20);
@@ -1274,10 +1275,10 @@ namespace rcm {
 			// cmbAttrItem1
 			// 
 			this.cmbAttrItem1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem1.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem1.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem1.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem1.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem1.Location = new System.Drawing.Point(0, 36);
 			this.cmbAttrItem1.Name = "cmbAttrItem1";
 			this.cmbAttrItem1.Size = new System.Drawing.Size(156, 20);
@@ -1290,10 +1291,10 @@ namespace rcm {
 			// cmbAttrItem0
 			// 
 			this.cmbAttrItem0.Dock = System.Windows.Forms.DockStyle.Top;
-			this.cmbAttrItem0.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.cmbAttrItem0.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.cmbAttrItem0.ImeMode = System.Windows.Forms.ImeMode.Off;
 			this.cmbAttrItem0.Items.AddRange(new object[] {
-			"(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)"});
+			"(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)"});
 			this.cmbAttrItem0.Location = new System.Drawing.Point(0, 16);
 			this.cmbAttrItem0.Name = "cmbAttrItem0";
 			this.cmbAttrItem0.Size = new System.Drawing.Size(156, 20);
@@ -1312,7 +1313,7 @@ namespace rcm {
 			this.labelAttrValue.Name = "labelAttrValue";
 			this.labelAttrValue.Size = new System.Drawing.Size(156, 16);
 			this.labelAttrValue.TabIndex = 1;
-			this.labelAttrValue.Text = "’l";
+			this.labelAttrValue.Text = "å€¤";
 			// 
 			// splAttr
 			// 
@@ -1346,7 +1347,7 @@ namespace rcm {
 			this.labelAttrItem9.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem9.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem9.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem9.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem9.Location = new System.Drawing.Point(0, 196);
 			this.labelAttrItem9.Name = "labelAttrItem9";
 			this.labelAttrItem9.Size = new System.Drawing.Size(100, 20);
@@ -1359,7 +1360,7 @@ namespace rcm {
 			this.labelAttrItem8.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem8.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem8.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem8.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem8.Location = new System.Drawing.Point(0, 176);
 			this.labelAttrItem8.Name = "labelAttrItem8";
 			this.labelAttrItem8.Size = new System.Drawing.Size(100, 20);
@@ -1372,7 +1373,7 @@ namespace rcm {
 			this.labelAttrItem7.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem7.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem7.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem7.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem7.Location = new System.Drawing.Point(0, 156);
 			this.labelAttrItem7.Name = "labelAttrItem7";
 			this.labelAttrItem7.Size = new System.Drawing.Size(100, 20);
@@ -1385,7 +1386,7 @@ namespace rcm {
 			this.labelAttrItem6.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem6.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem6.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem6.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem6.Location = new System.Drawing.Point(0, 136);
 			this.labelAttrItem6.Name = "labelAttrItem6";
 			this.labelAttrItem6.Size = new System.Drawing.Size(100, 20);
@@ -1398,7 +1399,7 @@ namespace rcm {
 			this.labelAttrItem5.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem5.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem5.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem5.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem5.Location = new System.Drawing.Point(0, 116);
 			this.labelAttrItem5.Name = "labelAttrItem5";
 			this.labelAttrItem5.Size = new System.Drawing.Size(100, 20);
@@ -1411,7 +1412,7 @@ namespace rcm {
 			this.labelAttrItem4.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem4.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem4.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem4.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem4.Location = new System.Drawing.Point(0, 96);
 			this.labelAttrItem4.Name = "labelAttrItem4";
 			this.labelAttrItem4.Size = new System.Drawing.Size(100, 20);
@@ -1424,7 +1425,7 @@ namespace rcm {
 			this.labelAttrItem3.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem3.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem3.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem3.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem3.Location = new System.Drawing.Point(0, 76);
 			this.labelAttrItem3.Name = "labelAttrItem3";
 			this.labelAttrItem3.Size = new System.Drawing.Size(100, 20);
@@ -1437,7 +1438,7 @@ namespace rcm {
 			this.labelAttrItem2.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem2.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem2.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem2.Location = new System.Drawing.Point(0, 56);
 			this.labelAttrItem2.Name = "labelAttrItem2";
 			this.labelAttrItem2.Size = new System.Drawing.Size(100, 20);
@@ -1450,7 +1451,7 @@ namespace rcm {
 			this.labelAttrItem1.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem1.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem1.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem1.Location = new System.Drawing.Point(0, 36);
 			this.labelAttrItem1.Name = "labelAttrItem1";
 			this.labelAttrItem1.Size = new System.Drawing.Size(100, 20);
@@ -1463,7 +1464,7 @@ namespace rcm {
 			this.labelAttrItem0.BackColor = System.Drawing.SystemColors.Window;
 			this.labelAttrItem0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.labelAttrItem0.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAttrItem0.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelAttrItem0.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAttrItem0.Location = new System.Drawing.Point(0, 16);
 			this.labelAttrItem0.Name = "labelAttrItem0";
 			this.labelAttrItem0.Size = new System.Drawing.Size(100, 20);
@@ -1480,11 +1481,11 @@ namespace rcm {
 			this.labelAttrName.Name = "labelAttrName";
 			this.labelAttrName.Size = new System.Drawing.Size(100, 16);
 			this.labelAttrName.TabIndex = 0;
-			this.labelAttrName.Text = "‘®«–¼";
+			this.labelAttrName.Text = "å±æ€§å";
 			// 
 			// txtName
 			// 
-			this.txtName.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.txtName.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.txtName.Location = new System.Drawing.Point(166, 37);
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(98, 19);
@@ -1505,7 +1506,7 @@ namespace rcm {
 			// lstSouth
 			// 
 			this.lstSouth.ContextMenu = this.ctmChildList;
-			this.lstSouth.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.lstSouth.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.lstSouth.IntegralHeight = false;
 			this.lstSouth.ItemHeight = 12;
 			this.lstSouth.Location = new System.Drawing.Point(100, 112);
@@ -1532,13 +1533,13 @@ namespace rcm {
 			// miListAdd
 			// 
 			this.miListAdd.Index = 0;
-			this.miListAdd.Text = "‚±‚±‚É’Ç‰Á(&A)";
+			this.miListAdd.Text = "ã“ã“ã«è¿½åŠ (&A)";
 			this.miListAdd.Click += new System.EventHandler(this.miListAdd_Click);
 			// 
 			// miListSelect
 			// 
 			this.miListSelect.Index = 1;
-			this.miListSelect.Text = "‘I‘ğ(&S)";
+			this.miListSelect.Text = "é¸æŠ(&S)";
 			this.miListSelect.Click += new System.EventHandler(this.miListSelect_Click);
 			// 
 			// menuItem10
@@ -1549,25 +1550,25 @@ namespace rcm {
 			// miListCut
 			// 
 			this.miListCut.Index = 3;
-			this.miListCut.Text = "Ø‚èæ‚è(&T)";
+			this.miListCut.Text = "åˆ‡ã‚Šå–ã‚Š(&T)";
 			this.miListCut.Click += new System.EventHandler(this.miListCut_Click);
 			// 
 			// miListCopy
 			// 
 			this.miListCopy.Index = 4;
-			this.miListCopy.Text = "ƒRƒs[(&C)";
+			this.miListCopy.Text = "ã‚³ãƒ”ãƒ¼(&C)";
 			this.miListCopy.Click += new System.EventHandler(this.miListCopy_Click);
 			// 
 			// miListDelete
 			// 
 			this.miListDelete.Index = 5;
-			this.miListDelete.Text = "íœ(&D)";
+			this.miListDelete.Text = "å‰Šé™¤(&D)";
 			this.miListDelete.Click += new System.EventHandler(this.miListDelete_Click);
 			// 
 			// lstNorth
 			// 
 			this.lstNorth.ContextMenu = this.ctmChildList;
-			this.lstNorth.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.lstNorth.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.lstNorth.IntegralHeight = false;
 			this.lstNorth.ItemHeight = 12;
 			this.lstNorth.Location = new System.Drawing.Point(60, 0);
@@ -1583,7 +1584,7 @@ namespace rcm {
 			// lstEast
 			// 
 			this.lstEast.ContextMenu = this.ctmChildList;
-			this.lstEast.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.lstEast.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.lstEast.IntegralHeight = false;
 			this.lstEast.ItemHeight = 12;
 			this.lstEast.Location = new System.Drawing.Point(160, 56);
@@ -1599,7 +1600,7 @@ namespace rcm {
 			// lstWest
 			// 
 			this.lstWest.ContextMenu = this.ctmChildList;
-			this.lstWest.Font = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.lstWest.Font = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.lstWest.IntegralHeight = false;
 			this.lstWest.ItemHeight = 12;
 			this.lstWest.Location = new System.Drawing.Point(0, 56);
@@ -1620,7 +1621,7 @@ namespace rcm {
 			this.buttonSelChip.Name = "buttonSelChip";
 			this.buttonSelChip.Size = new System.Drawing.Size(56, 56);
 			this.buttonSelChip.TabIndex = 6;
-			this.ttMain.SetToolTip(this.buttonSelChip, "ƒRƒƒ“ƒg‚È‚µ");
+			this.ttMain.SetToolTip(this.buttonSelChip, "ã‚³ãƒ¡ãƒ³ãƒˆãªã—");
 			this.buttonSelChip.Click += new System.EventHandler(this.buttonSelChip_Click);
 			// 
 			// imgIconsL
@@ -1694,37 +1695,37 @@ namespace rcm {
 			// miAngleGrid0
 			// 
 			this.miAngleGrid0.Index = 0;
-			this.miAngleGrid0.Text = "ƒOƒŠƒbƒh–³‚µ(&0)";
+			this.miAngleGrid0.Text = "ã‚°ãƒªãƒƒãƒ‰ç„¡ã—(&0)";
 			this.miAngleGrid0.Click += new System.EventHandler(this.miAngleGrid_Click);
 			// 
 			// miAngleGrid1
 			// 
 			this.miAngleGrid1.Index = 1;
-			this.miAngleGrid1.Text = "1‹‚İ(&1)";
+			this.miAngleGrid1.Text = "1Â°åˆ»ã¿(&1)";
 			this.miAngleGrid1.Click += new System.EventHandler(this.miAngleGrid_Click);
 			// 
 			// miAngleGrid5
 			// 
 			this.miAngleGrid5.Index = 2;
-			this.miAngleGrid5.Text = "5‹‚İ(&2)";
+			this.miAngleGrid5.Text = "5Â°åˆ»ã¿(&2)";
 			this.miAngleGrid5.Click += new System.EventHandler(this.miAngleGrid_Click);
 			// 
 			// miAngleGrid15
 			// 
 			this.miAngleGrid15.Index = 3;
-			this.miAngleGrid15.Text = "15‹‚İ(&3)";
+			this.miAngleGrid15.Text = "15Â°åˆ»ã¿(&3)";
 			this.miAngleGrid15.Click += new System.EventHandler(this.miAngleGrid_Click);
 			// 
 			// miAngleGrid30
 			// 
 			this.miAngleGrid30.Index = 4;
-			this.miAngleGrid30.Text = "30‹‚İ(&4)";
+			this.miAngleGrid30.Text = "30Â°åˆ»ã¿(&4)";
 			this.miAngleGrid30.Click += new System.EventHandler(this.miAngleGrid_Click);
 			// 
 			// miAngleGrid90
 			// 
 			this.miAngleGrid90.Index = 5;
-			this.miAngleGrid90.Text = "90‹‚İ(&5)";
+			this.miAngleGrid90.Text = "90Â°åˆ»ã¿(&5)";
 			this.miAngleGrid90.Click += new System.EventHandler(this.miAngleGrid_Click);
 			// 
 			// tpPalette
@@ -1765,7 +1766,7 @@ namespace rcm {
 			// miPaletteShowDlg
 			// 
 			this.miPaletteShowDlg.Index = 0;
-			this.miPaletteShowDlg.Text = "Fƒ_ƒCƒAƒƒO...";
+			this.miPaletteShowDlg.Text = "è‰²ãƒ€ã‚¤ã‚¢ãƒ­ã‚°...";
 			this.miPaletteShowDlg.Click += new System.EventHandler(this.miPaletteShowDlg_Click);
 			// 
 			// menuItem2
@@ -1776,13 +1777,13 @@ namespace rcm {
 			// miPaletteChildPaint
 			// 
 			this.miPaletteChildPaint.Index = 2;
-			this.miPaletteChildPaint.Text = "”h¶ƒ`ƒbƒv‚ğ‚±‚ÌF‚É‚·‚é";
+			this.miPaletteChildPaint.Text = "æ´¾ç”Ÿãƒãƒƒãƒ—ã‚’ã“ã®è‰²ã«ã™ã‚‹";
 			this.miPaletteChildPaint.Click += new System.EventHandler(this.miPaletteChildPaint_Click);
 			// 
 			// miPaletteAllPaint
 			// 
 			this.miPaletteAllPaint.Index = 3;
-			this.miPaletteAllPaint.Text = "‘S‚Ä‚Ìƒ`ƒbƒv‚ğ‚±‚ÌF‚É‚·‚é";
+			this.miPaletteAllPaint.Text = "å…¨ã¦ã®ãƒãƒƒãƒ—ã‚’ã“ã®è‰²ã«ã™ã‚‹";
 			this.miPaletteAllPaint.Click += new System.EventHandler(this.miPaletteAllPaint_Click);
 			// 
 			// labelPaletteError
@@ -1792,7 +1793,7 @@ namespace rcm {
 			this.labelPaletteError.Name = "labelPaletteError";
 			this.labelPaletteError.Size = new System.Drawing.Size(90, 89);
 			this.labelPaletteError.TabIndex = 1;
-			this.labelPaletteError.Text = "Palette.bmp‚ª\nŒ©‚Â‚©‚ç‚È‚¢ˆ×\nƒpƒŒƒbƒg‚ğg—p\n‚Å‚«‚Ü‚¹‚ñB";
+			this.labelPaletteError.Text = "Palette.bmpãŒ\nè¦‹ã¤ã‹ã‚‰ãªã„ç‚º\nãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨\nã§ãã¾ã›ã‚“ã€‚";
 			// 
 			// tmr
 			// 
@@ -1827,19 +1828,19 @@ namespace rcm {
 			// miCut
 			// 
 			this.miCut.Index = 0;
-			this.miCut.Text = "Ø‚èæ‚è(&T)";
+			this.miCut.Text = "åˆ‡ã‚Šå–ã‚Š(&T)";
 			this.miCut.Click += new System.EventHandler(this.miCut_Click);
 			// 
 			// miCopy
 			// 
 			this.miCopy.Index = 1;
-			this.miCopy.Text = "ƒRƒs[(&C)";
+			this.miCopy.Text = "ã‚³ãƒ”ãƒ¼(&C)";
 			this.miCopy.Click += new System.EventHandler(this.miCopy_Click);
 			// 
 			// miDelete
 			// 
 			this.miDelete.Index = 2;
-			this.miDelete.Text = "íœ(&D)";
+			this.miDelete.Text = "å‰Šé™¤(&D)";
 			this.miDelete.Click += new System.EventHandler(this.miDelete_Click);
 			// 
 			// menuItem8
@@ -1864,42 +1865,42 @@ namespace rcm {
 			this.miChangeWeight,
 			this.miChangeCowl,
 			this.miChangeArm});
-			this.miChange.Text = "ƒ`ƒbƒví—Ş•ÏX(&H)";
+			this.miChange.Text = "ãƒãƒƒãƒ—ç¨®é¡å¤‰æ›´(&H)";
 			// 
 			// miChangeChip
 			// 
 			this.miChangeChip.Index = 0;
-			this.miChangeChip.Text = "ƒ`ƒbƒv(&Chip)";
+			this.miChangeChip.Text = "ãƒãƒƒãƒ—(&Chip)";
 			this.miChangeChip.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeFrame
 			// 
 			this.miChangeFrame.Index = 1;
-			this.miChangeFrame.Text = "ƒtƒŒ[ƒ€(&Frame)";
+			this.miChangeFrame.Text = "ãƒ•ãƒ¬ãƒ¼ãƒ (&Frame)";
 			this.miChangeFrame.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeRudder
 			// 
 			this.miChangeRudder.Index = 2;
-			this.miChangeRudder.Text = "ƒ‰ƒ_[(&Rudder)";
+			this.miChangeRudder.Text = "ãƒ©ãƒ€ãƒ¼(&Rudder)";
 			this.miChangeRudder.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeRudderF
 			// 
 			this.miChangeRudderF.Index = 3;
-			this.miChangeRudderF.Text = "ƒ‰ƒ_[ƒtƒŒ[ƒ€(Ru&dderF)";
+			this.miChangeRudderF.Text = "ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ (Ru&dderF)";
 			this.miChangeRudderF.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeTrim
 			// 
 			this.miChangeTrim.Index = 4;
-			this.miChangeTrim.Text = "ƒgƒŠƒ€(&Trim)";
+			this.miChangeTrim.Text = "ãƒˆãƒªãƒ (&Trim)";
 			this.miChangeTrim.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeTrimF
 			// 
 			this.miChangeTrimF.Index = 5;
-			this.miChangeTrimF.Text = "ƒgƒŠƒ€ƒtƒŒ[ƒ€(Tri&mF)";
+			this.miChangeTrimF.Text = "ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ (Tri&mF)";
 			this.miChangeTrimF.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// ctmSeparator
@@ -1910,37 +1911,37 @@ namespace rcm {
 			// miChangeWheel
 			// 
 			this.miChangeWheel.Index = 7;
-			this.miChangeWheel.Text = "ƒzƒC[ƒ‹(W&heel)";
+			this.miChangeWheel.Text = "ãƒ›ã‚¤ãƒ¼ãƒ«(W&heel)";
 			this.miChangeWheel.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeRLW
 			// 
 			this.miChangeRLW.Index = 8;
-			this.miChangeRLW.Text = "–³”½“®ƒzƒC[ƒ‹(R&LW)";
+			this.miChangeRLW.Text = "ç„¡åå‹•ãƒ›ã‚¤ãƒ¼ãƒ«(R&LW)";
 			this.miChangeRLW.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeJet
 			// 
 			this.miChangeJet.Index = 9;
-			this.miChangeJet.Text = "ƒWƒFƒbƒg(&Jet)";
+			this.miChangeJet.Text = "ã‚¸ã‚§ãƒƒãƒˆ(&Jet)";
 			this.miChangeJet.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeWeight
 			// 
 			this.miChangeWeight.Index = 10;
-			this.miChangeWeight.Text = "ƒEƒFƒCƒg(&Weight)";
+			this.miChangeWeight.Text = "ã‚¦ã‚§ã‚¤ãƒˆ(&Weight)";
 			this.miChangeWeight.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeCowl
 			// 
 			this.miChangeCowl.Index = 11;
-			this.miChangeCowl.Text = "ƒJƒEƒ‹(C&owl)";
+			this.miChangeCowl.Text = "ã‚«ã‚¦ãƒ«(C&owl)";
 			this.miChangeCowl.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChangeArm
 			// 
 			this.miChangeArm.Index = 12;
-			this.miChangeArm.Text = "ƒA[ƒ€(&Arm)";
+			this.miChangeArm.Text = "ã‚¢ãƒ¼ãƒ (&Arm)";
 			this.miChangeArm.Click += new System.EventHandler(this.miChangeType);
 			// 
 			// miChipComment
@@ -1949,20 +1950,20 @@ namespace rcm {
 			this.miChipComment.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 			this.miCommentEdit,
 			this.miCommentDelete});
-			this.miChipComment.Text = "ƒRƒƒ“ƒg(&O)";
+			this.miChipComment.Text = "ã‚³ãƒ¡ãƒ³ãƒˆ(&O)";
 			this.miChipComment.Popup += new System.EventHandler(this.miChipComment_Popup);
 			this.miChipComment.Select += new System.EventHandler(this.miChipComment_Popup);
 			// 
 			// miCommentEdit
 			// 
 			this.miCommentEdit.Index = 0;
-			this.miCommentEdit.Text = "ƒRƒƒ“ƒg‚ğ•ÒW";
+			this.miCommentEdit.Text = "ã‚³ãƒ¡ãƒ³ãƒˆã‚’ç·¨é›†";
 			this.miCommentEdit.Click += new System.EventHandler(this.miCommentEdit_Click);
 			// 
 			// miCommentDelete
 			// 
 			this.miCommentDelete.Index = 1;
-			this.miCommentDelete.Text = "ƒRƒƒ“ƒg‚ğíœ";
+			this.miCommentDelete.Text = "ã‚³ãƒ¡ãƒ³ãƒˆã‚’å‰Šé™¤";
 			this.miCommentDelete.Click += new System.EventHandler(this.miCommentDelete_Click);
 			// 
 			// miColor
@@ -1971,18 +1972,18 @@ namespace rcm {
 			this.miColor.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 			this.miColorToAll,
 			this.miColorToChild});
-			this.miColor.Text = "F(&I)";
+			this.miColor.Text = "è‰²(&I)";
 			// 
 			// miColorToAll
 			// 
 			this.miColorToAll.Index = 0;
-			this.miColorToAll.Text = "‘Sƒ`ƒbƒv‚ÖƒRƒs[(&A)";
+			this.miColorToAll.Text = "å…¨ãƒãƒƒãƒ—ã¸ã‚³ãƒ”ãƒ¼(&A)";
 			this.miColorToAll.Click += new System.EventHandler(this.miPaletteAllPaint_Click);
 			// 
 			// miColorToChild
 			// 
 			this.miColorToChild.Index = 1;
-			this.miColorToChild.Text = "”h¶ƒ`ƒbƒv‚ÖƒRƒs[(&C)";
+			this.miColorToChild.Text = "æ´¾ç”Ÿãƒãƒƒãƒ—ã¸ã‚³ãƒ”ãƒ¼(&C)";
 			this.miColorToChild.Click += new System.EventHandler(this.miPaletteChildPaint_Click);
 			// 
 			// menuItem7
@@ -1993,13 +1994,13 @@ namespace rcm {
 			// miRotateRight
 			// 
 			this.miRotateRight.Index = 8;
-			this.miRotateRight.Text = "‚±‚Ìƒ`ƒbƒvü‚è‚ğ‰E‰ñ“](&R)";
+			this.miRotateRight.Text = "ã“ã®ãƒãƒƒãƒ—å‘¨ã‚Šã‚’å³å›è»¢(&R)";
 			this.miRotateRight.Click += new System.EventHandler(this.miRotateRight_Click);
 			// 
 			// miRotateLeft
 			// 
 			this.miRotateLeft.Index = 9;
-			this.miRotateLeft.Text = "‚±‚Ìƒ`ƒbƒvü‚è‚ğ¶‰ñ“](&L)";
+			this.miRotateLeft.Text = "ã“ã®ãƒãƒƒãƒ—å‘¨ã‚Šã‚’å·¦å›è»¢(&L)";
 			this.miRotateLeft.Click += new System.EventHandler(this.miRotateLeft_Click);
 			// 
 			// menuItem5
@@ -2010,19 +2011,19 @@ namespace rcm {
 			// miReverseX
 			// 
 			this.miReverseX.Index = 11;
-			this.miReverseX.Text = "¶‰E”½“](&X)";
+			this.miReverseX.Text = "å·¦å³åè»¢(&X)";
 			this.miReverseX.Click += new System.EventHandler(this.miReverseX_Click);
 			// 
 			// miReverseY
 			// 
 			this.miReverseY.Index = 12;
-			this.miReverseY.Text = "ã‰º”½“](&Y)";
+			this.miReverseY.Text = "ä¸Šä¸‹åè»¢(&Y)";
 			this.miReverseY.Click += new System.EventHandler(this.miReverseY_Click);
 			// 
 			// miReverseZ
 			// 
 			this.miReverseZ.Index = 13;
-			this.miReverseZ.Text = "‘OŒã”½“](&Z)";
+			this.miReverseZ.Text = "å‰å¾Œåè»¢(&Z)";
 			this.miReverseZ.Click += new System.EventHandler(this.miReverseZ_Click);
 			// 
 			// toolStripContainer1
@@ -2051,11 +2052,11 @@ namespace rcm {
 			// 
 			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.ƒtƒ@ƒCƒ‹FToolStripMenuItem,
-			this.•ÒWEToolStripMenuItem,
-			this.ƒc[ƒ‹TToolStripMenuItem,
-			this.İ’èCToolStripMenuItem,
-			this.ƒwƒ‹ƒvHToolStripMenuItem});
+			this.ãƒ•ã‚¡ã‚¤ãƒ«FToolStripMenuItem,
+			this.ç·¨é›†EToolStripMenuItem,
+			this.ãƒ„ãƒ¼ãƒ«TToolStripMenuItem,
+			this.è¨­å®šCToolStripMenuItem,
+			this.ãƒ˜ãƒ«ãƒ—HToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -2064,153 +2065,153 @@ namespace rcm {
 			this.menuStrip1.Text = "menuStrip1";
 			this.menuStrip1.Visible = false;
 			// 
-			// ƒtƒ@ƒCƒ‹FToolStripMenuItem
+			// ãƒ•ã‚¡ã‚¤ãƒ«FToolStripMenuItem
 			// 
-			this.ƒtƒ@ƒCƒ‹FToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.V‹Kì¬ToolStripMenuItem,
-			this.ŠJ‚­ToolStripMenuItem,
-			this.ã‘‚«•Û‘¶ToolStripMenuItem,
-			this.–¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶ToolStripMenuItem,
+			this.ãƒ•ã‚¡ã‚¤ãƒ«FToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.æ–°è¦ä½œæˆToolStripMenuItem,
+			this.é–‹ãToolStripMenuItem,
+			this.ä¸Šæ›¸ãä¿å­˜ToolStripMenuItem,
+			this.åå‰ã‚’ã¤ã‘ã¦ä¿å­˜ToolStripMenuItem,
 			this.toolStripSeparator1,
-			this.rCDTXT‚ğŠJ‚­ToolStripMenuItem,
-			this.rCD‚Å•Û‘¶ToolStripMenuItem,
+			this.rCDTXTã‚’é–‹ãToolStripMenuItem,
+			this.rCDã§ä¿å­˜ToolStripMenuItem,
 			this.toolStripSeparator2,
-			this.I—¹ToolStripMenuItem});
-			this.ƒtƒ@ƒCƒ‹FToolStripMenuItem.Name = "ƒtƒ@ƒCƒ‹FToolStripMenuItem";
-			this.ƒtƒ@ƒCƒ‹FToolStripMenuItem.Size = new System.Drawing.Size(85, 22);
-			this.ƒtƒ@ƒCƒ‹FToolStripMenuItem.Text = "ƒtƒ@ƒCƒ‹(&F)";
+			this.çµ‚äº†ToolStripMenuItem});
+			this.ãƒ•ã‚¡ã‚¤ãƒ«FToolStripMenuItem.Name = "ãƒ•ã‚¡ã‚¤ãƒ«FToolStripMenuItem";
+			this.ãƒ•ã‚¡ã‚¤ãƒ«FToolStripMenuItem.Size = new System.Drawing.Size(85, 22);
+			this.ãƒ•ã‚¡ã‚¤ãƒ«FToolStripMenuItem.Text = "ãƒ•ã‚¡ã‚¤ãƒ«(&F)";
 			// 
-			// V‹Kì¬ToolStripMenuItem
+			// æ–°è¦ä½œæˆToolStripMenuItem
 			// 
-			this.V‹Kì¬ToolStripMenuItem.Name = "V‹Kì¬ToolStripMenuItem";
-			this.V‹Kì¬ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-			this.V‹Kì¬ToolStripMenuItem.Text = "V‹Kì¬(&N)";
-			this.V‹Kì¬ToolStripMenuItem.Click += new System.EventHandler(this.miFileNew_Click);
+			this.æ–°è¦ä½œæˆToolStripMenuItem.Name = "æ–°è¦ä½œæˆToolStripMenuItem";
+			this.æ–°è¦ä½œæˆToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.æ–°è¦ä½œæˆToolStripMenuItem.Text = "æ–°è¦ä½œæˆ(&N)";
+			this.æ–°è¦ä½œæˆToolStripMenuItem.Click += new System.EventHandler(this.miFileNew_Click);
 			// 
-			// ŠJ‚­ToolStripMenuItem
+			// é–‹ãToolStripMenuItem
 			// 
-			this.ŠJ‚­ToolStripMenuItem.Name = "ŠJ‚­ToolStripMenuItem";
-			this.ŠJ‚­ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-			this.ŠJ‚­ToolStripMenuItem.Text = "ŠJ‚­(&O)";
-			this.ŠJ‚­ToolStripMenuItem.Click += new System.EventHandler(this.miFileOpen_Click);
+			this.é–‹ãToolStripMenuItem.Name = "é–‹ãToolStripMenuItem";
+			this.é–‹ãToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.é–‹ãToolStripMenuItem.Text = "é–‹ã(&O)";
+			this.é–‹ãToolStripMenuItem.Click += new System.EventHandler(this.miFileOpen_Click);
 			// 
-			// ã‘‚«•Û‘¶ToolStripMenuItem
+			// ä¸Šæ›¸ãä¿å­˜ToolStripMenuItem
 			// 
-			this.ã‘‚«•Û‘¶ToolStripMenuItem.Name = "ã‘‚«•Û‘¶ToolStripMenuItem";
-			this.ã‘‚«•Û‘¶ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-			this.ã‘‚«•Û‘¶ToolStripMenuItem.Text = "ã‘‚«•Û‘¶(&S)";
-			this.ã‘‚«•Û‘¶ToolStripMenuItem.Click += new System.EventHandler(this.miFileSave_Click);
+			this.ä¸Šæ›¸ãä¿å­˜ToolStripMenuItem.Name = "ä¸Šæ›¸ãä¿å­˜ToolStripMenuItem";
+			this.ä¸Šæ›¸ãä¿å­˜ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.ä¸Šæ›¸ãä¿å­˜ToolStripMenuItem.Text = "ä¸Šæ›¸ãä¿å­˜(&S)";
+			this.ä¸Šæ›¸ãä¿å­˜ToolStripMenuItem.Click += new System.EventHandler(this.miFileSave_Click);
 			// 
-			// –¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶ToolStripMenuItem
+			// åå‰ã‚’ã¤ã‘ã¦ä¿å­˜ToolStripMenuItem
 			// 
-			this.–¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶ToolStripMenuItem.Name = "–¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶ToolStripMenuItem";
-			this.–¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-			this.–¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶ToolStripMenuItem.Text = "–¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶(&A)";
-			this.–¼‘O‚ğ‚Â‚¯‚Ä•Û‘¶ToolStripMenuItem.Click += new System.EventHandler(this.miFileSaveAs_Click);
+			this.åå‰ã‚’ã¤ã‘ã¦ä¿å­˜ToolStripMenuItem.Name = "åå‰ã‚’ã¤ã‘ã¦ä¿å­˜ToolStripMenuItem";
+			this.åå‰ã‚’ã¤ã‘ã¦ä¿å­˜ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.åå‰ã‚’ã¤ã‘ã¦ä¿å­˜ToolStripMenuItem.Text = "åå‰ã‚’ã¤ã‘ã¦ä¿å­˜(&A)";
+			this.åå‰ã‚’ã¤ã‘ã¦ä¿å­˜ToolStripMenuItem.Click += new System.EventHandler(this.miFileSaveAs_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
 			// 
-			// rCDTXT‚ğŠJ‚­ToolStripMenuItem
+			// rCDTXTã‚’é–‹ãToolStripMenuItem
 			// 
-			this.rCDTXT‚ğŠJ‚­ToolStripMenuItem.Name = "rCDTXT‚ğŠJ‚­ToolStripMenuItem";
-			this.rCDTXT‚ğŠJ‚­ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-			this.rCDTXT‚ğŠJ‚­ToolStripMenuItem.Text = "RCD/TXT‚ğŠJ‚­(&I)";
-			this.rCDTXT‚ğŠJ‚­ToolStripMenuItem.Click += new System.EventHandler(this.miFileImport_Click);
+			this.rCDTXTã‚’é–‹ãToolStripMenuItem.Name = "rCDTXTã‚’é–‹ãToolStripMenuItem";
+			this.rCDTXTã‚’é–‹ãToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.rCDTXTã‚’é–‹ãToolStripMenuItem.Text = "RCD/TXTã‚’é–‹ã(&I)";
+			this.rCDTXTã‚’é–‹ãToolStripMenuItem.Click += new System.EventHandler(this.miFileImport_Click);
 			// 
-			// rCD‚Å•Û‘¶ToolStripMenuItem
+			// rCDã§ä¿å­˜ToolStripMenuItem
 			// 
-			this.rCD‚Å•Û‘¶ToolStripMenuItem.Name = "rCD‚Å•Û‘¶ToolStripMenuItem";
-			this.rCD‚Å•Û‘¶ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-			this.rCD‚Å•Û‘¶ToolStripMenuItem.Text = "RCD‚Å•Û‘¶(&E)";
-			this.rCD‚Å•Û‘¶ToolStripMenuItem.Click += new System.EventHandler(this.miFileExport_Click);
+			this.rCDã§ä¿å­˜ToolStripMenuItem.Name = "rCDã§ä¿å­˜ToolStripMenuItem";
+			this.rCDã§ä¿å­˜ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.rCDã§ä¿å­˜ToolStripMenuItem.Text = "RCDã§ä¿å­˜(&E)";
+			this.rCDã§ä¿å­˜ToolStripMenuItem.Click += new System.EventHandler(this.miFileExport_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
 			// 
-			// I—¹ToolStripMenuItem
+			// çµ‚äº†ToolStripMenuItem
 			// 
-			this.I—¹ToolStripMenuItem.Name = "I—¹ToolStripMenuItem";
-			this.I—¹ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-			this.I—¹ToolStripMenuItem.Text = "I—¹(&Q)";
-			this.I—¹ToolStripMenuItem.Click += new System.EventHandler(this.miFileQuit_Click);
+			this.çµ‚äº†ToolStripMenuItem.Name = "çµ‚äº†ToolStripMenuItem";
+			this.çµ‚äº†ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.çµ‚äº†ToolStripMenuItem.Text = "çµ‚äº†(&Q)";
+			this.çµ‚äº†ToolStripMenuItem.Click += new System.EventHandler(this.miFileQuit_Click);
 			// 
-			// •ÒWEToolStripMenuItem
+			// ç·¨é›†EToolStripMenuItem
 			// 
-			this.•ÒWEToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.Ø‚èæ‚èTToolStripMenuItem,
-			this.ƒRƒs[CToolStripMenuItem,
-			this.“\‚è•t‚¯PToolStripMenuItem,
+			this.ç·¨é›†EToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.åˆ‡ã‚Šå–ã‚ŠTToolStripMenuItem,
+			this.ã‚³ãƒ”ãƒ¼CToolStripMenuItem,
+			this.è²¼ã‚Šä»˜ã‘PToolStripMenuItem,
 			this.toolStripMenuItem1,
-			this.‹“_•ÏXVToolStripMenuItem,
-			this.‘I‘ğSToolStripMenuItem,
-			this.ƒ‚ƒfƒ‹î•ñSToolStripMenuItem});
-			this.•ÒWEToolStripMenuItem.Name = "•ÒWEToolStripMenuItem";
-			this.•ÒWEToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
-			this.•ÒWEToolStripMenuItem.Text = "•ÒW(&E)";
+			this.è¦–ç‚¹å¤‰æ›´VToolStripMenuItem,
+			this.é¸æŠSToolStripMenuItem,
+			this.ãƒ¢ãƒ‡ãƒ«æƒ…å ±SToolStripMenuItem});
+			this.ç·¨é›†EToolStripMenuItem.Name = "ç·¨é›†EToolStripMenuItem";
+			this.ç·¨é›†EToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
+			this.ç·¨é›†EToolStripMenuItem.Text = "ç·¨é›†(&E)";
 			// 
-			// Ø‚èæ‚èTToolStripMenuItem
+			// åˆ‡ã‚Šå–ã‚ŠTToolStripMenuItem
 			// 
-			this.Ø‚èæ‚èTToolStripMenuItem.Name = "Ø‚èæ‚èTToolStripMenuItem";
-			this.Ø‚èæ‚èTToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-			this.Ø‚èæ‚èTToolStripMenuItem.Text = "Ø‚èæ‚è(&T)";
+			this.åˆ‡ã‚Šå–ã‚ŠTToolStripMenuItem.Name = "åˆ‡ã‚Šå–ã‚ŠTToolStripMenuItem";
+			this.åˆ‡ã‚Šå–ã‚ŠTToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.åˆ‡ã‚Šå–ã‚ŠTToolStripMenuItem.Text = "åˆ‡ã‚Šå–ã‚Š(&T)";
 			// 
-			// ƒRƒs[CToolStripMenuItem
+			// ã‚³ãƒ”ãƒ¼CToolStripMenuItem
 			// 
-			this.ƒRƒs[CToolStripMenuItem.Name = "ƒRƒs[CToolStripMenuItem";
-			this.ƒRƒs[CToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-			this.ƒRƒs[CToolStripMenuItem.Text = "ƒRƒs[(&C)";
+			this.ã‚³ãƒ”ãƒ¼CToolStripMenuItem.Name = "ã‚³ãƒ”ãƒ¼CToolStripMenuItem";
+			this.ã‚³ãƒ”ãƒ¼CToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.ã‚³ãƒ”ãƒ¼CToolStripMenuItem.Text = "ã‚³ãƒ”ãƒ¼(&C)";
 			// 
-			// “\‚è•t‚¯PToolStripMenuItem
+			// è²¼ã‚Šä»˜ã‘PToolStripMenuItem
 			// 
-			this.“\‚è•t‚¯PToolStripMenuItem.Name = "“\‚è•t‚¯PToolStripMenuItem";
-			this.“\‚è•t‚¯PToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-			this.“\‚è•t‚¯PToolStripMenuItem.Text = "íœ(&D)";
+			this.è²¼ã‚Šä»˜ã‘PToolStripMenuItem.Name = "è²¼ã‚Šä»˜ã‘PToolStripMenuItem";
+			this.è²¼ã‚Šä»˜ã‘PToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.è²¼ã‚Šä»˜ã‘PToolStripMenuItem.Text = "å‰Šé™¤(&D)";
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
 			this.toolStripMenuItem1.Size = new System.Drawing.Size(148, 6);
 			// 
-			// ‹“_•ÏXVToolStripMenuItem
+			// è¦–ç‚¹å¤‰æ›´VToolStripMenuItem
 			// 
-			this.‹“_•ÏXVToolStripMenuItem.Name = "‹“_•ÏXVToolStripMenuItem";
-			this.‹“_•ÏXVToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-			this.‹“_•ÏXVToolStripMenuItem.Text = "‹“_•ÏX(&V)";
+			this.è¦–ç‚¹å¤‰æ›´VToolStripMenuItem.Name = "è¦–ç‚¹å¤‰æ›´VToolStripMenuItem";
+			this.è¦–ç‚¹å¤‰æ›´VToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.è¦–ç‚¹å¤‰æ›´VToolStripMenuItem.Text = "è¦–ç‚¹å¤‰æ›´(&V)";
 			// 
-			// ‘I‘ğSToolStripMenuItem
+			// é¸æŠSToolStripMenuItem
 			// 
-			this.‘I‘ğSToolStripMenuItem.Name = "‘I‘ğSToolStripMenuItem";
-			this.‘I‘ğSToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-			this.‘I‘ğSToolStripMenuItem.Text = "‘I‘ğ(&S)";
+			this.é¸æŠSToolStripMenuItem.Name = "é¸æŠSToolStripMenuItem";
+			this.é¸æŠSToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.é¸æŠSToolStripMenuItem.Text = "é¸æŠ(&S)";
 			// 
-			// ƒ‚ƒfƒ‹î•ñSToolStripMenuItem
+			// ãƒ¢ãƒ‡ãƒ«æƒ…å ±SToolStripMenuItem
 			// 
-			this.ƒ‚ƒfƒ‹î•ñSToolStripMenuItem.Name = "ƒ‚ƒfƒ‹î•ñSToolStripMenuItem";
-			this.ƒ‚ƒfƒ‹î•ñSToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-			this.ƒ‚ƒfƒ‹î•ñSToolStripMenuItem.Text = "ƒ‚ƒfƒ‹î•ñ(&I)";
+			this.ãƒ¢ãƒ‡ãƒ«æƒ…å ±SToolStripMenuItem.Name = "ãƒ¢ãƒ‡ãƒ«æƒ…å ±SToolStripMenuItem";
+			this.ãƒ¢ãƒ‡ãƒ«æƒ…å ±SToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.ãƒ¢ãƒ‡ãƒ«æƒ…å ±SToolStripMenuItem.Text = "ãƒ¢ãƒ‡ãƒ«æƒ…å ±(&I)";
 			// 
-			// ƒc[ƒ‹TToolStripMenuItem
+			// ãƒ„ãƒ¼ãƒ«TToolStripMenuItem
 			// 
-			this.ƒc[ƒ‹TToolStripMenuItem.Name = "ƒc[ƒ‹TToolStripMenuItem";
-			this.ƒc[ƒ‹TToolStripMenuItem.Size = new System.Drawing.Size(74, 22);
-			this.ƒc[ƒ‹TToolStripMenuItem.Text = "ƒc[ƒ‹(&T)";
+			this.ãƒ„ãƒ¼ãƒ«TToolStripMenuItem.Name = "ãƒ„ãƒ¼ãƒ«TToolStripMenuItem";
+			this.ãƒ„ãƒ¼ãƒ«TToolStripMenuItem.Size = new System.Drawing.Size(74, 22);
+			this.ãƒ„ãƒ¼ãƒ«TToolStripMenuItem.Text = "ãƒ„ãƒ¼ãƒ«(&T)";
 			// 
-			// İ’èCToolStripMenuItem
+			// è¨­å®šCToolStripMenuItem
 			// 
-			this.İ’èCToolStripMenuItem.Name = "İ’èCToolStripMenuItem";
-			this.İ’èCToolStripMenuItem.Size = new System.Drawing.Size(62, 22);
-			this.İ’èCToolStripMenuItem.Text = "İ’è(&C)";
+			this.è¨­å®šCToolStripMenuItem.Name = "è¨­å®šCToolStripMenuItem";
+			this.è¨­å®šCToolStripMenuItem.Size = new System.Drawing.Size(62, 22);
+			this.è¨­å®šCToolStripMenuItem.Text = "è¨­å®š(&C)";
 			// 
-			// ƒwƒ‹ƒvHToolStripMenuItem
+			// ãƒ˜ãƒ«ãƒ—HToolStripMenuItem
 			// 
-			this.ƒwƒ‹ƒvHToolStripMenuItem.Name = "ƒwƒ‹ƒvHToolStripMenuItem";
-			this.ƒwƒ‹ƒvHToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
-			this.ƒwƒ‹ƒvHToolStripMenuItem.Text = "ƒwƒ‹ƒv(&H)";
+			this.ãƒ˜ãƒ«ãƒ—HToolStripMenuItem.Name = "ãƒ˜ãƒ«ãƒ—HToolStripMenuItem";
+			this.ãƒ˜ãƒ«ãƒ—HToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
+			this.ãƒ˜ãƒ«ãƒ—HToolStripMenuItem.Text = "ãƒ˜ãƒ«ãƒ—(&H)";
 			// 
 			// toolStrip1
 			// 
@@ -2256,7 +2257,7 @@ namespace rcm {
 			this.tsbSelectMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbSelectMode.Name = "tsbSelectMode";
 			this.tsbSelectMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbSelectMode.Text = "‘I‘ğ";
+			this.tsbSelectMode.Text = "é¸æŠ";
 			this.tsbSelectMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbCut
@@ -2266,7 +2267,7 @@ namespace rcm {
 			this.tsbCut.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbCut.Name = "tsbCut";
 			this.tsbCut.Size = new System.Drawing.Size(23, 22);
-			this.tsbCut.Text = "Œ»İ‚Ìƒ`ƒbƒv‚ğØ‚èæ‚è";
+			this.tsbCut.Text = "ç¾åœ¨ã®ãƒãƒƒãƒ—ã‚’åˆ‡ã‚Šå–ã‚Š";
 			this.tsbCut.Click += new System.EventHandler(this.tsbCut_Click);
 			// 
 			// tsbCopy
@@ -2276,7 +2277,7 @@ namespace rcm {
 			this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbCopy.Name = "tsbCopy";
 			this.tsbCopy.Size = new System.Drawing.Size(23, 22);
-			this.tsbCopy.Text = "Œ»İ‚Ìƒ`ƒbƒv‚ğƒRƒs[";
+			this.tsbCopy.Text = "ç¾åœ¨ã®ãƒãƒƒãƒ—ã‚’ã‚³ãƒ”ãƒ¼";
 			this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
 			// 
 			// tsbPasteMode
@@ -2286,7 +2287,7 @@ namespace rcm {
 			this.tsbPasteMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbPasteMode.Name = "tsbPasteMode";
 			this.tsbPasteMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbPasteMode.Text = "“\‚è•t‚¯";
+			this.tsbPasteMode.Text = "è²¼ã‚Šä»˜ã‘";
 			this.tsbPasteMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// toolStripSeparator3
@@ -2301,7 +2302,7 @@ namespace rcm {
 			this.tsbInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbInsert.Name = "tsbInsert";
 			this.tsbInsert.Size = new System.Drawing.Size(23, 22);
-			this.tsbInsert.Text = "ƒ`ƒbƒv‚ğ‘}“ü";
+			this.tsbInsert.Text = "ãƒãƒƒãƒ—ã‚’æŒ¿å…¥";
 			this.tsbInsert.Click += new System.EventHandler(this.tsbInsert_Click);
 			// 
 			// tsbRemove
@@ -2311,7 +2312,7 @@ namespace rcm {
 			this.tsbRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbRemove.Name = "tsbRemove";
 			this.tsbRemove.Size = new System.Drawing.Size(23, 22);
-			this.tsbRemove.Text = "Œ»İ‚Ìƒ`ƒbƒv‚ğíœ";
+			this.tsbRemove.Text = "ç¾åœ¨ã®ãƒãƒƒãƒ—ã‚’å‰Šé™¤";
 			this.tsbRemove.Click += new System.EventHandler(this.tsbRemove_Click);
 			// 
 			// toolStripSeparator4
@@ -2326,7 +2327,7 @@ namespace rcm {
 			this.tsbZoom.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbZoom.Name = "tsbZoom";
 			this.tsbZoom.Size = new System.Drawing.Size(23, 22);
-			this.tsbZoom.Text = "Šg‘å";
+			this.tsbZoom.Text = "æ‹¡å¤§";
 			this.tsbZoom.Click += new System.EventHandler(this.tsbZoom_Click);
 			// 
 			// tsbMooz
@@ -2336,7 +2337,7 @@ namespace rcm {
 			this.tsbMooz.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbMooz.Name = "tsbMooz";
 			this.tsbMooz.Size = new System.Drawing.Size(23, 22);
-			this.tsbMooz.Text = "k¬";
+			this.tsbMooz.Text = "ç¸®å°";
 			this.tsbMooz.Click += new System.EventHandler(this.tsbMooz_Click);
 			// 
 			// tsbCameraMode
@@ -2346,7 +2347,7 @@ namespace rcm {
 			this.tsbCameraMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbCameraMode.Name = "tsbCameraMode";
 			this.tsbCameraMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbCameraMode.Text = "‹“_";
+			this.tsbCameraMode.Text = "è¦–ç‚¹";
 			this.tsbCameraMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbAutoCamera
@@ -2357,7 +2358,7 @@ namespace rcm {
 			this.tsbAutoCamera.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbAutoCamera.Name = "tsbAutoCamera";
 			this.tsbAutoCamera.Size = new System.Drawing.Size(23, 22);
-			this.tsbAutoCamera.Text = "ƒJ[ƒ\ƒ‹©“®’ÇÕ";
+			this.tsbAutoCamera.Text = "ã‚«ãƒ¼ã‚½ãƒ«è‡ªå‹•è¿½è·¡";
 			this.tsbAutoCamera.Click += new System.EventHandler(this.tsbAutoCamera_Click);
 			// 
 			// toolStripSeparator5
@@ -2372,7 +2373,7 @@ namespace rcm {
 			this.tsbChipMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbChipMode.Name = "tsbChipMode";
 			this.tsbChipMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbChipMode.Text = "ƒ`ƒbƒv";
+			this.tsbChipMode.Text = "ãƒãƒƒãƒ—";
 			this.tsbChipMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbFrameMode
@@ -2382,7 +2383,7 @@ namespace rcm {
 			this.tsbFrameMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbFrameMode.Name = "tsbFrameMode";
 			this.tsbFrameMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbFrameMode.Text = "ƒtƒŒ[ƒ€";
+			this.tsbFrameMode.Text = "ãƒ•ãƒ¬ãƒ¼ãƒ ";
 			this.tsbFrameMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbRudderMode
@@ -2392,7 +2393,7 @@ namespace rcm {
 			this.tsbRudderMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbRudderMode.Name = "tsbRudderMode";
 			this.tsbRudderMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbRudderMode.Text = "ƒ‰ƒ_[";
+			this.tsbRudderMode.Text = "ãƒ©ãƒ€ãƒ¼";
 			this.tsbRudderMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbRudderFMode
@@ -2402,7 +2403,7 @@ namespace rcm {
 			this.tsbRudderFMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbRudderFMode.Name = "tsbRudderFMode";
 			this.tsbRudderFMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbRudderFMode.Text = "ƒ‰ƒ_[ƒtƒŒ[ƒ€";
+			this.tsbRudderFMode.Text = "ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ";
 			this.tsbRudderFMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbTrimMode
@@ -2412,7 +2413,7 @@ namespace rcm {
 			this.tsbTrimMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbTrimMode.Name = "tsbTrimMode";
 			this.tsbTrimMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbTrimMode.Text = "ƒgƒŠƒ€";
+			this.tsbTrimMode.Text = "ãƒˆãƒªãƒ ";
 			this.tsbTrimMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbTrimFMode
@@ -2422,7 +2423,7 @@ namespace rcm {
 			this.tsbTrimFMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbTrimFMode.Name = "tsbTrimFMode";
 			this.tsbTrimFMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbTrimFMode.Text = "ƒgƒŠƒ€ƒtƒŒ[ƒ€";
+			this.tsbTrimFMode.Text = "ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ";
 			this.tsbTrimFMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// toolStripSeparator6
@@ -2437,7 +2438,7 @@ namespace rcm {
 			this.tsbWheelMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbWheelMode.Name = "tsbWheelMode";
 			this.tsbWheelMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbWheelMode.Text = "ƒzƒC[ƒ‹";
+			this.tsbWheelMode.Text = "ãƒ›ã‚¤ãƒ¼ãƒ«";
 			this.tsbWheelMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbRLWMode
@@ -2447,7 +2448,7 @@ namespace rcm {
 			this.tsbRLWMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbRLWMode.Name = "tsbRLWMode";
 			this.tsbRLWMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbRLWMode.Text = "–³”½“®ƒzƒC[ƒ‹";
+			this.tsbRLWMode.Text = "ç„¡åå‹•ãƒ›ã‚¤ãƒ¼ãƒ«";
 			this.tsbRLWMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbJetMode
@@ -2457,7 +2458,7 @@ namespace rcm {
 			this.tsbJetMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbJetMode.Name = "tsbJetMode";
 			this.tsbJetMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbJetMode.Text = "ƒWƒFƒbƒg";
+			this.tsbJetMode.Text = "ã‚¸ã‚§ãƒƒãƒˆ";
 			this.tsbJetMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbWeightMode
@@ -2467,7 +2468,7 @@ namespace rcm {
 			this.tsbWeightMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbWeightMode.Name = "tsbWeightMode";
 			this.tsbWeightMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbWeightMode.Text = "ƒEƒFƒCƒg";
+			this.tsbWeightMode.Text = "ã‚¦ã‚§ã‚¤ãƒˆ";
 			this.tsbWeightMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbCowlMode
@@ -2477,7 +2478,7 @@ namespace rcm {
 			this.tsbCowlMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbCowlMode.Name = "tsbCowlMode";
 			this.tsbCowlMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbCowlMode.Text = "ƒJƒEƒ‹";
+			this.tsbCowlMode.Text = "ã‚«ã‚¦ãƒ«";
 			this.tsbCowlMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// tsbArmMode
@@ -2487,7 +2488,7 @@ namespace rcm {
 			this.tsbArmMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbArmMode.Name = "tsbArmMode";
 			this.tsbArmMode.Size = new System.Drawing.Size(23, 22);
-			this.tsbArmMode.Text = "ƒA[ƒ€";
+			this.tsbArmMode.Text = "ã‚¢ãƒ¼ãƒ ";
 			this.tsbArmMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// frmMain
@@ -2501,7 +2502,7 @@ namespace rcm {
 			this.Menu = this.mnuMain;
 			this.MinimumSize = new System.Drawing.Size(600, 500);
 			this.Name = "frmMain";
-			this.Text = "‘r›";
+			this.Text = "å–ªå¯º";
 			this.Closing += new System.ComponentModel.CancelEventHandler(this.frmMain_Closing);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
 			this.Load += new System.EventHandler(this.frmMain_Load);
@@ -2536,11 +2537,11 @@ namespace rcm {
 		#endregion
 
 		/// <summary>
-		/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒGƒ“ƒgƒŠ ƒ|ƒCƒ“ƒg‚Å‚·B
+		/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ã‚¨ãƒ³ãƒˆãƒª ãƒã‚¤ãƒ³ãƒˆã§ã™ã€‚
 		/// </summary>
 		[STAThread]
 		static void Main(string[] args) {
-			// æ‚É‚±‚ê‚ğ‚â‚Á‚Ä‚¨‚­‚ÆŒãX‚¿‚å‚Á‚Æ‘¬‚¢(‰½‚Æ‚¢‚¤ƒoƒbƒhƒmƒEƒnƒE)
+			// å…ˆã«ã“ã‚Œã‚’ã‚„ã£ã¦ãŠãã¨å¾Œã€…ã¡ã‚‡ã£ã¨é€Ÿã„(ä½•ã¨ã„ã†ãƒãƒƒãƒ‰ãƒã‚¦ãƒã‚¦)
 			try {
 				throw new Exception();
 			}
@@ -2558,28 +2559,28 @@ namespace rcm {
 				Application.Run(mainform);
 			}
 			catch(Exception e){
-				//	TODO:	‚±‚±‚ÉƒŒƒWƒ…[ƒ€ƒtƒ@ƒCƒ‹‚ğ¶¬‚·‚éƒR[ƒh‚ğ‘‚­B
+				//	TODO:	ã“ã“ã«ãƒ¬ã‚¸ãƒ¥ãƒ¼ãƒ ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”Ÿæˆã™ã‚‹ã‚³ãƒ¼ãƒ‰ã‚’æ›¸ãã€‚
 				try{
 					mainform.rcdata.Save(Application.StartupPath + "\\_resume.$cm",mainform.GenerateOptList());
-					//				MessageBox.Show("ˆÈ‰º‚Ì—\Šú‚¹‚ÊƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n‚²–À˜f‚ğ‚¨‚©‚¯‚µ‚Ü‚·B\n\n" + e.Message + "\n\nƒŒƒWƒ…[ƒ€ƒtƒ@ƒCƒ‹‚ªì¬‚³‚ê‚Ü‚µ‚½B","‘r›",MessageBoxButtons.OK,MessageBoxIcon.Error);
+					//				MessageBox.Show("ä»¥ä¸‹ã®äºˆæœŸã›ã¬ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\nã”è¿·æƒ‘ã‚’ãŠã‹ã‘ã—ã¾ã™ã€‚\n\n" + e.Message + "\n\nãƒ¬ã‚¸ãƒ¥ãƒ¼ãƒ ãƒ•ã‚¡ã‚¤ãƒ«ãŒä½œæˆã•ã‚Œã¾ã—ãŸã€‚","å–ªå¯º",MessageBoxButtons.OK,MessageBoxIcon.Error);
 					StreamWriter dmp = new StreamWriter(Application.StartupPath + "\\error.log",false);
 					dmp.Write(e.ToString());
 					dmp.Flush();
 					dmp.Close();
 				}
 				catch(Exception e2){
-					throw new IOException("ƒGƒ‰[ƒ_ƒ“ƒv‚É¸”s‚µ‚Ü‚µ‚½ : " + e2.Message, e);
+					throw new IOException("ã‚¨ãƒ©ãƒ¼ãƒ€ãƒ³ãƒ—ã«å¤±æ•—ã—ã¾ã—ãŸ : " + e2.Message, e);
 				}
 				throw;
 			}
 #else
-			// ƒfƒoƒbƒO‚ÍA—áŠO‚ÍŠO‚Ü‚Å”ò‚Î‚·B
+			// ãƒ‡ãƒãƒƒã‚°æ™‚ã¯ã€ä¾‹å¤–ã¯å¤–ã¾ã§é£›ã°ã™ã€‚
 			Application.Run(mainform);
 #endif
 		}
 
 		///<summery>
-		///•ÒW’†‚Ìƒ‚ƒfƒ‹‚ª•ÏX‚³‚ê‚½‚±‚Æ‚ğ¦‚·ƒtƒ‰ƒO‚ğæ“¾‚Ü‚½‚Íİ’è‚·‚éB
+		///ç·¨é›†ä¸­ã®ãƒ¢ãƒ‡ãƒ«ãŒå¤‰æ›´ã•ã‚ŒãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã™ã‚‹ã€‚
 		///</summery>
 		public bool Modified {
 			get {
@@ -2594,7 +2595,7 @@ namespace rcm {
 		}
 
 		///<summery>
-		///Œ»İ•ÒW’†‚Ìƒtƒ@ƒCƒ‹‚Ì–¼‘OBƒ^ƒCƒgƒ‹ƒo[‚É•\¦‚³‚ê‚éB
+		///ç¾åœ¨ç·¨é›†ä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã€‚ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã«è¡¨ç¤ºã•ã‚Œã‚‹ã€‚
 		///</summery>
 		public string EditingFileName {
 			get {
@@ -2608,13 +2609,13 @@ namespace rcm {
 		}
 
 		///<summery>
-		///ƒ^ƒCƒgƒ‹ƒo[‚É•ÒW’†‚Ìƒtƒ@ƒCƒ‹–¼A–¢•Û‘¶ó‘Ô•\¦(*)Aƒ\ƒtƒg–¼‚ğİ’è‚·‚éB
+		///ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã«ç·¨é›†ä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«åã€æœªä¿å­˜çŠ¶æ…‹è¡¨ç¤º(*)ã€ã‚½ãƒ•ãƒˆåã‚’è¨­å®šã™ã‚‹ã€‚
 		///</summery>
 		private void SetWindowTitle() {
 			this.SuspendLayout();
 			this.Text = System.IO.Path.GetFileName(editingFileName);
 			if (this.Text == "") this.Text = "(Untitled)";
-			this.Text += (modified ? "*" : "") + " - ‘r›";
+			this.Text += (modified ? "*" : "") + " - å–ªå¯º";
 			this.ResumeLayout();
 		}
 
@@ -2629,7 +2630,7 @@ namespace rcm {
 			NameValueCollection opts;
 			draging.Draging = false;
 
-			// ƒc[ƒ‹ƒ{ƒbƒNƒX‚Ì‘I‘ğó‘Ô‚ğ‰Šúó‘Ô(‘I‘ğ)‚Éİ’è‚·‚éB
+			// ãƒ„ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã®é¸æŠçŠ¶æ…‹ã‚’åˆæœŸçŠ¶æ…‹(é¸æŠ)ã«è¨­å®šã™ã‚‹ã€‚
 			//selected = tbbCursor;
 			//selectedButton = tsbSelectMode;
 			tsbSelectMode.PerformClick();
@@ -2655,7 +2656,7 @@ namespace rcm {
 				dlgOpen.DereferenceLinks = false;
 				dlgOpen.Multiselect = false;
 				dlgOpen.RestoreDirectory = true;
-				dlgOpen.Title = "ƒŠƒ\[ƒXƒtƒHƒ‹ƒ_‚ÌCore.x‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B";
+				dlgOpen.Title = "ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚©ãƒ«ãƒ€ã®Core.xã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚";
 
 				if (dlgOpen.ShowDialog() == DialogResult.Cancel)
 					Application.Exit();
@@ -2676,7 +2677,7 @@ namespace rcm {
 				multiSelCursor.Load(device, Application.StartupPath + @"\Resources\cursor3.x");
 			}
 			catch (FileNotFoundException ex) {
-				MessageBox.Show("ƒŠƒ\[ƒX‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚½‚½‚ßI—¹‚µ‚Ü‚·B\nƒtƒ@ƒCƒ‹–¼ : " + ex.FileName, "FileNotFountException", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸãŸã‚çµ‚äº†ã—ã¾ã™ã€‚\nãƒ•ã‚¡ã‚¤ãƒ«å : " + ex.FileName, "FileNotFountException", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				this.Dispose(true);
 				Application.Exit();
 			}
@@ -2691,7 +2692,7 @@ namespace rcm {
 				pictPalette.SizeMode = PictureBoxSizeMode.StretchImage;
 			}
 			catch {
-				// ƒpƒŒƒbƒg—pƒrƒbƒgƒ}ƒbƒv‚ªŒ©‚Â‚©‚ç‚È‚¢ê‡‚ÍAƒpƒŒƒbƒg•sg—pB
+				// ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãŒè¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆä¸ä½¿ç”¨ã€‚
 				pictPalette.Visible = false;
 			}
 
@@ -2701,7 +2702,7 @@ namespace rcm {
 			bool buffer = editOption.ConvertParentAttributes;
 			editOption.ConvertParentAttributes = false;
 
-			// ˆø”‚ª‚ ‚éê‡A‚»‚Ìƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ŞB
+			// å¼•æ•°ãŒã‚ã‚‹å ´åˆã€ãã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚
 			if (Arguments.Length > 0) {
 				if (System.IO.Path.GetExtension(Arguments[0]).ToLower() == ".rcm") {
 					opts = rcdata.Load(Arguments[0]);
@@ -2712,7 +2713,7 @@ namespace rcm {
 					rcdata.headercomment = rcdata.script = "";
 					rcdata.SelectedChip = rcdata.model.root;
 					rcdata.RegisterChip(rcdata.model.root);
-					infile = new StreamReader(Arguments[0], System.Text.Encoding.Default);
+					infile = new StreamReader(Arguments[0], Encoding.Default /*OSãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°(Shift-JIS)*/);
 
 					rcdata.Parse(infile.ReadToEnd());
 				}
@@ -2720,16 +2721,16 @@ namespace rcm {
 				SetValDropList();
 			}
 
-			// ˆø”‚ª–³‚­A‚È‚¨‚©‚Â“r’†I—¹‚ÌƒŒƒWƒ…[ƒ€ƒf[ƒ^‚ª‚ ‚Á‚½ê‡‚ÍA‚»‚ê‚ğ“Ç‚İ‚Ş‚±‚Æ‚ğ‚İ‚éB
+			// å¼•æ•°ãŒç„¡ãã€ãªãŠã‹ã¤é€”ä¸­çµ‚äº†ã®ãƒ¬ã‚¸ãƒ¥ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ãŸå ´åˆã¯ã€ãã‚Œã‚’èª­ã¿è¾¼ã‚€ã“ã¨ã‚’è©¦ã¿ã‚‹ã€‚
 			else if (System.IO.File.Exists(Application.StartupPath + "\\_resume.$cm")) {
-				if (MessageBox.Show("ƒŒƒWƒ…[ƒ€ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚·B“Ç‚İ‚İ‚Ü‚·‚©H", "‘r›", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+				if (MessageBox.Show("ãƒ¬ã‚¸ãƒ¥ãƒ¼ãƒ ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã™ã€‚èª­ã¿è¾¼ã¿ã¾ã™ã‹ï¼Ÿ", "å–ªå¯º", MessageBoxButtons.YesNo) == DialogResult.Yes) {
 					try {
 						opts = rcdata.Load(Application.StartupPath + "\\_resume.$cm");
 						EditingFileName = Application.StartupPath + "\\_resume.$cm";
 						ApplyOptList(opts);
 					}
 					catch {
-						MessageBox.Show("“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½Bƒtƒ@ƒCƒ‹‚ª‰ó‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B", "‘r›", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+						MessageBox.Show("èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚ãƒ•ã‚¡ã‚¤ãƒ«ãŒå£Šã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚", "å–ªå¯º", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
 				}
 				System.IO.File.Delete(Application.StartupPath + "\\_resume.$cm");
@@ -2744,7 +2745,7 @@ namespace rcm {
 		}
 
 		///<summery>
-		///qƒ`ƒbƒvƒŠƒXƒgƒ{ƒbƒNƒX‚Ì”wŒiF‚ğİ’èB
+		///å­ãƒãƒƒãƒ—ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®èƒŒæ™¯è‰²ã‚’è¨­å®šã€‚
 		///</summery>
 		public void SetListBackColor() {
 			this.lstNorth.BackColor = Color.FromArgb(drawOption.NGuideColor.R / 2 + 128, drawOption.NGuideColor.G / 2 + 128, drawOption.NGuideColor.B / 2 + 128);
@@ -2772,7 +2773,7 @@ namespace rcm {
 					ResetGraphics();
 				}
 				catch (DeviceLostException) {
-					// ‚Ü‚¾ƒŠƒZƒbƒg‚Å‚«‚È‚¢
+					// ã¾ã ãƒªã‚»ãƒƒãƒˆã§ããªã„
 					return;
 				}
 			}
@@ -2893,7 +2894,7 @@ namespace rcm {
 
 			catch (DirectXException) {
 #if DEBUG
-				//					throw new Exception("ƒtƒFƒCƒY1‚Å‚Ì—áŠO:" + exc.ToString(),exc);
+				//					throw new Exception("ãƒ•ã‚§ã‚¤ã‚º1ã§ã®ä¾‹å¤–:" + exc.ToString(),exc);
 				System.Threading.Thread.Sleep(200);
 				ResetGraphics();
 				//					throw;
@@ -2912,7 +2913,7 @@ namespace rcm {
 				deviceLost = false;
 			}
 			catch (DeviceLostException) {
-				// ‰½‚à‚µ‚È‚¢B‰½‚à‚Å‚«‚È‚¢B
+				// ä½•ã‚‚ã—ãªã„ã€‚ä½•ã‚‚ã§ããªã„ã€‚
 				deviceLost = true;
 			}
 			catch (DeviceNotResetException) {
@@ -2922,7 +2923,7 @@ namespace rcm {
 			}
 			//			}
 			//			catch(DirectXException dx){
-			//				throw new Exception("•`‰æ’†‚Ì—áŠO : " + dx.Message ,dx);
+			//				throw new Exception("æç”»ä¸­ã®ä¾‹å¤– : " + dx.Message ,dx);
 			//				System.Threading.Thread.Sleep(200);
 			//				throw;
 			//			}
@@ -2998,7 +2999,7 @@ namespace rcm {
 		}
 
 		///<summery>
-		/// ˆêƒtƒ@ƒCƒ‹‚ÉŒ»İ‚Ìƒf[ƒ^‚ğ•Û‘¶‚µA‚»‚ê‚ğ‹N“®Ï‚İRigidChips‚É“Ç‚İ‚Ü‚¹‚éB
+		/// ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã«ç¾åœ¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã—ã€ãã‚Œã‚’èµ·å‹•æ¸ˆã¿RigidChipsã«èª­ã¿è¾¼ã¾ã›ã‚‹ã€‚
 		///</summery>
 		private void miToolSend_Click(object sender, System.EventArgs e) {
 			string output = rcdata.vals.ToString() + rcdata.keys.ToString() + rcdata.model.ToString();
@@ -3013,7 +3014,11 @@ namespace rcm {
 			tw.Flush();
 			tw.Close();
 
-			filenameArray = System.Text.Encoding.Convert(System.Text.Encoding.Unicode, System.Text.Encoding.GetEncoding(932 /* Shift-JIS */), System.Text.Encoding.Unicode.GetBytes(filename));
+			filenameArray = Encoding.Convert(
+				Encoding.Unicode,
+				Encoding.GetEncoding(932 /* Shift-JIS */),
+				Encoding.Unicode.GetBytes(filename)
+			);
 
 			WM_RIGIDCHIP_LOAD = RegisterWindowMessageA("WM_RIGIDCHIP_LOAD");
 
@@ -3025,10 +3030,10 @@ namespace rcm {
 
 			PostMessageA(hWnd_Broadcast, WM_RIGIDCHIP_LOAD, Msg_RcLoadEnd, 0);
 
-			labelTip.Text = "RigidChips‚ÉƒƒbƒZ[ƒW‚ğ‘—M‚µ‚Ü‚µ‚½B";
+			labelTip.Text = "RigidChipsã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã—ã¾ã—ãŸã€‚";
 
 		}
-#if false // ƒƒ\ƒbƒh®—‘O
+#if false // ãƒ¡ã‚½ãƒƒãƒ‰æ•´ç†å‰
 		private void pictTarget_Click___(object sender, System.EventArgs e) {
 			pictTarget.Focus();
 			RcHitStatus cursors, models;
@@ -3053,7 +3058,7 @@ namespace rcm {
 					if (models.HitChip != rcdata.SelectedChip) {
 						if ((Control.ModifierKeys & Keys.Control) == 0) {
 							rcdata.SelectedChip = models.HitChip;
-							labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+							labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 								((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 								" (" + rcdata.SelectedChip.Comment + ")" : "");
 						}
@@ -3069,12 +3074,12 @@ namespace rcm {
 					ApplyChipInfo();
 
 				switch (selectedButton.Text) {
-					case "‘I‘ğ":
+					case "é¸æŠ":
 						if (models.HitChip != null) {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3085,7 +3090,7 @@ namespace rcm {
 						}
 
 						break;
-					case "“\‚è•t‚¯":
+					case "è²¼ã‚Šä»˜ã‘":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								RcChipBase buffer = clipboard.Clone(true, null);
@@ -3093,14 +3098,14 @@ namespace rcm {
 								rcdata.SelectedChip = buffer;
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = "“\‚è•t‚¯‚ğs‚¢‚Ü‚µ‚½B";
+								labelTip.Text = "è²¼ã‚Šä»˜ã‘ã‚’è¡Œã„ã¾ã—ãŸã€‚";
 							}
 							catch (NullReferenceException) {
-								MessageBox.Show("ƒNƒŠƒbƒvƒ{[ƒh‚Í‹ó‚Å‚·B", "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show("ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã¯ç©ºã§ã™ã€‚", "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3108,7 +3113,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3118,21 +3123,21 @@ namespace rcm {
 							}
 						}
 						break;
-					case "‹“_":
+					case "è¦–ç‚¹":
 						if (models.HitChip != null) {
 							StartScrollCameraPosition(models.HitChip.Matrix);
 						}
 						break;
-					case "ƒ`ƒbƒv":
+					case "ãƒãƒƒãƒ—":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor && rcdata.SelectedChipCount == 0) {
 							try {
 								rcdata.SelectedChip = new RcChipChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3140,7 +3145,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3151,16 +3156,16 @@ namespace rcm {
 						}
 
 						break;
-					case "ƒtƒŒ[ƒ€":
+					case "ãƒ•ãƒ¬ãƒ¼ãƒ ":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipFrame(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3168,7 +3173,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3179,16 +3184,16 @@ namespace rcm {
 						}
 
 						break;
-					case "ƒEƒFƒCƒg":
+					case "ã‚¦ã‚§ã‚¤ãƒˆ":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipWeight(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3196,7 +3201,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3206,17 +3211,17 @@ namespace rcm {
 							}
 						}
 						break;
-					case "ƒJƒEƒ‹":
+					case "ã‚«ã‚¦ãƒ«":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipCowl(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + (drawOption.ShowCowl ? "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B" : "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B(Œ»İ”ñ•\¦)");
+								labelTip.Text = selectedButton.Text + (drawOption.ShowCowl ? "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚" : "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚(ç¾åœ¨éè¡¨ç¤º)");
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
-								labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
+								labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 									((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 									" (" + rcdata.SelectedChip.Comment + ")" : "");
 								return;
@@ -3226,7 +3231,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3237,16 +3242,16 @@ namespace rcm {
 						}
 
 						break;
-					case "ƒ‰ƒ_[":
+					case "ãƒ©ãƒ€ãƒ¼":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipRudder(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3254,7 +3259,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3265,16 +3270,16 @@ namespace rcm {
 						}
 
 						break;
-					case "ƒ‰ƒ_[ƒtƒŒ[ƒ€":
+					case "ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipRudderF(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3282,7 +3287,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3293,16 +3298,16 @@ namespace rcm {
 						}
 
 						break;
-					case "ƒgƒŠƒ€":
+					case "ãƒˆãƒªãƒ ":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipTrim(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3310,7 +3315,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3321,16 +3326,16 @@ namespace rcm {
 						}
 
 						break;
-					case "ƒgƒŠƒ€ƒtƒŒ[ƒ€":
+					case "ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipTrimF(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3338,7 +3343,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3349,16 +3354,16 @@ namespace rcm {
 						}
 
 						break;
-					case "ƒzƒC[ƒ‹":
+					case "ãƒ›ã‚¤ãƒ¼ãƒ«":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipWheel(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3366,7 +3371,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3377,16 +3382,16 @@ namespace rcm {
 						}
 
 						break;
-					case "–³”½“®ƒzƒC[ƒ‹":
+					case "ç„¡åå‹•ãƒ›ã‚¤ãƒ¼ãƒ«":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipRLW(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3394,7 +3399,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3405,16 +3410,16 @@ namespace rcm {
 						}
 
 						break;
-					case "ƒWƒFƒbƒg":
+					case "ã‚¸ã‚§ãƒƒãƒˆ":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipJet(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3422,7 +3427,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3433,16 +3438,16 @@ namespace rcm {
 						}
 
 						break;
-					case "ƒA[ƒ€":
+					case "ã‚¢ãƒ¼ãƒ ":
 						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
 							try {
 								rcdata.SelectedChip = new RcChipArm(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 								Modified = true;
 								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+								labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 							}
 							catch (Exception err) {
-								MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+								MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 								return;
 							}
 						}
@@ -3450,7 +3455,7 @@ namespace rcm {
 							if (models.HitChip != rcdata.SelectedChip) {
 								if ((Control.ModifierKeys & Keys.Control) == 0) {
 									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+									labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 										" (" + rcdata.SelectedChip.Comment + ")" : "");
 								}
@@ -3478,7 +3483,7 @@ namespace rcm {
 			if (x != rcdata.SelectedChip) {
 				if ((Control.ModifierKeys & Keys.Control) == 0) {
 					rcdata.SelectedChip = x;
-					labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + x.ToString() +
+					labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + x.ToString() +
 						((x.Comment != null && x.Comment != "") ?
 						" (" + x.Comment + ")" : "");
 				}
@@ -3500,7 +3505,7 @@ namespace rcm {
 			if (!LeastIsLeftButton || draging.Draging) {
 				if (draging.StartX != draging.PrevX || draging.StartY != draging.PrevY) return;
 				if (panelCtrl.Visible && models.HitChip != null) {
-					// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[•\¦(‘¼‚Ì‚à‚Ì‚æ‚è—Dæ)
+					// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º(ä»–ã®ã‚‚ã®ã‚ˆã‚Šå„ªå…ˆ)
 					draging.Draging = false;
 					rcdata.SelectedChip = models.HitChip;
 					ctmChipType.Show(pictTarget, new Point(MouseX, MouseY));
@@ -3508,26 +3513,26 @@ namespace rcm {
 				return;
 			}
 
-			// ‹•‹ó‚ğƒNƒŠƒbƒN‚µ‚Ä‚¢‚½‚Æ‚«‚É‚Í‚±‚±ˆÈ~‚Ìˆ—‚Ís‚í‚È‚¢
+			// è™šç©ºã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã„ãŸã¨ãã«ã¯ã“ã“ä»¥é™ã®å‡¦ç†ã¯è¡Œã‚ãªã„
 			if (clickedChip == null) return;
 
 			if (clickedChip is RcChipCursor || clickedChip == rcdata.SelectedChip) {
-				// ƒJ[ƒ\ƒ‹‚©A‘I‘ğ’†ƒ`ƒbƒv‚Ìê‡‚Í‹“_ˆÚ“®
+				// ã‚«ãƒ¼ã‚½ãƒ«ã‹ã€é¸æŠä¸­ãƒãƒƒãƒ—ã®å ´åˆã¯è¦–ç‚¹ç§»å‹•
 				StartScrollCameraPosition(cursors.HitChip.Matrix);
 				return;
 			}
 			if (!(clickedChip is RcChipGuide) && clickedChip == models.HitChip) {
-				// ƒKƒCƒh‚Å‚È‚¯‚ê‚Îƒ‚ƒfƒ‹’†‚Ìƒ`ƒbƒv‚Ì‚Í‚¸ => ‘I‘ğ(‹“_ˆÚ“®ƒ‚[ƒh‚Ì‚Í‹“_ˆÚ“®)
-				if (selectedButton.Text == "‹“_")
+				// ã‚¬ã‚¤ãƒ‰ã§ãªã‘ã‚Œã°ãƒ¢ãƒ‡ãƒ«ä¸­ã®ãƒãƒƒãƒ—ã®ã¯ãš => é¸æŠ(è¦–ç‚¹ç§»å‹•ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯è¦–ç‚¹ç§»å‹•)
+				if (selectedButton.Text == "è¦–ç‚¹")
 					StartScrollCameraPosition(clickedChip.Matrix);
 				else
 					moveCursor(clickedChip);
 				return;
 			}
 
-			// ‚±‚±‚©‚çƒKƒCƒh‘I‘ğ‚Ì’Ç‰Á‚È‚Ç‚Ìˆ—
+			// ã“ã“ã‹ã‚‰ã‚¬ã‚¤ãƒ‰é¸æŠæ™‚ã®è¿½åŠ ãªã©ã®å‡¦ç†
 			if (!panelCtrl.Visible) {
-				// LŠpƒ‚[ƒh‚Ì‚Í‚±‚±‚©‚çæ‚Ìˆ—‚Í‚µ‚È‚¢
+				// åºƒè§’ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯ã“ã“ã‹ã‚‰å…ˆã®å‡¦ç†ã¯ã—ãªã„
 				return;
 			}
 
@@ -3539,80 +3544,80 @@ namespace rcm {
 					rcdata.SelectedChip = x;
 					Modified = true;
 					if (treeview != null && !treeview.IsDisposed) treeview.UpdateTree(rcdata.SelectedChip);
-					labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+					labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 				}
 				catch (Exception err) {
-					MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+					MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 					return;
 				}
 			};
 
 			switch (selectedButton.Text) {
-				case "‘I‘ğ":
-				case "‹“_":
-					// ‰½‚à‚µ‚È‚¢
+				case "é¸æŠ":
+				case "è¦–ç‚¹":
+					// ä½•ã‚‚ã—ãªã„
 					return;
-				case "“\‚è•t‚¯":
+				case "è²¼ã‚Šä»˜ã‘":
 					try {
 						RcChipBase buffer = clipboard.Clone(true, null);
 						buffer.Attach(rcdata.SelectedChip, cursors.HitChip.JointPosition);
 						rcdata.SelectedChip = buffer;
 						Modified = true;
 						if (treeview != null && !treeview.IsDisposed) treeview.UpdateTree(rcdata.SelectedChip);
-						labelTip.Text = "“\‚è•t‚¯‚ğs‚¢‚Ü‚µ‚½B";
+						labelTip.Text = "è²¼ã‚Šä»˜ã‘ã‚’è¡Œã„ã¾ã—ãŸã€‚";
 					}
 					catch (NullReferenceException) {
-						MessageBox.Show("ƒNƒŠƒbƒvƒ{[ƒh‚Í‹ó‚Å‚·B", "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show("ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã¯ç©ºã§ã™ã€‚", "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					return;
-				case "ƒ`ƒbƒv":
+				case "ãƒãƒƒãƒ—":
 					add(new RcChipChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒtƒŒ[ƒ€":
+				case "ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					add(new RcChipFrame(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒEƒFƒCƒg":
+				case "ã‚¦ã‚§ã‚¤ãƒˆ":
 					add(new RcChipWeight(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒ‰ƒ_[":
+				case "ãƒ©ãƒ€ãƒ¼":
 					add(new RcChipRudder(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒ‰ƒ_[ƒtƒŒ[ƒ€":
+				case "ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					add(new RcChipRudderF(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒgƒŠƒ€":
+				case "ãƒˆãƒªãƒ ":
 					add(new RcChipTrim(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒgƒŠƒ€ƒtƒŒ[ƒ€":
+				case "ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					add(new RcChipTrimF(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒzƒC[ƒ‹":
+				case "ãƒ›ã‚¤ãƒ¼ãƒ«":
 					add(new RcChipWheel(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "–³”½“®ƒzƒC[ƒ‹":
+				case "ç„¡åå‹•ãƒ›ã‚¤ãƒ¼ãƒ«":
 					add(new RcChipRLW(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒWƒFƒbƒg":
+				case "ã‚¸ã‚§ãƒƒãƒˆ":
 					add(new RcChipJet(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒA[ƒ€":
+				case "ã‚¢ãƒ¼ãƒ ":
 					add(new RcChipArm(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
-				case "ƒJƒEƒ‹":
+				case "ã‚«ã‚¦ãƒ«":
 					try {
 						rcdata.SelectedChip = new RcChipCowl(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 						Modified = true;
 						if (treeview != null && !treeview.IsDisposed) treeview.UpdateTree(rcdata.SelectedChip);
-						labelTip.Text = selectedButton.Text + (drawOption.ShowCowl ? "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B" : "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B(Œ»İ”ñ•\¦)");
+						labelTip.Text = selectedButton.Text + (drawOption.ShowCowl ? "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚" : "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚(ç¾åœ¨éè¡¨ç¤º)");
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
-						labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
+						labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 							((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 							" (" + rcdata.SelectedChip.Comment + ")" : "");
 						return;
@@ -3640,11 +3645,11 @@ namespace rcm {
 			if (targetChip == null)
 				return;
 			if (targetChip is RcChipCore) {
-				labelTip.Text = "ƒRƒA‚ğØ‚èæ‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB";
+				labelTip.Text = "ã‚³ã‚¢ã‚’åˆ‡ã‚Šå–ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚";
 				return;
 			}
 			if (Array.Find(rcdata.AllChip, x => x == targetChip) == null) {
-				// ‚±‚Ìƒ`ƒbƒv‚Í“o˜^‚³‚ê‚Ä‚¢‚È‚¢ƒ`ƒbƒv -> Ø‚èæ‚ê‚È‚¢
+				// ã“ã®ãƒãƒƒãƒ—ã¯ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ãƒãƒƒãƒ— -> åˆ‡ã‚Šå–ã‚Œãªã„
 				return;
 			}
 			clipboard = targetChip;
@@ -3654,31 +3659,31 @@ namespace rcm {
 			Modified = true;
 
 			if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-			labelTip.Text = "Ø‚èæ‚è‚ğs‚¢‚Ü‚µ‚½B";
+			labelTip.Text = "åˆ‡ã‚Šå–ã‚Šã‚’è¡Œã„ã¾ã—ãŸã€‚";
 		}
 
 		private void actionCopy() {
 			actionCopy(rcdata.SelectedChip);
 		}
 		private void actionCopy(RcChipBase targetChip) {
-			//	ƒRƒs[“®ì
+			//	ã‚³ãƒ”ãƒ¼å‹•ä½œ
 			if (targetChip == null)
 				return;
 			if (targetChip is RcChipCore) {
-				labelTip.Text = "ƒRƒA‚ÍƒRƒs[‚Å‚«‚Ü‚¹‚ñB";
+				labelTip.Text = "ã‚³ã‚¢ã¯ã‚³ãƒ”ãƒ¼ã§ãã¾ã›ã‚“ã€‚";
 				return;
 			}
 			clipboard = targetChip.Clone(true, null);
-			labelTip.Text = "ƒRƒs[‚µ‚Ü‚µ‚½B";
+			labelTip.Text = "ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸã€‚";
 		}
 
 		private void actionDelete() {
 			if (rcdata.SelectedChip is RcChipCore) {
-				labelTip.Text = "ƒRƒA‚Ííœ‚Å‚«‚Ü‚¹‚ñB";
+				labelTip.Text = "ã‚³ã‚¢ã¯å‰Šé™¤ã§ãã¾ã›ã‚“ã€‚";
 				return;
 			}
 			if (rcdata.SelectedChipCount > 0) {
-				if (MessageBox.Show("‘I‘ğ‚³‚ê‚Ä‚¢‚é‘S‚Ä‚Ìƒ`ƒbƒv‚ğíœ‚µ‚Ü‚·B\n”h¶ƒ`ƒbƒv‚ª‘¶İ‚·‚éê‡A‚»‚ê‚àíœ‚³‚ê‚Ü‚·B", "•¡”‘I‘ğíœŠm”F", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
+				if (MessageBox.Show("é¸æŠã•ã‚Œã¦ã„ã‚‹å…¨ã¦ã®ãƒãƒƒãƒ—ã‚’å‰Šé™¤ã—ã¾ã™ã€‚\næ´¾ç”Ÿãƒãƒƒãƒ—ãŒå­˜åœ¨ã™ã‚‹å ´åˆã€ãã‚Œã‚‚å‰Šé™¤ã•ã‚Œã¾ã™ã€‚", "è¤‡æ•°é¸æŠå‰Šé™¤ç¢ºèª", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
 					RcChipBase[] list = rcdata.SelectedChipList;
 					foreach (RcChipBase c in list)
 						try {
@@ -3692,7 +3697,7 @@ namespace rcm {
 			}
 			foreach (RcChipBase cb in rcdata.SelectedChip.Child) {
 				if (cb != null)
-					if (MessageBox.Show("‚±‚Ìƒ`ƒbƒv‚É‚Í”h¶ƒ`ƒbƒv‚ª‘¶İ‚µ‚Ü‚·B\n”h¶ƒ`ƒbƒv‚ğŠÜ‚ß‚Äíœ‚µ‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©H", "íœŠm”F", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+					if (MessageBox.Show("ã“ã®ãƒãƒƒãƒ—ã«ã¯æ´¾ç”Ÿãƒãƒƒãƒ—ãŒå­˜åœ¨ã—ã¾ã™ã€‚\næ´¾ç”Ÿãƒãƒƒãƒ—ã‚’å«ã‚ã¦å‰Šé™¤ã—ã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "å‰Šé™¤ç¢ºèª", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
 						== DialogResult.Cancel)
 						return;
 					else
@@ -3704,16 +3709,16 @@ namespace rcm {
 			rcdata.SelectedChip = buff;
 			Modified = true;
 			if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-			labelTip.Text = "íœ‚µ‚Ü‚µ‚½B";
+			labelTip.Text = "å‰Šé™¤ã—ã¾ã—ãŸã€‚";
 		}
 		private void actionDelete(RcChipBase targetChip) {
 			if (targetChip is RcChipCore) {
-				labelTip.Text = "ƒRƒA‚Ííœ‚Å‚«‚Ü‚¹‚ñB";
+				labelTip.Text = "ã‚³ã‚¢ã¯å‰Šé™¤ã§ãã¾ã›ã‚“ã€‚";
 				return;
 			}
 			foreach (RcChipBase cb in targetChip.Child) {
 				if (cb != null)
-					if (MessageBox.Show("‚±‚Ìƒ`ƒbƒv‚É‚Í”h¶ƒ`ƒbƒv‚ª‘¶İ‚µ‚Ü‚·B\n”h¶ƒ`ƒbƒv‚ğŠÜ‚ß‚Äíœ‚µ‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©H", "íœŠm”F", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+					if (MessageBox.Show("ã“ã®ãƒãƒƒãƒ—ã«ã¯æ´¾ç”Ÿãƒãƒƒãƒ—ãŒå­˜åœ¨ã—ã¾ã™ã€‚\næ´¾ç”Ÿãƒãƒƒãƒ—ã‚’å«ã‚ã¦å‰Šé™¤ã—ã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "å‰Šé™¤ç¢ºèª", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
 						== DialogResult.Cancel)
 						return;
 					else
@@ -3731,7 +3736,7 @@ namespace rcm {
 
 			Modified = true;
 			if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-			labelTip.Text = "íœ‚µ‚Ü‚µ‚½B";
+			labelTip.Text = "å‰Šé™¤ã—ã¾ã—ãŸã€‚";
 
 		}
 #if false
@@ -3747,7 +3752,7 @@ namespace rcm {
 			}
 			else if(e.Button == tbbInsert){
 				if(rcdata.SelectedChip is RcChipCore){
-					labelTip.Text = "‘}“ü‚·‚éêŠ‚ª‚ ‚è‚Ü‚¹‚ñB";
+					labelTip.Text = "æŒ¿å…¥ã™ã‚‹å ´æ‰€ãŒã‚ã‚Šã¾ã›ã‚“ã€‚";
 					return;
 				}
 				RcChipBase prevParent = rcdata.SelectedChip.Parent;
@@ -3756,153 +3761,153 @@ namespace rcm {
 				RcChipBase buffer;
 
 				switch(selected.Text){
-					case "“\‚è•t‚¯":
-						labelTip.Text = "“\‚è•t‚¯ƒ‚[ƒh‚Ì‚Í‘}“ü‚Í‚Å‚«‚Ü‚¹‚ñB";
+					case "è²¼ã‚Šä»˜ã‘":
+						labelTip.Text = "è²¼ã‚Šä»˜ã‘ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯æŒ¿å…¥ã¯ã§ãã¾ã›ã‚“ã€‚";
 						return;
-					case "‹“_":
-						labelTip.Text = "‹“_ƒ‚[ƒh‚Ì‚Í‘}“ü‚Í‚Å‚«‚Ü‚¹‚ñB";
+					case "è¦–ç‚¹":
+						labelTip.Text = "è¦–ç‚¹ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯æŒ¿å…¥ã¯ã§ãã¾ã›ã‚“ã€‚";
 						return;
-					case "ƒ`ƒbƒv":
+					case "ãƒãƒƒãƒ—":
 						try{
 							buffer = new RcChipChip(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 						break;
-					case "ƒtƒŒ[ƒ€":
+					case "ãƒ•ãƒ¬ãƒ¼ãƒ ":
 						try{
 							buffer = new RcChipFrame(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 
 						break;
-					case "ƒEƒFƒCƒg":
+					case "ã‚¦ã‚§ã‚¤ãƒˆ":
 						try{
 							buffer = new RcChipWeight(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 
 						break;
-					case "ƒJƒEƒ‹":
+					case "ã‚«ã‚¦ãƒ«":
 						try{
 							buffer = new RcChipCowl(rcdata,prevParent,prevJP);
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 						break;
-					case "ƒ‰ƒ_[":
+					case "ãƒ©ãƒ€ãƒ¼":
 						try{
 							buffer = new RcChipRudder(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 
 						break;
-					case "ƒ‰ƒ_[ƒtƒŒ[ƒ€":
+					case "ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ":
 						try{
 							buffer = new RcChipRudderF(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 
 						break;
-					case "ƒgƒŠƒ€":
+					case "ãƒˆãƒªãƒ ":
 						try{
 							buffer = new RcChipTrim(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 
 						break;
-					case "ƒgƒŠƒ€ƒtƒŒ[ƒ€":
+					case "ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ":
 						try{
 							buffer = new RcChipTrimF(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 
 						break;
-					case "ƒzƒC[ƒ‹":
+					case "ãƒ›ã‚¤ãƒ¼ãƒ«":
 						try{
 							buffer = new RcChipWheel(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 						break;
-					case "–³”½“®ƒzƒC[ƒ‹":
+					case "ç„¡åå‹•ãƒ›ã‚¤ãƒ¼ãƒ«":
 						try{
 							buffer = new RcChipRLW(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 
 						break;
-					case "ƒWƒFƒbƒg":
+					case "ã‚¸ã‚§ãƒƒãƒˆ":
 						try{
 							buffer = new RcChipJet(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 						break;
-					case "ƒA[ƒ€":
+					case "ã‚¢ãƒ¼ãƒ ":
 						try{
 							buffer = new RcChipArm(rcdata,prevParent,prevJP);
 
 						}
 						catch(Exception err){
-							MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+							MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 							return;
 						}
 					
 
 						break;
 					default:
-						labelTip.Text = "•s–¾‚Ìƒ‚[ƒh‚Å‚·B‘}“ü‚Í‚Å‚«‚Ü‚¹‚ñB";
+						labelTip.Text = "ä¸æ˜ã®ãƒ¢ãƒ¼ãƒ‰ã§ã™ã€‚æŒ¿å…¥ã¯ã§ãã¾ã›ã‚“ã€‚";
 						return;
 				}
 
@@ -3910,7 +3915,7 @@ namespace rcm {
 					rcdata.SelectedChip.Detach();
 					rcdata.SelectedChip.Attach(buffer,prevJP);
 				}catch(Exception err){
-					MessageBox.Show(err.Message,"‘}“üƒGƒ‰[",MessageBoxButtons.OK,MessageBoxIcon.Error);
+					MessageBox.Show(err.Message,"æŒ¿å…¥ã‚¨ãƒ©ãƒ¼",MessageBoxButtons.OK,MessageBoxIcon.Error);
 					try{
 						buffer.Detach();
 					}catch{}
@@ -3924,7 +3929,7 @@ namespace rcm {
 				ProcessViewPoint(rcdata.Cursor.Matrix);
 				Modified = true;
 				if(treeview != null && !treeview.IsDisposed)treeview.GenerateTree();
-				labelTip.Text = selected.Text + "‚ğ‘}“ü‚µ‚Ü‚µ‚½B";
+				labelTip.Text = selected.Text + "ã‚’æŒ¿å…¥ã—ã¾ã—ãŸã€‚";
 			}
 			else if(e.Button == tbbZoom){
 				CamDepth /= 1.5f;
@@ -3936,23 +3941,23 @@ namespace rcm {
 			}
 			else if(e.Button == tbbAutoCamera){
 				StartScrollCameraPosition(rcdata.Cursor.Matrix);
-				labelTip.Text = "ƒJ[ƒ\ƒ‹©“®’Ç”ö : " + (e.Button.Pushed ? "ON" : "OFF");
+				labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«è‡ªå‹•è¿½å°¾ : " + (e.Button.Pushed ? "ON" : "OFF");
 				drawOption.AutoCamera = e.Button.Pushed;
 			}
 			else{
-				//	Šeíƒ‚[ƒh•ÏX
+				//	å„ç¨®ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 				foreach(ToolBarButton tbb in tbMain.Buttons)
 					if(tbb != tbbAutoCamera) tbb.Pushed = false;
 				e.Button.Pushed = true;
 				selected = e.Button;
-				labelTip.Text = "’Ç‰Áƒ‚[ƒh : " + e.Button.Text;
+				labelTip.Text = "è¿½åŠ ãƒ¢ãƒ¼ãƒ‰ : " + e.Button.Text;
 			}
 
 			pictTarget_Paint(this,null);
 		}
 #endif
 		///<summery>
-		///Direct3D‚Æ‚©‚Ì‰Šú‰»B
+		///Direct3Dã¨ã‹ã®åˆæœŸåŒ–ã€‚
 		///</summery>
 		private bool InitializeGraphics() {
 			AdapterInformation a = Manager.Adapters.Default;
@@ -3986,7 +3991,7 @@ namespace rcm {
 			}
 
 			if (presentParams.AutoDepthStencilFormat == DepthFormat.Unknown)
-				throw new ApplicationException("DepthFormat‚Ìİ’è‚É¸”sB");
+				throw new ApplicationException("DepthFormatã®è¨­å®šã«å¤±æ•—ã€‚");
 
 
 			try {
@@ -4007,7 +4012,7 @@ namespace rcm {
 						presentParams);
 				}
 				catch (Exception e) {
-					MessageBox.Show("Direct3DƒfƒoƒCƒX‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½B", e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("Direct3Dãƒ‡ãƒã‚¤ã‚¹ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸã€‚", e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 
@@ -4110,7 +4115,7 @@ namespace rcm {
 		}
 
 		/*
-		  ‚È‚ñ‚©‚à‚¤A‚±‚Ì•Ó«‚Ç‚¤‚µ‚½‚ç‚¢‚¢‚©‚³‚Á‚Ï‚è‚Å‚·
+		  ãªã‚“ã‹ã‚‚ã†ã€ã“ã®è¾ºâ†“ã©ã†ã—ãŸã‚‰ã„ã„ã‹ã•ã£ã±ã‚Šã§ã™
 		*/
 
 		private void Device_DeviceReset(object sender, EventArgs e) {
@@ -4131,7 +4136,7 @@ namespace rcm {
 
 
 			//			Pause = true;
-			//			throw new Exception("ƒfƒoƒCƒX‚ªÁ¸‚µ‚Ü‚µ‚½B");
+			//			throw new Exception("ãƒ‡ãƒã‚¤ã‚¹ãŒæ¶ˆå¤±ã—ã¾ã—ãŸã€‚");
 			/*			if(Pause)return;
 			Pause = true;
 			try{
@@ -4140,7 +4145,7 @@ namespace rcm {
 			catch{}
 */
 		}
-		#region cŠ[
+		#region æ®‹éª¸
 		/*
 		private void Device_DeviceLost(object sender,EventArgs e){
 			rcdata.DisposeMeshes();
@@ -4208,7 +4213,7 @@ namespace rcm {
 		#endregion
 
 		/// <summary>
-		/// Œ»İ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒ`ƒbƒv‚Ìî•ñ‚ğ‰Eƒpƒlƒ‹‚É•\¦‚·‚éB
+		/// ç¾åœ¨é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’å³ãƒ‘ãƒãƒ«ã«è¡¨ç¤ºã™ã‚‹ã€‚
 		/// </summary>
 		public void LoadChipInfo() {
 			if (rcdata.SelectedChipCount > 0) {
@@ -4237,7 +4242,7 @@ namespace rcm {
 							else {
 								opp = target[s[i]];
 								//if(opp.Const != values[i].Const || (opp.Val != values[i].Val && opp.isNegative == values[i].isNegative))
-								if (opp != values[i])       // ‚±‚Ì”»’è‚ª‚¤‚Ü‚­‚¢‚Á‚Ä‚¢‚È‚¢‚©‚ç’¼‚·
+								if (opp != values[i])       // ã“ã®åˆ¤å®šãŒã†ã¾ãã„ã£ã¦ã„ãªã„ã‹ã‚‰ç›´ã™
 									enables[i, 1] = false;
 							}
 						}
@@ -4248,11 +4253,11 @@ namespace rcm {
 					}
 
 					if (enables[i, 0]) {
-						// ‹¤’Ê‘®«
+						// å…±é€šå±æ€§
 						labelAttrItems[attrindex].Text = s[i];
 						labelAttrItems[attrindex].Visible = cmbAttrItems[attrindex].Visible = true;
 						if (enables[i, 1]) {
-							// “¯ˆê’l
+							// åŒä¸€å€¤
 							cmbAttrItems[attrindex].Text = values[i].ToString();
 							if (values[i].Val != null) {
 								cmbAttrItems[attrindex].BackColor = Color.FromKnownColor(KnownColor.Info);
@@ -4284,7 +4289,7 @@ namespace rcm {
 				txtName.Text = "";
 				txtName.Enabled = false;
 
-				btnRootChip.Text = "eƒ`ƒbƒv";
+				btnRootChip.Text = "è¦ªãƒãƒƒãƒ—";
 				btnRootChip.Enabled = false;
 				buttonSelChip.Enabled = false;
 
@@ -4365,17 +4370,17 @@ namespace rcm {
 
 
 				if (btnRootChip.Enabled = (target.Parent != null))
-					btnRootChip.Text = "eƒ`ƒbƒv\n[" + target.Parent.ToString() + "]";
+					btnRootChip.Text = "è¦ªãƒãƒƒãƒ—\n[" + target.Parent.ToString() + "]";
 				else
-					btnRootChip.Text = "eƒ`ƒbƒv";
+					btnRootChip.Text = "è¦ªãƒãƒƒãƒ—";
 				//				btnRootChip.Enabled = true;
 
 				pictAngle.Refresh();
 
 				if (target.Comment == null || target.Comment == "")
-					ttMain.SetToolTip(buttonSelChip, "ƒRƒƒ“ƒg‚È‚µ");
+					ttMain.SetToolTip(buttonSelChip, "ã‚³ãƒ¡ãƒ³ãƒˆãªã—");
 				else
-					ttMain.SetToolTip(buttonSelChip, "ƒRƒƒ“ƒgF\n" + target.Comment);
+					ttMain.SetToolTip(buttonSelChip, "ã‚³ãƒ¡ãƒ³ãƒˆï¼š\n" + target.Comment);
 
 				parameterChanged = false;
 			}
@@ -4386,12 +4391,12 @@ namespace rcm {
 		}
 
 		/// <summary>
-		/// ‰Eƒpƒlƒ‹‚Ìî•ñ‚ğ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒ`ƒbƒv‚É“K—p‚·‚éB
+		/// å³ãƒ‘ãƒãƒ«ã®æƒ…å ±ã‚’é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ã«é©ç”¨ã™ã‚‹ã€‚
 		/// </summary>
 		public void ApplyChipInfo() {
 			if (!parameterChanged) return;
 			if (rcdata.SelectedChipCount > 0) {
-				// •¡”‘I‘ğ
+				// è¤‡æ•°é¸æŠæ™‚
 				RcChipBase[] array = rcdata.SelectedChipList;
 				RcAttrValue attr;
 				RcChipBase target;
@@ -4665,7 +4670,7 @@ namespace rcm {
 		}
 
 		///<summery>
-		///qƒ`ƒbƒvƒŠƒXƒgƒ{ƒbƒNƒX‚ÅA‰½‚©‚ª‘I‘ğ‚³‚ê‚½‚Æ‚«‚ÌƒCƒxƒ“ƒgB‘¼‚ÌƒŠƒXƒgƒ{ƒbƒNƒX‚Ì‘I‘ğ‚ğ‰ğœ‚·‚é“®ìB
+		///å­ãƒãƒƒãƒ—ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã§ã€ä½•ã‹ãŒé¸æŠã•ã‚ŒãŸã¨ãã®ã‚¤ãƒ™ãƒ³ãƒˆã€‚ä»–ã®ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®é¸æŠã‚’è§£é™¤ã™ã‚‹å‹•ä½œã€‚
 		///</summery>
 		private void lstChild_SelectedIndexChanged(object sender, System.EventArgs e) {
 			ListBox targetlist = (ListBox)sender;
@@ -4697,7 +4702,7 @@ namespace rcm {
 			ListBox listtarget = (ListBox)sender;
 			if (listtarget.SelectedIndex != -1) {
 				rcdata.SelectedChip = (RcChipBase)listtarget.SelectedItem;
-				labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+				labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 					((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 					" (" + rcdata.SelectedChip.Comment + ")" : "");
 			}
@@ -4707,7 +4712,7 @@ namespace rcm {
 		private void btnRootChip_Click(object sender, System.EventArgs e) {
 			if (rcdata.SelectedChip.Parent != null) {
 				rcdata.SelectedChip = rcdata.SelectedChip.Parent;
-				labelTip.Text = "eƒ`ƒbƒv‚ÉˆÚ“® : " + rcdata.SelectedChip.ToString() +
+				labelTip.Text = "è¦ªãƒãƒƒãƒ—ã«ç§»å‹• : " + rcdata.SelectedChip.ToString() +
 					((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 					" (" + rcdata.SelectedChip.Comment + ")" : "");
 			}
@@ -4733,7 +4738,7 @@ namespace rcm {
 					acb.Items.Add("-" + v.ValName);
 				}
 				if (acb.Items.Count == 0)
-					acb.Items.Add("(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)");
+					acb.Items.Add("(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)");
 			}
 		}
 
@@ -4749,15 +4754,15 @@ namespace rcm {
 		private void Undo() {
 			switch (undo.type) {
 				case UndoType.Added:
-					#region Addedˆ—
+					#region Addedå‡¦ç†
 					#endregion
 					break;
 				case UndoType.Removed:
-					#region Removedˆ—
+					#region Removedå‡¦ç†
 					#endregion
 					break;
 				case UndoType.Modified:
-					#region Modifiedˆ—
+					#region Modifiedå‡¦ç†
 					#endregion
 					break;
 				default:
@@ -4808,7 +4813,7 @@ namespace rcm {
 			grp.DrawLine(Pens.White, new Point(0, target.Height / 2), new Point(target.Width - 1, target.Height / 2));
 			grp.DrawLine(Pens.White, new Point(target.Width / 2, 0), new Point(target.Width / 2, target.Height - 1));
 
-			System.Drawing.Font f = new System.Drawing.Font("‚l‚r ƒSƒVƒbƒN", 8f);
+			System.Drawing.Font f = new System.Drawing.Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 8f);
 			if (attr.Val != null) {
 				p.Color = Color.Yellow;
 				grp.DrawPie(p,
@@ -4929,46 +4934,46 @@ namespace rcm {
 			miChange.Enabled = true;
 
 			switch (buttonSelChip.ImageIndex) {
-				case 0: //	ƒRƒA
+				case 0: //	ã‚³ã‚¢
 					miChange.Enabled = false;
 					miCut.Enabled = false;
 					miCopy.Enabled = false;
 					miDelete.Enabled = false;
 					break;
-				case 1: //	ƒ`ƒbƒv
+				case 1: //	ãƒãƒƒãƒ—
 					miChangeChip.Enabled = false;
 					goto default;
-				case 2: //	ƒtƒŒ[ƒ€
+				case 2: //	ãƒ•ãƒ¬ãƒ¼ãƒ 
 					miChangeFrame.Enabled = false;
 					goto default;
-				case 3: //	ƒ‰ƒ_[
+				case 3: //	ãƒ©ãƒ€ãƒ¼
 					miChangeRudder.Enabled = false;
 					goto default;
-				case 4: //	ƒ‰ƒ_[ƒtƒŒ[ƒ€
+				case 4: //	ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ 
 					miChangeRudderF.Enabled = false;
 					goto default;
-				case 5: //	ƒgƒŠƒ€
+				case 5: //	ãƒˆãƒªãƒ 
 					miChangeTrim.Enabled = false;
 					goto default;
-				case 6: //	ƒgƒŠƒ€ƒtƒŒ[ƒ€
+				case 6: //	ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ 
 					miChangeTrimF.Enabled = false;
 					goto default;
-				case 7: //	ƒzƒC[ƒ‹
+				case 7: //	ãƒ›ã‚¤ãƒ¼ãƒ«
 					miChangeWheel.Enabled = false;
 					goto default;
-				case 8: //	–³”½“®ƒzƒC[ƒ‹
+				case 8: //	ç„¡åå‹•ãƒ›ã‚¤ãƒ¼ãƒ«
 					miChangeRLW.Enabled = false;
 					goto default;
-				case 9: //	ƒWƒFƒbƒg
+				case 9: //	ã‚¸ã‚§ãƒƒãƒˆ
 					miChangeJet.Enabled = false;
 					goto default;
-				case 10:    //	ƒEƒFƒCƒg
+				case 10:    //	ã‚¦ã‚§ã‚¤ãƒˆ
 					miChangeWeight.Enabled = false;
 					goto default;
-				case 11:    //	ƒJƒEƒ‹
+				case 11:    //	ã‚«ã‚¦ãƒ«
 					miChangeCowl.Enabled = false;
 					goto default;
-				case 12:    //	ƒA[ƒ€
+				case 12:    //	ã‚¢ãƒ¼ãƒ 
 					miChangeArm.Enabled = false;
 					goto default;
 				default:
@@ -5000,7 +5005,7 @@ namespace rcm {
 						valname = valname.Substring(1);
 					}
 					if (Array.Find(rcdata.vals.List, x => x.ValName == valname) == null) {
-						if (MessageBox.Show(string.Format("V‹KVal : {0} ‚ğì¬‚µ‚Ü‚·‚©H", valname), "‘r›", MessageBoxButtons.YesNo) != DialogResult.Yes)
+						if (MessageBox.Show(string.Format("æ–°è¦Val : {0} ã‚’ä½œæˆã—ã¾ã™ã‹ï¼Ÿ", valname), "å–ªå¯º", MessageBoxButtons.YesNo) != DialogResult.Yes)
 							return;
 						frmVals valform = new frmVals(rcdata.vals, valname);
 						Pause = true;
@@ -5016,7 +5021,7 @@ namespace rcm {
 					}
 				}
 				ApplyChipInfo();
-				labelTip.Text = "‘®«‚Ì•ÏX‚ğs‚¢‚Ü‚µ‚½B";
+				labelTip.Text = "å±æ€§ã®å¤‰æ›´ã‚’è¡Œã„ã¾ã—ãŸã€‚";
 			}
 			/*			else if(!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-' && !char.IsControl(e.KeyChar)){
 							e.Handled = true;
@@ -5030,7 +5035,7 @@ namespace rcm {
 		private void cmbAttrItems_TextChanged(object sender, System.EventArgs e) {
 			if (sender is ComboBox) {
 				ComboBox attrcombo = (ComboBox)sender;
-				if (attrcombo.Text == "(g—p‰Â”\‚È•Ï”‚Í‚ ‚è‚Ü‚¹‚ñ)")
+				if (attrcombo.Text == "(ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¯ã‚ã‚Šã¾ã›ã‚“)")
 					LoadChipInfo();
 			}
 		}
@@ -5087,7 +5092,7 @@ namespace rcm {
 			else {
 				rcdata.SelectedChip["Color"] = new RcAttrValue((i & 0xFF) << 16 | (i & 0xFF00) | (i & 0xFF0000) >> 16);
 			}
-			//	ƒoƒCƒgƒI[ƒ_[‚ª‹tŒü‚«‚È‚Ì‚É‚Íƒƒ‰ƒ^
+			//	ãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€ãƒ¼ãŒé€†å‘ããªã®ã«ã¯ãƒ¯ãƒ©ã‚¿
 			LoadChipInfo();
 			Modified = true;
 			if (treeview != null && !treeview.IsDisposed) treeview.UpdateTree(rcdata.SelectedChip);
@@ -5137,7 +5142,7 @@ namespace rcm {
 
 						rcdata.Parse(buff);
 			*/
-			if (!Modified || MessageBox.Show("Œ»İ‚Ìƒ‚ƒfƒ‹‚ğ”jŠü‚µ‚Ü‚·B", "‰Šú‰»Šm”F", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
+			if (!Modified || MessageBox.Show("ç¾åœ¨ã®ãƒ¢ãƒ‡ãƒ«ã‚’ç ´æ£„ã—ã¾ã™ã€‚", "åˆæœŸåŒ–ç¢ºèª", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
 				if (scriptform != null) {
 					scriptform.Hide();
 					scriptform.Close();
@@ -5182,7 +5187,7 @@ namespace rcm {
 							rcdata.RegisterChip(rcdata.model.root);
 
 
-							StreamReader file = new StreamReader(dlgOpen.FileName, System.Text.Encoding.Default);
+							StreamReader file = new StreamReader(dlgOpen.FileName, Encoding.Default);
 							rcdata.Parse(file.ReadToEnd());
 
 							break;
@@ -5193,7 +5198,7 @@ namespace rcm {
 					EditingFileName = dlgOpen.FileName;
 					SetValDropList();
 					Pause = false;
-					labelTip.Text = "ƒtƒ@ƒCƒ‹‚ğŠJ‚«‚Ü‚µ‚½ : " + System.IO.Path.GetFileNameWithoutExtension(EditingFileName);
+					labelTip.Text = "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã¾ã—ãŸ : " + System.IO.Path.GetFileNameWithoutExtension(EditingFileName);
 				}
 				editOption.ConvertParentAttributes = buffer;
 			}
@@ -5221,7 +5226,7 @@ namespace rcm {
 			}
 			Modified = true;
 			if (treeview != null && !treeview.IsDisposed) treeview.UpdateTree(rcdata.SelectedChip);
-			labelTip.Text = "F‚ğ•ÏX‚µ‚Ü‚µ‚½B";
+			labelTip.Text = "è‰²ã‚’å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 		}
 
 		private void miPaletteChildPaint_Click(object sender, System.EventArgs e) {
@@ -5243,7 +5248,7 @@ namespace rcm {
 			}
 			Modified = true;
 			if (treeview != null && !treeview.IsDisposed) treeview.UpdateTree(rcdata.SelectedChip);
-			labelTip.Text = "F‚ğ•ÏX‚µ‚Ü‚µ‚½B";
+			labelTip.Text = "è‰²ã‚’å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 		}
 
 		private void miFileSave_Click(object sender, System.EventArgs e) {
@@ -5278,7 +5283,7 @@ namespace rcm {
 		}
 
 		private void miFileNew_Click(object sender, System.EventArgs e) {
-			if (!Modified || MessageBox.Show("Œ»İ‚Ìƒ‚ƒfƒ‹‚ğ”jŠü‚µ‚Ü‚·B", "‰Šú‰»Šm”F", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
+			if (!Modified || MessageBox.Show("ç¾åœ¨ã®ãƒ¢ãƒ‡ãƒ«ã‚’ç ´æ£„ã—ã¾ã™ã€‚", "åˆæœŸåŒ–ç¢ºèª", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
 				rcdata.UnregisterChipAll(rcdata.model.root);
 				rcdata.keys = new RcKeyList(RcData.KeyCount);
 				rcdata.vals = new RcValList();
@@ -5291,7 +5296,7 @@ namespace rcm {
 				EditingFileName = "";
 				Modified = false;
 				if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-				labelTip.Text = "î•ñ‚ğ”jŠü‚µAV‚µ‚¢ƒ‚ƒfƒ‹ƒf[ƒ^‚ğŠJn‚µ‚Ü‚µ‚½B";
+				labelTip.Text = "æƒ…å ±ã‚’ç ´æ£„ã—ã€æ–°ã—ã„ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’é–‹å§‹ã—ã¾ã—ãŸã€‚";
 			}
 		}
 
@@ -5300,7 +5305,7 @@ namespace rcm {
 			ListBox list = (ListBox)((ContextMenu)sender).SourceControl;
 
 			miListCopy.Enabled = miListCut.Enabled = miListSelect.Enabled = ( list.SelectedIndex >= 0);
-			miListAdd.Enabled = (selected.Text != "‘I‘ğ") && (selected.Text != "‹“_") ;
+			miListAdd.Enabled = (selected.Text != "é¸æŠ") && (selected.Text != "è¦–ç‚¹") ;
 			switch(list.Name){
 				case "lstNorth":
 					jointPositionBuffer = RcJointPosition.North;
@@ -5324,155 +5329,155 @@ namespace rcm {
 
 
 			switch(selected.Text){
-				case "“\‚è•t‚¯":
+				case "è²¼ã‚Šä»˜ã‘":
 					try{
 						RcChipBase buffer = clipboard.Clone(true,null);
 						buffer.Attach(rcdata.SelectedChip,jointPositionBuffer);
 						rcdata.SelectedChip = buffer;
-						labelTip.Text = "“\‚è•t‚¯‚ğs‚¢‚Ü‚µ‚½B";
+						labelTip.Text = "è²¼ã‚Šä»˜ã‘ã‚’è¡Œã„ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 					rcdata.CheckBackTrack();
 					break;
-				case "ƒ`ƒbƒv":
+				case "ãƒãƒƒãƒ—":
 					try{
 						rcdata.SelectedChip = new RcChipChip(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 					break;
-				case "ƒtƒŒ[ƒ€":
+				case "ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					try{
 						rcdata.SelectedChip = new RcChipFrame(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 
 					break;
-				case "ƒEƒFƒCƒg":
+				case "ã‚¦ã‚§ã‚¤ãƒˆ":
 					try{
 						rcdata.SelectedChip = new RcChipWeight(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 
 					break;
-				case "ƒJƒEƒ‹":
+				case "ã‚«ã‚¦ãƒ«":
 					try{
 						rcdata.SelectedChip = new RcChipCowl(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 					break;
-				case "ƒ‰ƒ_[":
+				case "ãƒ©ãƒ€ãƒ¼":
 					try{
 						rcdata.SelectedChip = new RcChipRudder(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 
 					break;
-				case "ƒ‰ƒ_[ƒtƒŒ[ƒ€":
+				case "ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					try{
 						rcdata.SelectedChip = new RcChipRudderF(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 
 					break;
-				case "ƒgƒŠƒ€":
+				case "ãƒˆãƒªãƒ ":
 					try{
 						rcdata.SelectedChip = new RcChipTrim(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 
 					break;
-				case "ƒgƒŠƒ€ƒtƒŒ[ƒ€":
+				case "ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					try{
 						rcdata.SelectedChip = new RcChipTrimF(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 
 					break;
-				case "ƒzƒC[ƒ‹":
+				case "ãƒ›ã‚¤ãƒ¼ãƒ«":
 					try{
 						rcdata.SelectedChip = new RcChipWheel(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 					break;
-				case "–³”½“®ƒzƒC[ƒ‹":
+				case "ç„¡åå‹•ãƒ›ã‚¤ãƒ¼ãƒ«":
 					try{
 						rcdata.SelectedChip = new RcChipRLW(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 
 					break;
-				case "ƒWƒFƒbƒg":
+				case "ã‚¸ã‚§ãƒƒãƒˆ":
 					try{
 						rcdata.SelectedChip = new RcChipJet(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
 					break;
-				case "ƒA[ƒ€":
+				case "ã‚¢ãƒ¼ãƒ ":
 					try{
 						rcdata.SelectedChip = new RcChipArm(rcdata,rcdata.SelectedChip,jointPositionBuffer);
-						labelTip.Text = selected.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selected.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch(Exception err){
-						MessageBox.Show(err.Message,"’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message,"è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 					
@@ -5495,7 +5500,7 @@ namespace rcm {
 			ListBox list = (ListBox)((ContextMenu)sender).SourceControl;
 
 			miListDelete.Enabled = miListCopy.Enabled = miListCut.Enabled = miListSelect.Enabled = (list.SelectedIndex >= 0);
-			miListAdd.Enabled = (selectedButton.Text != "‘I‘ğ") && (selectedButton.Text != "‹“_");
+			miListAdd.Enabled = (selectedButton.Text != "é¸æŠ") && (selectedButton.Text != "è¦–ç‚¹");
 			switch (list.Name) {
 				case "lstNorth":
 					jointPositionBuffer = RcJointPosition.North;
@@ -5519,154 +5524,154 @@ namespace rcm {
 
 
 			switch (selectedButton.Text) {
-				case "“\‚è•t‚¯":
+				case "è²¼ã‚Šä»˜ã‘":
 					try {
 						RcChipBase buffer = clipboard.Clone(true, null);
 						buffer.Attach(rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = "“\‚è•t‚¯‚ğs‚¢‚Ü‚µ‚½B";
+						labelTip.Text = "è²¼ã‚Šä»˜ã‘ã‚’è¡Œã„ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 					rcdata.CheckBackTrack();
 					break;
-				case "ƒ`ƒbƒv":
+				case "ãƒãƒƒãƒ—":
 					try {
 						new RcChipChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 					break;
-				case "ƒtƒŒ[ƒ€":
+				case "ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					try {
 						new RcChipFrame(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒEƒFƒCƒg":
+				case "ã‚¦ã‚§ã‚¤ãƒˆ":
 					try {
 						new RcChipWeight(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒJƒEƒ‹":
+				case "ã‚«ã‚¦ãƒ«":
 					try {
 						new RcChipCowl(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 					break;
-				case "ƒ‰ƒ_[":
+				case "ãƒ©ãƒ€ãƒ¼":
 					try {
 						new RcChipRudder(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒ‰ƒ_[ƒtƒŒ[ƒ€":
+				case "ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					try {
 						new RcChipRudderF(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒgƒŠƒ€":
+				case "ãƒˆãƒªãƒ ":
 					try {
 						new RcChipTrim(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒgƒŠƒ€ƒtƒŒ[ƒ€":
+				case "ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					try {
 						new RcChipTrimF(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒzƒC[ƒ‹":
+				case "ãƒ›ã‚¤ãƒ¼ãƒ«":
 					try {
 						new RcChipWheel(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 					break;
-				case "–³”½“®ƒzƒC[ƒ‹":
+				case "ç„¡åå‹•ãƒ›ã‚¤ãƒ¼ãƒ«":
 					try {
 						new RcChipRLW(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒWƒFƒbƒg":
+				case "ã‚¸ã‚§ãƒƒãƒˆ":
 					try {
 						new RcChipJet(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 					break;
-				case "ƒA[ƒ€":
+				case "ã‚¢ãƒ¼ãƒ ":
 					try {
 						new RcChipArm(rcdata, rcdata.SelectedChip, jointPositionBuffer);
-						labelTip.Text = selectedButton.Text + "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B";
+						labelTip.Text = selectedButton.Text + "ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚";
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
@@ -5688,7 +5693,7 @@ namespace rcm {
 #endif
 
 		private void miFileImport_Click(object sender, System.EventArgs e) {
-			if (!Modified || MessageBox.Show("Œ»İ‚Ìƒ‚ƒfƒ‹‚ğ”jŠü‚µ‚Ü‚·B", "‰Šú‰»Šm”F", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
+			if (!Modified || MessageBox.Show("ç¾åœ¨ã®ãƒ¢ãƒ‡ãƒ«ã‚’ç ´æ£„ã—ã¾ã™ã€‚", "åˆæœŸåŒ–ç¢ºèª", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
 				if (scriptform != null) scriptform.Hide();
 				dlgOpen.Filter = "RigidChips Data File(*.rcd;*.txt)|*.rcd;*.txt|All files(*.*)|*.*";
 				dlgOpen.Multiselect = false;
@@ -5702,7 +5707,7 @@ namespace rcm {
 
 					rcdata.headercomment = rcdata.script = "";
 					rcdata.RegisterChip(rcdata.model.root);
-					StreamReader file = new StreamReader(dlgOpen.FileName, System.Text.Encoding.Default);
+					StreamReader file = new StreamReader(dlgOpen.FileName, Encoding.Default);
 					rcdata.Parse(file.ReadToEnd());
 
 					rcdata.SelectedChip = rcdata.model.root;
@@ -5711,13 +5716,13 @@ namespace rcm {
 					GC.Collect();
 					Modified = false;
 					if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-					labelTip.Text = "ƒ‚ƒfƒ‹ƒf[ƒ^‚ğ“Ç‚İ‚İ‚Ü‚µ‚½ : " + System.IO.Path.GetFileNameWithoutExtension(dlgOpen.FileName);
+					labelTip.Text = "ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿ã¾ã—ãŸ : " + System.IO.Path.GetFileNameWithoutExtension(dlgOpen.FileName);
 				}
 			}
 		}
 
 		private void menuItem14_Click(object sender, System.EventArgs e) {
-			MessageBox.Show(string.Format("‘r› -RigidChips Modeler-\n\tVersion : {0}.{1}\n\tAssembly : {2}-{3}", Application.ProductVersion.Split('.')), "Version Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show(string.Format("å–ªå¯º -RigidChips Modeler-\n\tVersion : {0}.{1}\n\tAssembly : {2}-{3}", Application.ProductVersion.Split('.')), "Version Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void miFileExport_Click(object sender, System.EventArgs e) {
@@ -5731,19 +5736,19 @@ namespace rcm {
 				if (rcdata.script != "") {
 					output += (rcdata.luascript ? "Lua" : "Script") + "{\r\n" + rcdata.script + "}\r\n";
 				}
-				StreamWriter tw = new StreamWriter(dlgSave.FileName, false, System.Text.Encoding.Default);
+				StreamWriter tw = new StreamWriter(dlgSave.FileName, false, Encoding.Default);
 				//				MessageBox.Show(output);
 				//				MessageBox.Show(rcdata.chipCount.ToString());
 				tw.Write(output);
 				tw.Flush();
 				tw.Close();
 
-				labelTip.Text = "ƒ‚ƒfƒ‹ƒf[ƒ^‚ğo—Í‚µ‚Ü‚µ‚½ : " + System.IO.Path.GetFileNameWithoutExtension(dlgSave.FileName);
+				labelTip.Text = "ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ›ã—ã¾ã—ãŸ : " + System.IO.Path.GetFileNameWithoutExtension(dlgSave.FileName);
 
 			}
 		}
 #if false
-		/* ‹Œˆ— */
+		/* æ—§å‡¦ç† */
 		private void miFileSaveAs_Click(object sender, System.EventArgs e) {
 			dlgSave.Filter = ".rcd File(*.rcd)|*.rcd|RCM File(*.rcm)|*.rcm";
 			dlgSave.DefaultExt = "rcm";
@@ -5752,14 +5757,14 @@ namespace rcm {
 			if(dlgSave.ShowDialog() == DialogResult.OK){
 				rcdata.Save(dlgSave.FileName,GenerateOptList());
 				EditingFileName = dlgSave.FileName;
-				labelTip.Text = "RCDƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚µ‚Ü‚µ‚½ : " + System.IO.Path.GetFileNameWithoutExtension(dlgSave.FileName);
+				labelTip.Text = "RCDãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã—ã¾ã—ãŸ : " + System.IO.Path.GetFileNameWithoutExtension(dlgSave.FileName);
 				Modified = false;
 				EditingFileName = dlgSave.FileName;
 			}
 
 		}
 #else
-		/* rcdŒ`®‚Æ‚Ì“‡ */
+		/* rcdå½¢å¼ã¨ã®çµ±åˆ */
 		private void miFileSaveAs_Click(object sender, System.EventArgs e) {
 			dlgSave.Filter = ".rcd File(*.rcd)|*.rcd|RCM File(*.rcm)|*.rcm";
 			dlgSave.DefaultExt = "rcd";
@@ -5773,11 +5778,11 @@ namespace rcm {
 		}
 
 		/// <summary>
-		/// Œ»İ‚Ìƒ‚ƒfƒ‹‚ğƒtƒ@ƒCƒ‹‚Ö•Û‘¶‚·‚é
+		/// ç¾åœ¨ã®ãƒ¢ãƒ‡ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã¸ä¿å­˜ã™ã‚‹
 		/// </summary>
-		/// <param name="filename">•Û‘¶‚·‚éƒtƒ@ƒCƒ‹–¼</param>
+		/// <param name="filename">ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å</param>
 		private void SaveFile(string filename) {
-			if (string.IsNullOrEmpty(filename)) throw new ArgumentException("ƒtƒ@ƒCƒ‹–¼‚ª—˜—p‚Å‚«‚Ü‚¹‚ñ", "filename");
+			if (string.IsNullOrEmpty(filename)) throw new ArgumentException("ãƒ•ã‚¡ã‚¤ãƒ«åãŒåˆ©ç”¨ã§ãã¾ã›ã‚“", "filename");
 			string output;
 			switch (Path.GetExtension(filename).ToLower()) {
 				case ".rcm":
@@ -5789,7 +5794,7 @@ namespace rcm {
 					if (rcdata.script != "") {
 						output += (rcdata.luascript ? "Lua" : "Script") + "{\r\n" + rcdata.script + "}\r\n";
 					}
-					StreamWriter tw = new StreamWriter(filename, false, System.Text.Encoding.Default);
+					StreamWriter tw = new StreamWriter(filename, false, Encoding.Default);
 					//				MessageBox.Show(output);
 					//				MessageBox.Show(rcdata.chipCount.ToString());
 					tw.Write(output);
@@ -5799,7 +5804,7 @@ namespace rcm {
 					break;
 			}
 			EditingFileName = filename;
-			labelTip.Text = "ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚µ‚Ü‚µ‚½ : " + System.IO.Path.GetFileNameWithoutExtension(filename);
+			labelTip.Text = "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã—ã¾ã—ãŸ : " + System.IO.Path.GetFileNameWithoutExtension(filename);
 			Modified = false;
 		}
 
@@ -5825,7 +5830,7 @@ namespace rcm {
 			if (list.SelectedIndex < 0) return;
 
 			rcdata.SelectedChip = (RcChipBase)list.SelectedItem;
-			labelTip.Text = "ƒJ[ƒ\ƒ‹‚ğˆÚ“®‚µ‚Ü‚µ‚½ : " + rcdata.SelectedChip.ToString() +
+			labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã—ã¾ã—ãŸ : " + rcdata.SelectedChip.ToString() +
 				((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 				" (" + rcdata.SelectedChip.Comment + ")" : "");
 
@@ -5891,7 +5896,7 @@ namespace rcm {
 			//    miToolTree_Click(sender, e);
 			//    return;
 			//}
-			else if (!treeview.Created) {   // 2010/03/16 •ÏXF—]Œv‚Ètreeview‚ÌÄ¶¬‚ğ—}§
+			else if (!treeview.Created) {   // 2010/03/16 å¤‰æ›´ï¼šä½™è¨ˆãªtreeviewã®å†ç”Ÿæˆã‚’æŠ‘åˆ¶
 				treeview.Dispose();
 				treeview = null;
 				miToolTree_Click(sender, e);
@@ -5899,7 +5904,7 @@ namespace rcm {
 			}
 
 			treeview.Show();
-			treeview.Focus();   // 2010/03/16 ’Ç‰ÁFtreeview‚ğ‘O–Ê‚Éo‚·
+			treeview.Focus();   // 2010/03/16 è¿½åŠ ï¼štreeviewã‚’å‰é¢ã«å‡ºã™
 		}
 
 		private void RcData_SelectedChipChanged(object param) {
@@ -5921,7 +5926,7 @@ namespace rcm {
 		}
 
 		private void miCommentEdit_Click(object sender, System.EventArgs e) {
-			string s = dlgTextInput.ShowDialog(rcdata.SelectedChip.Comment, "•t‰Á‚·‚éƒRƒƒ“ƒg‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢(‹ó‚ÅÁ‹)B", 0);
+			string s = dlgTextInput.ShowDialog(rcdata.SelectedChip.Comment, "ä»˜åŠ ã™ã‚‹ã‚³ãƒ¡ãƒ³ãƒˆã‚’å…¥åŠ›ã—ã¦ãã ã•ã„(ç©ºã§æ¶ˆå»)ã€‚", 0);
 			if (s != null)
 				rcdata.SelectedChip.Comment = s;
 		}
@@ -5940,12 +5945,12 @@ namespace rcm {
 		private void miHelpReadme_Click(object sender, System.EventArgs e) {
 			System.Diagnostics.Process p = new System.Diagnostics.Process();
 
-			if (!File.Exists("RCMà–¾‘.txt")) {
-				MessageBox.Show("RCMà–¾‘.txt ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			if (!File.Exists("RCMèª¬æ˜æ›¸.txt")) {
+				MessageBox.Show("RCMèª¬æ˜æ›¸.txt ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 				return;
 			}
 
-			p.StartInfo = new System.Diagnostics.ProcessStartInfo("RCMà–¾‘.txt");
+			p.StartInfo = new System.Diagnostics.ProcessStartInfo("RCMèª¬æ˜æ›¸.txt");
 			p.Start();
 		}
 
@@ -5965,10 +5970,10 @@ namespace rcm {
 					foreach (RcChipBase c in target.Child) {
 						if (c == null) break;
 						if (!(c is RcChipCowl)) {
-							if (MessageBox.Show("ƒJƒEƒ‹ˆÈŠO‚Ìƒ`ƒbƒv‚ªÚ‘±‚³‚ê‚Ä‚¢‚é‚½‚ßAƒJƒEƒ‹‚É•ÏX‚Å‚«‚Ü‚¹‚ñB\nÚ‘±‚³‚ê‚Ä‚¢‚éƒ`ƒbƒv‚ğ‚·‚×‚ÄƒJƒEƒ‹‚É•ÏX‚µ‚Ü‚·‚©H", "ƒ^ƒCƒv•ÏXƒGƒ‰[", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+							if (MessageBox.Show("ã‚«ã‚¦ãƒ«ä»¥å¤–ã®ãƒãƒƒãƒ—ãŒæ¥ç¶šã•ã‚Œã¦ã„ã‚‹ãŸã‚ã€ã‚«ã‚¦ãƒ«ã«å¤‰æ›´ã§ãã¾ã›ã‚“ã€‚\næ¥ç¶šã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ã‚’ã™ã¹ã¦ã‚«ã‚¦ãƒ«ã«å¤‰æ›´ã—ã¾ã™ã‹ï¼Ÿ", "ã‚¿ã‚¤ãƒ—å¤‰æ›´ã‚¨ãƒ©ãƒ¼", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 								== DialogResult.Yes) {
 
-								//	”h¶ƒ`ƒbƒv‚ğ‚·‚×‚ÄƒJƒEƒ‹‚É•ÏX‚·‚éÄ‹Aˆ—
+								//	æ´¾ç”Ÿãƒãƒƒãƒ—ã‚’ã™ã¹ã¦ã‚«ã‚¦ãƒ«ã«å¤‰æ›´ã™ã‚‹å†å¸°å‡¦ç†
 								System.Collections.Stack s = new System.Collections.Stack();
 								System.Collections.Queue q = new System.Collections.Queue();
 
@@ -5987,75 +5992,75 @@ namespace rcm {
 									itr = itr.ChangeType(RcChipType.Cowl);
 								}
 								rcdata.SelectedChip = itr;
-								labelTip.Text = "Cowl‚É•ÏX‚µ‚Ü‚µ‚½B";
+								labelTip.Text = "Cowlã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 								return;
 
 							}
 							else {
-								labelTip.Text = "Cowl‚É•ÏX‚µ‚Ü‚µ‚½B";
+								labelTip.Text = "Cowlã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 								return;
 							}
 						}
 					}
 					rcdata.SelectedChip = target.ChangeType(RcChipType.Cowl);
-					labelTip.Text = "Cowl‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "Cowlã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeChip) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.Chip);
-					labelTip.Text = "Chip‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "Chipã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeFrame) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.Frame);
-					labelTip.Text = "Frame‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "Frameã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeRudder) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.Rudder);
-					labelTip.Text = "Rudder‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "Rudderã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeRudderF) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.RudderF);
-					labelTip.Text = "RudderF‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "RudderFã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeTrim) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.Trim);
-					labelTip.Text = "Trim‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "Trimã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeTrimF) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.TrimF);
-					labelTip.Text = "TrimF‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "TrimFã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeWheel) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.Wheel);
-					labelTip.Text = "Wheel‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "Wheelã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeRLW) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.RLW);
-					labelTip.Text = "RLW‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "RLWã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeJet) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.Jet);
-					labelTip.Text = "Jet‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "Jetã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeWeight) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.Weight);
-					labelTip.Text = "Weight‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "Weightã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else if (item == miChangeArm) {
 					rcdata.SelectedChip = target.ChangeType(RcChipType.Arm);
-					labelTip.Text = "Arm‚É•ÏX‚µ‚Ü‚µ‚½B";
+					labelTip.Text = "Armã«å¤‰æ›´ã—ã¾ã—ãŸã€‚";
 				}
 				else
-					throw new Exception("•s–¾‚Èƒ`ƒbƒví—Ş‚Ö‚Ì•ÏX‚ªw’è‚³‚ê‚Ü‚µ‚½ : " + item.Text);
+					throw new Exception("ä¸æ˜ãªãƒãƒƒãƒ—ç¨®é¡ã¸ã®å¤‰æ›´ãŒæŒ‡å®šã•ã‚Œã¾ã—ãŸ : " + item.Text);
 			}
 			catch (Exception exc) {
-				MessageBox.Show(exc.Message + "\ní—Ş‚Ì•ÏX‚É¸”s‚µ‚Ü‚µ‚½B");
+				MessageBox.Show(exc.Message + "\nç¨®é¡ã®å¤‰æ›´ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 			}
 			rcdata.CheckBackTrack();
 
 		}
 
 		private void miCommentDelete_Click(object sender, System.EventArgs e) {
-			if (MessageBox.Show("ˆÈ‰º‚ÌƒRƒƒ“ƒg‚ğíœ‚µ‚Ü‚·B\n\n", "ƒRƒƒ“ƒgíœŠm”F", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
+			if (MessageBox.Show("ä»¥ä¸‹ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’å‰Šé™¤ã—ã¾ã™ã€‚\n\n", "ã‚³ãƒ¡ãƒ³ãƒˆå‰Šé™¤ç¢ºèª", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
 				rcdata.SelectedChip.Comment = "";
 			}
 		}
@@ -6075,11 +6080,11 @@ namespace rcm {
 
 		private void frmMain_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
 			if (Modified) {
-				switch (MessageBox.Show("•ÏX‚³‚ê‚Ä‚¢‚Ü‚·B•Û‘¶‚µ‚Ü‚·‚©H", "‘r›", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)) {
+				switch (MessageBox.Show("å¤‰æ›´ã•ã‚Œã¦ã„ã¾ã™ã€‚ä¿å­˜ã—ã¾ã™ã‹ï¼Ÿ", "å–ªå¯º", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)) {
 					case DialogResult.Yes:
 						miFileSave_Click(sender, EventArgs.Empty);
-						// ‚±‚±‚ÅModified == true‚É‚È‚é‚Ì‚Í
-						// •Û‘¶ƒ_ƒCƒAƒƒO‚ÅƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚Æ‚«
+						// ã“ã“ã§Modified == trueã«ãªã‚‹ã®ã¯
+						// ä¿å­˜ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã¨ã
 						if (Modified) {
 							e.Cancel = Modified;
 							return;
@@ -6281,7 +6286,7 @@ namespace rcm {
 
 		private void miEditInfo_Click(object sender, System.EventArgs e) {
 			System.Text.StringBuilder builder = new System.Text.StringBuilder();
-			builder.Append("ƒ‚ƒfƒ‹î•ñ:");
+			builder.Append("ãƒ¢ãƒ‡ãƒ«æƒ…å ±:");
 			builder.Append(EditingFileName);
 			builder.Append("\n\n");
 
@@ -6321,16 +6326,16 @@ namespace rcm {
 					sum += ChipCounts[i];
 				}
 			}
-			builder.Append("‘ƒ`ƒbƒv”:\t");
+			builder.Append("ç·ãƒãƒƒãƒ—æ•°:\t");
 			builder.Append(sum.ToString().PadLeft(4, ' '));
 
-			builder.Append("\n\n”R—¿‘—Ê:\n\t");
+			builder.Append("\n\nç‡ƒæ–™ç·é‡:\n\t");
 			builder.Append(fuel);
 
-			builder.Append("\nCore‚©‚ç‚Ì•½‹ÏÚ‘±‹——£:\n\t");
+			builder.Append("\nCoreã‹ã‚‰ã®å¹³å‡æ¥ç¶šè·é›¢:\n\t");
 			builder.Append(((double)depthTotal / sum).ToString("##0.000"));
 
-			MessageBox.Show(builder.ToString(), "ƒ‚ƒfƒ‹î•ñ");
+			MessageBox.Show(builder.ToString(), "ãƒ¢ãƒ‡ãƒ«æƒ…å ±");
 		}
 
 		private void miEditSelectParent_Click(object sender, System.EventArgs e) {
@@ -6401,30 +6406,30 @@ namespace rcm {
 			btnEditPanel.Left = pictTarget.Right - btnEditPanel.Width;
 		}
 		/*
-		 * “®ì‰Â”\ƒo[ƒWƒ‡ƒ“‚Ì„’è
+		 * å‹•ä½œå¯èƒ½ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®æ¨å®š
 		 * 
-		 * 1.0.1	Name‘®«
+		 * 1.0.1	Nameå±æ€§
 		 * 1.0.2	_H()
 		 *			_BYE()
 		 *			_TICKS()
-		 * 1.0.3	dispİ’è
+		 * 1.0.3	dispè¨­å®š
 		 * 1.1		_ANALOG()
 		 * 1.2		_HAT()
-		 * 15B1		Weightƒ`ƒbƒv
-		 *			Cowlƒ`ƒbƒv
-		 *			Wheel.Option‘®«
+		 * 15B1		Weightãƒãƒƒãƒ—
+		 *			Cowlãƒãƒƒãƒ—
+		 *			Wheel.Optionå±æ€§
 		 *			_ZOOM()
-		 * 15B2		Color•Ï”‰»
-		 * 15B4		LuaƒXƒNƒŠƒvƒg
+		 * 15B2		Colorå¤‰æ•°åŒ–
+		 * 15B4		Luaã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 		 *			_ROUND()
 		 *			_SPLIT()
 		 *			_O?()
-		 *			ƒXƒNƒŠƒvƒg“à#\˜Zi•\‹L
-		 * 15B5		Wheel.Effect‘®«
+		 *			ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…#åå…­é€²è¡¨è¨˜
+		 * 15B5		Wheel.Effectå±æ€§
 		 * 15B6		_E?()
 		 *			_R?()
-		 * 15B7		Armƒ`ƒbƒv
-		 *			Frame.Option‘®«Œn
+		 * 15B7		Armãƒãƒƒãƒ—
+		 *			Frame.Optionå±æ€§ç³»
 		 *			_G?()
 		 *			_X?()
 		 *			_Y?()
@@ -6434,7 +6439,7 @@ namespace rcm {
 		 *			_OPTION()
 		 *			_EFFECT()
 		 *			_M()
-		 * 15B10	Jet.Option‘®«
+		 * 15B10	Jet.Optionå±æ€§
 		 * 15B11	_T()
 		 *			_MOVE3D()
 		 *			_LINE3D()
@@ -6460,12 +6465,12 @@ namespace rcm {
 		 *			_COLOR()
 		 *			_PARENT()
 		 *			_TOP()
-		 * 15B17	User1,User2‘®«
+		 * 15B17	User1,User2å±æ€§
 		 * 15B21	_PLAYER*()
 		 * 15B24	_FUEL()
 		 *			_FUELMAX()
-		 *			Weight.Option‘®«
-		 * 15B25	Cowl.Effect‘®«
+		 *			Weight.Optionå±æ€§
+		 * 15B25	Cowl.Effectå±æ€§
 		 */
 
 		private void pictTarget_FocusChanged(object sender, EventArgs e) {
@@ -6551,13 +6556,13 @@ namespace rcm {
 		}
 
 		private void tsbModeChange_Click(object sender, EventArgs e) {
-			//	Šeíƒ‚[ƒh•ÏX
+			//	å„ç¨®ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 			foreach (ToolStripItem tsi in toolStrip1.Items)
 				if (tsi != tsbAutoCamera) if (tsi is ToolStripButton) ((ToolStripButton)tsi).Checked = false;
 			var btn = sender as ToolStripButton;
 			btn.Checked = true;
 			selectedButton = btn;
-			labelTip.Text = "’Ç‰Áƒ‚[ƒh : " + btn.Text;
+			labelTip.Text = "è¿½åŠ ãƒ¢ãƒ¼ãƒ‰ : " + btn.Text;
 		}
 
 		private void tsbCut_Click(object sender, EventArgs e) {
@@ -6570,7 +6575,7 @@ namespace rcm {
 
 		private void tsbInsert_Click(object sender, EventArgs e) {
 			if (rcdata.SelectedChip is RcChipCore) {
-				labelTip.Text = "‘}“ü‚·‚éêŠ‚ª‚ ‚è‚Ü‚¹‚ñB";
+				labelTip.Text = "æŒ¿å…¥ã™ã‚‹å ´æ‰€ãŒã‚ã‚Šã¾ã›ã‚“ã€‚";
 				return;
 			}
 			RcChipBase prevParent = rcdata.SelectedChip.Parent;
@@ -6579,153 +6584,153 @@ namespace rcm {
 			RcChipBase buffer;
 
 			switch (selectedButton.Text) {
-				case "“\‚è•t‚¯":
-					labelTip.Text = "“\‚è•t‚¯ƒ‚[ƒh‚Ì‚Í‘}“ü‚Í‚Å‚«‚Ü‚¹‚ñB";
+				case "è²¼ã‚Šä»˜ã‘":
+					labelTip.Text = "è²¼ã‚Šä»˜ã‘ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯æŒ¿å…¥ã¯ã§ãã¾ã›ã‚“ã€‚";
 					return;
-				case "‹“_":
-					labelTip.Text = "‹“_ƒ‚[ƒh‚Ì‚Í‘}“ü‚Í‚Å‚«‚Ü‚¹‚ñB";
+				case "è¦–ç‚¹":
+					labelTip.Text = "è¦–ç‚¹ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯æŒ¿å…¥ã¯ã§ãã¾ã›ã‚“ã€‚";
 					return;
-				case "ƒ`ƒbƒv":
+				case "ãƒãƒƒãƒ—":
 					try {
 						buffer = new RcChipChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 					break;
-				case "ƒtƒŒ[ƒ€":
+				case "ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					try {
 						buffer = new RcChipFrame(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒEƒFƒCƒg":
+				case "ã‚¦ã‚§ã‚¤ãƒˆ":
 					try {
 						buffer = new RcChipWeight(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒJƒEƒ‹":
+				case "ã‚«ã‚¦ãƒ«":
 					try {
 						buffer = new RcChipCowl(rcdata, prevParent, prevJP);
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 					break;
-				case "ƒ‰ƒ_[":
+				case "ãƒ©ãƒ€ãƒ¼":
 					try {
 						buffer = new RcChipRudder(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒ‰ƒ_[ƒtƒŒ[ƒ€":
+				case "ãƒ©ãƒ€ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					try {
 						buffer = new RcChipRudderF(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒgƒŠƒ€":
+				case "ãƒˆãƒªãƒ ":
 					try {
 						buffer = new RcChipTrim(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒgƒŠƒ€ƒtƒŒ[ƒ€":
+				case "ãƒˆãƒªãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ":
 					try {
 						buffer = new RcChipTrimF(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒzƒC[ƒ‹":
+				case "ãƒ›ã‚¤ãƒ¼ãƒ«":
 					try {
 						buffer = new RcChipWheel(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 					break;
-				case "–³”½“®ƒzƒC[ƒ‹":
+				case "ç„¡åå‹•ãƒ›ã‚¤ãƒ¼ãƒ«":
 					try {
 						buffer = new RcChipRLW(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
-				case "ƒWƒFƒbƒg":
+				case "ã‚¸ã‚§ãƒƒãƒˆ":
 					try {
 						buffer = new RcChipJet(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 					break;
-				case "ƒA[ƒ€":
+				case "ã‚¢ãƒ¼ãƒ ":
 					try {
 						buffer = new RcChipArm(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
-						MessageBox.Show(err.Message, "’Ç‰ÁƒGƒ‰[");
+						MessageBox.Show(err.Message, "è¿½åŠ ã‚¨ãƒ©ãƒ¼");
 						return;
 					}
 
 
 					break;
 				default:
-					labelTip.Text = "•s–¾‚Ìƒ‚[ƒh‚Å‚·B‘}“ü‚Í‚Å‚«‚Ü‚¹‚ñB";
+					labelTip.Text = "ä¸æ˜ã®ãƒ¢ãƒ¼ãƒ‰ã§ã™ã€‚æŒ¿å…¥ã¯ã§ãã¾ã›ã‚“ã€‚";
 					return;
 			}
 
@@ -6734,7 +6739,7 @@ namespace rcm {
 				rcdata.SelectedChip.Attach(buffer, prevJP);
 			}
 			catch (Exception err) {
-				MessageBox.Show(err.Message, "‘}“üƒGƒ‰[", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(err.Message, "æŒ¿å…¥ã‚¨ãƒ©ãƒ¼", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				try {
 					buffer.Detach();
 				}
@@ -6750,7 +6755,7 @@ namespace rcm {
 			ProcessViewPoint(rcdata.Cursor.Matrix);
 			Modified = true;
 			if (treeview != null && !treeview.IsDisposed) treeview.UpdateTree(rcdata.SelectedChip);
-			labelTip.Text = selectedButton.Text + "‚ğ‘}“ü‚µ‚Ü‚µ‚½B";
+			labelTip.Text = selectedButton.Text + "ã‚’æŒ¿å…¥ã—ã¾ã—ãŸã€‚";
 			pictTarget_Paint(this, null);
 		}
 
@@ -6769,7 +6774,7 @@ namespace rcm {
 		private void tsbAutoCamera_Click(object sender, EventArgs e) {
 			var btn = (ToolStripButton)sender;
 			StartScrollCameraPosition(rcdata.Cursor.Matrix);
-			labelTip.Text = "ƒJ[ƒ\ƒ‹©“®’Ç”ö : " + (btn.Checked ? "ON" : "OFF");
+			labelTip.Text = "ã‚«ãƒ¼ã‚½ãƒ«è‡ªå‹•è¿½å°¾ : " + (btn.Checked ? "ON" : "OFF");
 			drawOption.AutoCamera = btn.Checked;
 		}
 
@@ -6828,7 +6833,7 @@ namespace rcm {
 
 	}
 #if false
-	#region ¡‚Æ‚È‚Á‚Ä‚Íg‚í‚È‚¢
+	#region ä»Šã¨ãªã£ã¦ã¯ä½¿ã‚ãªã„
 	class XModel {
 		private Mesh mesh = null;
 		private Material[] mat;
@@ -6855,7 +6860,7 @@ namespace rcm {
 
 			}
 
-			return true;	//	‚Æ‚è‚ ‚¦‚¸
+			return true;	//	ã¨ã‚Šã‚ãˆãš
 		}
 
 		public void DrawModel() {

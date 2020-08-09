@@ -1,6 +1,6 @@
-namespace rcm {
+ï»¿namespace rcm {
 	/// <summary>
-	/// ‹“_‚ğ’¼Ú’l‚Åİ’è‚·‚é‚½‚ß‚Ìƒ_ƒCƒAƒƒOA‚Ì—\’è‚Å‚µ‚½B
+	/// è¦–ç‚¹ã‚’ç›´æ¥å€¤ã§è¨­å®šã™ã‚‹ãŸã‚ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã€ã®äºˆå®šã§ã—ãŸã€‚
 	/// </summary>
 	public class dlgView : System.Windows.Forms.Form {
 		private System.Windows.Forms.TextBox txtTheta;
@@ -12,23 +12,23 @@ namespace rcm {
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label4;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
 		public dlgView() {
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
 			//
-			// TODO: InitializeComponent ŒÄ‚Ño‚µ‚ÌŒã‚ÉAƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: InitializeComponent å‘¼ã³å‡ºã—ã®å¾Œã«ã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose(bool disposing) {
 			if (disposing) {
@@ -39,10 +39,10 @@ namespace rcm {
 			base.Dispose(disposing);
 		}
 
-		#region Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi‚Å¶¬‚³‚ê‚½ƒR[ƒh 
+		#region Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠã§ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ 
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent() {
 			this.txtTheta = new System.Windows.Forms.TextBox();
@@ -85,7 +85,7 @@ namespace rcm {
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 16);
 			this.label1.TabIndex = 3;
-			this.label1.Text = "‰ñ“]Šp";
+			this.label1.Text = "å›è»¢è§’";
 			// 
 			// label2
 			// 
@@ -93,7 +93,7 @@ namespace rcm {
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(56, 16);
 			this.label2.TabIndex = 4;
-			this.label2.Text = "ã‰ºŠp";
+			this.label2.Text = "ä¸Šä¸‹è§’";
 			// 
 			// label3
 			// 
@@ -101,7 +101,7 @@ namespace rcm {
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 16);
 			this.label3.TabIndex = 5;
-			this.label3.Text = "ƒJƒƒ‰‹——£";
+			this.label3.Text = "ã‚«ãƒ¡ãƒ©è·é›¢";
 			// 
 			// button1
 			// 
@@ -118,7 +118,7 @@ namespace rcm {
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(96, 16);
 			this.label4.TabIndex = 7;
-			this.label4.Text = "ª‚Ç‚¿‚ç‚àƒ‰ƒWƒAƒ“";
+			this.label4.Text = "â†‘ã©ã¡ã‚‰ã‚‚ãƒ©ã‚¸ã‚¢ãƒ³";
 			// 
 			// dlgView
 			// 
@@ -136,7 +136,7 @@ namespace rcm {
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "dlgView";
-			this.Text = "‹“_“ü—Í";
+			this.Text = "è¦–ç‚¹å…¥åŠ›";
 			this.Load += new System.EventHandler(this.dlgView_Load);
 			this.ResumeLayout(false);
 

@@ -1,4 +1,4 @@
-using Microsoft.DirectX;
+ï»¿using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
 using System;
 using System.Collections;
@@ -15,14 +15,14 @@ using System.Windows.Forms;
 namespace RigidChips {
 
 	///<summery>
-	///‚²‚­’Pƒ‚ÈAƒR[ƒ‹ƒoƒbƒN—pƒfƒŠƒQ[ƒg
+	///ã”ãå˜ç´”ãªã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
 	///</summery>
 	public delegate void MessageCallback(object param);
 
 	//----------------------------------------------------------------------------------//
 	///<summery>
-	///‚·‚×‚Ä‚Ìƒ`ƒbƒv‚ÌŠî–{ƒNƒ‰ƒX
-	///‚±‚ÌƒNƒ‰ƒX‚ªÀ‘•‚·‚éƒƒ\ƒbƒh‚Ì‘å”¼‚ÍA”h¶ƒNƒ‰ƒX(Šeƒ`ƒbƒv)‚É‚æ‚Á‚ÄƒI[ƒo[ƒ‰ƒCƒh‚³‚ê‚éB
+	///ã™ã¹ã¦ã®ãƒãƒƒãƒ—ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹
+	///ã“ã®ã‚¯ãƒ©ã‚¹ãŒå®Ÿè£…ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã®å¤§åŠã¯ã€æ´¾ç”Ÿã‚¯ãƒ©ã‚¹(å„ãƒãƒƒãƒ—)ã«ã‚ˆã£ã¦ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã•ã‚Œã‚‹ã€‚
 	///</summery>
 	public class RcChipBase {
 		public RcData Generics;
@@ -44,12 +44,12 @@ namespace RigidChips {
 		public string Comment = "";
 
 		/// <summary>
-		/// ƒ`ƒbƒv‚ÌŠî–{“I‚È‰Šú‰»‚ğs‚¤B
+		/// ãƒãƒƒãƒ—ã®åŸºæœ¬çš„ãªåˆæœŸåŒ–ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="gen">Š‘®‚·‚é RcData ƒCƒ“ƒXƒ^ƒ“ƒX</param>
-		/// <param name="parent">Ú‘±‚³‚ê‚éƒ`ƒbƒv</param>
+		/// <param name="gen">æ‰€å±ã™ã‚‹ RcData ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹</param>
+		/// <param name="parent">æ¥ç¶šã•ã‚Œã‚‹ãƒãƒƒãƒ—</param>
 		public RcChipBase(RcData gen, RcChipBase parent, RcJointPosition pos) {
-			Child = new RcChipBase[RcData.ChildCapasity];   //	d—l‚ª•Ï‚í‚Á‚Ä‚¢‚È‚¯‚ê‚Î‚Ğ‚Æ‚Â‚Ìƒ`ƒbƒv‚É‚Â‚¯‚ç‚ê‚éƒ`ƒbƒv‚ÌÅ‘å”‚Í12
+			Child = new RcChipBase[RcData.ChildCapasity];   //	ä»•æ§˜ãŒå¤‰ã‚ã£ã¦ã„ãªã‘ã‚Œã°ã²ã¨ã¤ã®ãƒãƒƒãƒ—ã«ã¤ã‘ã‚‰ã‚Œã‚‹ãƒãƒƒãƒ—ã®æœ€å¤§æ•°ã¯12
 			Generics = gen;
 			Attach(parent, pos);
 			angle.Const = 0f;
@@ -62,23 +62,23 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///ƒRƒ“ƒXƒgƒ‰ƒNƒ^(ƒkƒ‹)
+		///ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(ãƒŒãƒ«)
 		///</summery>
 		public RcChipBase() { }
 
 		/// <summary>
-		/// ƒ`ƒbƒv‚Ìƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ‚ğAÀ•W‚âeƒ`ƒbƒvAangle‚ğ‚Ó‚Ü‚¦‚ÄXV‚·‚éB
+		/// ãƒãƒƒãƒ—ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã€åº§æ¨™ã‚„è¦ªãƒãƒƒãƒ—ã€angleã‚’ãµã¾ãˆã¦æ›´æ–°ã™ã‚‹ã€‚
 		/// </summary>
 		public virtual void UpdateMatrix() {
-			// ‚±‚Ìƒ`ƒbƒv‚Ìangle’lB
+			// ã“ã®ãƒãƒƒãƒ—ã®angleå€¤ã€‚
 			float a = angle.Value;
 
-			// Œ»İ‚Ì•ÏŠ·s—ñ‚Ì‹ts—ñ‚ğæ“¾‚·‚éB
+			// ç¾åœ¨ã®å¤‰æ›è¡Œåˆ—ã®é€†è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹ã€‚
 			Matrix invRotation = matRotation;
 			invRotation.Invert();
 
 
-			// angle‚ğ“K—p‚·‚éB
+			// angleã‚’é©ç”¨ã™ã‚‹ã€‚
 			switch (this.AngleType) {
 				case RcAngle.x:
 					matTranslation = invRotation
@@ -103,30 +103,30 @@ namespace RigidChips {
 					break;
 			}
 
-			// eƒ`ƒbƒv‚ªWheelŒn‚¾‚Á‚½ê‡A‰ñ“]—Ê‚ğ”½‰f‚³‚¹‚é
+			// è¦ªãƒãƒƒãƒ—ãŒWheelç³»ã ã£ãŸå ´åˆã€å›è»¢é‡ã‚’åæ˜ ã•ã›ã‚‹
 			RcChipWheel wh = this.Parent as RcChipWheel;
 			if (Generics.Preview && wh != null) {
 				matTranslation *= Matrix.RotationY(wh.PreviewRotation);
 			}
 
-			// eƒ`ƒbƒv‚Ì•ÏŠ·s—ñ‚ğæ“¾‚µA‚»‚ê‚ğŠ|‚¯‚éB
+			// è¦ªãƒãƒƒãƒ—ã®å¤‰æ›è¡Œåˆ—ã‚’å–å¾—ã—ã€ãã‚Œã‚’æ›ã‘ã‚‹ã€‚
 			if (Parent != null) matTranslation *= Parent.Matrix;
 
-			// s—ñ‚Ì¶¬ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ğXVB
+			// è¡Œåˆ—ã®ç”Ÿæˆã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’æ›´æ–°ã€‚
 			matVersion = System.DateTime.Now.Ticks;
 
-			// qƒ`ƒbƒv‚ª‘¶İ‚·‚éê‡A‚»‚ê‚ç‚àXVB
+			// å­ãƒãƒƒãƒ—ãŒå­˜åœ¨ã™ã‚‹å ´åˆã€ãã‚Œã‚‰ã‚‚æ›´æ–°ã€‚
 			foreach (RcChipBase cb in Child) if (cb != null)
 					cb.UpdateMatrix();
 
 		}
 
 		/// <summary>
-		/// •\¦ã‚ÌˆÊ’u‚ğ•\‚·s—ñ
+		/// è¡¨ç¤ºä¸Šã®ä½ç½®ã‚’è¡¨ã™è¡Œåˆ—
 		/// </summary>
 		public virtual Matrix Matrix {
 			get {
-				// e‚Ìs—ñ‚ª‚æ‚èV‚µ‚¢‚à‚Ì‚É‚È‚Á‚Ä‚¢‚½‚çXVB
+				// è¦ªã®è¡Œåˆ—ãŒã‚ˆã‚Šæ–°ã—ã„ã‚‚ã®ã«ãªã£ã¦ã„ãŸã‚‰æ›´æ–°ã€‚
 				if (this.Parent != null && this.Parent.MatrixVersion > matVersion) {
 					this.UpdateMatrix();
 				}
@@ -136,7 +136,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‰ñ“]‚àŠÜ‚ß‚½Š®‘S‚Ès—ñ
+		///å›è»¢ã‚‚å«ã‚ãŸå®Œå…¨ãªè¡Œåˆ—
 		///</summery>
 		public virtual Matrix FullMatrix {
 			get {
@@ -145,7 +145,7 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// s—ñ‚Ìƒo[ƒWƒ‡ƒ“
+		/// è¡Œåˆ—ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 		/// </summary>
 		public virtual long MatrixVersion {
 			get {
@@ -154,11 +154,11 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// qƒ`ƒbƒv‚ğ’Ç‰Á‚·‚éB‚·‚Å‚ÉÅ‘å”Ú‘±‚³‚ê‚Ä‚¢‚é‚Æ‚«‚É‚Í Exception ‚ª”­¶‚·‚éB
+		/// å­ãƒãƒƒãƒ—ã‚’è¿½åŠ ã™ã‚‹ã€‚ã™ã§ã«æœ€å¤§æ•°æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã¨ãã«ã¯ Exception ãŒç™ºç”Ÿã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="joint">‚Ç‚±‚É’Ç‰Á‚·‚é‚©‚Ì RcJointPosition ’è”</param>
-		/// <param name="chip">’Ç‰Á‚·‚éƒ`ƒbƒv</param>
-		/// <param name="Registeration">ƒ‰ƒCƒuƒ‰ƒŠ‚É“o˜^‚·‚é‚©‚Ç‚¤‚© È—ª‚ÍTrue</param>
+		/// <param name="joint">ã©ã“ã«è¿½åŠ ã™ã‚‹ã‹ã® RcJointPosition å®šæ•°</param>
+		/// <param name="chip">è¿½åŠ ã™ã‚‹ãƒãƒƒãƒ—</param>
+		/// <param name="Registeration">ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ç™»éŒ²ã™ã‚‹ã‹ã©ã†ã‹ çœç•¥æ™‚ã¯True</param>
 		public virtual void Add(RcJointPosition joint, RcChipBase chip, bool Registeration) {
 			for (int i = 0; i < RcData.ChildCapasity; i++) {
 				if (Child[i] == null) {
@@ -181,23 +181,23 @@ namespace RigidChips {
 					return;
 				}
 			}
-			throw new Exception("‚±‚êˆÈãqƒ`ƒbƒv‚ğŠi”[‚Å‚«‚Ü‚¹‚ñB‚Ğ‚Æ‚Â‚Ìƒ`ƒbƒv‚Éæ‚è•t‚¯‚ç‚ê‚éƒ`ƒbƒv‚Ì”‚Í12‚Ü‚Å‚Å‚·B");
+			throw new Exception("ã“ã‚Œä»¥ä¸Šå­ãƒãƒƒãƒ—ã‚’æ ¼ç´ã§ãã¾ã›ã‚“ã€‚ã²ã¨ã¤ã®ãƒãƒƒãƒ—ã«å–ã‚Šä»˜ã‘ã‚‰ã‚Œã‚‹ãƒãƒƒãƒ—ã®æ•°ã¯12ã¾ã§ã§ã™ã€‚");
 		}
 
 		/// <summary>
-		/// qƒ`ƒbƒv‚ğ’Ç‰Á‚·‚éB‚·‚Å‚ÉÅ‘å”Ú‘±‚³‚ê‚Ä‚¢‚é‚Æ‚«‚É‚Í Exception ‚ª”­¶‚·‚éB
+		/// å­ãƒãƒƒãƒ—ã‚’è¿½åŠ ã™ã‚‹ã€‚ã™ã§ã«æœ€å¤§æ•°æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã¨ãã«ã¯ Exception ãŒç™ºç”Ÿã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="joint">‚Ç‚±‚É’Ç‰Á‚·‚é‚©‚Ì RcJointPosition ’è”</param>
-		/// <param name="chip">’Ç‰Á‚·‚éƒ`ƒbƒv</param>
+		/// <param name="joint">ã©ã“ã«è¿½åŠ ã™ã‚‹ã‹ã® RcJointPosition å®šæ•°</param>
+		/// <param name="chip">è¿½åŠ ã™ã‚‹ãƒãƒƒãƒ—</param>
 		public void Add(RcJointPosition joint, RcChipBase chip) {
 			Add(joint, chip, true);
 		}
 
 
 		/// <summary>
-		/// ‚·‚Å‚É‚Â‚¢‚Ä‚¢‚éƒ`ƒbƒv‚ğæ‚èŠO‚·B‘¶İ‚µ‚È‚¢ƒ`ƒbƒv‚ğw’è‚µ‚½‚Æ‚«‚É‚Í Exception ‚ª”­¶‚·‚éB
+		/// ã™ã§ã«ã¤ã„ã¦ã„ã‚‹ãƒãƒƒãƒ—ã‚’å–ã‚Šå¤–ã™ã€‚å­˜åœ¨ã—ãªã„ãƒãƒƒãƒ—ã‚’æŒ‡å®šã—ãŸã¨ãã«ã¯ Exception ãŒç™ºç”Ÿã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="chip">æ‚èŠO‚µ‚½‚¢ƒ`ƒbƒvB</param>
+		/// <param name="chip">å–ã‚Šå¤–ã—ãŸã„ãƒãƒƒãƒ—ã€‚</param>
 		public virtual void Remove(RcChipBase chip) {
 			bool Removed = false;
 			for (int i = 0; i < RcData.ChildCapasity; i++) {
@@ -216,36 +216,36 @@ namespace RigidChips {
 				return;
 			}
 			else {
-				throw new Exception("w’è‚³‚ê‚½ƒ`ƒbƒv‚ÍŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½ : " + chip.ToString());
+				throw new Exception("æŒ‡å®šã•ã‚ŒãŸãƒãƒƒãƒ—ã¯è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ : " + chip.ToString());
 			}
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ`ƒbƒv‚ğ‘¼‚Ìƒ`ƒbƒv‚ÉÚ‘±‚·‚éB
+		/// ã“ã®ãƒãƒƒãƒ—ã‚’ä»–ã®ãƒãƒƒãƒ—ã«æ¥ç¶šã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="to">Ú‘±‚³‚ê‚éƒ`ƒbƒvB</param>
-		/// <param name="pos">Ú‘±ˆÊ’uB</param>
+		/// <param name="to">æ¥ç¶šã•ã‚Œã‚‹ãƒãƒƒãƒ—ã€‚</param>
+		/// <param name="pos">æ¥ç¶šä½ç½®ã€‚</param>
 		public virtual void Attach(RcChipBase to, RcJointPosition pos) {
 			if (to == null) return;
 			to.Add(pos, this);
 		}
 
 		/// <summary>
-		/// Œ»İÚ‘±‚³‚ê‚Ä‚¢‚éƒ`ƒbƒv‚©‚çæ‚èŠO‚·B
+		/// ç¾åœ¨æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ã‹ã‚‰å–ã‚Šå¤–ã™ã€‚
 		/// </summary>
 		public virtual void Detach() {
 			this.Parent.Remove(this);
 		}
 
 		/// <summary>
-		/// ƒ`ƒbƒv‚ğ‰æ–Ê‚É•`‰æ‚·‚éB
+		/// ãƒãƒƒãƒ—ã‚’ç”»é¢ã«æç”»ã™ã‚‹ã€‚
 		/// </summary>
 		public virtual void DrawChip() {
 			MessageBox.Show("RcChipBase::DrawChip() Was Called.");
 		}
 
 		/// <summary>
-		/// g—p‰Â”\‚È‘®«‚Ì–¼‘O‚Ì”z—ñ‚ğ“¾‚éB
+		/// ä½¿ç”¨å¯èƒ½ãªå±æ€§ã®åå‰ã®é…åˆ—ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
 		public virtual string[] AttrNameList {
 			get {
@@ -254,7 +254,7 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// Œ»İ‚Ì‘S‘®«‚Ì’l‚Ì”z—ñ‚ğ“¾‚éBƒCƒ“ƒfƒbƒNƒX‚ÍAttrNameList‚É‘Î‰B
+		/// ç¾åœ¨ã®å…¨å±æ€§ã®å€¤ã®é…åˆ—ã‚’å¾—ã‚‹ã€‚ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯AttrNameListã«å¯¾å¿œã€‚
 		/// </summary>
 		public virtual RcAttrValue[] AttrValList {
 			get {
@@ -263,7 +263,7 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ‘®«‚Ì‹K’è’l‚ğ“¾‚éBƒCƒ“ƒfƒbƒNƒX‚ÍAttrNameList‚É‘Î‰B
+		/// å±æ€§ã®è¦å®šå€¤ã‚’å¾—ã‚‹ã€‚ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯AttrNameListã«å¯¾å¿œã€‚
 		/// </summary>
 		public virtual float[] AttrDefaultValueList {
 			get {
@@ -272,7 +272,7 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ`ƒbƒv‚Ìí—Ş‚ğ•¶š—ñ‚Å“¾‚éB
+		/// ã“ã®ãƒãƒƒãƒ—ã®ç¨®é¡ã‚’æ–‡å­—åˆ—ã§å¾—ã‚‹ã€‚
 		/// </summary>
 		public virtual string ChipType {
 			get {
@@ -281,23 +281,23 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½–¼‘O‚Ì‘®«‚Ìà–¾•¶‚ğ“¾‚éB
+		/// æŒ‡å®šã—ãŸåå‰ã®å±æ€§ã®èª¬æ˜æ–‡ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <param name="AttrName">g—p‰Â”\‚È‘®«–¼B</param>
-		/// <returns>w’è‚µ‚½‘®«‚Ìà–¾•¶B</returns>
+		/// <param name="AttrName">ä½¿ç”¨å¯èƒ½ãªå±æ€§åã€‚</param>
+		/// <returns>æŒ‡å®šã—ãŸå±æ€§ã®èª¬æ˜æ–‡ã€‚</returns>
 		public virtual string AttrTip(string AttrName) {
-			if (AttrName == "Color") return "ƒ`ƒbƒvF"; else return null;
+			if (AttrName == "Color") return "ãƒãƒƒãƒ—è‰²"; else return null;
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½‘®«‚Ì’l‚ğİ’èEæ“¾‚·‚éB
+		/// æŒ‡å®šã—ãŸå±æ€§ã®å€¤ã‚’è¨­å®šãƒ»å–å¾—ã™ã‚‹ã€‚
 		/// </summary>
 		public virtual RcAttrValue this[string AttrName] {
 			set {
 				if (AttrName == "Color")
 					ChipColor = value;
 				else
-					throw new Exception("w’è‚³‚ê‚½–¼‘O‚Ì‘®«‚Í‘¶İ‚µ‚Ü‚¹‚ñ : " + AttrName);
+					throw new Exception("æŒ‡å®šã•ã‚ŒãŸåå‰ã®å±æ€§ã¯å­˜åœ¨ã—ã¾ã›ã‚“ : " + AttrName);
 			}
 
 			get {
@@ -305,21 +305,21 @@ namespace RigidChips {
 					return ChipColor;
 
 				else
-					throw new Exception("w’è‚³‚ê‚½–¼‘O‚Ì‘®«‚Í‘¶İ‚µ‚Ü‚¹‚ñ : " + AttrName);
+					throw new Exception("æŒ‡å®šã•ã‚ŒãŸåå‰ã®å±æ€§ã¯å­˜åœ¨ã—ã¾ã›ã‚“ : " + AttrName);
 			}
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ`ƒbƒv‚Ìî•ñ‚Ì•¶š—ñ‚ğ¶¬‚·‚éB
+		/// ã“ã®ãƒãƒƒãƒ—ã®æƒ…å ±ã®æ–‡å­—åˆ—ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <returns>‚±‚Ìƒ`ƒbƒv‚Ì•¶š—ñî•ñB</returns>
+		/// <returns>ã“ã®ãƒãƒƒãƒ—ã®æ–‡å­—åˆ—æƒ…å ±ã€‚</returns>
 		public override string ToString() {
 			return ToString(Generics.OutputOption);
 		}
 		/// <summary>
-		/// ‚±‚Ìƒ`ƒbƒv‚Ìî•ñ‚Ì•¶š—ñ‚ğ¶¬‚·‚éB
+		/// ã“ã®ãƒãƒƒãƒ—ã®æƒ…å ±ã®æ–‡å­—åˆ—ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <returns>‚±‚Ìƒ`ƒbƒv‚Ì•¶š—ñî•ñB</returns>
+		/// <returns>ã“ã®ãƒãƒƒãƒ—ã®æ–‡å­—åˆ—æƒ…å ±ã€‚</returns>
 		public virtual string ToString(RcOutputOptions outputOptions) {
 			StringBuilder str = new StringBuilder();
 			//			string str = "";
@@ -353,20 +353,20 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ`ƒbƒv‚Æ‚»‚Ì”h¶‚É‚Â‚¢‚Ä‚ÌŠ®‘S•\Œ»•¶š—ñ‚ğ“¾‚éB
+		/// ã“ã®ãƒãƒƒãƒ—ã¨ãã®æ´¾ç”Ÿã«ã¤ã„ã¦ã®å®Œå…¨è¡¨ç¾æ–‡å­—åˆ—ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <param name="tabs">ƒCƒ“ƒfƒ“ƒg‚Ìƒ^ƒu”</param>
-		/// <returns>.rcd“à‚Ég—p‰Â”\‚È Body ƒuƒƒbƒN—p•¶š—ñ</returns>
+		/// <param name="tabs">ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆã®ã‚¿ãƒ–æ•°</param>
+		/// <returns>.rcdå†…ã«ä½¿ç”¨å¯èƒ½ãª Body ãƒ–ãƒ­ãƒƒã‚¯ç”¨æ–‡å­—åˆ—</returns>
 		public virtual string ToString(int tabs) {
 			return ToString(tabs, Generics.OutputOption);
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ`ƒbƒv‚Æ‚»‚Ì”h¶‚É‚Â‚¢‚Ä‚ÌŠ®‘S•\Œ»•¶š—ñ‚ğ“¾‚éB
+		/// ã“ã®ãƒãƒƒãƒ—ã¨ãã®æ´¾ç”Ÿã«ã¤ã„ã¦ã®å®Œå…¨è¡¨ç¾æ–‡å­—åˆ—ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <param name="tabs">ƒCƒ“ƒfƒ“ƒg‚Ìƒ^ƒu”</param>
-		/// <param name="outputOptions">g—p‚·‚éo—ÍƒIƒvƒVƒ‡ƒ“</param>
-		/// <returns>.rcd“à‚Ég—p‰Â”\‚È Body ƒuƒƒbƒN—p•¶š—ñ</returns>
+		/// <param name="tabs">ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆã®ã‚¿ãƒ–æ•°</param>
+		/// <param name="outputOptions">ä½¿ç”¨ã™ã‚‹å‡ºåŠ›ã‚ªãƒ—ã‚·ãƒ§ãƒ³</param>
+		/// <returns>.rcdå†…ã«ä½¿ç”¨å¯èƒ½ãª Body ãƒ–ãƒ­ãƒƒã‚¯ç”¨æ–‡å­—åˆ—</returns>
 		public virtual string ToString(int tabs, RcOutputOptions outputOptions) {
 			//			string s = "";
 			StringBuilder s = new StringBuilder();
@@ -379,7 +379,7 @@ namespace RigidChips {
 					for (int i = 0; i < tabs; i++) st.Append('\t');
 			}
 			s.Append(st);
-			//	Ú‘±•ûˆÊ
+			//	æ¥ç¶šæ–¹ä½
 			switch (this.jointPosition) {
 				case RcJointPosition.North:
 					s.Append("N:");
@@ -398,7 +398,7 @@ namespace RigidChips {
 
 			s.Append(this.ToString(outputOptions));
 
-			//	”h¶ƒuƒƒbƒNæ“¾
+			//	æ´¾ç”Ÿãƒ–ãƒ­ãƒƒã‚¯å–å¾—
 			if (outputOptions.OpenBracketWithChipDefinition) {
 
 				if (!outputOptions.ReturnEndChipBracket) {
@@ -455,26 +455,26 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		///	‚±‚Ìƒ`ƒbƒv‹y‚Ñ”h¶ƒ`ƒbƒv‚Ì‘”B“Ç‚İæ‚èê—pB
+		///	ã“ã®ãƒãƒƒãƒ—åŠã³æ´¾ç”Ÿãƒãƒƒãƒ—ã®ç·æ•°ã€‚èª­ã¿å–ã‚Šå°‚ç”¨ã€‚
 		/// </summary>
 		public int ChipCount {
 			get {
 				int c = 1;
 				foreach (RcChipBase cb in Child) if (cb != null) {
-						c += cb.ChipCount;  // Ä‹A
+						c += cb.ChipCount;  // å†å¸°
 					}
 				return c;
 			}
 		}
 
 		/// <summary>
-		/// ƒ}ƒEƒXƒ|ƒCƒ“ƒeƒBƒ“ƒO‚É‘Î‚µA‚±‚ÌƒIƒuƒWƒFƒNƒg‚ª‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğ“¾‚éB
+		/// ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ãƒ†ã‚£ãƒ³ã‚°ã«å¯¾ã—ã€ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒé¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <param name="X">ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ÌXÀ•W</param>
-		/// <param name="Y">ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ÌYÀ•W</param>
-		/// <param name="ScrWidth">ƒXƒNƒŠ[ƒ“‚Ì•</param>
-		/// <param name="ScrHeight">ƒXƒNƒŠ[ƒ“‚Ì‚‚³</param>
-		/// <returns>‘I‘ğ‚³‚ê‚½ƒ`ƒbƒv‚Æ‹——£‚Ìî•ñ</returns>
+		/// <param name="X">ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã®Xåº§æ¨™</param>
+		/// <param name="Y">ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã®Yåº§æ¨™</param>
+		/// <param name="ScrWidth">ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å¹…</param>
+		/// <param name="ScrHeight">ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®é«˜ã•</param>
+		/// <returns>é¸æŠã•ã‚ŒãŸãƒãƒƒãƒ—ã¨è·é›¢ã®æƒ…å ±</returns>
 		public virtual RcHitStatus IsHit(int X, int Y, int ScrWidth, int ScrHeight) {
 			RcHitStatus dist, buff;
 			dist.distance = float.MaxValue;
@@ -487,11 +487,11 @@ namespace RigidChips {
 					}
 				}
 			}
-			// “Š‰es—ñ
+			// æŠ•å½±è¡Œåˆ—
 			Matrix projMat = Generics.d3ddevice.Transform.Projection;
-			// ƒrƒ…[s—ñ
+			// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
 			Matrix viewMat = Generics.d3ddevice.Transform.View;
-			// ƒrƒ…[ƒ|[ƒg
+			// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆ
 			Viewport viewport = new Viewport();
 
 			IntersectInformation sectinfo = new IntersectInformation();
@@ -502,11 +502,11 @@ namespace RigidChips {
 			viewport.MaxZ = 1.0f;
 			viewport.MinZ = 0.0f;
 
-			// ƒNƒŠƒbƒN‚µ‚½ƒXƒNƒŠ[ƒ“À•W‚©‚çƒŒƒC‚ğŒvZ‚µA‘ÎÛƒƒbƒVƒ…‚Æ‚ÌŒğ·‚ğƒ`ƒFƒbƒN 
+			// ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‹ã‚‰ãƒ¬ã‚¤ã‚’è¨ˆç®—ã—ã€å¯¾è±¡ãƒ¡ãƒƒã‚·ãƒ¥ã¨ã®äº¤å·®ã‚’ãƒã‚§ãƒƒã‚¯ 
 			Vector3 vNear = Vector3.Unproject(new Vector3(X, Y, viewport.MinZ),
-				viewport, projMat, viewMat, this.Matrix /* ‚±‚±‚ªWorlds—ñ */);
+				viewport, projMat, viewMat, this.Matrix /* ã“ã“ãŒWorldè¡Œåˆ— */);
 			Vector3 vFar = Vector3.Unproject(new Vector3(X, Y, viewport.MaxZ),
-				viewport, projMat, viewMat, this.Matrix /* ‚±‚±‚ªWorlds—ñ */);
+				viewport, projMat, viewMat, this.Matrix /* ã“ã“ãŒWorldè¡Œåˆ— */);
 			Vector3 vDir = Vector3.Normalize(vFar - vNear);
 
 			buff.distance = (Generics.imesh.Intersect(vNear, vDir, out sectinfo)) ? sectinfo.Dist : float.MaxValue;
@@ -519,10 +519,10 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// w’è‚³‚ê‚½‘Š‘ÎƒCƒ“ƒfƒbƒNƒX’l‚Ìƒ`ƒbƒv‚ğ“¾‚éB
+		/// æŒ‡å®šã•ã‚ŒãŸç›¸å¯¾ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã®ãƒãƒƒãƒ—ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <param name="idx">æ“¾‚·‚éƒ`ƒbƒv‚ÌƒCƒ“ƒfƒbƒNƒXB‚±‚Ì’l‚Í•ÏX‚³‚ê‚éB</param>
-		/// <returns>—v‹‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚Ìƒ`ƒbƒv</returns>
+		/// <param name="idx">å–å¾—ã™ã‚‹ãƒãƒƒãƒ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€‚ã“ã®å€¤ã¯å¤‰æ›´ã•ã‚Œã‚‹ã€‚</param>
+		/// <returns>è¦æ±‚ã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒãƒƒãƒ—</returns>
 		public RcChipBase GetChildChip(ref int idx) {
 			RcChipBase buff;
 			if (idx == 0)
@@ -538,7 +538,7 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ`ƒbƒv‚Æ‚»‚Ì”h¶ƒ`ƒbƒv‘S‚Ä‚ğ•`‰æ‚·‚éB
+		/// ã“ã®ãƒãƒƒãƒ—ã¨ãã®æ´¾ç”Ÿãƒãƒƒãƒ—å…¨ã¦ã‚’æç”»ã™ã‚‹ã€‚
 		/// </summary>
 		public void DrawChipAll() {
 			DrawChip();
@@ -555,7 +555,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///Ú‘±•ûŒü‚ğ“¾‚éB
+		///æ¥ç¶šæ–¹å‘ã‚’å¾—ã‚‹ã€‚
 		///</summery>
 		public virtual RcJointPosition JointPosition {
 			get {
@@ -582,10 +582,10 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ`ƒbƒv‚Æ“¯ˆê‚Ì“à—e‚ÌRcChipBaseƒCƒ“ƒXƒ^ƒ“ƒX‚ğì¬‚·‚éB
+		/// ã“ã®ãƒãƒƒãƒ—ã¨åŒä¸€ã®å†…å®¹ã®RcChipBaseã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="WithChild">”h¶ƒ`ƒbƒvî•ñ‚ÌƒNƒ[ƒ“‚àì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO</param>
-		/// <returns>“¯ˆê‚Ì“à—e‚ğ•Û‚µ‚½V‚µ‚¢RcChipBase‚Ö‚ÌQÆ</returns>
+		/// <param name="WithChild">æ´¾ç”Ÿãƒãƒƒãƒ—æƒ…å ±ã®ã‚¯ãƒ­ãƒ¼ãƒ³ã‚‚ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°</param>
+		/// <returns>åŒä¸€ã®å†…å®¹ã‚’ä¿æŒã—ãŸæ–°ã—ã„RcChipBaseã¸ã®å‚ç…§</returns>
 		public virtual RcChipBase Clone(bool WithChild, RcChipBase parent) {
 			return null;
 		}
@@ -662,7 +662,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///•¶š—ñ‚©‚çƒ`ƒbƒv‚ğ¶¬‚·‚éB
+		///æ–‡å­—åˆ—ã‹ã‚‰ãƒãƒƒãƒ—ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 		///</summery>
 		public static RcChipBase Parse(RcData generics, string data) {
 			string[] param = data.Split(',', ':', '(', ')', '=');
@@ -747,7 +747,7 @@ namespace RigidChips {
 					index++;
 					break;
 				default:
-					throw new Exception("•s–¾‚Èƒ`ƒbƒví—Ş‚ªŒŸo‚³‚ê‚Ü‚µ‚½ : " + param[index]);
+					throw new Exception("ä¸æ˜ãªãƒãƒƒãƒ—ç¨®é¡ãŒæ¤œå‡ºã•ã‚Œã¾ã—ãŸ : " + param[index]);
 			}
 			newchip.JointPosition = jp;
 			RcAttrValue attr = new RcAttrValue();
@@ -767,7 +767,7 @@ namespace RigidChips {
 				}
 			}
 			catch (IndexOutOfRangeException) {
-				throw new Exception("•s³‚È‘®«’lw’è‚ª‘¶İ‚µ‚Ü‚·B");
+				throw new Exception("ä¸æ­£ãªå±æ€§å€¤æŒ‡å®šãŒå­˜åœ¨ã—ã¾ã™ã€‚");
 			}
 			catch (Exception e) {
 				MessageBox.Show(e.Message);
@@ -778,7 +778,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///ƒ`ƒbƒv‚Ìí—Ş‚ğ“¾‚éB
+		///ãƒãƒƒãƒ—ã®ç¨®é¡ã‚’å¾—ã‚‹ã€‚
 		///</summery>
 		public static RcChipType CheckType(RcChipBase chip) {
 			if (chip is RcChipCore) {
@@ -834,7 +834,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‚±‚Ìƒ`ƒbƒv‚Í‚Ç‚Ì•ûŒü‚ÖÜ‚ê‹È‚ª‚éƒ`ƒbƒv‚©‚ğ“¾‚éB
+		///ã“ã®ãƒãƒƒãƒ—ã¯ã©ã®æ–¹å‘ã¸æŠ˜ã‚Œæ›²ãŒã‚‹ãƒãƒƒãƒ—ã‹ã‚’å¾—ã‚‹ã€‚
 		///</summery>
 		public virtual RcAngle AngleType {
 			get {
@@ -843,7 +843,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‚±‚Ìƒ`ƒbƒv‚Ìd—ÊB
+		///ã“ã®ãƒãƒƒãƒ—ã®é‡é‡ã€‚
 		///</summery>
 		public virtual float Weight {
 			get {
@@ -852,7 +852,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///d—Ê‚É‚æ‚éd‚İ•t‚«ƒxƒNƒgƒ‹‚ğ“¾‚éB
+		///é‡é‡ã«ã‚ˆã‚‹é‡ã¿ä»˜ããƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹ã€‚
 		///</summery>
 		public Vector3 WeightedVector {
 			get {
@@ -863,13 +863,13 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‚±‚Ìƒ`ƒbƒv‚Æ“¯ˆê‚Ì‘®«‚ğ‚¿Aí—Ş‚ªˆá‚¤V‚µ‚¢ƒ`ƒbƒv‚ğ¶¬‚·‚éB
+		///ã“ã®ãƒãƒƒãƒ—ã¨åŒä¸€ã®å±æ€§ã‚’æŒã¡ã€ç¨®é¡ãŒé•ã†æ–°ã—ã„ãƒãƒƒãƒ—ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 		///</summery>
 		public RcChipBase ChangeType(RcChipType type) {
 			RcChipBase buff;
 
 			if (type != RcChipType.Cowl && this.Parent is RcChipCowl)
-				throw new Exception("eƒ`ƒbƒv‚ªƒJƒEƒ‹‚È‚Ì‚ÅAí—Ş‚Ì•ÏX‚ªo—ˆ‚Ü‚¹‚ñB");
+				throw new Exception("è¦ªãƒãƒƒãƒ—ãŒã‚«ã‚¦ãƒ«ãªã®ã§ã€ç¨®é¡ã®å¤‰æ›´ãŒå‡ºæ¥ã¾ã›ã‚“ã€‚");
 
 			switch (type) {
 				case RcChipType.Arm:
@@ -966,7 +966,7 @@ namespace RigidChips {
 
 
 	///<summery>
-	///ƒ‚ƒfƒŠƒ“ƒO‚ÉŠÖ‚µ‚Ä‘‡“I‚Èƒf[ƒ^‚ğ‚ÂƒNƒ‰ƒXBŠî–{“I‚É’PˆêƒCƒ“ƒXƒ^ƒ“ƒXB
+	///ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ã«é–¢ã—ã¦ç·åˆçš„ãªãƒ‡ãƒ¼ã‚¿ã‚’æŒã¤ã‚¯ãƒ©ã‚¹ã€‚åŸºæœ¬çš„ã«å˜ä¸€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚
 	///</summery>
 	public class RcData {
 		public string ResourcePath = "";
@@ -1007,12 +1007,12 @@ namespace RigidChips {
 		RcXFile roll;
 
 		/// <summary>
-		/// RcData ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»‚·‚éB
+		/// RcData ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="D3DDevice">•\¦‚È‚Ç‚É—p‚¢‚éMicrosoft.DirectX.Direct3D.Device ƒCƒ“ƒXƒ^ƒ“ƒXB</param>
+		/// <param name="D3DDevice">è¡¨ç¤ºãªã©ã«ç”¨ã„ã‚‹Microsoft.DirectX.Direct3D.Device ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚</param>
 		public RcData(Device D3DDevice, RcDrawOptions draw, RcOutputOptions output, RcEditOptions edit, string pathResources) {
 
-			//	ŠeƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‰Šú‰»
+			//	å„ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®åˆæœŸåŒ–
 			d3ddevice = D3DDevice;
 			drawOption = draw;
 			outputOption = output;
@@ -1048,14 +1048,14 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‰ñ“]•ûŒü•\¦—pƒKƒCƒhƒ‚ƒfƒ‹
+		///å›è»¢æ–¹å‘è¡¨ç¤ºç”¨ã‚¬ã‚¤ãƒ‰ãƒ¢ãƒ‡ãƒ«
 		///</summery>
 		public RcXFile RollMesh {
 			get { return roll; }
 		}
 
 		///<summery>
-		///•`‰æƒIƒvƒVƒ‡ƒ“
+		///æç”»ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 		///</summery>
 		public RcDrawOptions DrawOption {
 			get {
@@ -1064,7 +1064,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///ƒtƒ@ƒCƒ‹o—ÍƒIƒvƒVƒ‡ƒ“
+		///ãƒ•ã‚¡ã‚¤ãƒ«å‡ºåŠ›ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 		///</summery>
 		public RcOutputOptions OutputOption {
 			get {
@@ -1073,7 +1073,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///•ÒWƒIƒvƒVƒ‡ƒ“
+		///ç·¨é›†ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 		///</summery>
 		public RcEditOptions EditOption {
 			get {
@@ -1082,7 +1082,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‘I‘ğ‚³‚ê‚Ä‚¢‚éƒ`ƒbƒv‚Ì”B’l‚Ì‘ã“ü‚ÍAŒ»İ0(‘I‘ğ‰ğœ)‚µ‚©‚Å‚«‚È‚¢B
+		///é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ã®æ•°ã€‚å€¤ã®ä»£å…¥ã¯ã€ç¾åœ¨0(é¸æŠè§£é™¤)ã—ã‹ã§ããªã„ã€‚
 		///</summery>
 		public int SelectedChipCount {
 			get {
@@ -1090,13 +1090,13 @@ namespace RigidChips {
 			}
 			set {
 				if (value != 0)
-					throw new Exception("SelectedChipCount ƒvƒƒpƒeƒB‚Éİ’è‚Å‚«‚é’l‚Í 0 ‚Ì‚İ‚Å‚·B");
+					throw new Exception("SelectedChipCount ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«è¨­å®šã§ãã‚‹å€¤ã¯ 0 ã®ã¿ã§ã™ã€‚");
 				selectedChipArray.Clear();
 			}
 		}
 
 		///<summery>
-		///‘I‘ğ‚³‚ê‚Ä‚¢‚éƒ`ƒbƒv‚ÌƒŠƒXƒgB
+		///é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ã®ãƒªã‚¹ãƒˆã€‚
 		///</summery>
 		public RcChipBase[] SelectedChipList {
 			get {
@@ -1107,10 +1107,10 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ƒ`ƒbƒv•\¦—pRcXFileƒNƒ‰ƒX‚Ö‚ÌQÆ‚ğ“¾‚éB
+		/// ãƒãƒƒãƒ—è¡¨ç¤ºç”¨RcXFileã‚¯ãƒ©ã‚¹ã¸ã®å‚ç…§ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <param name="FileName">.x ƒtƒ@ƒCƒ‹‚ÌƒpƒX</param>
-		/// <returns>ƒ[ƒh‚µ‚½RcXFile‚Ö‚ÌQÆ</returns>
+		/// <param name="FileName">.x ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹</param>
+		/// <returns>ãƒ­ãƒ¼ãƒ‰ã—ãŸRcXFileã¸ã®å‚ç…§</returns>
 		public RcXFile GetMesh(string FileName) {
 			string tmp = Directory.GetCurrentDirectory();
 			Directory.SetCurrentDirectory(ResourcePath);
@@ -1127,7 +1127,7 @@ namespace RigidChips {
 					return meshes[i];
 				}
 				else if (meshes[i].FileName == FileName) {
-					// ‚·‚Å‚É“¯ˆêƒtƒ@ƒCƒ‹–¼‚ÌƒƒbƒVƒ…‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚½‚çA‚»‚ê‚ğ•Ô‚·B
+					// ã™ã§ã«åŒä¸€ãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒ¡ãƒƒã‚·ãƒ¥ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ãŸã‚‰ã€ãã‚Œã‚’è¿”ã™ã€‚
 					Directory.SetCurrentDirectory(tmp);
 					return meshes[i];
 				}
@@ -1139,11 +1139,11 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ƒ`ƒbƒv•\¦—pRcXFileƒNƒ‰ƒX‚Ö‚ÌQÆ‚ğ“¾‚éB
+		/// ãƒãƒƒãƒ—è¡¨ç¤ºç”¨RcXFileã‚¯ãƒ©ã‚¹ã¸ã®å‚ç…§ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <param name="FileName">.x ƒtƒ@ƒCƒ‹‚ÌƒpƒX</param>
-		/// <param name="FullPath">FileName‚ªƒtƒ‹ƒpƒX‚Å‚ ‚é‚±‚Æ‚ğ•\‚·ƒtƒ‰ƒO</param>
-		/// <returns>ƒ[ƒh‚µ‚½RcXFile‚Ö‚ÌQÆ</returns>
+		/// <param name="FileName">.x ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹</param>
+		/// <param name="FullPath">FileNameãŒãƒ•ãƒ«ãƒ‘ã‚¹ã§ã‚ã‚‹ã“ã¨ã‚’è¡¨ã™ãƒ•ãƒ©ã‚°</param>
+		/// <returns>ãƒ­ãƒ¼ãƒ‰ã—ãŸRcXFileã¸ã®å‚ç…§</returns>
 		public RcXFile GetMesh(string FileName, bool FullPath) {
 			if (FullPath) {
 				string tmp = Directory.GetCurrentDirectory();
@@ -1172,7 +1172,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///GetMesh‚É‚æ‚Á‚Ä“Ç‚İ‚ñ‚¾‚·‚×‚Ä‚ÌXƒtƒ@ƒCƒ‹ƒf[ƒ^‚ğ‰ğ•ú‚·‚éB
+		///GetMeshã«ã‚ˆã£ã¦èª­ã¿è¾¼ã‚“ã ã™ã¹ã¦ã®Xãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã™ã‚‹ã€‚
 		///</summery>
 		public void DisposeMeshes() {
 			for (int i = 0; i < ChipMeshCount; i++) {
@@ -1192,7 +1192,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‘SƒƒbƒVƒ…‚ÌƒŠƒ[ƒh
+		///å…¨ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒªãƒ­ãƒ¼ãƒ‰
 		///</summery>
 		public void ReloadMeshes() {
 			for (int i = 0; i < ChipMeshCount; i++) {
@@ -1205,14 +1205,14 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///w’è‚µ‚½ƒ`ƒbƒv‚ÉƒJ[ƒ\ƒ‹‚ğˆÚ“®‚·‚é
+		///æŒ‡å®šã—ãŸãƒãƒƒãƒ—ã«ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã™ã‚‹
 		///</summery>
 		public void SetCursor(RcChipBase Target) {
 			Cursor.Attach(Target, RcJointPosition.NULL);
 		}
 
 		///<summery>
-		///ƒJ[ƒ\ƒ‹‚ğ•`‰æ
+		///ã‚«ãƒ¼ã‚½ãƒ«ã‚’æç”»
 		///</summery>
 		public void DrawCursor() {
 			Cursor.SetCursorColor(drawOption.CursorFrontColor, drawOption.CursorBackColor);
@@ -1220,7 +1220,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///ƒ`ƒbƒv‚ğ•`‰æ
+		///ãƒãƒƒãƒ—ã‚’æç”»
 		///</summery>
 		public void DrawChips(bool enableGuide) {
 			DrawChips(enableGuide, true);
@@ -1281,7 +1281,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///ƒ‚ƒfƒ‹ƒ`ƒbƒvƒŠƒXƒg‚ÉAƒ`ƒbƒv‚ğ“o˜^‚·‚éB
+		///ãƒ¢ãƒ‡ãƒ«ãƒãƒƒãƒ—ãƒªã‚¹ãƒˆã«ã€ãƒãƒƒãƒ—ã‚’ç™»éŒ²ã™ã‚‹ã€‚
 		///</summery>
 		public int RegisterChip(RcChipBase c) {
 			if (c.RegistID > 0) return c.RegistID;
@@ -1306,15 +1306,15 @@ namespace RigidChips {
 					return i;
 				}
 			}
-			throw new Exception("ƒ`ƒbƒvÅ‘å”(512)‚ğ’´‚¦‚Ü‚µ‚½B");
+			throw new Exception("ãƒãƒƒãƒ—æœ€å¤§æ•°(512)ã‚’è¶…ãˆã¾ã—ãŸã€‚");
 		}
 
 		///<summery>
-		///“o˜^‚³‚ê‚Ä‚¢‚½ƒ`ƒbƒv‚ğƒŠƒXƒg‚©‚çœ‹‚·‚éB
+		///ç™»éŒ²ã•ã‚Œã¦ã„ãŸãƒãƒƒãƒ—ã‚’ãƒªã‚¹ãƒˆã‹ã‚‰é™¤å»ã™ã‚‹ã€‚
 		///</summery>
 		public void UnregisterChip(RcChipBase c) {
 			if (c.RegistID < 0 || c.RegistID > RcData.MaxChipCount) {
-				throw new Exception("w’è‚µ‚½ƒ`ƒbƒv‚Í“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚©A‚Ü‚½‚Í•s³‚È•û–@‚Å“o˜^‚³‚ê‚½‰Â”\«‚ª‚ ‚è‚Ü‚· : " + c.ToString());
+				throw new Exception("æŒ‡å®šã—ãŸãƒãƒƒãƒ—ã¯ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã‹ã€ã¾ãŸã¯ä¸æ­£ãªæ–¹æ³•ã§ç™»éŒ²ã•ã‚ŒãŸå¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ : " + c.ToString());
 			}
 			ChipLib[c.RegistID] = null;
 			string[] attrlist = c.AttrNameList;
@@ -1331,7 +1331,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‚ ‚éƒ`ƒbƒv‚ÆA‚»‚Ì”h¶ƒ`ƒbƒv‚·‚×‚Ä‚ğ“o˜^‚·‚éB
+		///ã‚ã‚‹ãƒãƒƒãƒ—ã¨ã€ãã®æ´¾ç”Ÿãƒãƒƒãƒ—ã™ã¹ã¦ã‚’ç™»éŒ²ã™ã‚‹ã€‚
 		///</summery>
 		public void RegisterChipAll(RcChipBase c) {
 			RegisteringAll = true;
@@ -1354,7 +1354,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///ƒŠƒXƒg‚Ì“r’†‚Ì‹ó—“‚ğÁ‚·B
+		///ãƒªã‚¹ãƒˆã®é€”ä¸­ã®ç©ºæ¬„ã‚’æ¶ˆã™ã€‚
 		///</summery>
 		public void SlideLibraryData(int startat) {
 			for (int i = startat; i < MaxChipCount - 1; i++) {
@@ -1366,8 +1366,8 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‚ ‚éƒ`ƒbƒv‚Ìe‚ª‚»‚Ìƒ`ƒbƒv‚æ‚è‘å‚«‚¢ƒCƒ“ƒfƒbƒNƒX”Ô†‚Å“o˜^‚³‚ê‚Ä‚¢‚é‚ÆA•Û‘¶‚É–â‘è‚É‚È‚é‚Ì‚Å
-		///‚»‚ê‚ğœ‹‚·‚éB
+		///ã‚ã‚‹ãƒãƒƒãƒ—ã®è¦ªãŒãã®ãƒãƒƒãƒ—ã‚ˆã‚Šå¤§ãã„ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·ã§ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã¨ã€ä¿å­˜æ™‚ã«å•é¡Œã«ãªã‚‹ã®ã§
+		///ãã‚Œã‚’é™¤å»ã™ã‚‹ã€‚
 		///</summery>
 		public void CheckBackTrack() {
 			int buff;
@@ -1415,14 +1415,14 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚Å“o˜^‚³‚ê‚Ä‚¢‚éƒ`ƒbƒv‚ğ“¾‚éB
+		///æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ã‚’å¾—ã‚‹ã€‚
 		///</summery>
 		public RcChipBase GetChipFromLib(int id) {
 			return ChipLib[id];
 		}
 
 		///<summery>
-		///Œ»İƒJ[ƒ\ƒ‹‚ª‚ ‚éƒ`ƒbƒv‚ğæ“¾‚·‚éB•¡”‘I‘ğ‚É‚ÍnullB
+		///ç¾åœ¨ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹ãƒãƒƒãƒ—ã‚’å–å¾—ã™ã‚‹ã€‚è¤‡æ•°é¸æŠæ™‚ã«ã¯nullã€‚
 		///</summery>
 		public RcChipBase SelectedChip {
 			get {
@@ -1440,7 +1440,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‘I‘ğ‚³‚ê‚Ä‚¢‚éƒ`ƒbƒv‚ğ‘Œ¸‚³‚¹‚éBchip‚ª‚·‚Å‚É‘I‘ğ‚³‚ê‚Ä‚¢‚ê‚Î‰ğœ‚µA‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î‘I‘ğ‚·‚éB
+		///é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ã‚’å¢—æ¸›ã•ã›ã‚‹ã€‚chipãŒã™ã§ã«é¸æŠã•ã‚Œã¦ã„ã‚Œã°è§£é™¤ã—ã€ã•ã‚Œã¦ã„ãªã‘ã‚Œã°é¸æŠã™ã‚‹ã€‚
 		///</summery>
 		public void AssignSelectedChips(RcChipBase chip) {
 			if (chip == null) return;
@@ -1488,7 +1488,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///‘I‘ğ‚³‚ê‚Ä‚¢‚éƒ`ƒbƒv‚ÌƒŠƒXƒg‚ğAchips‚É•ÏX‚·‚éB
+		///é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ã®ãƒªã‚¹ãƒˆã‚’ã€chipsã«å¤‰æ›´ã™ã‚‹ã€‚
 		///</summery>
 		public void AssignSelectedChips(RcChipBase[] chips, bool SetList) {
 			if (SetList) selectedChipArray.Clear();
@@ -1531,7 +1531,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///ƒ`ƒbƒv‚Ì‘I‘ğ‚ğ‰ğœ‚·‚éB
+		///ãƒãƒƒãƒ—ã®é¸æŠã‚’è§£é™¤ã™ã‚‹ã€‚
 		///</summery>
 		public void ResetSelectedChips() {
 			SelectedChipCount = 0;
@@ -1539,7 +1539,7 @@ namespace RigidChips {
 
 #if false
 		///<summery>
-		///.rcdƒtƒ@ƒCƒ‹‚Ì‹Lq“à—e‚©‚çAƒf[ƒ^‚ğ“Ç‚İæ‚éB
+		///.rcdãƒ•ã‚¡ã‚¤ãƒ«ã®è¨˜è¿°å†…å®¹ã‹ã‚‰ã€ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å–ã‚‹ã€‚
 		///</summery>
 		public bool Parse(string filedata){
 			filedata = Regex.Replace(filedata,"//.*\r\n","\r\n");
@@ -1566,7 +1566,7 @@ namespace RigidChips {
 				return true;
 
 		}
-#else //ŸŠúƒp[ƒXŠÖ”
+#else //æ¬¡æœŸãƒ‘ãƒ¼ã‚¹é–¢æ•°
 		class SourceIterator : IEnumerable<char> {
 			public SourceIterator(string s) {
 				str = s;
@@ -1583,7 +1583,7 @@ namespace RigidChips {
 						(_str[i + 0] == 'l' || _str[i + 0] == 'L') &&
 						(_str[i + 1] == 'u' || _str[i + 1] == 'U') &&
 						(_str[i + 2] == 'a' || _str[i + 2] == 'A'))
-						break;  // lua‚ÍƒRƒƒ“ƒg‚È‚Ç‚Ìˆ—‚Ís‚í‚È‚¢
+						break;  // luaã¯ã‚³ãƒ¡ãƒ³ãƒˆãªã©ã®å‡¦ç†ã¯è¡Œã‚ãªã„
 
 
 					if (!inString && _str[i] == '/' && _str[i + 1] == '/') {
@@ -1608,7 +1608,7 @@ namespace RigidChips {
 				}
 			}
 
-			#region IEnumerable ƒƒ“ƒo
+			#region IEnumerable ãƒ¡ãƒ³ãƒ
 
 			IEnumerator IEnumerable.GetEnumerator() {
 				throw new NotImplementedException();
@@ -1618,8 +1618,8 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///.rcdƒtƒ@ƒCƒ‹‚Ì‹Lq“à—e‚©‚çAƒf[ƒ^‚ğ“Ç‚İæ‚éB
-		///<returns>ƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚Ítrue</returns>
+		///.rcdãƒ•ã‚¡ã‚¤ãƒ«ã®è¨˜è¿°å†…å®¹ã‹ã‚‰ã€ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å–ã‚‹ã€‚
+		///<returns>ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã¯true</returns>
 		///</summery>
 		public bool Parse(string filedata) {
 			var tokenBuffer = new StringBuilder();
@@ -1632,7 +1632,7 @@ namespace RigidChips {
 			foreach (char c in itr) {
 				tokenBuffer.Append(c);
 			}
-			// ‚±‚±‚©‚çæ‚Í]—ˆ‚Ìˆ—
+			// ã“ã“ã‹ã‚‰å…ˆã¯å¾“æ¥ã®å‡¦ç†
 
 			Match blocks = Regex.Match(filedata, @"val\s*\{(?<vals>[^}]*)}\s*key\s*\{(?<keys>[^}]*)}\s*body\s*\{(?<body>.*)}\s*(?<scripttype>script|lua)\s*\{(?<script>.*)}", RegexOptions.Singleline | RegexOptions.IgnoreCase);
 			if (!blocks.Success) {
@@ -1657,7 +1657,7 @@ namespace RigidChips {
 		}
 #endif
 		public void Save(string FileName, System.Collections.Specialized.NameValueCollection others) {
-			StreamWriter file = new StreamWriter(FileName, false, System.Text.Encoding.GetEncoding(932));
+			StreamWriter file = new StreamWriter(FileName, false, Encoding.GetEncoding(932) /*Shift-JIS*/);
 			string buffer = "";
 
 			file.WriteLine("RCMFORMAT VERSION 1.1");
@@ -1719,24 +1719,24 @@ namespace RigidChips {
 
 		public NameValueCollection Load(string FileName) {
 			System.Globalization.NumberFormatInfo formatinfo = System.Globalization.NumberFormatInfo.InvariantInfo;
-			StreamReader file = new StreamReader(FileName, System.Text.Encoding.GetEncoding(932));
+			StreamReader file = new StreamReader(FileName, Encoding.GetEncoding(932));
 			NameValueCollection opts = new NameValueCollection();
 			string version;
 			string input;
 			string[] parameters, parts;
 
 			/*
-			 * ƒuƒƒbƒNŠT—v
+			 * ãƒ–ãƒ­ãƒƒã‚¯æ¦‚è¦
 			 *	VALS
-			 *		•Ï”
+			 *		å¤‰æ•°
 			 *	KEYS
-			 *		ƒL[“®ì
+			 *		ã‚­ãƒ¼å‹•ä½œ
 			 *	BODY
-			 *		ƒ‚ƒfƒ‹’è‹`
+			 *		ãƒ¢ãƒ‡ãƒ«å®šç¾©
 			 *	SCRIPT
-			 *		ƒXƒNƒŠƒvƒg•”
+			 *		ã‚¹ã‚¯ãƒªãƒ—ãƒˆéƒ¨
 			 *	OTHER
-			 *		‚»‚Ì‘¼AŒÅ—L‚Ìİ’è‚È‚Ç
+			 *		ãã®ä»–ã€å›ºæœ‰ã®è¨­å®šãªã©
 			 */
 
 			version = file.ReadLine();
@@ -1812,7 +1812,7 @@ namespace RigidChips {
 						while (input != null && input != "BODY END") {
 							parameters = input.Split(',');
 							if (parameters[0] == "0") {
-								//ƒRƒA‚¾‚Á‚½‚Æ‚«‚Ìˆ—
+								//ã‚³ã‚¢ã ã£ãŸã¨ãã®å‡¦ç†
 								model.root.Name = parameters[2];
 								model.root.ChipColor.SetValue(parameters[3], vals);
 								attr = new RcAttrValue();
@@ -1884,7 +1884,7 @@ namespace RigidChips {
 						while (input != null && input != "BODY END") {
 							parameters = input.Split(',');
 							if (parameters[0] == "0") {
-								//ƒRƒA‚¾‚Á‚½‚Æ‚«‚Ìˆ—
+								//ã‚³ã‚¢ã ã£ãŸã¨ãã®å‡¦ç†
 								model.root.Name = parameters[2];
 								model.root.ChipColor.SetValue(parameters[3], vals);
 								attr = new RcAttrValue();
@@ -1960,7 +1960,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///dS‚ğŒvZ‚·‚éB
+		///é‡å¿ƒã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		///</summery>
 		public void CalcWeightCenter() {
 			if (RegisteringAll) return;
@@ -1978,7 +1978,7 @@ namespace RigidChips {
 		}
 
 		///<summery>
-		///ÅŒã‚ÉŒvZ‚³‚ê‚½dS‚ğ“¾‚éB
+		///æœ€å¾Œã«è¨ˆç®—ã•ã‚ŒãŸé‡å¿ƒã‚’å¾—ã‚‹ã€‚
 		///</summery>
 		public Vector3 WeightCenter {
 			get {
@@ -1991,15 +1991,15 @@ namespace RigidChips {
 		public MessageCallback OnChipLibraryChanged;
 
 		/// <summary>
-		/// RCDƒf[ƒ^—p‚Ì”’l‚Æ‚µ‚Äƒp[ƒX‚·‚é
+		/// RCDãƒ‡ãƒ¼ã‚¿ç”¨ã®æ•°å€¤ã¨ã—ã¦ãƒ‘ãƒ¼ã‚¹ã™ã‚‹
 		/// </summary>
-		/// <param name="text">ƒp[ƒX‚·‚é•¶š—ñ</param>
+		/// <param name="text">ãƒ‘ãƒ¼ã‚¹ã™ã‚‹æ–‡å­—åˆ—</param>
 		/// <exception>NumberFormatException</exception>
-		/// <returns>ƒp[ƒXŒ‹‰Ê</returns>
+		/// <returns>ãƒ‘ãƒ¼ã‚¹çµæœ</returns>
 		public static float ParseNumber(string text) {
 			text = text.Trim();
 			if (text[0] == '#') {
-				// \˜Zi”
+				// åå…­é€²æ•°
 				return (float)int.Parse(text.Substring(1), System.Globalization.NumberStyles.HexNumber);
 			}
 			else {
@@ -2008,19 +2008,19 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// RCDƒf[ƒ^—p‚Ì”’l‚Æ‚µ‚Äƒp[ƒX‚·‚é
+		/// RCDãƒ‡ãƒ¼ã‚¿ç”¨ã®æ•°å€¤ã¨ã—ã¦ãƒ‘ãƒ¼ã‚¹ã™ã‚‹
 		/// </summary>
 		/// <param name="text"></param>
-		/// <returns>¬Œ÷‚·‚ê‚ÎTrue</returns>
+		/// <returns>æˆåŠŸã™ã‚Œã°True</returns>
 		public static bool TryParseNumber(string text) {
 			float dummy;
 			return TryParseNumber(text, out dummy);
 		}
 		/// <summary>
-		/// RCDƒf[ƒ^—p‚Ì”’l‚Æ‚µ‚Äƒp[ƒX‚·‚é
+		/// RCDãƒ‡ãƒ¼ã‚¿ç”¨ã®æ•°å€¤ã¨ã—ã¦ãƒ‘ãƒ¼ã‚¹ã™ã‚‹
 		/// </summary>
 		/// <param name="text"></param>
-		/// <returns>¬Œ÷‚·‚ê‚ÎTrue</returns>
+		/// <returns>æˆåŠŸã™ã‚Œã°True</returns>
 		public static bool TryParseNumber(string text, out float result) {
 			text = text.Trim();
 			if (text[0] == '#') {
@@ -2051,7 +2051,7 @@ namespace RigidChips {
 	}
 
 	/// <summary>
-	/// RigidChipsƒ‚ƒfƒ‹ƒf[ƒ^
+	/// RigidChipsãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿
 	/// </summary>
 	public class RcModel {
 		RcData gen;
@@ -2061,7 +2061,7 @@ namespace RigidChips {
 			root = new RcChipCore(gen, null, RcJointPosition.NULL);
 		}
 		/// <summary>
-		/// ƒ‚ƒfƒ‹“à‚Ì“Á’è‚Ìƒ`ƒbƒv‚ğ“¾‚éB
+		/// ãƒ¢ãƒ‡ãƒ«å†…ã®ç‰¹å®šã®ãƒãƒƒãƒ—ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
 		public RcChipBase this[int idx] {
 			get {
@@ -2069,12 +2069,12 @@ namespace RigidChips {
 				if (buff != null)
 					return buff;
 				else
-					throw new Exception("ƒCƒ“ƒfƒbƒNƒX’l‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚Ü‚·B");
+					throw new Exception("ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã¾ã™ã€‚");
 			}
 			/*			set{
 							RcChipBase t = root.GetChildChip(ref idx),p;
 							if(t == null)
-								throw new Exception("ƒCƒ“ƒfƒbƒNƒX’l‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚Ü‚·B");
+								throw new Exception("ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã¾ã™ã€‚");
 
 							int sabun = 0;
 							p = t.Parent;
@@ -2087,15 +2087,15 @@ namespace RigidChips {
 								}
 							}
 
-							throw new Exception("RcChipBase[]‚Å—\Šú‚¹‚ÊƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B");
+							throw new Exception("RcChipBase[]ã§äºˆæœŸã›ã¬ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 						}	*/
 		}
 		/// <summary>
-		/// ƒ‚ƒfƒ‹“à‚ÌA“Á’è‚Ì–¼‘O‚ª•t‚¢‚½ƒ`ƒbƒv‚ğ“¾‚éBŒ©‚Â‚©‚ç‚È‚¢ê‡‚Ínull.
+		/// ãƒ¢ãƒ‡ãƒ«å†…ã®ã€ç‰¹å®šã®åå‰ãŒä»˜ã„ãŸãƒãƒƒãƒ—ã‚’å¾—ã‚‹ã€‚è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯null.
 		/// </summary>
 		public RcChipBase this[string name] {
 			get {
-				return null;    // –¢À‘•
+				return null;    // æœªå®Ÿè£…
 			}
 		}
 
@@ -2110,7 +2110,7 @@ namespace RigidChips {
 	}
 
 	/// <summary>
-	/// •Ï”ƒf[ƒ^
+	/// å¤‰æ•°ãƒ‡ãƒ¼ã‚¿
 	/// </summary>
 	public class RcVal {
 		public RcValList List;
@@ -2154,9 +2154,9 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// Val€–Ú‚Ì•¶š—ñ‚ğì¬
+		/// Valé …ç›®ã®æ–‡å­—åˆ—ã‚’ä½œæˆ
 		/// </summary>
-		/// <returns>‘®‰»‚³‚ê‚½ Val ƒuƒƒbƒN‚Ì€–Ú</returns>
+		/// <returns>æ›¸å¼åŒ–ã•ã‚ŒãŸ Val ãƒ–ãƒ­ãƒƒã‚¯ã®é …ç›®</returns>
 		public override string ToString() {
 			string buff = "";
 			buff += ValName + "(";
@@ -2225,7 +2225,7 @@ namespace RigidChips {
 	}
 
 	/// <summary>
-	/// •Ï”(RcVal)‚ÌƒŠƒXƒg
+	/// å¤‰æ•°(RcVal)ã®ãƒªã‚¹ãƒˆ
 	/// </summary>
 	public class RcValList {
 		public RcVal[] List;
@@ -2255,7 +2255,7 @@ namespace RigidChips {
 				if (val1.ValName == List[i].ValName)
 					break;
 			}
-			if (i == List.Length) throw new Exception("‚±‚Ì•Ï”‚ÍƒŠƒXƒg‚É‘¶İ‚µ‚Ü‚¹‚ñ : " + val1.ValName);
+			if (i == List.Length) throw new Exception("ã“ã®å¤‰æ•°ã¯ãƒªã‚¹ãƒˆã«å­˜åœ¨ã—ã¾ã›ã‚“ : " + val1.ValName);
 
 			for (j = 0; j < List.Length; j++) {
 				if (val2.ValName == List[j].ValName) {
@@ -2264,18 +2264,18 @@ namespace RigidChips {
 					return;
 				}
 			}
-			throw new Exception("‚±‚Ì•Ï”‚ÍƒŠƒXƒg‚É‘¶İ‚µ‚Ü‚¹‚ñ : " + val2.ValName);
+			throw new Exception("ã“ã®å¤‰æ•°ã¯ãƒªã‚¹ãƒˆã«å­˜åœ¨ã—ã¾ã›ã‚“ : " + val2.ValName);
 
 		}
 
 		/// <summary>
-		/// •Ï”‚ğì¬‚·‚éB
+		/// å¤‰æ•°ã‚’ä½œæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="ValName">•Ï”‚Ì¯•Ê–¼B</param>
-		/// <returns>V‚½‚Éì¬‚³‚ê‚½RcVal‚Ö‚ÌQÆB</returns>
+		/// <param name="ValName">å¤‰æ•°ã®è­˜åˆ¥åã€‚</param>
+		/// <returns>æ–°ãŸã«ä½œæˆã•ã‚ŒãŸRcValã¸ã®å‚ç…§ã€‚</returns>
 		public RcVal Add(string ValName) {
 			if (ValName == null) return null;
-			if (this[ValName] != null) throw new Exception("w’è‚³‚ê‚½–¼‘O‚Ì•Ï”‚Í‚·‚Å‚É‘¶İ‚µ‚Ü‚· : " + ValName);
+			if (this[ValName] != null) throw new Exception("æŒ‡å®šã•ã‚ŒãŸåå‰ã®å¤‰æ•°ã¯ã™ã§ã«å­˜åœ¨ã—ã¾ã™ : " + ValName);
 			List.CopyTo(List = new RcVal[List.Length + 1], 0);
 			(List[List.Length - 1] = new RcVal()).ValName = ValName;
 			List[List.Length - 1].List = this;
@@ -2283,9 +2283,9 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// w’è‚³‚ê‚½–¼‘O‚Ì•Ï”‚ğíœ‚·‚éB
+		/// æŒ‡å®šã•ã‚ŒãŸåå‰ã®å¤‰æ•°ã‚’å‰Šé™¤ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="ValName">íœ‚·‚é•Ï”‚Ì¯•Ê–¼B</param>
+		/// <param name="ValName">å‰Šé™¤ã™ã‚‹å¤‰æ•°ã®è­˜åˆ¥åã€‚</param>
 		public void Remove(string ValName) {
 			bool removed = false;
 			RcVal[] buff = new RcVal[List.Length - 1];
@@ -2299,7 +2299,7 @@ namespace RigidChips {
 				else
 					buff[i] = List[i];
 			}
-			if (!removed) throw new Exception("w’è‚³‚ê‚½–¼‘O‚Ì•Ï”‚ÍƒŠƒXƒg‚É‘¶İ‚µ‚Ü‚¹‚ñ : " + ValName);
+			if (!removed) throw new Exception("æŒ‡å®šã•ã‚ŒãŸåå‰ã®å¤‰æ•°ã¯ãƒªã‚¹ãƒˆã«å­˜åœ¨ã—ã¾ã›ã‚“ : " + ValName);
 			List = buff;
 		}
 
@@ -2367,7 +2367,7 @@ namespace RigidChips {
 						case "":
 							break;
 						default:
-							throw new Exception("•s–¾‚È•Ï”ƒpƒ‰ƒ[ƒ^‚Å‚· : " + param[j]);
+							throw new Exception("ä¸æ˜ãªå¤‰æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ã™ : " + param[j]);
 					}
 				}
 			}
@@ -2389,7 +2389,7 @@ namespace RigidChips {
 	}
 
 	/// <summary>
-	/// ƒL[İ’èî•ñ
+	/// ã‚­ãƒ¼è¨­å®šæƒ…å ±
 	/// </summary>
 	public class RcKey {
 		public struct RcKeyWork {
@@ -2416,10 +2416,10 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ƒL[‚É•Ï”‚ğŠÖ˜A‚Ã‚¯‚éB‚·‚Å‚ÉŠÖ˜A‚Ã‚¯‚ç‚ê‚Ä‚¢‚éê‡‚ÍƒXƒeƒbƒv‚ğ•ÏX‚·‚éB
+		/// ã‚­ãƒ¼ã«å¤‰æ•°ã‚’é–¢é€£ã¥ã‘ã‚‹ã€‚ã™ã§ã«é–¢é€£ã¥ã‘ã‚‰ã‚Œã¦ã„ã‚‹å ´åˆã¯ã‚¹ãƒ†ãƒƒãƒ—ã‚’å¤‰æ›´ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="Target">ƒ^[ƒQƒbƒg‚Æ‚È‚éRcVal‚Ö‚ÌQÆB</param>
-		/// <param name="Step">ƒXƒeƒbƒv’lB</param>
+		/// <param name="Target">ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ãªã‚‹RcValã¸ã®å‚ç…§ã€‚</param>
+		/// <param name="Step">ã‚¹ãƒ†ãƒƒãƒ—å€¤ã€‚</param>
 		public void AssignWork(RcVal Target, float Step) {
 			for (int i = 0; i < Works.Length; i++) {
 				if (Works[i].Target == Target) {
@@ -2434,9 +2434,9 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// •Ï”‚ÌƒL[‚Ö‚ÌŠÖ˜A‚Ã‚¯‚ğíœ‚·‚éB
+		/// å¤‰æ•°ã®ã‚­ãƒ¼ã¸ã®é–¢é€£ã¥ã‘ã‚’å‰Šé™¤ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="Target">íœ‚·‚éRcVal‚Ö‚ÌQÆB</param>
+		/// <param name="Target">å‰Šé™¤ã™ã‚‹RcValã¸ã®å‚ç…§ã€‚</param>
 		public void DeleteWork(RcVal Target) {
 			bool removed = false;
 			RcKeyWork[] buff = new RcKeyWork[Works.Length - 1];
@@ -2458,9 +2458,9 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ƒL[‚Ì“®ì‚ğ•\‚·•¶š—ñ‚ğ“¾‚éB
+		/// ã‚­ãƒ¼ã®å‹•ä½œã‚’è¡¨ã™æ–‡å­—åˆ—ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <returns>KeyƒuƒƒbƒN‚Åg—p‰Â”\‚È‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌŠ®‘S•¶š—ñB</returns>
+		/// <returns>Keyãƒ–ãƒ­ãƒƒã‚¯ã§ä½¿ç”¨å¯èƒ½ãªã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å®Œå…¨æ–‡å­—åˆ—ã€‚</returns>
 		public override string ToString() {
 			if (Works.Length == 0) return null;
 			string str;
@@ -2475,7 +2475,7 @@ namespace RigidChips {
 	}
 
 	/// <summary>
-	/// ƒL[(RcKey)‚ÌƒŠƒXƒg
+	/// ã‚­ãƒ¼(RcKey)ã®ãƒªã‚¹ãƒˆ
 	/// </summary>
 	public class RcKeyList {
 		public RcKey[] list;
@@ -2549,7 +2549,7 @@ namespace RigidChips {
 	}
 
 	/// <summary>
-	/// ƒ}ƒeƒŠƒAƒ‹–³‚µAƒeƒNƒXƒ`ƒƒˆê–‡‚ÌŠÈˆÕƒƒbƒVƒ…
+	/// ãƒãƒ†ãƒªã‚¢ãƒ«ç„¡ã—ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ä¸€æšã®ç°¡æ˜“ãƒ¡ãƒƒã‚·ãƒ¥
 	/// </summary>
 	public class RcXFile {
 		public string FileName = null;
@@ -2557,11 +2557,11 @@ namespace RigidChips {
 		public Texture texture = null;
 
 		/// <summary>
-		/// ƒƒbƒVƒ…‚ğ•`‰æ‚·‚éB
+		/// ãƒ¡ãƒƒã‚·ãƒ¥ã‚’æç”»ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="d3ddevice">•`‰æ‚·‚é Microsoft.DirectX.Direct3D.Device ‚Ö‚ÌQÆB</param>
-		/// <param name="color">ƒ}ƒeƒŠƒAƒ‹FB</param>
-		/// <param name="world">”z’us—ñB</param>
+		/// <param name="d3ddevice">æç”»ã™ã‚‹ Microsoft.DirectX.Direct3D.Device ã¸ã®å‚ç…§ã€‚</param>
+		/// <param name="color">ãƒãƒ†ãƒªã‚¢ãƒ«è‰²ã€‚</param>
+		/// <param name="world">é…ç½®è¡Œåˆ—ã€‚</param>
 		public void Draw(Device d3ddevice, Color color, Matrix world) {
 			Draw(d3ddevice, color, 0x0022, world);
 		}
@@ -2664,9 +2664,9 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// FileName ‚Éw’è‚³‚ê‚½ƒƒbƒVƒ…‚ğ“Ç‚İ‚ŞB
+		/// FileName ã«æŒ‡å®šã•ã‚ŒãŸãƒ¡ãƒƒã‚·ãƒ¥ã‚’èª­ã¿è¾¼ã‚€ã€‚
 		/// </summary>
-		/// <param name="d3ddevice">Microsoft.DirectX.Direct3D.Device ‚Ö‚ÌQÆB</param>
+		/// <param name="d3ddevice">Microsoft.DirectX.Direct3D.Device ã¸ã®å‚ç…§ã€‚</param>
 		public void Load(Device d3ddevice) {
 			ExtendedMaterial[] matbuff;
 			try {
@@ -2682,10 +2682,10 @@ namespace RigidChips {
 			}
 		}
 		/// <summary>
-		/// ƒƒbƒVƒ…‚ğ“Ç‚İ‚ŞB
+		/// ãƒ¡ãƒƒã‚·ãƒ¥ã‚’èª­ã¿è¾¼ã‚€ã€‚
 		/// </summary>
-		/// <param name="d3ddevice">Microsoft.DirectX.Direct3D.Device ‚Ö‚ÌQÆB</param>
-		/// <param name="FileName">“Ç‚İ‚ŞƒƒbƒVƒ…‚Ìƒtƒ@ƒCƒ‹–¼B</param>
+		/// <param name="d3ddevice">Microsoft.DirectX.Direct3D.Device ã¸ã®å‚ç…§ã€‚</param>
+		/// <param name="FileName">èª­ã¿è¾¼ã‚€ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒ•ã‚¡ã‚¤ãƒ«åã€‚</param>
 		public void Load(Device d3ddevice, string FileName) {
 			this.FileName = FileName;
 			Load(d3ddevice);
@@ -2729,7 +2729,7 @@ namespace RigidChips {
 		}
 		public void Undo(){
 			if(!CanUndo)
-				throw new ApplicationException("ƒAƒ“ƒhƒD‚Å‚«‚Ü‚¹‚ñB");
+				throw new ApplicationException("ã‚¢ãƒ³ãƒ‰ã‚¥ã§ãã¾ã›ã‚“ã€‚");
 
 			undo.Undo(rcdata);
 			redo = undo;
@@ -2738,7 +2738,7 @@ namespace RigidChips {
 		}
 		public void Redo(){
 			if(!CanRedo)
-				throw new ApplicationException("ƒŠƒhƒD‚Å‚«‚Ü‚¹‚ñB");
+				throw new ApplicationException("ãƒªãƒ‰ã‚¥ã§ãã¾ã›ã‚“ã€‚");
 
 			redo.Redo(rcdata);
 			undo = redo;
@@ -2761,11 +2761,11 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// Às‚³‚ê‚½ˆ—‚ğ–ß‚·ì‹Æ‚ğs‚¤B
+		/// å®Ÿè¡Œã•ã‚ŒãŸå‡¦ç†ã‚’æˆ»ã™ä½œæ¥­ã‚’è¡Œã†ã€‚
 		/// </summary>
 		public abstract void Undo(RcData data);
 		/// <summary>
-		/// “¯‚¶“®ì‚ğÄ“xs‚¤
+		/// åŒã˜å‹•ä½œã‚’å†åº¦è¡Œã†
 		/// </summary>
 		public abstract void Redo(RcData data);
 
@@ -2837,7 +2837,7 @@ namespace RigidChips {
 	}
 
 	/// <summary>
-	/// ƒ`ƒbƒv‘®«‚Ì’lA•Ï”(RcVal)‚Æ’è”(float)‚Ì2€–Ú
+	/// ãƒãƒƒãƒ—å±æ€§ã®å€¤ã€å¤‰æ•°(RcVal)ã¨å®šæ•°(float)ã®2é …ç›®
 	/// </summary>
 	public struct RcAttrValue {
 		public RcConst Const;
@@ -2860,9 +2860,9 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// ‰Šúó‘Ô‚É‚¨‚¯‚é‚±‚Ì•Ï”‚Ì’l‚ğ“¾‚éB
+		/// åˆæœŸçŠ¶æ…‹ã«ãŠã‘ã‚‹ã“ã®å¤‰æ•°ã®å€¤ã‚’å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <returns>•Ï”‚Ì’l‚ğ•\‚·float’lB</returns>
+		/// <returns>å¤‰æ•°ã®å€¤ã‚’è¡¨ã™floatå€¤ã€‚</returns>
 		public float Value {
 			get {
 				checkDeadReference();
@@ -2874,9 +2874,9 @@ namespace RigidChips {
 		}
 
 		/// <summary>
-		/// •Ï”–¼A‚à‚µ‚­‚Í’è”‚ğ•¶š—ñ‚Å“¾‚éB
+		/// å¤‰æ•°åã€ã‚‚ã—ãã¯å®šæ•°ã‚’æ–‡å­—åˆ—ã§å¾—ã‚‹ã€‚
 		/// </summary>
-		/// <returns>.rcd‚Åg—p‰Â”\‚È•Ï”‚Ü‚½‚Í’è”‚Ì•¶š—ñB</returns>
+		/// <returns>.rcdã§ä½¿ç”¨å¯èƒ½ãªå¤‰æ•°ã¾ãŸã¯å®šæ•°ã®æ–‡å­—åˆ—ã€‚</returns>
 		public override string ToString() {
 			checkDeadReference();
 			if (Val != null) {
@@ -2912,10 +2912,10 @@ namespace RigidChips {
 				}
 				Val = vallist[expression];
 				if (Val == null)
-					throw new Exception("‘®«‚Ì’l‚Ìİ’è‚É¸”s‚µ‚Ü‚µ‚½ : " + expression);
+					throw new Exception("å±æ€§ã®å€¤ã®è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸ : " + expression);
 			}
 			catch (OverflowException) {
-				throw new Exception("’l‚Ìâ‘Î’l‚ª‘å‚«‚·‚¬‚Ü‚· : " + expression);
+				throw new Exception("å€¤ã®çµ¶å¯¾å€¤ãŒå¤§ãã™ãã¾ã™ : " + expression);
 			}
 		}
 
@@ -2974,7 +2974,7 @@ namespace RigidChips {
 			public static RcColor Parse(string text){
 				RcColor ret = new RcColor();
 				if(text[0] != '#')
-					throw new FormatException("“ü—Í•¶š—ñ‚Ì‘®‚ª•s³‚Å‚· : " + text);
+					throw new FormatException("å…¥åŠ›æ–‡å­—åˆ—ã®æ›¸å¼ãŒä¸æ­£ã§ã™ : " + text);
 
 				string buff = text.Substring(1);
 				ret.Read(int.Parse(buff,System.Globalization.NumberStyles.AllowHexSpecifier));
@@ -3035,7 +3035,7 @@ namespace RigidChips {
 	*/
 	//----------------------------------------------------------------------------------//
 	/// <summary>
-	/// ˜AŒ‹êŠ
+	/// é€£çµå ´æ‰€
 	/// </summary>
 	public enum RcJointPosition : byte {
 		NULL = 255,
@@ -3045,7 +3045,7 @@ namespace RigidChips {
 		West
 	}
 	/// <summary>
-	/// Ü‚è‹È‚°•û®
+	/// æŠ˜ã‚Šæ›²ã’æ–¹å¼
 	/// </summary>
 	public enum RcAngle : byte {
 		NULL = 255,
@@ -3073,10 +3073,10 @@ namespace RigidChips {
 
 
 	//----------------------------------------------------------------------------------//
-	//	ƒvƒƒpƒeƒBŒQ
-	//	ƒtƒH[ƒ€‚É‚½‚¹ARcData‚Í‚»‚ÌQÆ‚ğE‚¤
+	//	ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ç¾¤
+	//	ãƒ•ã‚©ãƒ¼ãƒ ã«æŒãŸã›ã€RcDataã¯ãã®å‚ç…§ã‚’æ‹¾ã†
 	//
-	//	‹t‚Å‚à‚¢‚¢‚æ‚¤‚È‹C‚ª‚µ‚Ä‚«‚½B‚Ü‚Ÿ‚¢‚¢‚©B‚±‚¢‚Â‚ç“Æ—§‚µ‚Ä‚é‚µB
+	//	é€†ã§ã‚‚ã„ã„ã‚ˆã†ãªæ°—ãŒã—ã¦ããŸã€‚ã¾ãã„ã„ã‹ã€‚ã“ã„ã¤ã‚‰ç‹¬ç«‹ã—ã¦ã‚‹ã—ã€‚
 
 	public class RcDrawOptions {
 		public Color BackColor = Color.Navy;
@@ -3265,8 +3265,8 @@ namespace RigidChips {
 	}
 
 	public class RcEditOptions {
-		public bool UnvisibleNotSelected = true;    //	”ñ•\¦‚ÌƒS[ƒXƒg‚âƒJƒEƒ‹‚Íƒ}ƒEƒX‚Å‘I‘ğ‚³‚ê‚È‚­‚·‚é
-		public bool ConvertParentAttributes = false;    //	V‹KÚ‘±Aeƒ`ƒbƒv‚Ì‘®«‚ğƒRƒs[‚·‚é
+		public bool UnvisibleNotSelected = true;    //	éè¡¨ç¤ºã®ã‚´ãƒ¼ã‚¹ãƒˆã‚„ã‚«ã‚¦ãƒ«ã¯ãƒã‚¦ã‚¹ã§é¸æŠã•ã‚Œãªãã™ã‚‹
+		public bool ConvertParentAttributes = false;    //	æ–°è¦æ¥ç¶šæ™‚ã€è¦ªãƒãƒƒãƒ—ã®å±æ€§ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		public int ScrollFrameNum = 20;
 		public int AngleViewGrid = 1;
 		public bool AttributeAutoApply = false;

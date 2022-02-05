@@ -12,8 +12,8 @@ namespace rcm {
 	/// <summary>
 	/// ツリー表示ダイアログ
 	/// </summary>
-	public class frmTree : System.Windows.Forms.Form {
-		RcData datasource;
+	public class TreeForm : System.Windows.Forms.Form {
+		RigidChips.Environment datasource;
 		bool initializing;
 
 		private System.Windows.Forms.ContextMenu ctmChip;
@@ -23,7 +23,7 @@ namespace rcm {
 		private System.Windows.Forms.MenuItem menuItem1;
 		private System.ComponentModel.IContainer components;
 
-		public frmTree(RcData rcdata,ContextMenu chipmenu) {
+		public TreeForm(RigidChips.Environment rcdata,ContextMenu chipmenu) {
 			initializing = true;
 			//
 			// Windows フォーム デザイナ サポートに必要です。
@@ -87,7 +87,7 @@ namespace rcm {
 		}
 
 	//	[Obsolete("未完成です。ずっと日の目を見ないかも。")]
-		public void UpdateTree(RcChipBase updateRoot) {
+		public void UpdateTree(ChipBase updateRoot) {
 			RcTreeNode root = ((RcTreeNode)tvModel.Nodes[0]).Find(updateRoot);
 
 			if (root == null) {
@@ -103,10 +103,10 @@ namespace rcm {
 			}
 
 			int childCount = 0;
-			for (int i = 0; i < RcData.ChildCapasity; i++) {
-				if (updateRoot.Child[i] == null)continue;
+			for (int i = 0; i < RigidChips.Environment.ChildCapasity; i++) {
+				if (updateRoot.Children[i] == null)continue;
 				childCount++;
-				var childChip = updateRoot.Child[i];
+				var childChip = updateRoot.Children[i];
 				var childNode = root.Find(childChip);
 				int nodeIndex = root.Nodes.IndexOf(childNode);
 
@@ -116,7 +116,7 @@ namespace rcm {
 					root.Nodes.Insert(i, n = new RcTreeNode(childChip));
 					Debug.WriteLine(n, "New node");
 				}
-				else if (nodeIndex  != i) {
+				else if (nodeIndex != i) {
 					// 間にあるノードを削除
 					List<TreeNode> nodesToDelete = new List<TreeNode>();
 					for (int j = i; j < nodeIndex; j++) {
@@ -131,7 +131,7 @@ namespace rcm {
 
 			Debug.WriteLine(root, "Update text");
 			root.UpdateText();
-			if (updateRoot is RcChipCowl)
+			if (updateRoot is CowlChip)
 				root.Collapse();
 			else
 				root.Expand();
@@ -156,7 +156,7 @@ namespace rcm {
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTree));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TreeForm));
 			this.tvModel = new System.Windows.Forms.TreeView();
 			this.imgIcons = new System.Windows.Forms.ImageList(this.components);
 			this.contextMenu1 = new System.Windows.Forms.ContextMenu();
@@ -260,13 +260,13 @@ namespace rcm {
 		}
 
 		private void tvModel_BeforeExpand(object sender, System.Windows.Forms.TreeViewCancelEventArgs e) {
-			if(((RcTreeNode)e.Node).ChipType == RcChipType.Cowl && initializing)
+			if(((RcTreeNode)e.Node).ChipType == ChipType.Cowl && initializing)
 				e.Cancel = true;
 		}
 
 		private void tvModel_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
 			if (initializing) return;
-			if (((RcTreeNode)e.Node).Chip is RcChipCore) {
+			if (((RcTreeNode)e.Node).Chip is CoreChip) {
 				Debug.WriteLine("Core selected", "tvModel_BeforeSelect");
 			}
 			datasource.SelectedChip = ((RcTreeNode)e.Node).Chip;
@@ -314,12 +314,12 @@ namespace rcm {
 	}
 
 	public class RcTreeNode : TreeNode{
-		RcChipBase c;
-		public RcTreeNode(RcChipBase chip) : base(){
+		ChipBase c;
+		public RcTreeNode(ChipBase chip) : base(){
 			this.Chip = chip;
-			this.ImageIndex = this.SelectedImageIndex = (int)RcChipBase.CheckType(chip);
-			if (Array.Exists(chip.Child, x => x != null))
-				foreach (var c in chip.Child)
+			this.ImageIndex = this.SelectedImageIndex = (int)ChipBase.CheckType(chip);
+			if (Array.Exists(chip.Children, x => x != null))
+				foreach (var c in chip.Children)
 					if (c != null) this.Nodes.Add(new RcTreeNode(c));
 
 			
@@ -327,7 +327,7 @@ namespace rcm {
 
 		
 
-		public RcChipBase Chip{
+		public ChipBase Chip{
 			get{
 				return c;
 			}
@@ -340,16 +340,16 @@ namespace rcm {
 		public void UpdateText() {
 			string s;
 			switch (c.JointPosition) {
-				case RcJointPosition.North:
+				case JointPosition.North:
 					s = "N:";
 					break;
-				case RcJointPosition.South:
+				case JointPosition.South:
 					s = "S:";
 					break;
-				case RcJointPosition.East:
+				case JointPosition.East:
 					s = "E:";
 					break;
-				case RcJointPosition.West:
+				case JointPosition.West:
 					s = "W:";
 					break;
 				default:
@@ -357,16 +357,16 @@ namespace rcm {
 					break;
 			}
 			this.Text = s + c.ToString();
-			this.ImageIndex = (int)RcChipBase.CheckType(c);
+			this.ImageIndex = (int)ChipBase.CheckType(c);
 		}
 
-		public RcChipType ChipType{
+		public ChipType ChipType{
 			get{
-				return (RcChipType)ImageIndex;
+				return (ChipType)ImageIndex;
 			}
 		}
 
-		public RcTreeNode Find(RcChipBase chip) {
+		public RcTreeNode Find(ChipBase chip) {
 			if (this.Chip == chip) {
 				return this;
 			}

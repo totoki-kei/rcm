@@ -13,9 +13,9 @@ namespace rcm
 	/// <summary>
 	/// スクリプト編集フォーム。
 	/// </summary>
-	public class frmScript : System.Windows.Forms.Form {
-		RcData data;
-		frmMain mainForm;
+	public class ScriptForm : System.Windows.Forms.Form {
+		RigidChips.Environment data;
+		MainForm mainForm;
 
 		bool Modified {
 			get { return txtScript.Document.IsDirty; }
@@ -69,7 +69,7 @@ namespace rcm
 		private System.Windows.Forms.MenuItem miCatEnable9;
 		private IContainer components;
 
-		public frmScript(frmMain MainForm,RcData data)
+		public ScriptForm(MainForm MainForm, RigidChips.Environment data)
 		{
 			//
 			// Windows フォーム デザイナ サポートに必要です。
@@ -108,7 +108,7 @@ namespace rcm
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScript));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScriptForm));
 			this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
 			this.miCommand = new System.Windows.Forms.MenuItem();
 			this.miSave = new System.Windows.Forms.MenuItem();
@@ -415,19 +415,23 @@ namespace rcm
 
 		private void cmbVals_Enter(object sender, System.EventArgs e) {
 			cmbVals.Items.Clear();
-			foreach(RcVal v in data.vals.List){
+			foreach(ValEntry v in data.vals.List){
 				cmbVals.Items.Add(miLuaFuncs.Checked ? v.ValName.ToUpper() : v.ValName);
 			}
 		}
 
 		private void cmbNames_Enter(object sender, System.EventArgs e) {
 			cmbNames.Items.Clear();
-			RcChipBase chip;
-			for(int i = 0;i < RcData.MaxChipCount;i++){
-				chip = data.GetChipFromLib(i);
-				if(chip != null && chip.Name != null && chip.Name != "")
+			data.model.ForEach(chip => {
+				if (!string.IsNullOrEmpty(chip.Name)) {
 					cmbNames.Items.Add(miLuaFuncs.Checked ? chip.Name.ToUpper() : chip.Name);
-			}
+				}
+			});
+			//for(int i = 0; i < RigidChips.Environment.MaxChipCount; i++){
+			//	chip = data.GetChipFromLib(i);
+			//	if(chip != null && chip.Name != null && chip.Name != "")
+			//		cmbNames.Items.Add(miLuaFuncs.Checked ? chip.Name.ToUpper() : chip.Name);
+			//}
 		}
 
 		private void cmbInsertion_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e) {
@@ -599,7 +603,7 @@ namespace rcm
 			setupAzuki();
 		}
 
-		~frmScript(){
+		~ScriptForm(){
 			System.IO.StreamWriter file = new System.IO.StreamWriter(Application.StartupPath + "\\func.cfg");
 
 			int val = 0;
@@ -624,15 +628,15 @@ namespace rcm
 			var editor = txtScript;
 			var highlighter = new Sgry.Azuki.Highlighter.KeywordHighlighter();
 
-			RcChipBase chip;
 			// チップ名
 			{
 				List<string> list = new List<string>();
-				for (int i = 0; i < RcData.MaxChipCount; i++) {
-					chip = data.GetChipFromLib(i);
-					if (chip != null && chip.Name != null && chip.Name != "")
-						list.Add(data.luascript ? chip.Name.ToUpper() : chip.Name);
-				}
+				data.model.ForEach(chip => list.Add(chip.Name));
+				//for (int i = 0; i < RigidChips.Environment.MaxChipCount; i++) {
+				//	chip = data.GetChipFromLib(i);
+				//	if (chip != null && chip.Name != null && chip.Name != "")
+				//		list.Add(data.luascript ? chip.Name.ToUpper() : chip.Name);
+				//}
 				list.Sort();
 				//highlighter.SetKeywords(list.ToArray(), Sgry.Azuki.CharClass.Keyword);
 				highlighter.AddKeywordSet(list.ToArray(), Sgry.Azuki.CharClass.Keyword);
@@ -641,7 +645,7 @@ namespace rcm
 			// 変数名
 			{
 				List<string> list = new List<string>();
-				foreach (RcVal v in data.vals.List) {
+				foreach (ValEntry v in data.vals.List) {
 					list.Add(data.luascript ? v.ValName.ToUpper() : v.ValName);
 				}
 				list.Sort();

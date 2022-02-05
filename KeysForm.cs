@@ -10,10 +10,10 @@ namespace rcm {
 	/// <summary>
 	/// キー設定ダイアログ。使いづらいことで有名(　´_ゝ｀)
 	/// </summary>
-	public class frmKeys : System.Windows.Forms.Form {
-		RcData data;
-		RcValList vallist;
-		RcKeyList keylist;
+	public class KeysForm : System.Windows.Forms.Form {
+		RigidChips.Environment data;
+		ValEntryList vallist;
+		KeyEntryList keylist;
 		DialogResult result = DialogResult.No;
 		private System.Windows.Forms.ListBox lstKeyList;
 		private System.Windows.Forms.ListBox lstValList;
@@ -39,7 +39,7 @@ namespace rcm {
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		public frmKeys(RcData rcdata) {
+		public KeysForm(RigidChips.Environment rcdata) {
 			//
 			// Windows フォーム デザイナ サポートに必要です。
 			//
@@ -91,7 +91,7 @@ namespace rcm {
 		private void UpdateCmbVals() {
 			cmbVals.SuspendLayout();
 			cmbVals.Items.Clear();
-			foreach (RcVal v in vallist.List) {
+			foreach (ValEntry v in vallist.List) {
 				cmbVals.Items.Add(v);
 			}
 			cmbVals.Items.Add("(Val編集...)");
@@ -360,7 +360,7 @@ namespace rcm {
 			}
 			lstValList.Enabled = true;
 			lstValList.Items.Clear();
-			foreach(RcKey.RcKeyWork w in keylist[lstKeyList.SelectedIndex].Works){
+			foreach(KeyEntry.KeyEntryWork w in keylist[lstKeyList.SelectedIndex].Works){
 				if(w.Target.RefCount < 0){
 					keylist[lstKeyList.SelectedIndex].DeleteWork(w.Target);
 				}
@@ -376,7 +376,7 @@ namespace rcm {
 			if(cmbVals.SelectedIndex < 0)return;
 			if (cmbVals.SelectedItem.ToString() == "(Val編集...)") return;
 			try{
-				keylist[lstKeyList.SelectedIndex].AssignWork((RcVal)cmbVals.SelectedItem,float.Parse(txtStep.Text));
+				keylist[lstKeyList.SelectedIndex].AssignWork((ValEntry)cmbVals.SelectedItem,float.Parse(txtStep.Text));
 			}
 			catch(FormatException fe){
 				if(txtStep.Text != "")
@@ -394,7 +394,7 @@ namespace rcm {
 			}
 			btnDelete.Enabled = true;
 			foreach(object i in cmbVals.Items){
-				if(((RcVal)i).ValName == lstValList.SelectedItem.ToString().Split('(')[0]){
+				if(((ValEntry)i).ValName == lstValList.SelectedItem.ToString().Split('(')[0]){
 					cmbVals.SelectedItem = i;
 					break;
 				}
@@ -414,7 +414,7 @@ namespace rcm {
 				btnAdd.Enabled = false;
 			}
 			else if(cmbVals.SelectedItem as string == "(Val編集...)"){
-				frmVals valform = new frmVals( data.vals);
+				ValsForm valform = new ValsForm( data.vals);
 				bool val = (valform.ShowDialog() == DialogResult.Yes);
 				if (val) {
 					result = DialogResult.Yes;

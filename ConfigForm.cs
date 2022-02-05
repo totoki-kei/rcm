@@ -11,14 +11,14 @@ namespace rcm
 	/// <summary>
 	/// 設定ダイアログ。
 	/// </summary>
-	public class frmConfig : System.Windows.Forms.Form
+	public class ConfigForm : System.Windows.Forms.Form
 	{
-		RcDrawOptions optDraw;
-		RcOutputOptions optOutput;
-		RcEditOptions optEdit;
+		DrawOptions optDraw;
+		OutputOptions optOutput;
+		EditOptions optEdit;
 
-		RcChipBase chipSample;
-		frmMain mainwindow;
+		ChipBase chipSample;
+		MainForm mainwindow;
 
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
@@ -94,9 +94,12 @@ namespace rcm
 		private System.Windows.Forms.RadioButton rbGChip;
 		private System.Windows.Forms.ToolTip ttDescription;
 		private System.Windows.Forms.Label label13;
+		private CheckBox chkInvertRotateY;
+		private CheckBox chkInvertRotateX;
+		private CheckBox chkInvertWheel;
 		private System.ComponentModel.IContainer components;
 
-		public frmConfig(frmMain mainform)
+		public ConfigForm(MainForm mainform)
 		{
 			//
 			// Windows フォーム デザイナ サポートに必要です。
@@ -111,21 +114,21 @@ namespace rcm
 			optOutput = mainform.rcdata.OutputOption;
 			optEdit = mainform.rcdata.EditOption;
 
-			RcChipBase buff;
-			RcAttrValue attr = new RcAttrValue();
+			ChipBase buff;
+			ChipAttribute attr = new ChipAttribute();
 			attr.Const = 120f;
-			chipSample = new RcChipChip(mainform.rcdata,null,RcJointPosition.NULL);
-			buff = new RcChipChip(mainform.rcdata,chipSample,RcJointPosition.North);
+			chipSample = new NormalChip(mainform.rcdata,null,JointPosition.NULL);
+			buff = new NormalChip(mainform.rcdata,chipSample,JointPosition.North);
 			buff["Angle"] = attr;
 			attr.Const = 4000f;
 			buff["User1"] = attr;
-			new RcChipFrame(mainform.rcdata,buff,RcJointPosition.East);
+			new FrameChip(mainform.rcdata,buff,JointPosition.East);
 			attr.Const = 0.2f;
-			new RcChipFrame(mainform.rcdata,buff,RcJointPosition.West)["Damper"] = attr;
-			new RcChipTrim(mainform.rcdata,chipSample,RcJointPosition.North).Comment = "これはコメントです。";
+			new FrameChip(mainform.rcdata,buff,JointPosition.West)["Damper"] = attr;
+			new TrimChip(mainform.rcdata,chipSample,JointPosition.North).Comment = "これはコメントです。";
 			chipSample.Name = "Root";
 
-			mainform.rcdata.CheckBackTrack();
+			//mainform.rcdata.CheckBackTrack();
 		}
 
 		public int NowTabPage{
@@ -234,6 +237,9 @@ namespace rcm
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.dlgColor = new System.Windows.Forms.ColorDialog();
 			this.ttDescription = new System.Windows.Forms.ToolTip(this.components);
+			this.chkInvertWheel = new System.Windows.Forms.CheckBox();
+			this.chkInvertRotateX = new System.Windows.Forms.CheckBox();
+			this.chkInvertRotateY = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -279,9 +285,9 @@ namespace rcm
 			this.tabPage1.Controls.Add(this.groupBox3);
 			this.tabPage1.Controls.Add(this.groupBox2);
 			this.tabPage1.Controls.Add(this.groupBox1);
-			this.tabPage1.Location = new System.Drawing.Point(4, 21);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Size = new System.Drawing.Size(488, 247);
+			this.tabPage1.Size = new System.Drawing.Size(488, 246);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "表示";
 			// 
@@ -795,9 +801,9 @@ namespace rcm
 			this.tabPage2.Controls.Add(this.chkOpenBracketWithChipDefinition);
 			this.tabPage2.Controls.Add(this.chkReturnEndChipBracket);
 			this.tabPage2.Controls.Add(this.groupBox5);
-			this.tabPage2.Location = new System.Drawing.Point(4, 21);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(488, 247);
+			this.tabPage2.Size = new System.Drawing.Size(488, 246);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "RCD出力";
 			// 
@@ -908,15 +914,18 @@ namespace rcm
 			// 
 			// tabPage3
 			// 
+			this.tabPage3.Controls.Add(this.chkInvertRotateY);
+			this.tabPage3.Controls.Add(this.chkInvertRotateX);
+			this.tabPage3.Controls.Add(this.chkInvertWheel);
 			this.tabPage3.Controls.Add(this.chkAttrAutoApply);
 			this.tabPage3.Controls.Add(this.lblScrollValue);
 			this.tabPage3.Controls.Add(this.label12);
 			this.tabPage3.Controls.Add(this.trkScrollFrame);
 			this.tabPage3.Controls.Add(this.chkUnbisibleUnselectable);
 			this.tabPage3.Controls.Add(this.chkAttrCopy);
-			this.tabPage3.Location = new System.Drawing.Point(4, 21);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(488, 247);
+			this.tabPage3.Size = new System.Drawing.Size(488, 246);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "エディット";
 			// 
@@ -950,7 +959,7 @@ namespace rcm
 			this.trkScrollFrame.Location = new System.Drawing.Point(48, 136);
 			this.trkScrollFrame.Maximum = 100;
 			this.trkScrollFrame.Name = "trkScrollFrame";
-			this.trkScrollFrame.Size = new System.Drawing.Size(280, 42);
+			this.trkScrollFrame.Size = new System.Drawing.Size(280, 45);
 			this.trkScrollFrame.TabIndex = 2;
 			this.trkScrollFrame.TickFrequency = 5;
 			this.trkScrollFrame.ValueChanged += new System.EventHandler(this.trkScrollFrame_ValueChanged);
@@ -1000,7 +1009,37 @@ namespace rcm
 			this.btnCancel.Text = "キャンセル";
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
-			// frmConfig
+			// chkInvertWheel
+			// 
+			this.chkInvertWheel.AutoSize = true;
+			this.chkInvertWheel.Location = new System.Drawing.Point(16, 173);
+			this.chkInvertWheel.Name = "chkInvertWheel";
+			this.chkInvertWheel.Size = new System.Drawing.Size(181, 16);
+			this.chkInvertWheel.TabIndex = 6;
+			this.chkInvertWheel.Text = "マウスホイールの拡大縮小を反転";
+			this.chkInvertWheel.UseVisualStyleBackColor = true;
+			// 
+			// chkInvertRotateX
+			// 
+			this.chkInvertRotateX.AutoSize = true;
+			this.chkInvertRotateX.Location = new System.Drawing.Point(16, 195);
+			this.chkInvertRotateX.Name = "chkInvertRotateX";
+			this.chkInvertRotateX.Size = new System.Drawing.Size(129, 16);
+			this.chkInvertRotateX.TabIndex = 7;
+			this.chkInvertRotateX.Text = "左右回転方向を反転";
+			this.chkInvertRotateX.UseVisualStyleBackColor = true;
+			// 
+			// chkInvertRotateY
+			// 
+			this.chkInvertRotateY.AutoSize = true;
+			this.chkInvertRotateY.Location = new System.Drawing.Point(151, 195);
+			this.chkInvertRotateY.Name = "chkInvertRotateY";
+			this.chkInvertRotateY.Size = new System.Drawing.Size(129, 16);
+			this.chkInvertRotateY.TabIndex = 8;
+			this.chkInvertRotateY.Text = "上下回転方向を反転";
+			this.chkInvertRotateY.UseVisualStyleBackColor = true;
+			// 
+			// ConfigForm
 			// 
 			this.AcceptButton = this.btnOK;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
@@ -1013,11 +1052,11 @@ namespace rcm
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "frmConfig";
+			this.Name = "ConfigForm";
 			this.ShowInTaskbar = false;
 			this.Text = "各種設定";
-			this.Load += new System.EventHandler(this.frmConfig_Load);
 			this.Closing += new System.ComponentModel.CancelEventHandler(this.frmConfig_Closing);
+			this.Load += new System.EventHandler(this.frmConfig_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
@@ -1113,6 +1152,9 @@ namespace rcm
 			chkUnbisibleUnselectable.Checked = optEdit.UnvisibleNotSelected;
 			trkScrollFrame.Value = optEdit.ScrollFrameNum;
 			chkAttrAutoApply.Checked = optEdit.AttributeAutoApply;
+			chkInvertWheel.Checked = optEdit.InvertWheel;
+			chkInvertRotateX.Checked = optEdit.InvertRotateX;
+			chkInvertRotateY.Checked = optEdit.InvertRotateY;
 
 		}
 
@@ -1126,15 +1168,18 @@ namespace rcm
 			mainwindow.SetListBackColor();
 		}
 
-		private void buildEditOption(RcEditOptions target) {
+		private void buildEditOption(EditOptions target) {
 			if (target == null) target = optEdit;
 			target.ConvertParentAttributes = chkAttrCopy.Checked;
 			target.UnvisibleNotSelected = chkUnbisibleUnselectable.Checked;
 			target.ScrollFrameNum = trkScrollFrame.Value;
 			target.AttributeAutoApply = chkAttrAutoApply.Checked;
+			target.InvertWheel = chkInvertWheel.Checked;
+			target.InvertRotateX = chkInvertRotateX.Checked;
+			target.InvertRotateY = chkInvertRotateY.Checked;
 		}
 
-		private void buildDrawOption(RcDrawOptions target) {
+		private void buildDrawOption(DrawOptions target) {
 			if (target == null) target = optDraw;
 			target.BaloonSwelling = chkBaloonSwell.Checked;
 			target.ShowCowl = chkShowCowl.Checked;
@@ -1177,7 +1222,7 @@ namespace rcm
 			target.WeightBallColor = clrWeightGuide.BackColor;
 		}
 
-		private void buildOutputOption(RcOutputOptions target) {
+		private void buildOutputOption(OutputOptions target) {
 			if (target == null) target = optOutput;
 			target.CommaWithSpace = chkCommaWithSpace.Checked;
 			target.IndentBySpace = chkIndentBySpace.Checked;
@@ -1240,7 +1285,7 @@ namespace rcm
 		}
 
 		private void updateOutputPreview(object sender, EventArgs e) {
-			RcOutputOptions opt = new RcOutputOptions(true);
+			OutputOptions opt = new OutputOptions(true);
 			buildOutputOption(opt);
 
 			txtOutputSample.Text = chipSample.ToString(0, opt).Replace("\n", "\r\n");

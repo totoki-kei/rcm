@@ -14,20 +14,14 @@ using Microsoft.DirectX.Direct3D;
 using RigidChips;
 using System.Collections.Generic;
 using System.Diagnostics;
-
+using System.Linq;
 
 namespace rcm {
 
 	///<summery>
 	///メインフォーム。
 	///</summery>
-	public class frmMain : System.Windows.Forms.Form {
-		class PanelEx : Panel {
-			protected override bool IsInputKey(Keys keyData) {
-				return true;
-			}
-		}
-
+	public class MainForm : System.Windows.Forms.Form {
 		struct DragSign {
 			public bool Draging;
 			public int StartX, StartY;
@@ -46,7 +40,7 @@ namespace rcm {
 
 		class UndoInfo {
 			public UndoType type = UndoType.None;
-			public RcChipBase[] chips = null;
+			public ChipBase[] chips = null;
 			public UndoInfo next = null;
 		}
 
@@ -84,17 +78,17 @@ namespace rcm {
 		const double RadToDeg = 180.0 / Math.PI;
 		const double DegToRad = Math.PI / 180.0;
 
-		RcChipBase clipboard = null;
-		RcJointPosition jointPositionBuffer = RcJointPosition.NULL;
+		ChipBase clipboard = null;
+		JointPosition jointPositionBuffer = JointPosition.NULL;
 
-		public RcData rcdata;
-		RcDrawOptions drawOption = new RcDrawOptions();
-		RcOutputOptions outputOption = new RcOutputOptions();
-		RcEditOptions editOption = new RcEditOptions();
-		RcXFile weightBall;
-		RcXFile multiSelCursor;
+		public RigidChips.Environment rcdata;
+		DrawOptions drawOption = new DrawOptions();
+		OutputOptions outputOption = new OutputOptions();
+		EditOptions editOption = new EditOptions();
+		RigidChips.XFile weightBall;
+		RigidChips.XFile multiSelCursor;
 
-		frmConfig configwindow;
+		ConfigForm configwindow;
 
 		bool modified;
 		bool parameterChanged;
@@ -272,8 +266,8 @@ namespace rcm {
 		const int Msg_RcLoadEnd = 2;
 		int WM_RIGIDCHIP_LOAD;
 
-		private rcm.frmTree treeview;
-		private rcm.frmScript scriptform;
+		private rcm.TreeForm treeview;
+		private rcm.ScriptForm scriptform;
 		private System.Windows.Forms.Panel panelCtrl;
 		private System.Windows.Forms.ListBox lstSouth;
 		private System.Windows.Forms.ListBox lstNorth;
@@ -322,7 +316,7 @@ namespace rcm {
 		private System.Windows.Forms.MenuItem miReverseX;
 		private System.Windows.Forms.MenuItem miReverseY;
 		private System.Windows.Forms.MenuItem miReverseZ;
-		private frmMain.PanelEx pictTarget;
+		private PanelEx pictTarget;
 		//private System.Windows.Forms.PictureBox pictTarget;
 		private System.Windows.Forms.PictureBox pictAngle;
 		private System.Windows.Forms.OpenFileDialog dlgOpen;
@@ -331,50 +325,50 @@ namespace rcm {
 		private System.Windows.Forms.ComboBox[] cmbAttrItems;
 		private System.Windows.Forms.MenuItem[] miChangeTypeList;
 
-		public frmMain(string[] args) {
+		public MainForm(string[] args) {
 			//
 			// Windows フォーム デザイナ サポートに必要です。
 			//
 			InitializeComponent();
 
-			#region	凡調なる配列の作成
-			labelAttrItems = new Label[10];
-			labelAttrItems[0] = labelAttrItem0;
-			labelAttrItems[1] = labelAttrItem1;
-			labelAttrItems[2] = labelAttrItem2;
-			labelAttrItems[3] = labelAttrItem3;
-			labelAttrItems[4] = labelAttrItem4;
-			labelAttrItems[5] = labelAttrItem5;
-			labelAttrItems[6] = labelAttrItem6;
-			labelAttrItems[7] = labelAttrItem7;
-			labelAttrItems[8] = labelAttrItem8;
-			labelAttrItems[9] = labelAttrItem9;
-			cmbAttrItems = new ComboBox[10];
-			cmbAttrItems[0] = cmbAttrItem0;
-			cmbAttrItems[1] = cmbAttrItem1;
-			cmbAttrItems[2] = cmbAttrItem2;
-			cmbAttrItems[3] = cmbAttrItem3;
-			cmbAttrItems[4] = cmbAttrItem4;
-			cmbAttrItems[5] = cmbAttrItem5;
-			cmbAttrItems[6] = cmbAttrItem6;
-			cmbAttrItems[7] = cmbAttrItem7;
-			cmbAttrItems[8] = cmbAttrItem8;
-			cmbAttrItems[9] = cmbAttrItem9;
-			miChangeTypeList = new MenuItem[13];
-			miChangeTypeList[0] = null;
-			miChangeTypeList[1] = miChangeChip;
-			miChangeTypeList[2] = miChangeRudder;
-			miChangeTypeList[3] = miChangeTrim;
-			miChangeTypeList[4] = miChangeFrame;
-			miChangeTypeList[5] = miChangeRudderF;
-			miChangeTypeList[6] = miChangeTrimF;
-			miChangeTypeList[7] = miChangeWheel;
-			miChangeTypeList[8] = miChangeRLW;
-			miChangeTypeList[9] = miChangeJet;
-			miChangeTypeList[10] = miChangeWeight;
-			miChangeTypeList[11] = miChangeCowl;
-			miChangeTypeList[12] = miChangeArm;
-			#endregion
+			labelAttrItems = new Label[10] {
+				labelAttrItem0,
+				labelAttrItem1,
+				labelAttrItem2,
+				labelAttrItem3,
+				labelAttrItem4,
+				labelAttrItem5,
+				labelAttrItem6,
+				labelAttrItem7,
+				labelAttrItem8,
+				labelAttrItem9,
+			};
+			cmbAttrItems = new ComboBox[10] {
+				cmbAttrItem0,
+				cmbAttrItem1,
+				cmbAttrItem2,
+				cmbAttrItem3,
+				cmbAttrItem4,
+				cmbAttrItem5,
+				cmbAttrItem6,
+				cmbAttrItem7,
+				cmbAttrItem8,
+				cmbAttrItem9, };
+			miChangeTypeList = new MenuItem[13] {
+				null,
+				miChangeChip,
+				miChangeRudder,
+				miChangeTrim,
+				miChangeFrame,
+				miChangeRudderF,
+				miChangeTrimF,
+				miChangeWheel,
+				miChangeRLW,
+				miChangeJet,
+				miChangeWeight,
+				miChangeCowl,
+				miChangeArm,
+			};
 			//Color clr = Color.FromArgb(0);
 			//for (KnownColor i = KnownColor.ActiveBorder;
 			//    i <= KnownColor.YellowGreen; i++) {
@@ -409,7 +403,7 @@ namespace rcm {
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.mnuMain = new System.Windows.Forms.MainMenu(this.components);
 			this.miFile = new System.Windows.Forms.MenuItem();
 			this.miFileNew = new System.Windows.Forms.MenuItem();
@@ -461,8 +455,6 @@ namespace rcm {
 			this.miHelpVersion = new System.Windows.Forms.MenuItem();
 			this.labelTip = new System.Windows.Forms.Label();
 			this.imgIcons = new System.Windows.Forms.ImageList(this.components);
-			this.pictTarget = new rcm.frmMain.PanelEx();
-			this.btnEditPanel = new System.Windows.Forms.Button();
 			this.panelCtrl = new System.Windows.Forms.Panel();
 			this.btnListAdd = new System.Windows.Forms.Button();
 			this.btnRootChip = new System.Windows.Forms.Button();
@@ -615,7 +607,8 @@ namespace rcm {
 			this.tsbCowlMode = new System.Windows.Forms.ToolStripButton();
 			this.tsbArmMode = new System.Windows.Forms.ToolStripButton();
 			this.dlgColor = new System.Windows.Forms.ColorDialog();
-			this.pictTarget.SuspendLayout();
+			this.pictTarget = new rcm.PanelEx();
+			this.btnEditPanel = new System.Windows.Forms.Button();
 			this.panelCtrl.SuspendLayout();
 			this.panelAttr.SuspendLayout();
 			this.panelAttrValue.SuspendLayout();
@@ -630,6 +623,7 @@ namespace rcm {
 			this.toolStripContainer1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
+			this.pictTarget.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mnuMain
@@ -990,7 +984,7 @@ namespace rcm {
 			this.labelTip.Dock = System.Windows.Forms.DockStyle.Top;
 			this.labelTip.Location = new System.Drawing.Point(0, 0);
 			this.labelTip.Name = "labelTip";
-			this.labelTip.Size = new System.Drawing.Size(468, 15);
+			this.labelTip.Size = new System.Drawing.Size(674, 15);
 			this.labelTip.TabIndex = 8;
 			this.labelTip.Text = "Welcome to 喪寺 -RigidChips Modeler- Ver.0.4β";
 			this.labelTip.Click += new System.EventHandler(this.labelTip_Click);
@@ -1022,40 +1016,6 @@ namespace rcm {
 			this.imgIcons.Images.SetKeyName(20, "");
 			this.imgIcons.Images.SetKeyName(21, "");
 			// 
-			// pictTarget
-			// 
-			this.pictTarget.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pictTarget.Controls.Add(this.btnEditPanel);
-			this.pictTarget.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictTarget.Location = new System.Drawing.Point(0, 15);
-			this.pictTarget.Name = "pictTarget";
-			this.pictTarget.Size = new System.Drawing.Size(468, 453);
-			this.pictTarget.TabIndex = 11;
-			this.pictTarget.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyUp);
-			this.pictTarget.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
-			this.pictTarget.Click += new System.EventHandler(this.pictTarget_Click);
-			this.pictTarget.Paint += new System.Windows.Forms.PaintEventHandler(this.pictTarget_Paint);
-			this.pictTarget.GotFocus += new System.EventHandler(this.pictTarget_FocusChanged);
-			this.pictTarget.LostFocus += new System.EventHandler(this.pictTarget_FocusChanged);
-			this.pictTarget.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictTarget_MouseDown);
-			this.pictTarget.MouseEnter += new System.EventHandler(this.pictTarget_FocusChanged);
-			this.pictTarget.MouseLeave += new System.EventHandler(this.pictTarget_FocusChanged);
-			this.pictTarget.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictTarget_MouseMove);
-			this.pictTarget.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictTarget_MouseUp);
-			this.pictTarget.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.pictTarget_MouseWheel);
-			this.pictTarget.Resize += new System.EventHandler(this.pictTarget_Resize);
-			// 
-			// btnEditPanel
-			// 
-			this.btnEditPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnEditPanel.Location = new System.Drawing.Point(429, 71);
-			this.btnEditPanel.Name = "btnEditPanel";
-			this.btnEditPanel.Size = new System.Drawing.Size(32, 24);
-			this.btnEditPanel.TabIndex = 12;
-			this.btnEditPanel.TabStop = false;
-			this.btnEditPanel.Text = ">>";
-			this.btnEditPanel.Click += new System.EventHandler(this.btnEditPanel_Click);
-			// 
 			// panelCtrl
 			// 
 			this.panelCtrl.Controls.Add(this.btnListAdd);
@@ -1072,9 +1032,9 @@ namespace rcm {
 			this.panelCtrl.Controls.Add(this.buttonSelChip);
 			this.panelCtrl.Controls.Add(this.tabGI);
 			this.panelCtrl.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panelCtrl.Location = new System.Drawing.Point(468, 0);
+			this.panelCtrl.Location = new System.Drawing.Point(674, 0);
 			this.panelCtrl.Name = "panelCtrl";
-			this.panelCtrl.Size = new System.Drawing.Size(264, 468);
+			this.panelCtrl.Size = new System.Drawing.Size(270, 617);
 			this.panelCtrl.TabIndex = 10;
 			this.panelCtrl.Paint += new System.Windows.Forms.PaintEventHandler(this.panelB_Paint);
 			// 
@@ -1090,7 +1050,7 @@ namespace rcm {
 			// 
 			// btnRootChip
 			// 
-			this.btnRootChip.Location = new System.Drawing.Point(0, 24);
+			this.btnRootChip.Location = new System.Drawing.Point(11, 24);
 			this.btnRootChip.Name = "btnRootChip";
 			this.btnRootChip.Size = new System.Drawing.Size(60, 32);
 			this.btnRootChip.TabIndex = 1;
@@ -1099,7 +1059,7 @@ namespace rcm {
 			// 
 			// btnKey
 			// 
-			this.btnKey.Location = new System.Drawing.Point(204, 136);
+			this.btnKey.Location = new System.Drawing.Point(187, 142);
 			this.btnKey.Name = "btnKey";
 			this.btnKey.Size = new System.Drawing.Size(60, 24);
 			this.btnKey.TabIndex = 8;
@@ -1108,7 +1068,7 @@ namespace rcm {
 			// 
 			// btnVal
 			// 
-			this.btnVal.Location = new System.Drawing.Point(204, 112);
+			this.btnVal.Location = new System.Drawing.Point(187, 112);
 			this.btnVal.Name = "btnVal";
 			this.btnVal.Size = new System.Drawing.Size(60, 24);
 			this.btnVal.TabIndex = 7;
@@ -1122,9 +1082,9 @@ namespace rcm {
 			this.panelAttr.Controls.Add(this.splAttr);
 			this.panelAttr.Controls.Add(this.panelAttrName);
 			this.panelAttr.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panelAttr.Location = new System.Drawing.Point(0, 244);
+			this.panelAttr.Location = new System.Drawing.Point(0, 393);
 			this.panelAttr.Name = "panelAttr";
-			this.panelAttr.Size = new System.Drawing.Size(264, 224);
+			this.panelAttr.Size = new System.Drawing.Size(270, 224);
 			this.panelAttr.TabIndex = 10;
 			// 
 			// panelAttrValue
@@ -1143,7 +1103,7 @@ namespace rcm {
 			this.panelAttrValue.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelAttrValue.Location = new System.Drawing.Point(104, 0);
 			this.panelAttrValue.Name = "panelAttrValue";
-			this.panelAttrValue.Size = new System.Drawing.Size(156, 220);
+			this.panelAttrValue.Size = new System.Drawing.Size(162, 220);
 			this.panelAttrValue.TabIndex = 2;
 			// 
 			// cmbAttrItem9
@@ -1155,7 +1115,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem9.Location = new System.Drawing.Point(0, 196);
 			this.cmbAttrItem9.Name = "cmbAttrItem9";
-			this.cmbAttrItem9.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem9.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem9.TabIndex = 20;
 			this.cmbAttrItem9.Text = "comboBox1";
 			this.cmbAttrItem9.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1171,7 +1131,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem8.Location = new System.Drawing.Point(0, 176);
 			this.cmbAttrItem8.Name = "cmbAttrItem8";
-			this.cmbAttrItem8.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem8.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem8.TabIndex = 19;
 			this.cmbAttrItem8.Text = "comboBox1";
 			this.cmbAttrItem8.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1187,7 +1147,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem7.Location = new System.Drawing.Point(0, 156);
 			this.cmbAttrItem7.Name = "cmbAttrItem7";
-			this.cmbAttrItem7.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem7.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem7.TabIndex = 18;
 			this.cmbAttrItem7.Text = "comboBox1";
 			this.cmbAttrItem7.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1203,7 +1163,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem6.Location = new System.Drawing.Point(0, 136);
 			this.cmbAttrItem6.Name = "cmbAttrItem6";
-			this.cmbAttrItem6.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem6.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem6.TabIndex = 17;
 			this.cmbAttrItem6.Text = "cmbAttrItem6";
 			this.cmbAttrItem6.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1219,7 +1179,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem5.Location = new System.Drawing.Point(0, 116);
 			this.cmbAttrItem5.Name = "cmbAttrItem5";
-			this.cmbAttrItem5.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem5.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem5.TabIndex = 16;
 			this.cmbAttrItem5.Text = "cmbAttrItem5";
 			this.cmbAttrItem5.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1235,7 +1195,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem4.Location = new System.Drawing.Point(0, 96);
 			this.cmbAttrItem4.Name = "cmbAttrItem4";
-			this.cmbAttrItem4.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem4.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem4.TabIndex = 15;
 			this.cmbAttrItem4.Text = "cmbAttrItem4";
 			this.cmbAttrItem4.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1251,7 +1211,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem3.Location = new System.Drawing.Point(0, 76);
 			this.cmbAttrItem3.Name = "cmbAttrItem3";
-			this.cmbAttrItem3.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem3.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem3.TabIndex = 14;
 			this.cmbAttrItem3.Text = "cmbAttrItem3";
 			this.cmbAttrItem3.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1267,7 +1227,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem2.Location = new System.Drawing.Point(0, 56);
 			this.cmbAttrItem2.Name = "cmbAttrItem2";
-			this.cmbAttrItem2.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem2.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem2.TabIndex = 13;
 			this.cmbAttrItem2.Text = "cmbAttrItem2";
 			this.cmbAttrItem2.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1283,7 +1243,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem1.Location = new System.Drawing.Point(0, 36);
 			this.cmbAttrItem1.Name = "cmbAttrItem1";
-			this.cmbAttrItem1.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem1.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem1.TabIndex = 12;
 			this.cmbAttrItem1.Text = "cmbAttrItem1";
 			this.cmbAttrItem1.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1299,7 +1259,7 @@ namespace rcm {
             "(使用可能な変数はありません)"});
 			this.cmbAttrItem0.Location = new System.Drawing.Point(0, 16);
 			this.cmbAttrItem0.Name = "cmbAttrItem0";
-			this.cmbAttrItem0.Size = new System.Drawing.Size(156, 20);
+			this.cmbAttrItem0.Size = new System.Drawing.Size(162, 20);
 			this.cmbAttrItem0.TabIndex = 21;
 			this.cmbAttrItem0.Text = "comboBox1";
 			this.cmbAttrItem0.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
@@ -1313,7 +1273,7 @@ namespace rcm {
 			this.labelAttrValue.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.labelAttrValue.Location = new System.Drawing.Point(0, 0);
 			this.labelAttrValue.Name = "labelAttrValue";
-			this.labelAttrValue.Size = new System.Drawing.Size(156, 16);
+			this.labelAttrValue.Size = new System.Drawing.Size(162, 16);
 			this.labelAttrValue.TabIndex = 1;
 			this.labelAttrValue.Text = "値";
 			// 
@@ -1488,9 +1448,9 @@ namespace rcm {
 			// txtName
 			// 
 			this.txtName.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.txtName.Location = new System.Drawing.Point(166, 37);
+			this.txtName.Location = new System.Drawing.Point(110, 187);
 			this.txtName.Name = "txtName";
-			this.txtName.Size = new System.Drawing.Size(98, 19);
+			this.txtName.Size = new System.Drawing.Size(140, 19);
 			this.txtName.TabIndex = 10;
 			this.txtName.TextChanged += new System.EventHandler(this.ChipInfo_TextChanged);
 			this.txtName.Enter += new System.EventHandler(this.txtAttrs_Enter);
@@ -1499,7 +1459,7 @@ namespace rcm {
 			// 
 			// labelName
 			// 
-			this.labelName.Location = new System.Drawing.Point(164, 24);
+			this.labelName.Location = new System.Drawing.Point(108, 174);
 			this.labelName.Name = "labelName";
 			this.labelName.Size = new System.Drawing.Size(48, 16);
 			this.labelName.TabIndex = 8;
@@ -1511,7 +1471,7 @@ namespace rcm {
 			this.lstSouth.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.lstSouth.IntegralHeight = false;
 			this.lstSouth.ItemHeight = 12;
-			this.lstSouth.Location = new System.Drawing.Point(100, 112);
+			this.lstSouth.Location = new System.Drawing.Point(77, 112);
 			this.lstSouth.Name = "lstSouth";
 			this.lstSouth.Size = new System.Drawing.Size(104, 56);
 			this.lstSouth.TabIndex = 4;
@@ -1573,7 +1533,7 @@ namespace rcm {
 			this.lstNorth.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.lstNorth.IntegralHeight = false;
 			this.lstNorth.ItemHeight = 12;
-			this.lstNorth.Location = new System.Drawing.Point(60, 0);
+			this.lstNorth.Location = new System.Drawing.Point(77, 0);
 			this.lstNorth.Name = "lstNorth";
 			this.lstNorth.Size = new System.Drawing.Size(104, 56);
 			this.lstNorth.TabIndex = 2;
@@ -1649,7 +1609,7 @@ namespace rcm {
 			this.tabGI.Alignment = System.Windows.Forms.TabAlignment.Bottom;
 			this.tabGI.Controls.Add(this.tpAngle);
 			this.tabGI.Controls.Add(this.tpPalette);
-			this.tabGI.Location = new System.Drawing.Point(0, 112);
+			this.tabGI.Location = new System.Drawing.Point(4, 174);
 			this.tabGI.Multiline = true;
 			this.tabGI.Name = "tabGI";
 			this.tabGI.SelectedIndex = 0;
@@ -2036,11 +1996,11 @@ namespace rcm {
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.pictTarget);
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.labelTip);
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.panelCtrl);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(732, 468);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(944, 617);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
 			this.toolStripContainer1.Name = "toolStripContainer1";
-			this.toolStripContainer1.Size = new System.Drawing.Size(732, 493);
+			this.toolStripContainer1.Size = new System.Drawing.Size(944, 648);
 			this.toolStripContainer1.TabIndex = 13;
 			this.toolStripContainer1.Text = "toolStripContainer1";
 			// 
@@ -2053,6 +2013,7 @@ namespace rcm {
 			// menuStrip1
 			// 
 			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ファイルFToolStripMenuItem,
             this.編集EToolStripMenuItem,
@@ -2062,7 +2023,7 @@ namespace rcm {
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-			this.menuStrip1.Size = new System.Drawing.Size(365, 26);
+			this.menuStrip1.Size = new System.Drawing.Size(315, 24);
 			this.menuStrip1.TabIndex = 14;
 			this.menuStrip1.Text = "menuStrip1";
 			this.menuStrip1.Visible = false;
@@ -2080,65 +2041,65 @@ namespace rcm {
             this.toolStripSeparator2,
             this.終了ToolStripMenuItem});
 			this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
-			this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(85, 22);
+			this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
 			this.ファイルFToolStripMenuItem.Text = "ファイル(&F)";
 			// 
 			// 新規作成ToolStripMenuItem
 			// 
 			this.新規作成ToolStripMenuItem.Name = "新規作成ToolStripMenuItem";
-			this.新規作成ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.新規作成ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.新規作成ToolStripMenuItem.Text = "新規作成(&N)";
 			this.新規作成ToolStripMenuItem.Click += new System.EventHandler(this.miFileNew_Click);
 			// 
 			// 開くToolStripMenuItem
 			// 
 			this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-			this.開くToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.開くToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.開くToolStripMenuItem.Text = "開く(&O)";
 			this.開くToolStripMenuItem.Click += new System.EventHandler(this.miFileOpen_Click);
 			// 
 			// 上書き保存ToolStripMenuItem
 			// 
 			this.上書き保存ToolStripMenuItem.Name = "上書き保存ToolStripMenuItem";
-			this.上書き保存ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.上書き保存ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.上書き保存ToolStripMenuItem.Text = "上書き保存(&S)";
 			this.上書き保存ToolStripMenuItem.Click += new System.EventHandler(this.miFileSave_Click);
 			// 
 			// 名前をつけて保存ToolStripMenuItem
 			// 
 			this.名前をつけて保存ToolStripMenuItem.Name = "名前をつけて保存ToolStripMenuItem";
-			this.名前をつけて保存ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.名前をつけて保存ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.名前をつけて保存ToolStripMenuItem.Text = "名前をつけて保存(&A)";
 			this.名前をつけて保存ToolStripMenuItem.Click += new System.EventHandler(this.miFileSaveAs_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
 			// 
 			// rCDTXTを開くToolStripMenuItem
 			// 
 			this.rCDTXTを開くToolStripMenuItem.Name = "rCDTXTを開くToolStripMenuItem";
-			this.rCDTXTを開くToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.rCDTXTを開くToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.rCDTXTを開くToolStripMenuItem.Text = "RCD/TXTを開く(&I)";
 			this.rCDTXTを開くToolStripMenuItem.Click += new System.EventHandler(this.miFileImport_Click);
 			// 
 			// rCDで保存ToolStripMenuItem
 			// 
 			this.rCDで保存ToolStripMenuItem.Name = "rCDで保存ToolStripMenuItem";
-			this.rCDで保存ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.rCDで保存ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.rCDで保存ToolStripMenuItem.Text = "RCDで保存(&E)";
 			this.rCDで保存ToolStripMenuItem.Click += new System.EventHandler(this.miFileExport_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
 			// 
 			// 終了ToolStripMenuItem
 			// 
 			this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-			this.終了ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+			this.終了ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.終了ToolStripMenuItem.Text = "終了(&Q)";
 			this.終了ToolStripMenuItem.Click += new System.EventHandler(this.miFileQuit_Click);
 			// 
@@ -2153,72 +2114,73 @@ namespace rcm {
             this.選択SToolStripMenuItem,
             this.モデル情報SToolStripMenuItem});
 			this.編集EToolStripMenuItem.Name = "編集EToolStripMenuItem";
-			this.編集EToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
+			this.編集EToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
 			this.編集EToolStripMenuItem.Text = "編集(&E)";
 			// 
 			// 切り取りTToolStripMenuItem
 			// 
 			this.切り取りTToolStripMenuItem.Name = "切り取りTToolStripMenuItem";
-			this.切り取りTToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.切り取りTToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.切り取りTToolStripMenuItem.Text = "切り取り(&T)";
 			// 
 			// コピーCToolStripMenuItem
 			// 
 			this.コピーCToolStripMenuItem.Name = "コピーCToolStripMenuItem";
-			this.コピーCToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.コピーCToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.コピーCToolStripMenuItem.Text = "コピー(&C)";
 			// 
 			// 貼り付けPToolStripMenuItem
 			// 
 			this.貼り付けPToolStripMenuItem.Name = "貼り付けPToolStripMenuItem";
-			this.貼り付けPToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.貼り付けPToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.貼り付けPToolStripMenuItem.Text = "削除(&D)";
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(148, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(134, 6);
 			// 
 			// 視点変更VToolStripMenuItem
 			// 
 			this.視点変更VToolStripMenuItem.Name = "視点変更VToolStripMenuItem";
-			this.視点変更VToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.視点変更VToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.視点変更VToolStripMenuItem.Text = "視点変更(&V)";
 			// 
 			// 選択SToolStripMenuItem
 			// 
 			this.選択SToolStripMenuItem.Name = "選択SToolStripMenuItem";
-			this.選択SToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.選択SToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.選択SToolStripMenuItem.Text = "選択(&S)";
 			// 
 			// モデル情報SToolStripMenuItem
 			// 
 			this.モデル情報SToolStripMenuItem.Name = "モデル情報SToolStripMenuItem";
-			this.モデル情報SToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.モデル情報SToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.モデル情報SToolStripMenuItem.Text = "モデル情報(&I)";
 			// 
 			// ツールTToolStripMenuItem
 			// 
 			this.ツールTToolStripMenuItem.Name = "ツールTToolStripMenuItem";
-			this.ツールTToolStripMenuItem.Size = new System.Drawing.Size(74, 22);
+			this.ツールTToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
 			this.ツールTToolStripMenuItem.Text = "ツール(&T)";
 			// 
 			// 設定CToolStripMenuItem
 			// 
 			this.設定CToolStripMenuItem.Name = "設定CToolStripMenuItem";
-			this.設定CToolStripMenuItem.Size = new System.Drawing.Size(62, 22);
+			this.設定CToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
 			this.設定CToolStripMenuItem.Text = "設定(&C)";
 			// 
 			// ヘルプHToolStripMenuItem
 			// 
 			this.ヘルプHToolStripMenuItem.Name = "ヘルプHToolStripMenuItem";
-			this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
+			this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
 			this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
 			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbSelectMode,
             this.tsbCut,
@@ -2249,7 +2211,7 @@ namespace rcm {
 			this.toolStrip1.Location = new System.Drawing.Point(3, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-			this.toolStrip1.Size = new System.Drawing.Size(533, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(643, 31);
 			this.toolStrip1.TabIndex = 15;
 			// 
 			// tsbSelectMode
@@ -2258,7 +2220,7 @@ namespace rcm {
 			this.tsbSelectMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbSelectMode.Image")));
 			this.tsbSelectMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbSelectMode.Name = "tsbSelectMode";
-			this.tsbSelectMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbSelectMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbSelectMode.Text = "選択";
 			this.tsbSelectMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2268,7 +2230,7 @@ namespace rcm {
 			this.tsbCut.Image = ((System.Drawing.Image)(resources.GetObject("tsbCut.Image")));
 			this.tsbCut.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbCut.Name = "tsbCut";
-			this.tsbCut.Size = new System.Drawing.Size(23, 22);
+			this.tsbCut.Size = new System.Drawing.Size(28, 28);
 			this.tsbCut.Text = "現在のチップを切り取り";
 			this.tsbCut.Click += new System.EventHandler(this.tsbCut_Click);
 			// 
@@ -2278,7 +2240,7 @@ namespace rcm {
 			this.tsbCopy.Image = ((System.Drawing.Image)(resources.GetObject("tsbCopy.Image")));
 			this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbCopy.Name = "tsbCopy";
-			this.tsbCopy.Size = new System.Drawing.Size(23, 22);
+			this.tsbCopy.Size = new System.Drawing.Size(28, 28);
 			this.tsbCopy.Text = "現在のチップをコピー";
 			this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
 			// 
@@ -2288,14 +2250,14 @@ namespace rcm {
 			this.tsbPasteMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbPasteMode.Image")));
 			this.tsbPasteMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbPasteMode.Name = "tsbPasteMode";
-			this.tsbPasteMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbPasteMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbPasteMode.Text = "貼り付け";
 			this.tsbPasteMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
 			// 
 			// tsbInsert
 			// 
@@ -2303,7 +2265,7 @@ namespace rcm {
 			this.tsbInsert.Image = ((System.Drawing.Image)(resources.GetObject("tsbInsert.Image")));
 			this.tsbInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbInsert.Name = "tsbInsert";
-			this.tsbInsert.Size = new System.Drawing.Size(23, 22);
+			this.tsbInsert.Size = new System.Drawing.Size(28, 28);
 			this.tsbInsert.Text = "チップを挿入";
 			this.tsbInsert.Click += new System.EventHandler(this.tsbInsert_Click);
 			// 
@@ -2313,14 +2275,14 @@ namespace rcm {
 			this.tsbRemove.Image = ((System.Drawing.Image)(resources.GetObject("tsbRemove.Image")));
 			this.tsbRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbRemove.Name = "tsbRemove";
-			this.tsbRemove.Size = new System.Drawing.Size(23, 22);
+			this.tsbRemove.Size = new System.Drawing.Size(28, 28);
 			this.tsbRemove.Text = "現在のチップを削除";
 			this.tsbRemove.Click += new System.EventHandler(this.tsbRemove_Click);
 			// 
 			// toolStripSeparator4
 			// 
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+			this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
 			// 
 			// tsbZoom
 			// 
@@ -2328,7 +2290,7 @@ namespace rcm {
 			this.tsbZoom.Image = ((System.Drawing.Image)(resources.GetObject("tsbZoom.Image")));
 			this.tsbZoom.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbZoom.Name = "tsbZoom";
-			this.tsbZoom.Size = new System.Drawing.Size(23, 22);
+			this.tsbZoom.Size = new System.Drawing.Size(28, 28);
 			this.tsbZoom.Text = "拡大";
 			this.tsbZoom.Click += new System.EventHandler(this.tsbZoom_Click);
 			// 
@@ -2338,7 +2300,7 @@ namespace rcm {
 			this.tsbMooz.Image = ((System.Drawing.Image)(resources.GetObject("tsbMooz.Image")));
 			this.tsbMooz.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbMooz.Name = "tsbMooz";
-			this.tsbMooz.Size = new System.Drawing.Size(23, 22);
+			this.tsbMooz.Size = new System.Drawing.Size(28, 28);
 			this.tsbMooz.Text = "縮小";
 			this.tsbMooz.Click += new System.EventHandler(this.tsbMooz_Click);
 			// 
@@ -2348,7 +2310,7 @@ namespace rcm {
 			this.tsbCameraMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbCameraMode.Image")));
 			this.tsbCameraMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbCameraMode.Name = "tsbCameraMode";
-			this.tsbCameraMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbCameraMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbCameraMode.Text = "視点";
 			this.tsbCameraMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2359,14 +2321,14 @@ namespace rcm {
 			this.tsbAutoCamera.Image = ((System.Drawing.Image)(resources.GetObject("tsbAutoCamera.Image")));
 			this.tsbAutoCamera.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbAutoCamera.Name = "tsbAutoCamera";
-			this.tsbAutoCamera.Size = new System.Drawing.Size(23, 22);
+			this.tsbAutoCamera.Size = new System.Drawing.Size(28, 28);
 			this.tsbAutoCamera.Text = "カーソル自動追跡";
 			this.tsbAutoCamera.Click += new System.EventHandler(this.tsbAutoCamera_Click);
 			// 
 			// toolStripSeparator5
 			// 
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
-			this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+			this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
 			// 
 			// tsbChipMode
 			// 
@@ -2374,7 +2336,7 @@ namespace rcm {
 			this.tsbChipMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbChipMode.Image")));
 			this.tsbChipMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbChipMode.Name = "tsbChipMode";
-			this.tsbChipMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbChipMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbChipMode.Text = "チップ";
 			this.tsbChipMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2384,7 +2346,7 @@ namespace rcm {
 			this.tsbFrameMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbFrameMode.Image")));
 			this.tsbFrameMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbFrameMode.Name = "tsbFrameMode";
-			this.tsbFrameMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbFrameMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbFrameMode.Text = "フレーム";
 			this.tsbFrameMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2394,7 +2356,7 @@ namespace rcm {
 			this.tsbRudderMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbRudderMode.Image")));
 			this.tsbRudderMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbRudderMode.Name = "tsbRudderMode";
-			this.tsbRudderMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbRudderMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbRudderMode.Text = "ラダー";
 			this.tsbRudderMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2404,7 +2366,7 @@ namespace rcm {
 			this.tsbRudderFMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbRudderFMode.Image")));
 			this.tsbRudderFMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbRudderFMode.Name = "tsbRudderFMode";
-			this.tsbRudderFMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbRudderFMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbRudderFMode.Text = "ラダーフレーム";
 			this.tsbRudderFMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2414,7 +2376,7 @@ namespace rcm {
 			this.tsbTrimMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbTrimMode.Image")));
 			this.tsbTrimMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbTrimMode.Name = "tsbTrimMode";
-			this.tsbTrimMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbTrimMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbTrimMode.Text = "トリム";
 			this.tsbTrimMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2424,14 +2386,14 @@ namespace rcm {
 			this.tsbTrimFMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbTrimFMode.Image")));
 			this.tsbTrimFMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbTrimFMode.Name = "tsbTrimFMode";
-			this.tsbTrimFMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbTrimFMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbTrimFMode.Text = "トリムフレーム";
 			this.tsbTrimFMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
 			// toolStripSeparator6
 			// 
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
-			this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+			this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
 			// 
 			// tsbWheelMode
 			// 
@@ -2439,7 +2401,7 @@ namespace rcm {
 			this.tsbWheelMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbWheelMode.Image")));
 			this.tsbWheelMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbWheelMode.Name = "tsbWheelMode";
-			this.tsbWheelMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbWheelMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbWheelMode.Text = "ホイール";
 			this.tsbWheelMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2449,7 +2411,7 @@ namespace rcm {
 			this.tsbRLWMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbRLWMode.Image")));
 			this.tsbRLWMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbRLWMode.Name = "tsbRLWMode";
-			this.tsbRLWMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbRLWMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbRLWMode.Text = "無反動ホイール";
 			this.tsbRLWMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2459,7 +2421,7 @@ namespace rcm {
 			this.tsbJetMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbJetMode.Image")));
 			this.tsbJetMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbJetMode.Name = "tsbJetMode";
-			this.tsbJetMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbJetMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbJetMode.Text = "ジェット";
 			this.tsbJetMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2469,7 +2431,7 @@ namespace rcm {
 			this.tsbWeightMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbWeightMode.Image")));
 			this.tsbWeightMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbWeightMode.Name = "tsbWeightMode";
-			this.tsbWeightMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbWeightMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbWeightMode.Text = "ウェイト";
 			this.tsbWeightMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2479,7 +2441,7 @@ namespace rcm {
 			this.tsbCowlMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbCowlMode.Image")));
 			this.tsbCowlMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbCowlMode.Name = "tsbCowlMode";
-			this.tsbCowlMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbCowlMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbCowlMode.Text = "カウル";
 			this.tsbCowlMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
@@ -2489,31 +2451,64 @@ namespace rcm {
 			this.tsbArmMode.Image = ((System.Drawing.Image)(resources.GetObject("tsbArmMode.Image")));
 			this.tsbArmMode.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbArmMode.Name = "tsbArmMode";
-			this.tsbArmMode.Size = new System.Drawing.Size(23, 22);
+			this.tsbArmMode.Size = new System.Drawing.Size(28, 28);
 			this.tsbArmMode.Text = "アーム";
 			this.tsbArmMode.Click += new System.EventHandler(this.tsbModeChange_Click);
 			// 
-			// frmMain
+			// pictTarget
+			// 
+			this.pictTarget.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pictTarget.Controls.Add(this.btnEditPanel);
+			this.pictTarget.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictTarget.Location = new System.Drawing.Point(0, 15);
+			this.pictTarget.Name = "pictTarget";
+			this.pictTarget.Size = new System.Drawing.Size(674, 602);
+			this.pictTarget.TabIndex = 11;
+			this.pictTarget.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
+			this.pictTarget.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+			this.pictTarget.Click += new System.EventHandler(this.pictTarget_Click);
+			this.pictTarget.Paint += new System.Windows.Forms.PaintEventHandler(this.pictTarget_Paint);
+			this.pictTarget.GotFocus += new System.EventHandler(this.pictTarget_FocusChanged);
+			this.pictTarget.LostFocus += new System.EventHandler(this.pictTarget_FocusChanged);
+			this.pictTarget.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictTarget_MouseDown);
+			this.pictTarget.MouseEnter += new System.EventHandler(this.pictTarget_FocusChanged);
+			this.pictTarget.MouseLeave += new System.EventHandler(this.pictTarget_FocusChanged);
+			this.pictTarget.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictTarget_MouseMove);
+			this.pictTarget.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictTarget_MouseUp);
+			this.pictTarget.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.pictTarget_MouseWheel);
+			this.pictTarget.Resize += new System.EventHandler(this.pictTarget_Resize);
+			// 
+			// btnEditPanel
+			// 
+			this.btnEditPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnEditPanel.Location = new System.Drawing.Point(429, 71);
+			this.btnEditPanel.Name = "btnEditPanel";
+			this.btnEditPanel.Size = new System.Drawing.Size(32, 24);
+			this.btnEditPanel.TabIndex = 12;
+			this.btnEditPanel.TabStop = false;
+			this.btnEditPanel.Text = ">>";
+			this.btnEditPanel.Click += new System.EventHandler(this.btnEditPanel_Click);
+			// 
+			// MainForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
-			this.ClientSize = new System.Drawing.Size(732, 493);
+			this.ClientSize = new System.Drawing.Size(944, 648);
 			this.Controls.Add(this.toolStripContainer1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.MainMenuStrip = this.menuStrip1;
 			this.Menu = this.mnuMain;
 			this.MinimumSize = new System.Drawing.Size(600, 500);
-			this.Name = "frmMain";
+			this.Name = "MainForm";
 			this.Text = "喪寺";
-			this.Closing += new System.ComponentModel.CancelEventHandler(this.frmMain_Closing);
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
-			this.Load += new System.EventHandler(this.frmMain_Load);
-			this.Click += new System.EventHandler(this.frmMain_Click);
-			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
-			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmMain_KeyPress);
-			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyUp);
-			this.Resize += new System.EventHandler(this.frmMain_Resize);
-			this.pictTarget.ResumeLayout(false);
+			this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+			this.Load += new System.EventHandler(this.MainForm_Load);
+			this.Click += new System.EventHandler(this.MainForm_Click);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
+			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
+			this.Resize += new System.EventHandler(this.MainForm_Resize);
 			this.panelCtrl.ResumeLayout(false);
 			this.panelCtrl.PerformLayout();
 			this.panelAttr.ResumeLayout(false);
@@ -2533,6 +2528,7 @@ namespace rcm {
 			this.menuStrip1.PerformLayout();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
+			this.pictTarget.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -2555,7 +2551,7 @@ namespace rcm {
 							MessageBox.Show(e.Message);
 						}
 			*/
-			frmMain mainform = new frmMain(args);
+			MainForm mainform = new MainForm(args);
 #if !DEBUG
 			try{
 				Application.Run(mainform);
@@ -2621,7 +2617,7 @@ namespace rcm {
 			this.ResumeLayout();
 		}
 
-		private void frmMain_Load(object sender, System.EventArgs e) {
+		private void MainForm_Load(object sender, System.EventArgs e) {
 #if DEBUG
 #if TEST
 			labelTip.Text += "(Test)";
@@ -2672,10 +2668,10 @@ namespace rcm {
 			}
 
 			try {
-				rcdata = new RcData(device, drawOption, outputOption, editOption, resourcepath);
-				weightBall = new RcXFile();
+				rcdata = new RigidChips.Environment(device, drawOption, outputOption, editOption, resourcepath);
+				weightBall = new RigidChips.XFile();
 				weightBall.Load(device, Application.StartupPath + @"\Resources\weight.x");
-				multiSelCursor = new RcXFile();
+				multiSelCursor = new RigidChips.XFile();
 				multiSelCursor.Load(device, Application.StartupPath + @"\Resources\cursor3.x");
 			}
 			catch (FileNotFoundException ex) {
@@ -2699,7 +2695,7 @@ namespace rcm {
 			}
 
 			UpdateCameraPosition(0, 0, 0, Matrix.Identity);
-			configwindow = new frmConfig(this);
+			configwindow = new ConfigForm(this);
 
 			bool buffer = editOption.ConvertParentAttributes;
 			editOption.ConvertParentAttributes = false;
@@ -2714,7 +2710,7 @@ namespace rcm {
 				else {
 					rcdata.headercomment = rcdata.script = "";
 					rcdata.SelectedChip = rcdata.model.root;
-					rcdata.RegisterChip(rcdata.model.root);
+					//rcdata.RegisterChip(rcdata.model.root);
 					infile = new StreamReader(Arguments[0], System.Text.Encoding.Default);
 
 					rcdata.Parse(infile.ReadToEnd());
@@ -2756,7 +2752,7 @@ namespace rcm {
 			this.lstWest.BackColor = Color.FromArgb(drawOption.WGuideColor.R / 2 + 128, drawOption.WGuideColor.G / 2 + 128, drawOption.WGuideColor.B / 2 + 128);
 
 		}
-		private void frmMain_Click(object sender, System.EventArgs e) {
+		private void MainForm_Click(object sender, System.EventArgs e) {
 			pictTarget_Paint(this, null);
 		}
 
@@ -2810,13 +2806,13 @@ namespace rcm {
 						// rcdata.DrawChips(!tbbCursor.Pushed && !tbbCamera.Pushed && panelB.Visible);
 						rcdata.DrawChips(GuideEnabled);
 					else {
-						RcChipBase[] selectedChips = rcdata.SelectedChipList;
+						ChipBase[] selectedChips = rcdata.SelectedChipList;
 						//for (int i = 0; i < rcdata.chipCount; i++) {
 						//    rcdata.GetChipFromLib(i).DrawChip();
 						//}
 						rcdata.DrawChips(false, false);
 						if (rcdata.SelectedChipCount > 0) {
-							foreach (RcChipBase c in selectedChips) {
+							foreach (ChipBase c in selectedChips) {
 								multiSelCursor.Draw(device, drawOption.CursorFrontColor, 0x7000, c.FullMatrix);
 							}
 						}
@@ -2937,7 +2933,7 @@ namespace rcm {
 			if (e.Button == MouseButtons.Right) {
 				LeastIsLeftButton = false;
 
-				RcHitStatus hit = rcdata.model.root.IsHit(MouseX, MouseY, pictTarget.ClientRectangle.Width, pictTarget.ClientRectangle.Height);
+				HitStatus hit = rcdata.model.root.IsHit(MouseX, MouseY, pictTarget.ClientRectangle.Width, pictTarget.ClientRectangle.Height);
 				draging.StartX = draging.PrevX = e.X;
 				draging.StartY = draging.PrevY = e.Y;
 				draging.Draging = (hit.HitChip == null);
@@ -2962,7 +2958,12 @@ namespace rcm {
 				if ((e.Button & MouseButtons.Left) > 0)
 					UpdateCameraPosition(0, 0, draging.PrevX + draging.PrevY - e.X - e.Y, CamNow);
 				else
-					UpdateCameraPosition(e.X - draging.PrevX, draging.PrevY - e.Y, e.Delta, CamNow);
+					UpdateCameraPosition(
+						(editOption.InvertRotateX ? -1 : 1) * (e.X - draging.PrevX),
+						(editOption.InvertRotateY ? -1 : 1) * (draging.PrevY - e.Y),
+						e.Delta,
+						CamNow
+					);
 
 				draging.PrevX = e.X;
 				draging.PrevY = e.Y;
@@ -2973,7 +2974,7 @@ namespace rcm {
 		}
 
 		private void pictTarget_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e) {
-			UpdateCameraPosition(0, 0, e.Delta / 60, CamNow);
+			UpdateCameraPosition(0, 0, (editOption.InvertWheel ? -1 : 1) * e.Delta / 60, CamNow);
 		}
 
 		private void tmr_Tick(object sender, System.EventArgs e) {
@@ -2982,7 +2983,7 @@ namespace rcm {
 				for (int i = 0; i < previewKeys.Length; i++) {
 					bool btn = previewKeys[i];
 					if (btn) {
-						RcKey k = rcdata.keys[i];
+						KeyEntry k = rcdata.keys[i];
 						foreach (var v in k.Works) {
 							v.Target.Tick(v.Step);
 						}
@@ -3031,453 +3032,8 @@ namespace rcm {
 			labelTip.Text = "RigidChipsにメッセージを送信しました。";
 
 		}
-#if false // メソッド整理前
-		private void pictTarget_Click___(object sender, System.EventArgs e) {
-			pictTarget.Focus();
-			RcHitStatus cursors, models;
-			cursors = rcdata.Cursor.IsHit(MouseX, MouseY, pictTarget.ClientRectangle.Width, pictTarget.ClientRectangle.Height);
-			models = rcdata.model.root.IsHit(MouseX, MouseY, pictTarget.ClientRectangle.Width, pictTarget.ClientRectangle.Height);
 
-			RcChipBase clickedChip = cursors.distance > models.distance ? cursors.HitChip : models.HitChip;
-
-			if (!LeastIsLeftButton || draging.Draging) {
-				if (draging.StartX != draging.PrevX || draging.StartY != draging.PrevY) return;
-				if (panelCtrl.Visible && models.HitChip != null) {
-					draging.Draging = false;
-					rcdata.SelectedChip = models.HitChip;
-					ctmChipType.Show(pictTarget, new Point(MouseX, MouseY));
-				}
-			}
-			else if (cursors.HitChip == rcdata.Cursor) {
-				StartScrollCameraPosition(cursors.HitChip.Matrix);
-			}
-			else if (!panelCtrl.Visible) {
-				if (models.HitChip != null) {
-					if (models.HitChip != rcdata.SelectedChip) {
-						if ((Control.ModifierKeys & Keys.Control) == 0) {
-							rcdata.SelectedChip = models.HitChip;
-							labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-								((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-								" (" + rcdata.SelectedChip.Comment + ")" : "");
-						}
-						else {
-							rcdata.AssignSelectedChips(models.HitChip);
-						}
-					}
-				}
-			}
-			else {
-
-				if (editOption.AttributeAutoApply)
-					ApplyChipInfo();
-
-				switch (selectedButton.Text) {
-					case "選択":
-						if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "貼り付け":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								RcChipBase buffer = clipboard.Clone(true, null);
-								buffer.Attach(rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								rcdata.SelectedChip = buffer;
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = "貼り付けを行いました。";
-							}
-							catch (NullReferenceException) {
-								MessageBox.Show("クリップボードは空です。", "追加エラー");
-								return;
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-						break;
-					case "視点":
-						if (models.HitChip != null) {
-							StartScrollCameraPosition(models.HitChip.Matrix);
-						}
-						break;
-					case "チップ":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor && rcdata.SelectedChipCount == 0) {
-							try {
-								rcdata.SelectedChip = new RcChipChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "フレーム":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipFrame(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "ウェイト":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipWeight(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-						break;
-					case "カウル":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipCowl(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + (drawOption.ShowCowl ? "を追加しました。" : "を追加しました。(現在非表示)");
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-									((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-									" (" + rcdata.SelectedChip.Comment + ")" : "");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "ラダー":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipRudder(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "ラダーフレーム":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipRudderF(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "トリム":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipTrim(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "トリムフレーム":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipTrimF(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "ホイール":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipWheel(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "無反動ホイール":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipRLW(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "ジェット":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipJet(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					case "アーム":
-						if (cursors.distance < models.distance && cursors.HitChip != rcdata.Cursor) {
-							try {
-								rcdata.SelectedChip = new RcChipArm(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
-								Modified = true;
-								if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
-								labelTip.Text = selectedButton.Text + "を追加しました。";
-							}
-							catch (Exception err) {
-								MessageBox.Show(err.Message, "追加エラー");
-								return;
-							}
-						}
-						else if (models.HitChip != null) {
-							if (models.HitChip != rcdata.SelectedChip) {
-								if ((Control.ModifierKeys & Keys.Control) == 0) {
-									rcdata.SelectedChip = models.HitChip;
-									labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
-										((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
-										" (" + rcdata.SelectedChip.Comment + ")" : "");
-								}
-								else {
-									rcdata.AssignSelectedChips(models.HitChip);
-								}
-							}
-						}
-
-						break;
-					default:
-						break;
-				}
-				rcdata.CalcWeightCenter();
-				rcdata.CheckBackTrack();
-				pictTarget_Paint(this, null);
-
-
-				//			UpdateCameraPosition(0,0,0,rcdata.Cursor.Matrix);
-			}
-
-		}
-#else
-		private void moveCursor(RcChipBase x) {
+		private void MoveCursor(ChipBase x) {
 			if (x != rcdata.SelectedChip) {
 				if ((Control.ModifierKeys & Keys.Control) == 0) {
 					rcdata.SelectedChip = x;
@@ -3493,11 +3049,11 @@ namespace rcm {
 
 		private void pictTarget_Click(object sender, System.EventArgs e) {
 			pictTarget.Focus();
-			RcHitStatus cursors, models;
+			HitStatus cursors, models;
 			cursors = rcdata.Cursor.IsHit(MouseX, MouseY, pictTarget.ClientRectangle.Width, pictTarget.ClientRectangle.Height, GuideEnabled);
 			models = rcdata.model.root.IsHit(MouseX, MouseY, pictTarget.ClientRectangle.Width, pictTarget.ClientRectangle.Height);
 
-			RcChipBase clickedChip = cursors.distance < models.distance ? cursors.HitChip : models.HitChip;
+			ChipBase clickedChip = cursors.distance < models.distance ? cursors.HitChip : models.HitChip;
 
 
 			if (!LeastIsLeftButton || draging.Draging) {
@@ -3514,17 +3070,17 @@ namespace rcm {
 			// 虚空をクリックしていたときにはここ以降の処理は行わない
 			if (clickedChip == null) return;
 
-			if (clickedChip is RcChipCursor || clickedChip == rcdata.SelectedChip) {
+			if (clickedChip is CursorChip || clickedChip == rcdata.SelectedChip) {
 				// カーソルか、選択中チップの場合は視点移動
 				StartScrollCameraPosition(cursors.HitChip.Matrix);
 				return;
 			}
-			if (!(clickedChip is RcChipGuide) && clickedChip == models.HitChip) {
+			if (!(clickedChip is GuideChip) && clickedChip == models.HitChip) {
 				// ガイドでなければモデル中のチップのはず => 選択(視点移動モードの時は視点移動)
 				if (selectedButton.Text == "視点")
 					StartScrollCameraPosition(clickedChip.Matrix);
 				else
-					moveCursor(clickedChip);
+					MoveCursor(clickedChip);
 				return;
 			}
 
@@ -3537,7 +3093,7 @@ namespace rcm {
 			if (editOption.AttributeAutoApply)
 				ApplyChipInfo();
 
-			Action<RcChipBase> add = x => {
+			void add(ChipBase x) {
 				try {
 					rcdata.SelectedChip = x;
 					Modified = true;
@@ -3548,7 +3104,7 @@ namespace rcm {
 					MessageBox.Show(err.Message, "追加エラー");
 					return;
 				}
-			};
+			}
 
 			switch (selectedButton.Text) {
 				case "選択":
@@ -3557,7 +3113,7 @@ namespace rcm {
 					return;
 				case "貼り付け":
 					try {
-						RcChipBase buffer = clipboard.Clone(true, null);
+						ChipBase buffer = clipboard.Clone(true, null);
 						buffer.Attach(rcdata.SelectedChip, cursors.HitChip.JointPosition);
 						rcdata.SelectedChip = buffer;
 						Modified = true;
@@ -3574,41 +3130,41 @@ namespace rcm {
 					}
 					return;
 				case "チップ":
-					add(new RcChipChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new NormalChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "フレーム":
-					add(new RcChipFrame(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new FrameChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "ウェイト":
-					add(new RcChipWeight(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new WeightChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "ラダー":
-					add(new RcChipRudder(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new RudderChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "ラダーフレーム":
-					add(new RcChipRudderF(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new RudderFrameChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "トリム":
-					add(new RcChipTrim(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new TrimChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "トリムフレーム":
-					add(new RcChipTrimF(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new TrimFrameChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "ホイール":
-					add(new RcChipWheel(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new WheelChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "無反動ホイール":
-					add(new RcChipRLW(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new RLWChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "ジェット":
-					add(new RcChipJet(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new JetChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "アーム":
-					add(new RcChipArm(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
+					add(new ArmChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition));
 					break;
 				case "カウル":
 					try {
-						rcdata.SelectedChip = new RcChipCowl(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
+						rcdata.SelectedChip = new CowlChip(rcdata, rcdata.SelectedChip, cursors.HitChip.JointPosition);
 						Modified = true;
 						if (treeview != null && !treeview.IsDisposed) treeview.UpdateTree(rcdata.SelectedChip);
 						labelTip.Text = selectedButton.Text + (drawOption.ShowCowl ? "を追加しました。" : "を追加しました。(現在非表示)");
@@ -3626,27 +3182,28 @@ namespace rcm {
 					break;
 			}
 			rcdata.CalcWeightCenter();
-			rcdata.CheckBackTrack();
+			//rcdata.CheckBackTrack();
 			pictTarget_Paint(this, null);
 
 
 			//			UpdateCameraPosition(0,0,0,rcdata.Cursor.Matrix);
 
 		}
-#endif
+
 		private void actionCut() {
 			if (rcdata.SelectedChipCount > 0)
 				return;
 			actionCut(rcdata.SelectedChip);
 		}
-		private void actionCut(RcChipBase targetChip) {
+		private void actionCut(ChipBase targetChip) {
 			if (targetChip == null)
 				return;
-			if (targetChip is RcChipCore) {
+			if (targetChip is CoreChip) {
 				labelTip.Text = "コアを切り取ることはできません。";
 				return;
 			}
-			if (Array.Find(rcdata.AllChip, x => x == targetChip) == null) {
+			
+			if (targetChip.Ancestor != rcdata.model.root) {
 				// このチップは登録されていないチップ -> 切り取れない
 				return;
 			}
@@ -3663,11 +3220,11 @@ namespace rcm {
 		private void actionCopy() {
 			actionCopy(rcdata.SelectedChip);
 		}
-		private void actionCopy(RcChipBase targetChip) {
+		private void actionCopy(ChipBase targetChip) {
 			//	コピー動作
 			if (targetChip == null)
 				return;
-			if (targetChip is RcChipCore) {
+			if (targetChip is CoreChip) {
 				labelTip.Text = "コアはコピーできません。";
 				return;
 			}
@@ -3676,16 +3233,17 @@ namespace rcm {
 		}
 
 		private void actionDelete() {
-			if (rcdata.SelectedChip is RcChipCore) {
+			if (rcdata.SelectedChip is CoreChip) {
 				labelTip.Text = "コアは削除できません。";
 				return;
 			}
 			if (rcdata.SelectedChipCount > 0) {
+				// 複数選択時
 				if (MessageBox.Show("選択されている全てのチップを削除します。\n派生チップが存在する場合、それも削除されます。", "複数選択削除確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
-					RcChipBase[] list = rcdata.SelectedChipList;
-					foreach (RcChipBase c in list)
+					ChipBase[] list = rcdata.SelectedChipList;
+					foreach (ChipBase c in list)
 						try {
-							if (!(c is RcChipCore))
+							if (!(c is CoreChip))
 								c.Detach();
 						}
 						catch { }
@@ -3693,7 +3251,7 @@ namespace rcm {
 				}
 				return;
 			}
-			foreach (RcChipBase cb in rcdata.SelectedChip.Child) {
+			foreach (ChipBase cb in rcdata.SelectedChip.Children) {
 				if (cb != null)
 					if (MessageBox.Show("このチップには派生チップが存在します。\n派生チップを含めて削除しますがよろしいですか？", "削除確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
 						== DialogResult.Cancel)
@@ -3701,7 +3259,7 @@ namespace rcm {
 					else
 						break;
 			}
-			RcChipBase buff = rcdata.SelectedChip.Parent;
+			ChipBase buff = rcdata.SelectedChip.Parent;
 			try { rcdata.SelectedChip.Detach(); }
 			catch { };
 			rcdata.SelectedChip = buff;
@@ -3709,12 +3267,12 @@ namespace rcm {
 			if (treeview != null && !treeview.IsDisposed) treeview.GenerateTree();
 			labelTip.Text = "削除しました。";
 		}
-		private void actionDelete(RcChipBase targetChip){
-			if (targetChip is RcChipCore) {
+		private void actionDelete(ChipBase targetChip){
+			if (targetChip is CoreChip) {
 				labelTip.Text = "コアは削除できません。";
 				return;
 			}
-			foreach (RcChipBase cb in targetChip.Child) {
+			foreach (ChipBase cb in targetChip.Children) {
 				if (cb != null)
 					if (MessageBox.Show("このチップには派生チップが存在します。\n派生チップを含めて削除しますがよろしいですか？", "削除確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
 						== DialogResult.Cancel)
@@ -3722,7 +3280,7 @@ namespace rcm {
 					else
 						break;
 			}
-			RcChipBase buff = null;
+			ChipBase buff = null;
 			if (targetChip == rcdata.SelectedChip) buff = targetChip.Parent;
 
 			try { targetChip.Detach(); }
@@ -4216,11 +3774,11 @@ namespace rcm {
 		public void LoadChipInfo() {
 			if (rcdata.SelectedChipCount > 0) {
 				panelCtrl.Enabled = true;
-				RcChipBase[] chips = rcdata.SelectedChipList;
+				ChipBase[] chips = rcdata.SelectedChipList;
 				string[] s = chips[0].AttrNameList;
 				bool[,] enables = new bool[s.Length, 2];
-				RcAttrValue[] values = chips[0].AttrValList;
-				RcAttrValue opp;
+				ChipAttribute[] values = chips[0].AttrValList;
+				ChipAttribute opp;
 				int attrindex = 0;
 				panelAttr.SuspendLayout();
 				for (int i = 0; i < enables.Length / 2; i++)
@@ -4230,9 +3788,9 @@ namespace rcm {
 				foreach (Label l in labelAttrItems)
 					l.Visible = false;
 
-				RcChipBase target;
+				ChipBase target;
 				for (int i = 0; i < s.Length; i++) {
-					foreach (RcChipBase c in chips) {
+					foreach (ChipBase c in chips) {
 						target = c;
 						try {
 							if (Array.Find(target.AttrNameList, x => x == s[i]) == null)
@@ -4301,9 +3859,9 @@ namespace rcm {
 			}
 			else if (rcdata.SelectedChip != null) {
 				panelCtrl.Enabled = true;
-				RcChipBase target = rcdata.SelectedChip;
+				ChipBase target = rcdata.SelectedChip;
 				string[] s = target.AttrNameList;
-				RcAttrValue attr;
+				ChipAttribute attr;
 				if (s == null)
 					s = new string[0];
 				for (int i = 0; i < labelAttrItems.Length; i++) {
@@ -4341,26 +3899,26 @@ namespace rcm {
 				lstEast.Items.Clear(); lstEast.Enabled = true;
 				buttonSelChip.Enabled = true;
 
-				foreach (RcChipBase cb in target.Child) {
+				foreach (ChipBase cb in target.Children) {
 					if (cb != null) {
 						switch (cb.JointPosition) {
-							case RcJointPosition.North:
+							case JointPosition.North:
 								lstNorth.Items.Add(cb);
 								break;
-							case RcJointPosition.East:
+							case JointPosition.East:
 								lstEast.Items.Add(cb);
 								break;
-							case RcJointPosition.South:
+							case JointPosition.South:
 								lstSouth.Items.Add(cb);
 								break;
-							case RcJointPosition.West:
+							case JointPosition.West:
 								lstWest.Items.Add(cb);
 								break;
 						}
 					}
 				}
 
-				buttonSelChip.ImageIndex = (int)(sbyte)RcChipBase.CheckType(target);
+				buttonSelChip.ImageIndex = (int)(sbyte)ChipBase.CheckType(target);
 				//cmbColor.Text = target.ChipColor.ToString();
 
 				txtName.Text = target.Name;
@@ -4395,14 +3953,14 @@ namespace rcm {
 			if (!parameterChanged) return;
 			if (rcdata.SelectedChipCount > 0) {
 				// 複数選択時
-				RcChipBase[] array = rcdata.SelectedChipList;
-				RcAttrValue attr;
-				RcChipBase target;
+				ChipBase[] array = rcdata.SelectedChipList;
+				ChipAttribute attr;
+				ChipBase target;
 				for (int i = 0; i < labelAttrItems.Length; i++) {
 					if (cmbAttrItems[i].Text == "")
 						continue;
 					else if (labelAttrItems[i].Visible) {
-						foreach (RcChipBase o in array) {
+						foreach (ChipBase o in array) {
 							target = o;
 							try {
 								attr = target[labelAttrItems[i].Text];
@@ -4443,8 +4001,8 @@ namespace rcm {
 
 			}
 			else {
-				RcChipBase target = rcdata.SelectedChip;
-				RcAttrValue attr;
+				ChipBase target = rcdata.SelectedChip;
+				ChipAttribute attr;
 				for (int i = 0; i < labelAttrItems.Length; i++) {
 					if (cmbAttrItems[i].Text == "")
 						continue;
@@ -4569,7 +4127,7 @@ namespace rcm {
 			}
 		}
 
-		private void frmMain_Resize(object sender, System.EventArgs e) {
+		private void MainForm_Resize(object sender, System.EventArgs e) {
 			if (this.WindowState != FormWindowState.Minimized)
 				pictTarget.Dock = DockStyle.Fill;
 			//			Pause = (this.WindowState == FormWindowState.Minimized) || (pictTarget.ClientSize.Width <= 0 || pictTarget.ClientSize.Height <= 0);
@@ -4699,7 +4257,7 @@ namespace rcm {
 		private void lstChild_DoubleClick(object sender, System.EventArgs e) {
 			ListBox listtarget = (ListBox)sender;
 			if (listtarget.SelectedIndex != -1) {
-				rcdata.SelectedChip = (RcChipBase)listtarget.SelectedItem;
+				rcdata.SelectedChip = (ChipBase)listtarget.SelectedItem;
 				labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
 					((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 					" (" + rcdata.SelectedChip.Comment + ")" : "");
@@ -4717,7 +4275,7 @@ namespace rcm {
 		}
 
 		private void btnVal_Click(object sender, System.EventArgs e) {
-			frmVals valform = new frmVals(rcdata.vals);
+			ValsForm valform = new ValsForm(rcdata.vals);
 			Pause = true;
 			Modified = (valform.ShowDialog() == DialogResult.Yes);
 			Pause = false;
@@ -4731,7 +4289,7 @@ namespace rcm {
 		private void SetValDropList() {
 			foreach (ComboBox acb in cmbAttrItems) {
 				acb.Items.Clear();
-				foreach (RcVal v in rcdata.vals.List) {
+				foreach (ValEntry v in rcdata.vals.List) {
 					acb.Items.Add(v.ValName);
 					acb.Items.Add("-" + v.ValName);
 				}
@@ -4744,7 +4302,7 @@ namespace rcm {
 			ctmChipType.Show((Control)sender, new Point(((Control)sender).Width / 2, ((Control)sender).Height / 2));
 		}
 
-		private void SetUndo(UndoType type, params RcChipBase[] chips) {
+		private void SetUndo(UndoType type, params ChipBase[] chips) {
 			undo.chips = chips;
 			undo.type = type;
 		}
@@ -4786,15 +4344,14 @@ namespace rcm {
 
 			//labelTip.Text = target.ToString();
 
-			RcAttrValue attr;
-			try {
-				attr = rcdata.SelectedChip["Angle"];
-			}
-			catch {
+			bool hasAngle = rcdata.SelectedChip?.AttrNameList.Contains("Angle") ?? false;
+			if (!hasAngle) {
 				grp.FillRectangle(Brushes.Gray, target);
 				if (selfget) grp.Dispose();
 				return;
 			}
+			ChipAttribute attr;
+			attr = rcdata.SelectedChip["Angle"];
 			grp.FillRectangle(Brushes.Navy, target);
 
 			Pen p = new Pen(Color.Red, 1f);
@@ -4816,8 +4373,8 @@ namespace rcm {
 				p.Color = Color.Yellow;
 				grp.DrawPie(p,
 					target,
-					attr.isNegative ? -attr.Val.Min.Value : attr.Val.Min.Value,
-					attr.isNegative ? attr.Val.Min - attr.Val.Max : attr.Val.Max - attr.Val.Min
+					attr.IsNegative ? -attr.Val.Min.Value : attr.Val.Min.Value,
+					attr.IsNegative ? attr.Val.Min - attr.Val.Max : attr.Val.Max - attr.Val.Min
 					);
 				p.Color = Color.LightGreen;
 			}
@@ -4856,7 +4413,7 @@ namespace rcm {
 
 		private void pictAngle_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e) {
 			if (!angledrag) return;
-			RcAttrValue buff;
+			ChipAttribute buff;
 			if (!Array.Exists(rcdata.SelectedChip.AttrNameList, x => x.Equals("Angle", StringComparison.CurrentCultureIgnoreCase)))
 				return;
 			buff = rcdata.SelectedChip["Angle"];
@@ -4931,47 +4488,47 @@ namespace rcm {
 				m.Enabled = true;
 			miChange.Enabled = true;
 
-			switch (buttonSelChip.ImageIndex) {
-				case 0: //	コア
+			switch (ChipBase.CheckType(rcdata.SelectedChip)) {
+				case ChipType.Core: //	コア
 					miChange.Enabled = false;
 					miCut.Enabled = false;
 					miCopy.Enabled = false;
 					miDelete.Enabled = false;
 					break;
-				case 1:	//	チップ
+				case ChipType.Chip: //	チップ
 					miChangeChip.Enabled = false;
 					goto default;
-				case 2:	//	フレーム
+				case ChipType.Frame:    //	フレーム
 					miChangeFrame.Enabled = false;
 					goto default;
-				case 3:	//	ラダー
+				case ChipType.Rudder:   //	ラダー
 					miChangeRudder.Enabled = false;
 					goto default;
-				case 4:	//	ラダーフレーム
+				case ChipType.RudderF:  //	ラダーフレーム
 					miChangeRudderF.Enabled = false;
 					goto default;
-				case 5:	//	トリム
+				case ChipType.Trim: //	トリム
 					miChangeTrim.Enabled = false;
 					goto default;
-				case 6:	//	トリムフレーム
+				case ChipType.TrimF:    //	トリムフレーム
 					miChangeTrimF.Enabled = false;
 					goto default;
-				case 7: //	ホイール
+				case ChipType.Wheel: //	ホイール
 					miChangeWheel.Enabled = false;
 					goto default;
-				case 8:	//	無反動ホイール
+				case ChipType.RLW:  //	無反動ホイール
 					miChangeRLW.Enabled = false;
 					goto default;
-				case 9:	//	ジェット
+				case ChipType.Jet:  //	ジェット
 					miChangeJet.Enabled = false;
 					goto default;
-				case 10:	//	ウェイト
+				case ChipType.Weight:   //	ウェイト
 					miChangeWeight.Enabled = false;
 					goto default;
-				case 11:	//	カウル
+				case ChipType.Cowl: //	カウル
 					miChangeCowl.Enabled = false;
 					goto default;
-				case 12:	//	アーム
+				case ChipType.Arm:  //	アーム
 					miChangeArm.Enabled = false;
 					goto default;
 				default:
@@ -4985,7 +4542,7 @@ namespace rcm {
 
 		private void btnKey_Click(object sender, System.EventArgs e) {
 			Pause = true;
-			frmKeys keyform = new frmKeys(rcdata);
+			KeysForm keyform = new KeysForm(rcdata);
 			Modified = (keyform.ShowDialog() == DialogResult.Yes);
 			Pause = false;
 			SetValDropList();
@@ -4998,14 +4555,14 @@ namespace rcm {
 			if (e.KeyChar == 13) {
 				e.Handled = true;
 				string valname = ((ComboBox)sender).Text;
-				if (!RcData.TryParseNumber(valname)) {
+				if (!RigidChips.Environment.TryParseNumber(valname)) {
 					if (valname[0] == '-') {
 						valname = valname.Substring(1);
 					}
 					if (Array.Find(rcdata.vals.List, x => x.ValName == valname) == null) {
 						if (MessageBox.Show(string.Format("新規Val : {0} を作成しますか？", valname), "喪寺", MessageBoxButtons.YesNo) != DialogResult.Yes)
 							return;
-						frmVals valform = new frmVals(rcdata.vals, valname);
+						ValsForm valform = new ValsForm(rcdata.vals, valname);
 						Pause = true;
 						bool result = (valform.ShowDialog() == DialogResult.Yes);
 						Pause = false;
@@ -5085,10 +4642,10 @@ namespace rcm {
 
 			if (rcdata.SelectedChipCount > 0) {
 				foreach (object c in rcdata.SelectedChipList)
-					((RcChipBase)c)["Color"] = new RcAttrValue((i & 0xFF) << 16 | (i & 0xFF00) | (i & 0xFF0000) >> 16);
+					((ChipBase)c)["Color"] = new ChipAttribute((i & 0xFF) << 16 | (i & 0xFF00) | (i & 0xFF0000) >> 16);
 			}
 			else {
-				rcdata.SelectedChip["Color"] = new RcAttrValue((i & 0xFF) << 16 | (i & 0xFF00) | (i & 0xFF0000) >> 16);
+				rcdata.SelectedChip["Color"] = new ChipAttribute((i & 0xFF) << 16 | (i & 0xFF00) | (i & 0xFF0000) >> 16);
 			}
 			//	バイトオーダーが逆向きなのにはワラタ
 			LoadChipInfo();
@@ -5110,7 +4667,7 @@ namespace rcm {
 			c.Add("CamPhi", CamPhi.ToString());
 			c.Add("CamTheta", CamTheta.ToString());
 			c.Add("CamDepth", CamDepth.ToString());
-			c.Add("Selected", rcdata.SelectedChip == null ? "-1" : rcdata.SelectedChip.RegistID.ToString());
+			//c.Add("Selected", rcdata.SelectedChip == null ? "-1" : rcdata.SelectedChip.RegistID.ToString());
 
 			return c;
 		}
@@ -5127,9 +4684,9 @@ namespace rcm {
 					case "CamDepth":
 						CamDepth = float.Parse(opts[s]);
 						break;
-					case "Selected":
-						rcdata.SelectedChip = rcdata.GetChipFromLib((int)Math.Max(float.Parse(opts[s]), 0));
-						break;
+					//case "Selected":
+					//	rcdata.SelectedChip = rcdata.GetChipFromLib((int)Math.Max(float.Parse(opts[s]), 0));
+					//	break;
 				}
 			}
 		}
@@ -5158,14 +4715,14 @@ namespace rcm {
 
 					switch (Path.GetExtension(dlgOpen.FileName).ToLower()) {
 						case ".rcm":
-							rcdata.UnregisterChipAll(rcdata.model.root);
-							rcdata.keys = new RcKeyList(RcData.KeyCount);
-							rcdata.vals = new RcValList();
-							rcdata.model = new RcModel(rcdata);
+							//rcdata.UnregisterChipAll(rcdata.model.root);
+							rcdata.keys = new KeyEntryList(RigidChips.Environment.KeyCount);
+							rcdata.vals = new ValEntryList();
+							rcdata.model = new Model(rcdata);
 
 							rcdata.headercomment = rcdata.script = "";
 							rcdata.SelectedChip = rcdata.model.root;
-							rcdata.RegisterChip(rcdata.model.root);
+							//rcdata.RegisterChip(rcdata.model.root);
 
 							NameValueCollection opts = rcdata.Load(dlgOpen.FileName);
 							ApplyOptList(opts);
@@ -5174,15 +4731,15 @@ namespace rcm {
 						case ".rcd":
 						case ".txt":
 						default:
-							rcdata.UnregisterChipAll(rcdata.model.root);
-							rcdata.keys = new RcKeyList(RcData.KeyCount);
-							rcdata.vals = new RcValList();
-							rcdata.model = new RcModel(rcdata);
+							//rcdata.UnregisterChipAll(rcdata.model.root);
+							rcdata.keys = new KeyEntryList(RigidChips.Environment.KeyCount);
+							rcdata.vals = new ValEntryList();
+							rcdata.model = new Model(rcdata);
 
 
 							rcdata.headercomment = rcdata.script = "";
 							rcdata.SelectedChip = rcdata.model.root;
-							rcdata.RegisterChip(rcdata.model.root);
+							//rcdata.RegisterChip(rcdata.model.root);
 
 
 							StreamReader file = new StreamReader(dlgOpen.FileName, System.Text.Encoding.Default);
@@ -5207,21 +4764,8 @@ namespace rcm {
 
 		}
 
-		private void btnPrev_Click(object sender, System.EventArgs e) {
-			rcdata.SelectedChip = rcdata.GetChipFromLib(rcdata.SelectedChip.RegistID - 1);
-		}
-
-		private void btnNext_Click(object sender, System.EventArgs e) {
-			rcdata.SelectedChip = rcdata.GetChipFromLib(rcdata.SelectedChip.RegistID + 1);
-		}
-
 		private void miPaletteAllPaint_Click(object sender, System.EventArgs e) {
-			RcChipBase c;
-			for (int i = 0; i < RcData.MaxChipCount; i++) {
-				c = rcdata.GetChipFromLib(i);
-				if (c == null) return;
-				c.ChipColor = rcdata.SelectedChip.ChipColor;
-			}
+			rcdata.model.ForEach(chip => chip.ChipColor = rcdata.SelectedChip.ChipColor);
 			Modified = true;
 			if (treeview != null && !treeview.IsDisposed) treeview.UpdateTree(rcdata.SelectedChip);
 			labelTip.Text = "色を変更しました。";
@@ -5229,16 +4773,16 @@ namespace rcm {
 
 		private void miPaletteChildPaint_Click(object sender, System.EventArgs e) {
 			System.Collections.Queue paintqueue = new System.Collections.Queue();
-			RcChipBase buff;
+			ChipBase buff;
 
 			if (rcdata.SelectedChipCount == 0)
 				paintqueue.Enqueue(rcdata.SelectedChip);
 			else
-				foreach (RcChipBase selected in rcdata.SelectedChipList) paintqueue.Enqueue(selected);
+				foreach (ChipBase selected in rcdata.SelectedChipList) paintqueue.Enqueue(selected);
 
 			while (paintqueue.Count > 0) {
-				buff = (RcChipBase)paintqueue.Dequeue();
-				foreach (RcChipBase c in buff.Child) {
+				buff = (ChipBase)paintqueue.Dequeue();
+				foreach (ChipBase c in buff.Children) {
 					if (c == null) continue;
 					c.ChipColor = buff.ChipColor;
 					paintqueue.Enqueue(c);
@@ -5282,13 +4826,13 @@ namespace rcm {
 
 		private void miFileNew_Click(object sender, System.EventArgs e) {
 			if (!Modified || MessageBox.Show("現在のモデルを破棄します。", "初期化確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
-				rcdata.UnregisterChipAll(rcdata.model.root);
-				rcdata.keys = new RcKeyList(RcData.KeyCount);
-				rcdata.vals = new RcValList();
-				rcdata.model = new RcModel(rcdata);
+				//rcdata.UnregisterChipAll(rcdata.model.root);
+				rcdata.keys = new KeyEntryList(RigidChips.Environment.KeyCount);
+				rcdata.vals = new ValEntryList();
+				rcdata.model = new Model(rcdata);
 				rcdata.headercomment = rcdata.script = "";
 				rcdata.SelectedChip = rcdata.model.root;
-				rcdata.RegisterChip(rcdata.model.root);
+				//rcdata.RegisterChip(rcdata.model.root);
 
 				GC.Collect();
 				EditingFileName = "";
@@ -5501,19 +5045,19 @@ namespace rcm {
 			miListAdd.Enabled = (selectedButton.Text != "選択") && (selectedButton.Text != "視点");
 			switch (list.Name) {
 				case "lstNorth":
-					jointPositionBuffer = RcJointPosition.North;
+					jointPositionBuffer = JointPosition.North;
 					break;
 				case "lstSouth":
-					jointPositionBuffer = RcJointPosition.South;
+					jointPositionBuffer = JointPosition.South;
 					break;
 				case "lstEast":
-					jointPositionBuffer = RcJointPosition.East;
+					jointPositionBuffer = JointPosition.East;
 					break;
 				case "lstWest":
-					jointPositionBuffer = RcJointPosition.West;
+					jointPositionBuffer = JointPosition.West;
 					break;
 				default:
-					jointPositionBuffer = RcJointPosition.NULL;
+					jointPositionBuffer = JointPosition.NULL;
 					break;
 			}
 
@@ -5524,7 +5068,7 @@ namespace rcm {
 			switch (selectedButton.Text) {
 				case "貼り付け":
 					try {
-						RcChipBase buffer = clipboard.Clone(true, null);
+						ChipBase buffer = clipboard.Clone(true, null);
 						buffer.Attach(rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = "貼り付けを行いました。";
 					}
@@ -5533,11 +5077,11 @@ namespace rcm {
 						return;
 					}
 
-					rcdata.CheckBackTrack();
+					//rcdata.CheckBackTrack();
 					break;
 				case "チップ":
 					try {
-						new RcChipChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new NormalChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5548,7 +5092,7 @@ namespace rcm {
 					break;
 				case "フレーム":
 					try {
-						new RcChipFrame(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new FrameChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5560,7 +5104,7 @@ namespace rcm {
 					break;
 				case "ウェイト":
 					try {
-						new RcChipWeight(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new WeightChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5572,7 +5116,7 @@ namespace rcm {
 					break;
 				case "カウル":
 					try {
-						new RcChipCowl(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new CowlChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5583,7 +5127,7 @@ namespace rcm {
 					break;
 				case "ラダー":
 					try {
-						new RcChipRudder(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new RudderChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5595,7 +5139,7 @@ namespace rcm {
 					break;
 				case "ラダーフレーム":
 					try {
-						new RcChipRudderF(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new RudderFrameChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5607,7 +5151,7 @@ namespace rcm {
 					break;
 				case "トリム":
 					try {
-						new RcChipTrim(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new TrimChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5619,7 +5163,7 @@ namespace rcm {
 					break;
 				case "トリムフレーム":
 					try {
-						new RcChipTrimF(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new TrimFrameChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5631,7 +5175,7 @@ namespace rcm {
 					break;
 				case "ホイール":
 					try {
-						new RcChipWheel(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new WheelChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5642,7 +5186,7 @@ namespace rcm {
 					break;
 				case "無反動ホイール":
 					try {
-						new RcChipRLW(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new RLWChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5654,7 +5198,7 @@ namespace rcm {
 					break;
 				case "ジェット":
 					try {
-						new RcChipJet(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new JetChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5665,7 +5209,7 @@ namespace rcm {
 					break;
 				case "アーム":
 					try {
-						new RcChipArm(rcdata, rcdata.SelectedChip, jointPositionBuffer);
+						new ArmChip(rcdata, rcdata.SelectedChip, jointPositionBuffer);
 						labelTip.Text = selectedButton.Text + "を追加しました。";
 					}
 					catch (Exception err) {
@@ -5680,7 +5224,7 @@ namespace rcm {
 			}
 
 			//			UpdateCameraPosition(0,0,0,rcdata.Cursor.Matrix);
-			rcdata.CheckBackTrack();
+			//rcdata.CheckBackTrack();
 			rcdata.CalcWeightCenter();
 			pictTarget_Paint(this, null);
 
@@ -5697,14 +5241,14 @@ namespace rcm {
 				dlgOpen.Multiselect = false;
 				dlgOpen.ShowReadOnly = false;
 				if (dlgOpen.ShowDialog() == DialogResult.OK) {
-					rcdata.UnregisterChipAll(rcdata.model.root);
-					rcdata.keys = new RcKeyList(RcData.KeyCount);
-					rcdata.vals = new RcValList();
-					rcdata.model = new RcModel(rcdata);
+					//rcdata.UnregisterChipAll(rcdata.model.root);
+					rcdata.keys = new KeyEntryList(RigidChips.Environment.KeyCount);
+					rcdata.vals = new ValEntryList();
+					rcdata.model = new Model(rcdata);
 
 
 					rcdata.headercomment = rcdata.script = "";
-					rcdata.RegisterChip(rcdata.model.root);
+					//rcdata.RegisterChip(rcdata.model.root);
 					StreamReader file = new StreamReader(dlgOpen.FileName, System.Text.Encoding.Default);
 					rcdata.Parse(file.ReadToEnd());
 
@@ -5810,16 +5354,16 @@ namespace rcm {
 		private void miListSelect_Click(object sender, System.EventArgs e) {
 			ListBox list;
 			switch (jointPositionBuffer) {
-				case RcJointPosition.North:
+				case JointPosition.North:
 					list = lstNorth;
 					break;
-				case RcJointPosition.South:
+				case JointPosition.South:
 					list = lstSouth;
 					break;
-				case RcJointPosition.East:
+				case JointPosition.East:
 					list = lstEast;
 					break;
-				case RcJointPosition.West:
+				case JointPosition.West:
 					list = lstWest;
 					break;
 				default:
@@ -5827,7 +5371,7 @@ namespace rcm {
 			}
 			if (list.SelectedIndex < 0) return;
 
-			rcdata.SelectedChip = (RcChipBase)list.SelectedItem;
+			rcdata.SelectedChip = (ChipBase)list.SelectedItem;
 			labelTip.Text = "カーソルを移動しました : " + rcdata.SelectedChip.ToString() +
 				((rcdata.SelectedChip.Comment != null && rcdata.SelectedChip.Comment != "") ?
 				" (" + rcdata.SelectedChip.Comment + ")" : "");
@@ -5837,16 +5381,16 @@ namespace rcm {
 		private void miListCut_Click(object sender, System.EventArgs e) {
 			ListBox list;
 			switch (jointPositionBuffer) {
-				case RcJointPosition.North:
+				case JointPosition.North:
 					list = lstNorth;
 					break;
-				case RcJointPosition.South:
+				case JointPosition.South:
 					list = lstSouth;
 					break;
-				case RcJointPosition.East:
+				case JointPosition.East:
 					list = lstEast;
 					break;
-				case RcJointPosition.West:
+				case JointPosition.West:
 					list = lstWest;
 					break;
 				default:
@@ -5857,23 +5401,23 @@ namespace rcm {
 			//clipboard = (RcChipBase)list.SelectedItem;
 			//rcdata.SelectedChip = clipboard.Parent;
 			//clipboard.Detach();
-			actionCut((RcChipBase)list.SelectedItem);
+			actionCut((ChipBase)list.SelectedItem);
 			LoadChipInfo();
 		}
 
 		private void miListCopy_Click(object sender, System.EventArgs e) {
 			ListBox list;
 			switch (jointPositionBuffer) {
-				case RcJointPosition.North:
+				case JointPosition.North:
 					list = lstNorth;
 					break;
-				case RcJointPosition.South:
+				case JointPosition.South:
 					list = lstSouth;
 					break;
-				case RcJointPosition.East:
+				case JointPosition.East:
 					list = lstEast;
 					break;
-				case RcJointPosition.West:
+				case JointPosition.West:
 					list = lstWest;
 					break;
 				default:
@@ -5881,13 +5425,13 @@ namespace rcm {
 			}
 			if (list.SelectedIndex < 0) return;
 
-			actionCopy((RcChipBase)list.SelectedItem);
+			actionCopy((ChipBase)list.SelectedItem);
 
 		}
 
 		private void miToolTree_Click(object sender, System.EventArgs e) {
 			if (treeview == null)
-				treeview = new frmTree(rcdata, ctmChipType);
+				treeview = new TreeForm(rcdata, ctmChipType);
 			//else {
 			//    treeview.Dispose();
 			//    treeview = null;
@@ -5907,7 +5451,7 @@ namespace rcm {
 
 		private void RcData_SelectedChipChanged(object param) {
 			LoadChipInfo();
-			if (param != null) ProcessViewPoint(((RcChipBase)param).Matrix);
+			if (param != null) ProcessViewPoint(((ChipBase)param).Matrix);
 			bool multiSelected = (rcdata.SelectedChipCount != 0);
 
 			//tbbCut.Enabled = tbbCopy.Enabled = tbbInsert.Enabled = tbbChip.Enabled = tbbFrame.Enabled = 
@@ -5924,7 +5468,7 @@ namespace rcm {
 		}
 
 		private void miCommentEdit_Click(object sender, System.EventArgs e) {
-			string s = dlgTextInput.ShowDialog(rcdata.SelectedChip.Comment, "付加するコメントを入力してください(空で消去)。", 0);
+			string s = TextInputDialog.ShowDialog(rcdata.SelectedChip.Comment, "付加するコメントを入力してください(空で消去)。", 0);
 			if (s != null)
 				rcdata.SelectedChip.Comment = s;
 		}
@@ -5960,14 +5504,14 @@ namespace rcm {
 
 		private void miChangeType(object sender, System.EventArgs e) {
 			MenuItem item = (MenuItem)sender;
-			RcChipBase target = rcdata.SelectedChip;
+			ChipBase target = rcdata.SelectedChip;
 
 			try {
 				if (item == miChangeCowl) {
-					RcChipBase itr = null;
-					foreach (RcChipBase c in target.Child) {
+					ChipBase itr = null;
+					foreach (ChipBase c in target.Children) {
 						if (c == null) break;
-						if (!(c is RcChipCowl)) {
+						if (!(c is CowlChip)) {
 							if (MessageBox.Show("カウル以外のチップが接続されているため、カウルに変更できません。\n接続されているチップをすべてカウルに変更しますか？", "タイプ変更エラー", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 								== DialogResult.Yes) {
 
@@ -5979,15 +5523,15 @@ namespace rcm {
 
 								while (q.Count > 0) {
 									s.Push(q.Dequeue());
-									itr = (RcChipBase)s.Peek();
-									foreach (RcChipBase cld in itr.Child) {
+									itr = (ChipBase)s.Peek();
+									foreach (ChipBase cld in itr.Children) {
 										if (cld != null) q.Enqueue(cld);
 									}
 								}
 
 								while (s.Count > 0) {
-									itr = (RcChipBase)s.Pop();
-									itr = itr.ChangeType(RcChipType.Cowl);
+									itr = (ChipBase)s.Pop();
+									itr = itr.ChangeType(ChipType.Cowl);
 								}
 								rcdata.SelectedChip = itr;
 								labelTip.Text = "Cowlに変更しました。";
@@ -6000,51 +5544,51 @@ namespace rcm {
 							}
 						}
 					}
-					rcdata.SelectedChip = target.ChangeType(RcChipType.Cowl);
+					rcdata.SelectedChip = target.ChangeType(ChipType.Cowl);
 					labelTip.Text = "Cowlに変更しました。";
 				}
 				else if (item == miChangeChip) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.Chip);
+					rcdata.SelectedChip = target.ChangeType(ChipType.Chip);
 					labelTip.Text = "Chipに変更しました。";
 				}
 				else if (item == miChangeFrame) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.Frame);
+					rcdata.SelectedChip = target.ChangeType(ChipType.Frame);
 					labelTip.Text = "Frameに変更しました。";
 				}
 				else if (item == miChangeRudder) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.Rudder);
+					rcdata.SelectedChip = target.ChangeType(ChipType.Rudder);
 					labelTip.Text = "Rudderに変更しました。";
 				}
 				else if (item == miChangeRudderF) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.RudderF);
+					rcdata.SelectedChip = target.ChangeType(ChipType.RudderF);
 					labelTip.Text = "RudderFに変更しました。";
 				}
 				else if (item == miChangeTrim) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.Trim);
+					rcdata.SelectedChip = target.ChangeType(ChipType.Trim);
 					labelTip.Text = "Trimに変更しました。";
 				}
 				else if (item == miChangeTrimF) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.TrimF);
+					rcdata.SelectedChip = target.ChangeType(ChipType.TrimF);
 					labelTip.Text = "TrimFに変更しました。";
 				}
 				else if (item == miChangeWheel) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.Wheel);
+					rcdata.SelectedChip = target.ChangeType(ChipType.Wheel);
 					labelTip.Text = "Wheelに変更しました。";
 				}
 				else if (item == miChangeRLW) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.RLW);
+					rcdata.SelectedChip = target.ChangeType(ChipType.RLW);
 					labelTip.Text = "RLWに変更しました。";
 				}
 				else if (item == miChangeJet) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.Jet);
+					rcdata.SelectedChip = target.ChangeType(ChipType.Jet);
 					labelTip.Text = "Jetに変更しました。";
 				}
 				else if (item == miChangeWeight) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.Weight);
+					rcdata.SelectedChip = target.ChangeType(ChipType.Weight);
 					labelTip.Text = "Weightに変更しました。";
 				}
 				else if (item == miChangeArm) {
-					rcdata.SelectedChip = target.ChangeType(RcChipType.Arm);
+					rcdata.SelectedChip = target.ChangeType(ChipType.Arm);
 					labelTip.Text = "Armに変更しました。";
 				}
 				else
@@ -6053,7 +5597,7 @@ namespace rcm {
 			catch (Exception exc) {
 				MessageBox.Show(exc.Message + "\n種類の変更に失敗しました。");
 			}
-			rcdata.CheckBackTrack();
+			//rcdata.CheckBackTrack();
 
 		}
 
@@ -6065,7 +5609,7 @@ namespace rcm {
 
 		private void miToolScript_Click(object sender, System.EventArgs e) {
 			if (scriptform == null)
-				scriptform = new frmScript(this, rcdata);
+				scriptform = new ScriptForm(this, rcdata);
 			else
 				scriptform.Activate();
 
@@ -6076,7 +5620,7 @@ namespace rcm {
 			Application.Exit();
 		}
 
-		private void frmMain_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+		private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
 			if (Modified) {
 				switch (MessageBox.Show("変更されています。保存しますか？", "喪寺", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)) {
 					case DialogResult.Yes:
@@ -6135,7 +5679,7 @@ namespace rcm {
 			pictAngle_Paint(sender, null);
 		}
 
-		private void frmMain_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e) {
+		private void MainForm_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e) {
 			if (!PreviewMode 
 				&& Control.ModifierKeys == Keys.None
 				&& !txtName.Focused
@@ -6242,18 +5786,18 @@ namespace rcm {
 		}
 
 		bool[] previewKeys = new bool[17];
-		private void frmMain_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
+		private void MainForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
 			if (PreviewMode) {
-				int i = Array.IndexOf(RcKeyList.KeyMap, e.KeyCode);
+				int i = Array.IndexOf(KeyEntryList.KeyMap, e.KeyCode);
 				if (i < 0) return;
 				previewKeys[i] = true;
 				e.Handled = true;
 			}
 		}
 
-		private void frmMain_KeyUp(object sender, KeyEventArgs e) {
+		private void MainForm_KeyUp(object sender, KeyEventArgs e) {
 			if (PreviewMode) {
-				int i = Array.IndexOf(RcKeyList.KeyMap, e.KeyCode);
+				int i = Array.IndexOf(KeyEntryList.KeyMap, e.KeyCode);
 				if (i < 0) return;
 				previewKeys[i] = false;
 				e.Handled = true;
@@ -6292,19 +5836,19 @@ namespace rcm {
 			int[] ChipCounts = new int[13];
 			decimal fuel = 0;
 
-			Stack<RcChipBase> stack = new Stack<RcChipBase>();
+			Stack<ChipBase> stack = new Stack<ChipBase>();
 			int depthTotal = 0, currentDepth = 0;
 			stack.Push(rcdata.model.root);
 			while (stack.Count > 0) {
-				RcChipBase c = stack.Pop();
+				ChipBase c = stack.Pop();
 				if (c != null) {
-					RcChipType type = (RcChipType)Enum.Parse(typeof(RcChipType), c.ChipType);
+					ChipType type = c.ChipType;
 					ChipCounts[(int)type]++;
 					fuel += (decimal)c.Fuel;
 					depthTotal += currentDepth;
 
 					stack.Push(null);
-					foreach (RcChipBase child in c.Child) {
+					foreach (ChipBase child in c.Children) {
 						if (child != null) stack.Push(child);
 					}
 					currentDepth++;
@@ -6317,7 +5861,7 @@ namespace rcm {
 			int sum = 0;
 			for (int i = 0; i < 13; i++) {
 				if (ChipCounts[i] != 0) {
-					builder.Append(Enum.GetName(typeof(RcChipType), (byte)i));
+					builder.Append(Enum.GetName(typeof(ChipType), (byte)i));
 					builder.Append(":\t");
 					builder.Append(ChipCounts[i].ToString().PadLeft(4, ' '));
 					builder.Append('\n');
@@ -6337,12 +5881,12 @@ namespace rcm {
 		}
 
 		private void miEditSelectParent_Click(object sender, System.EventArgs e) {
-			RcChipBase c = rcdata.SelectedChip;
+			ChipBase c = rcdata.SelectedChip;
 			if (c != null) {
 				if (rcdata.SelectedChip.Parent != null) rcdata.SelectedChip = rcdata.SelectedChip.Parent;
 			}
 			else {
-				foreach (RcChipBase s in rcdata.SelectedChipList) {
+				foreach (ChipBase s in rcdata.SelectedChipList) {
 					rcdata.AssignSelectedChips(s);
 					rcdata.AssignSelectedChips(s.Parent);
 				}
@@ -6366,10 +5910,10 @@ namespace rcm {
 			}
 
 			while (q.Count > 0) {
-				RcChipBase c = (RcChipBase)q.Dequeue();
+				ChipBase c = (ChipBase)q.Dequeue();
 				if (c == null) continue;
 
-				foreach (RcChipBase cld in c.Child) {
+				foreach (ChipBase cld in c.Children) {
 					if (cld != null) {
 						a.Add(cld);
 						q.Enqueue(cld);
@@ -6484,19 +6028,19 @@ namespace rcm {
 			btnListAdd.Left = list.Right - btnListAdd.Width;
 			switch (list.Name) {
 				case "lstNorth":
-					jointPositionBuffer = RcJointPosition.North;
+					jointPositionBuffer = JointPosition.North;
 					break;
 				case "lstSouth":
-					jointPositionBuffer = RcJointPosition.South;
+					jointPositionBuffer = JointPosition.South;
 					break;
 				case "lstEast":
-					jointPositionBuffer = RcJointPosition.East;
+					jointPositionBuffer = JointPosition.East;
 					break;
 				case "lstWest":
-					jointPositionBuffer = RcJointPosition.West;
+					jointPositionBuffer = JointPosition.West;
 					break;
 				default:
-					jointPositionBuffer = RcJointPosition.NULL;
+					jointPositionBuffer = JointPosition.NULL;
 					break;
 			}
 
@@ -6548,7 +6092,7 @@ namespace rcm {
 			rcdata.model.root.UpdateMatrix();
 			rcdata.CalcWeightCenter();
 			this.ResumeLayout();
-			frmMain_Resize(this, null);
+			MainForm_Resize(this, null);
 
 			pictTarget.Focus();
 		}
@@ -6572,14 +6116,14 @@ namespace rcm {
 		}
 
 		private void tsbInsert_Click(object sender, EventArgs e) {
-			if (rcdata.SelectedChip is RcChipCore) {
+			if (rcdata.SelectedChip is CoreChip) {
 				labelTip.Text = "挿入する場所がありません。";
 				return;
 			}
-			RcChipBase prevParent = rcdata.SelectedChip.Parent;
-			RcJointPosition prevJP = rcdata.SelectedChip.JointPosition;
+			ChipBase prevParent = rcdata.SelectedChip.Parent;
+			JointPosition prevJP = rcdata.SelectedChip.JointPosition;
 
-			RcChipBase buffer;
+			ChipBase buffer;
 
 			switch (selectedButton.Text) {
 				case "貼り付け":
@@ -6590,7 +6134,7 @@ namespace rcm {
 					return;
 				case "チップ":
 					try {
-						buffer = new RcChipChip(rcdata, prevParent, prevJP);
+						buffer = new NormalChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6601,7 +6145,7 @@ namespace rcm {
 					break;
 				case "フレーム":
 					try {
-						buffer = new RcChipFrame(rcdata, prevParent, prevJP);
+						buffer = new FrameChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6613,7 +6157,7 @@ namespace rcm {
 					break;
 				case "ウェイト":
 					try {
-						buffer = new RcChipWeight(rcdata, prevParent, prevJP);
+						buffer = new WeightChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6625,7 +6169,7 @@ namespace rcm {
 					break;
 				case "カウル":
 					try {
-						buffer = new RcChipCowl(rcdata, prevParent, prevJP);
+						buffer = new CowlChip(rcdata, prevParent, prevJP);
 					}
 					catch (Exception err) {
 						MessageBox.Show(err.Message, "追加エラー");
@@ -6635,7 +6179,7 @@ namespace rcm {
 					break;
 				case "ラダー":
 					try {
-						buffer = new RcChipRudder(rcdata, prevParent, prevJP);
+						buffer = new RudderChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6647,7 +6191,7 @@ namespace rcm {
 					break;
 				case "ラダーフレーム":
 					try {
-						buffer = new RcChipRudderF(rcdata, prevParent, prevJP);
+						buffer = new RudderFrameChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6659,7 +6203,7 @@ namespace rcm {
 					break;
 				case "トリム":
 					try {
-						buffer = new RcChipTrim(rcdata, prevParent, prevJP);
+						buffer = new TrimChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6671,7 +6215,7 @@ namespace rcm {
 					break;
 				case "トリムフレーム":
 					try {
-						buffer = new RcChipTrimF(rcdata, prevParent, prevJP);
+						buffer = new TrimFrameChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6683,7 +6227,7 @@ namespace rcm {
 					break;
 				case "ホイール":
 					try {
-						buffer = new RcChipWheel(rcdata, prevParent, prevJP);
+						buffer = new WheelChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6694,7 +6238,7 @@ namespace rcm {
 					break;
 				case "無反動ホイール":
 					try {
-						buffer = new RcChipRLW(rcdata, prevParent, prevJP);
+						buffer = new RLWChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6706,7 +6250,7 @@ namespace rcm {
 					break;
 				case "ジェット":
 					try {
-						buffer = new RcChipJet(rcdata, prevParent, prevJP);
+						buffer = new JetChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6717,7 +6261,7 @@ namespace rcm {
 					break;
 				case "アーム":
 					try {
-						buffer = new RcChipArm(rcdata, prevParent, prevJP);
+						buffer = new ArmChip(rcdata, prevParent, prevJP);
 
 					}
 					catch (Exception err) {
@@ -6780,7 +6324,7 @@ namespace rcm {
 			actionDelete();
 		}
 
-		private void frmMain_FormClosed(object sender, FormClosedEventArgs e) {
+		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
 			if (scriptform != null) scriptform.Close();
 		}
 
@@ -6792,7 +6336,7 @@ namespace rcm {
 			switch (dlgColor.ShowDialog()) {
 				case DialogResult.OK:
 					var i = dlgColor.Color.ToArgb();
-					rcdata.SelectedChip["Color"] = new RcAttrValue(i);
+					rcdata.SelectedChip["Color"] = new ChipAttribute(i);
 					ApplyChipInfo();
 					LoadChipInfo();
 					return;
@@ -6802,19 +6346,27 @@ namespace rcm {
 			}
 		}
 
+		private void frmMain_KeyUp(object sender, KeyEventArgs e) {
+
+		}
+
+		private void frmMain_KeyDown(object sender, KeyEventArgs e) {
+
+		}
+
 		private void miListDelete_Click(object sender, EventArgs e) {
 			ListBox list;
 			switch (jointPositionBuffer) {
-				case RcJointPosition.North:
+				case JointPosition.North:
 					list = lstNorth;
 					break;
-				case RcJointPosition.South:
+				case JointPosition.South:
 					list = lstSouth;
 					break;
-				case RcJointPosition.East:
+				case JointPosition.East:
 					list = lstEast;
 					break;
-				case RcJointPosition.West:
+				case JointPosition.West:
 					list = lstWest;
 					break;
 				default:
@@ -6825,7 +6377,7 @@ namespace rcm {
 			//clipboard = (RcChipBase)list.SelectedItem;
 			//rcdata.SelectedChip = clipboard.Parent;
 			//clipboard.Detach();
-			actionDelete((RcChipBase)list.SelectedItem);
+			actionDelete((ChipBase)list.SelectedItem);
 			LoadChipInfo();
 		}
 

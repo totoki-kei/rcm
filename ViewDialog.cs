@@ -9,7 +9,7 @@ namespace rcm
 	/// <summary>
 	/// 視点を直接値で設定するためのダイアログ、の予定でした。
 	/// </summary>
-	public class dlgView : System.Windows.Forms.Form
+	public class ViewDialog : System.Windows.Forms.Form
 	{
 		private System.Windows.Forms.TextBox txtTheta;
 		private System.Windows.Forms.TextBox txtPhi;
@@ -24,7 +24,7 @@ namespace rcm
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		public dlgView()
+		public ViewDialog()
 		{
 			//
 			// Windows フォーム デザイナ サポートに必要です。

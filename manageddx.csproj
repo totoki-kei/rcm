@@ -27,7 +27,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -43,8 +43,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -126,28 +125,61 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="dlgTextInput.cs">
+    <Compile Include="PanelEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RigidChips\AngleDirection.cs" />
+    <Compile Include="RigidChips\Chips\ArmChip.cs" />
+    <Compile Include="RigidChips\ChipAttribute.cs" />
+    <Compile Include="RigidChips\Chips\ChipBase.cs" />
+    <Compile Include="RigidChips\Chips\CoreChip.cs" />
+    <Compile Include="RigidChips\Chips\CowlChip.cs" />
+    <Compile Include="RigidChips\Chips\FrameChip.cs" />
+    <Compile Include="RigidChips\Chips\JetChip.cs" />
+    <Compile Include="RigidChips\Chips\NormalChip.cs" />
+    <Compile Include="RigidChips\Chips\CursorChip.cs" />
+    <Compile Include="RigidChips\ChipType.cs" />
+    <Compile Include="RigidChips\Constant.cs" />
+    <Compile Include="RigidChips\DrawOptions.cs" />
+    <Compile Include="RigidChips\EditOptions.cs" />
+    <Compile Include="RigidChips\HitStatus.cs" />
+    <Compile Include="RigidChips\JointPosition.cs" />
+    <Compile Include="RigidChips\KeyEntry.cs" />
+    <Compile Include="RigidChips\KeyEntryList.cs" />
+    <Compile Include="RigidChips\Model.cs" />
+    <Compile Include="RigidChips\OutputOptions.cs" />
+    <Compile Include="RigidChips\ValEntry.cs" />
+    <Compile Include="RigidChips\ValEntryList.cs" />
+    <Compile Include="RigidChips\XFile.cs" />
+    <Compile Include="RigidChips\Chips\RLWChip.cs" />
+    <Compile Include="RigidChips\Chips\RudderChip.cs" />
+    <Compile Include="RigidChips\Chips\RudderFrameChip.cs" />
+    <Compile Include="RigidChips\Chips\TrimChip.cs" />
+    <Compile Include="RigidChips\Chips\TrimFrameChip.cs" />
+    <Compile Include="RigidChips\Chips\WeightChip.cs" />
+    <Compile Include="RigidChips\Chips\WheelChip.cs" />
+    <Compile Include="TextInputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dlgView.cs">
+    <Compile Include="ViewDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConfig.cs">
+    <Compile Include="ConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmKeys.cs">
+    <Compile Include="KeysForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmScript.cs">
+    <Compile Include="ScriptForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTree.cs">
+    <Compile Include="TreeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmVals.cs">
+    <Compile Include="ValsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -155,38 +187,38 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RcChips.cs">
+    <Compile Include="RigidChips\Chips\GuideChip.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="RcData.cs">
+    <Compile Include="RigidChips\Environment.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="RcParser.cs">
+    <Compile Include="RigidChips\ModelParser.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="dlgTextInput.resx">
-      <DependentUpon>dlgTextInput.cs</DependentUpon>
+    <EmbeddedResource Include="TextInputDialog.resx">
+      <DependentUpon>TextInputDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dlgView.resx">
-      <DependentUpon>dlgView.cs</DependentUpon>
+    <EmbeddedResource Include="ViewDialog.resx">
+      <DependentUpon>ViewDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConfig.resx">
-      <DependentUpon>frmConfig.cs</DependentUpon>
+    <EmbeddedResource Include="ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmKeys.resx">
-      <DependentUpon>frmKeys.cs</DependentUpon>
+    <EmbeddedResource Include="KeysForm.resx">
+      <DependentUpon>KeysForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmScript.resx">
-      <DependentUpon>frmScript.cs</DependentUpon>
+    <EmbeddedResource Include="ScriptForm.resx">
+      <DependentUpon>ScriptForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTree.resx">
-      <DependentUpon>frmTree.cs</DependentUpon>
+    <EmbeddedResource Include="TreeForm.resx">
+      <DependentUpon>TreeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVals.resx">
-      <DependentUpon>frmVals.cs</DependentUpon>
+    <EmbeddedResource Include="ValsForm.resx">
+      <DependentUpon>ValsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

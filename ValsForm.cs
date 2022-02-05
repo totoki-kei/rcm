@@ -10,9 +10,9 @@ namespace rcm
 	/// <summary>
 	/// 変数(Vals)設定ダイアログ。
 	/// </summary>
-	public class frmVals : System.Windows.Forms.Form
+	public class ValsForm : System.Windows.Forms.Form
 	{
-		RcValList vallist;
+		ValEntryList vallist;
 		int idx;
 		bool Modified = false;
 		DialogResult result = DialogResult.No;
@@ -46,7 +46,7 @@ namespace rcm
 		private Button btnDelete;
 		private System.ComponentModel.IContainer components;
 
-		public frmVals(RcValList list)
+		public ValsForm(ValEntryList list)
 		{
 			//
 			// Windows フォーム デザイナ サポートに必要です。
@@ -57,7 +57,7 @@ namespace rcm
 			idx = -1;
 		}
 
-		public frmVals(RcValList list, string valname) : this(list) {
+		public ValsForm(ValEntryList list, string valname) : this(list) {
 			var v = Array.Find(list.List, x => x.ValName == valname);
 			if (v == null) {
 				v = list.Add(valname);
@@ -394,7 +394,7 @@ namespace rcm
 		void RefreshValList(){
 			lstVals.BeginUpdate();
 			lstVals.Items.Clear();
-			foreach(RcVal v in vallist.List){
+			foreach(ValEntry v in vallist.List){
 				lstVals.Items.Add(v.ToString());
 			}
 			lstVals.Items.Add("(新規)");
@@ -407,7 +407,7 @@ namespace rcm
 		void AdoptValData(){
 			result = DialogResult.Yes;
 			Modified = false;
-			RcVal target = vallist[idx];
+			ValEntry target = vallist[idx];
 			if(txtName.Text == ""){
 				if(target.RefCount > 0){
 					if(MessageBox.Show("この変数は他の部分で使用されています。\nそのため削除するとモデル動作が意図しない物になる可能性があります。","RefCount = " + target.RefCount,MessageBoxButtons.OKCancel) == DialogResult.Cancel)
@@ -426,10 +426,10 @@ namespace rcm
 				//target.Min = RcData.ParseNumber(txtMin.Text);
 				//target.Max = RcData.ParseNumber(txtMax.Text);
 				//target.Step = RcData.ParseNumber(txtStep.Text);
-				target.Default = new RcConst(txtDefault.Text);
-				target.Min = new RcConst(txtMin.Text);
-				target.Max = new RcConst(txtMax.Text);
-				target.Step = new RcConst(txtStep.Text);
+				target.Default = new Constant(txtDefault.Text);
+				target.Min = new Constant(txtMin.Text);
+				target.Max = new Constant(txtMax.Text);
+				target.Step = new Constant(txtStep.Text);
 
 				if(target.Min > target.Max){
 					MessageBox.Show("Max / Minの範囲が不正です。\nMaxをMinに合わせます。","適用エラー",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
@@ -475,7 +475,7 @@ namespace rcm
 			}
 			else if (lstVals.SelectedItem as string == "(新規)") {
 				// 新規追加
-				RcVal NewVal = vallist.Add("val" + (vallist.Count + 1).ToString());
+				ValEntry NewVal = vallist.Add("val" + (vallist.Count + 1).ToString());
 				if (NewVal == null) {
 					lstVals.SelectedIndex = -1;
 					return;
@@ -616,8 +616,8 @@ namespace rcm
 		}
 
 		private void btnCopy_Click(object sender, System.EventArgs e) {
-			RcVal temp = vallist[idx];
-			RcVal temp2;
+			ValEntry temp = vallist[idx];
+			ValEntry temp2;
 			string copyflag = "_copy";
 			int count = 0;
 
@@ -641,7 +641,7 @@ namespace rcm
 		}
 
 		private void btnDelete_Click(object sender, EventArgs e) {
-			RcVal target = vallist[idx];
+			ValEntry target = vallist[idx];
 			if (target.RefCount > 0) {
 				if (MessageBox.Show("この変数は他の部分で使用されています。\nそのため削除するとモデル動作が意図しない物になる可能性があります。", "RefCount = " + target.RefCount, MessageBoxButtons.OKCancel) == DialogResult.Cancel)
 					return;

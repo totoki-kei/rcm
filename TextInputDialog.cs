@@ -9,7 +9,7 @@ namespace rcm
 	/// <summary>
 	/// 文字列入力用簡易ダイアログ
 	/// </summary>
-	public class dlgTextInput : System.Windows.Forms.Form
+	public class TextInputDialog : System.Windows.Forms.Form
 	{
 		// 許容文字に関係する文字列
 		private string ignorelist = "";
@@ -26,7 +26,7 @@ namespace rcm
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		private dlgTextInput()
+		private TextInputDialog()
 		{
 			//
 			// Windows フォーム デザイナ サポートに必要です。
@@ -127,7 +127,7 @@ namespace rcm
 		///maxlengthが0の場合、入力可能文字数はなし。
 		///</summery>
 		public static string ShowDialog(string defaulttext,string labelcaption, int maxlength){
-			dlgTextInput f = new dlgTextInput();
+			TextInputDialog f = new TextInputDialog();
 			if(defaulttext != null)f.textBox1.Text = defaulttext;
 			if(maxlength > 0)f.textBox1.MaxLength = maxlength;
 			if(labelcaption != null)f.label1.Text = labelcaption;
@@ -142,7 +142,7 @@ namespace rcm
 		///ダイアログを発生させる。
 		///</summery>
 		public static string ShowDialog(string defaulttext,string labelcaption, int maxlength,KeyPressEventHandler keypresshandler){
-			dlgTextInput f = new dlgTextInput();
+			TextInputDialog f = new TextInputDialog();
 			if(defaulttext != null)f.textBox1.Text = defaulttext;
 			if(maxlength > 0)f.textBox1.MaxLength = maxlength;
 			if(labelcaption != null)f.label1.Text = labelcaption;
@@ -159,7 +159,7 @@ namespace rcm
 		///ignoreがtrueの時、文字リストは無視対象となる。
 		///</summery>
 		public static string ShowDialog(string defaulttext,string labelcaption, int maxlength, string checkcharlist,bool ignore){
-			dlgTextInput f = new dlgTextInput();
+			TextInputDialog f = new TextInputDialog();
 			if(defaulttext != null)f.textBox1.Text = defaulttext;
 			if(maxlength > 0)f.textBox1.MaxLength = maxlength;
 			if(labelcaption != null)f.label1.Text = labelcaption;
